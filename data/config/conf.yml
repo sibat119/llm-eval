@@ -1,0 +1,13 @@
+data_path: "data/dataset"
+model_name: "meta-llama/Llama-3.1-8B-Instruct"
+dataset_name: "cais/mmlu"
+max_new_tokens: 100
+model_cache: "data/model_cache"
+model_cache: "/data/shared/llm_cache"
+num_devices: 1
+top_p: 0.95
+temperature: 0.
+num_output_tokens: 100
+max_length: 1000
+dtype: "auto"
+

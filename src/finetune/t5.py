@@ -13,352 +13,170 @@ from sklearn.model_selection import KFold
 from typing import List, Dict, Tuple
 import logging
 from tqdm import tqdm
+import os
+from datasets import load_dataset
 
 # local imports
 from src.utils.files import get_project_root, get_full_path, path_exists
 from src.utils.strings import now, green, yellow, red
 
-class T5SurrogateDataset(Dataset):
-    """
-    Dataset for T5 surrogate model training
-    """
-    def __init__(
-        self,
-        inputs: List[str],
-        outputs: List[str],
-        tokenizer: T5Tokenizer,
-        max_input_length: int = 512,
-        max_output_length: int = 128
-    ):
-        """
-        Initialize the dataset
-        
-        :param inputs: List of input strings
-        :param outputs: List of output strings
-        :param tokenizer: T5 tokenizer
-        :param max_input_length: Maximum input sequence length
-        :param max_output_length: Maximum output sequence length
-        """
-        self.inputs = inputs
-        self.outputs = outputs
-        self.tokenizer = tokenizer
-        self.max_input_length = max_input_length
-        self.max_output_length = max_output_length
-        
-    def __len__(self):
-        return len(self.inputs)
-    
-    def __getitem__(self, idx):
-        input_text = self.inputs[idx]
-        output_text = self.outputs[idx]
-        
-        # Tokenize input and output
-        input_encoding = self.tokenizer(
-            input_text,
-            max_length=self.max_input_length,
-            padding="max_length",
-            truncation=True,
-            return_tensors="pt"
-        )
-        
-        output_encoding = self.tokenizer(
-            output_text,
-            max_length=self.max_output_length,
-            padding="max_length",
-            truncation=True,
-            return_tensors="pt"
-        )
-        
-        # Create model inputs
-        input_ids = input_encoding.input_ids.squeeze()
-        attention_mask = input_encoding.attention_mask.squeeze()
-        labels = output_encoding.input_ids.squeeze()
-        
-        # Replace padding token id with -100 in labels so it's ignored in loss calculation
-        labels[labels == self.tokenizer.pad_token_id] = -100
-        
-        return {
-            "input_ids": input_ids,
-            "attention_mask": attention_mask,
-            "labels": labels
-        }
+import os
+import matplotlib.pyplot as plt
+from transformers import (
+    T5ForConditionalGeneration,
+    T5Tokenizer,
+    Trainer,
+    TrainingArguments,
+    TrainerCallback,
+    TrainerState,
+    TrainerControl
+)
+from datasets import load_dataset
 
-def split_data(inputs: List[str], outputs: List[str], num_folds: int, seed: int = 42) -> Dict[str, Tuple[List[str], List[str]]]:
+def preprocess_function(examples, tokenizer):
     """
-    Split data into train, validation, and test sets based on number of folds
-    
-    :param inputs: List of input strings
-    :param outputs: List of output strings
-    :param num_folds: Number of folds (2, 3, or 4)
-    :param seed: Random seed
-    :return: Dictionary containing train, val, and test splits
+    Format the input prompt for T5 and tokenize both input and target.
+    Assumes examples has keys: "question", "choices", and "answer".
     """
-    assert num_folds in [2, 3, 4], "num_folds must be 2, 3, or 4"
+    inputs = [
+        f"question: {q} choices: {', '.join(choices)} answer:" 
+        for q, choices in zip(examples["question"], examples["choices"])
+    ]
+    targets = [str(c[a]) for c, a in zip(examples["choices"], examples["answer"])]
     
-    # Set random seed
-    np.random.seed(seed)
+    # Tokenize inputs
+    model_inputs = tokenizer(inputs, max_length=512, truncation=True, padding=True,)
     
-    # Create indices and shuffle
-    indices = np.arange(len(inputs))
-    np.random.shuffle(indices)
+    # Tokenize targets (labels)
+    with tokenizer.as_target_tokenizer():
+        labels = tokenizer(targets, max_length=128, truncation=True, padding=True)
     
-    # Calculate split points
-    test_ratio = 1/num_folds
-    test_size = int(len(indices) * test_ratio)
-    
-    # Split into train and test
-    test_indices = indices[:test_size]
-    train_val_indices = indices[test_size:]
-    
-    # Split training into train and validation (10% of training data)
-    val_size = int(len(train_val_indices) * 0.1)
-    val_indices = train_val_indices[:val_size]
-    train_indices = train_val_indices[val_size:]
-    
-    # Create the splits
-    splits = {
-        "train": ([inputs[i] for i in train_indices], [outputs[i] for i in train_indices]),
-        "val": ([inputs[i] for i in val_indices], [outputs[i] for i in val_indices]),
-        "test": ([inputs[i] for i in test_indices], [outputs[i] for i in test_indices])
-    }
-    
-    return splits
+    model_inputs["labels"] = labels["input_ids"]
+    return model_inputs
 
-def evaluate_model(model_path: str, data_splits: Dict[str, Tuple[List[str], List[str]]], 
-                  max_input_length: int = 512, max_output_length: int = 128, 
-                  batch_size: int = 8) -> Dict[str, float]:
+def get_tokenized_dataset(dataset_name, tokenizer):
     """
-    Evaluate model on train, validation, and test sets
-    
-    :param model_path: Path to the trained model
-    :param data_splits: Dictionary containing data splits
-    :param max_input_length: Maximum input sequence length
-    :param max_output_length: Maximum output sequence length
-    :param batch_size: Batch size for inference
-    :return: Dictionary containing evaluation metrics
+    Load the dataset and apply tokenization.
+    Replace 'dataset_name' with your actual dataset identifier or local script.
     """
-    metrics = {}
-    
-    for split_name, (inputs, outputs) in data_splits.items():
-        predictions = predict_with_t5_surrogate(
-            model_path=model_path,
-            inputs=inputs,
-            max_input_length=max_input_length,
-            max_output_length=max_output_length,
-            batch_size=batch_size
-        )
-        
-        # Calculate accuracy
-        accuracy = sum(1 for pred, true in zip(predictions, outputs) 
-                      if pred.strip() == true.strip()) / len(outputs)
-        
-        metrics[f"{split_name}_accuracy"] = accuracy
-        metrics[f"{split_name}_size"] = len(inputs)
-    
-    return metrics
+    dataset_train = load_dataset(dataset_name, "all", split="auxiliary_train[:1000]")
+    dataset_val = load_dataset(dataset_name, "all", split="validation")
+    dataset_test = load_dataset(dataset_name, "all", split="test")
+    tokenized_dataset_train = dataset_train.map(lambda examples: preprocess_function(examples, tokenizer), batched=True, batch_size=1000)
+    tokenized_dataset_validation = dataset_val.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
+    tokenized_dataset_test = dataset_test.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
+    return tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test
 
-def plot_training_results(results: Dict, output_dir: str):
+class EpochEvalCallback(TrainerCallback):
     """
-    Plot training results
-    
-    :param results: Dictionary containing training results
-    :param output_dir: Directory to save plots
+    Custom callback to capture evaluation metrics after each epoch.
+    The eval_history list stores tuples of (epoch, eval_accuracy).
     """
-    import matplotlib.pyplot as plt
-    
-    # Create accuracy plot
-    plt.figure(figsize=(10, 6))
-    splits = ['train', 'val', 'test']
-    for split in splits:
-        accuracies = [fold[f'{split}_accuracy'] for fold in results['fold_results']]
-        plt.plot(range(1, len(accuracies) + 1), accuracies, marker='o', label=f'{split} accuracy')
-    
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy')
-    plt.title('Model Accuracy Across Splits')
-    plt.legend()
-    plt.grid(True)
-    plt.savefig(os.path.join(output_dir, 'accuracy_plot.png'))
-    plt.close()
+    def __init__(self):
+        self.eval_history = []
 
-def train_t5_surrogate(
-    inputs: List[str],
-    outputs: List[str],
-    model_name: str = "t5-base",
-    output_dir: str = "models/t5_surrogate",
-    num_folds: int = 3,
-    batch_size: int = 8,
-    learning_rate: float = 5e-5,
-    num_epochs: int = 3,
-    max_input_length: int = 512,
-    max_output_length: int = 128,
-    seed: int = 42,
-    save_model: bool = True
-) -> Dict:
+    def on_evaluate(self, args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs):
+        # Assume the last logged dictionary contains the evaluation metrics.
+        logs = state.log_history[-1]
+        # The key is "eval_accuracy" if our compute_metrics returns {"accuracy": ...}
+        if "eval_accuracy" in logs and "epoch" in logs:
+            self.eval_history.append((logs["epoch"], logs["eval_accuracy"]))
+        return control
+
+def compute_metrics(eval_pred, tokenizer):
     """
-    Train a T5 surrogate model with train/val/test splits
+    Compute accuracy by comparing the decoded predictions with the labels.
+    Adjust the comparison as necessary for your task.
     """
-    assert len(inputs) == len(outputs), "Inputs and outputs must have the same length"
+    predictions, labels = eval_pred
+    decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
+    decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
     
-    # Set random seed for reproducibility
-    torch.manual_seed(seed)
-    
-    # Split data
-    data_splits = split_data(inputs, outputs, num_folds, seed)
-    
-    # Initialize tokenizer
-    tokenizer = T5Tokenizer.from_pretrained(model_name)
-    
-    # Prepare output directory
-    output_dir = get_full_path(output_dir)
-    os.makedirs(output_dir, exist_ok=True)
-    
-    # Initialize results dictionary
-    results = {
-        "fold_results": [],
-        "model_name": model_name,
-        "num_folds": num_folds,
-        "batch_size": batch_size,
-        "learning_rate": learning_rate,
-        "num_epochs": num_epochs
-    }
-    
-    # Create datasets
-    train_dataset = T5SurrogateDataset(
-        inputs=data_splits["train"][0],
-        outputs=data_splits["train"][1],
-        tokenizer=tokenizer,
-        max_input_length=max_input_length,
-        max_output_length=max_output_length
+    correct = sum(
+        1 for pred, label in zip(decoded_preds, decoded_labels)
+        if pred.strip().lower() == label.strip().lower()
     )
+    accuracy = correct / len(decoded_preds) if decoded_preds else 0
+    return {"accuracy": accuracy}
+
+def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback):
+    """
+    Set up TrainingArguments and the Trainer.
+    We use evaluation_strategy "epoch" so validation is run after every epoch.
+    """
+    # Wrap compute_metrics to include the tokenizer
+    def compute_metrics_wrapper(eval_pred):
+        return compute_metrics(eval_pred, tokenizer)
     
-    val_dataset = T5SurrogateDataset(
-        inputs=data_splits["val"][0],
-        outputs=data_splits["val"][1],
-        tokenizer=tokenizer,
-        max_input_length=max_input_length,
-        max_output_length=max_output_length
-    )
-    
-    # Initialize model
-    model = T5ForConditionalGeneration.from_pretrained(model_name)
-    
-    # Set up training arguments
     training_args = TrainingArguments(
-        output_dir=output_dir,
-        num_train_epochs=num_epochs,
-        per_device_train_batch_size=batch_size,
-        per_device_eval_batch_size=batch_size,
-        warmup_steps=500,
-        weight_decay=0.01,
-        logging_dir=os.path.join(output_dir, "logs"),
-        logging_steps=100,
-        evaluation_strategy="epoch",
+        output_dir="./results",
+        evaluation_strategy="epoch",      # Validate at the end of each epoch
+        logging_strategy="epoch",
         save_strategy="epoch",
+        per_device_train_batch_size=8,
+        per_device_eval_batch_size=8,
+        num_train_epochs=3,
+        learning_rate=5e-5,
         load_best_model_at_end=True,
-        metric_for_best_model="eval_loss",
-        greater_is_better=False,
-        save_total_limit=1,
-        learning_rate=learning_rate,
-        report_to="none"
+        no_cuda=not torch.cuda.is_available(),
     )
     
-    # Initialize trainer
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=val_dataset
+        train_dataset=tokenized_dataset_train,
+        eval_dataset=tokenized_dataset_validation,
+        compute_metrics=compute_metrics_wrapper,
+        # callbacks=[eval_callback],
     )
-    
-    # Train model
-    train_result = trainer.train()
-    
-    # Save model and tokenizer
-    if save_model:
-        trainer.save_model(output_dir)
-        tokenizer.save_pretrained(output_dir)
-    
-    # Evaluate model on all splits
-    metrics = evaluate_model(
-        model_path=output_dir,
-        data_splits=data_splits,
-        max_input_length=max_input_length,
-        max_output_length=max_output_length,
-        batch_size=batch_size
-    )
-    
-    # Update results
-    results.update(metrics)
-    results["training_loss"] = train_result.training_loss
-    
-    # Generate plots
-    plot_training_results(results, output_dir)
-    
-    # Print results
-    print(green("Training completed!"))
-    print(f"Training loss: {train_result.training_loss:.4f}")
-    for split in ['train', 'val', 'test']:
-        print(f"{split.capitalize()} accuracy: {metrics[f'{split}_accuracy']:.4f}")
-    
-    return results
+    return trainer
 
-def predict_with_t5_surrogate(
-    model_path: str,
-    inputs: List[str],
-    max_input_length: int = 512,
-    max_output_length: int = 128,
-    batch_size: int = 8,
-    device: str = None
-) -> List[str]:
+def plot_accuracy(eval_history):
     """
-    Generate predictions using a trained T5 surrogate model
-    
-    :param model_path: Path to the trained model
-    :param inputs: List of input strings
-    :param max_input_length: Maximum input sequence length
-    :param max_output_length: Maximum output sequence length
-    :param batch_size: Batch size for inference
-    :param device: Device to use for inference (None for auto-detection)
-    
-    :return: List of predicted outputs
+    Plot the validation accuracy over epochs.
     """
-    # Determine device
-    if device is None:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+    # Sort by epoch number
+    eval_history.sort(key=lambda x: x[0])
+    epochs = [entry[0] for entry in eval_history]
+    accuracies = [entry[1] for entry in eval_history]
     
-    # Load model and tokenizer
-    model = T5ForConditionalGeneration.from_pretrained(model_path).to(device)
-    tokenizer = T5Tokenizer.from_pretrained(model_path)
-    
-    # Generate predictions in batches
-    predictions = []
-    for i in tqdm(range(0, len(inputs), batch_size), desc="Generating predictions"):
-        batch_inputs = inputs[i:i+batch_size]
-        
-        # Tokenize inputs
-        input_encodings = tokenizer(
-            batch_inputs,
-            max_length=max_input_length,
-            padding="max_length",
-            truncation=True,
-            return_tensors="pt"
-        ).to(device)
-        
-        # Generate outputs
-        with torch.no_grad():
-            output_ids = model.generate(
-                input_ids=input_encodings.input_ids,
-                attention_mask=input_encodings.attention_mask,
-                max_length=max_output_length,
-                num_beams=4,
-                early_stopping=True
-            )
-        
-        # Decode outputs
-        batch_predictions = tokenizer.batch_decode(output_ids, skip_special_tokens=True)
-        predictions.extend(batch_predictions)
-    
-    return predictions
+    plt.plot(epochs, accuracies, marker="o")
+    plt.xlabel("Epoch")
+    plt.ylabel("Validation Accuracy")
+    plt.title("Validation Accuracy per Epoch")
+    plt.grid(True)
+    plt.show()
 
+def main():
+    # Set model and dataset parameters
+    model_name = "t5-base"
+    dataset_name = "cais/mmlu"  # Replace with your actual dataset identifier
+    
+    # Load tokenizer and model
+    tokenizer = T5Tokenizer.from_pretrained(model_name)
+    model = T5ForConditionalGeneration.from_pretrained(model_name)
+    
+    # Prepare the tokenized dataset
+    tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test = get_tokenized_dataset(dataset_name, tokenizer)
+    
+    # Initialize custom callback for tracking evaluation metrics
+    eval_callback = EpochEvalCallback()
+    
+    # Setup the Trainer
+    trainer = setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback)
+    
+    # Start training (validation will run after each epoch)
+    trainer.train()
+    
+    # Optionally, save the final model
+    trainer.save_model(os.path.join("./results", "final_model"))
+    
+    # Plot the collected validation accuracy over epochs
+    plot_accuracy(eval_callback.eval_history)
 
+    # Test the model
+    test_results = trainer.evaluate(tokenized_dataset_test)
+    print(test_results)
+
+if __name__ == "__main__":
+    main()

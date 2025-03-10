@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "mmlu",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/sibat/repoes/llm-eval/src/recreate_benchmark/mmlu.py",
+            "console": "integratedTerminal",
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"  // Change the number to select different GPU(s)
+            }
+        },
+        {
+            "name": "t5 finetune",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/sibat/repoes/llm-eval/src/finetune/t5.py",
+            "console": "integratedTerminal",
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "1"  // Change the number to select different GPU(s)
+            }
+        }
+    ]
+}
