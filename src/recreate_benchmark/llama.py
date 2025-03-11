@@ -203,7 +203,7 @@ def recreate_llama_benchmark(
                     prompt,
                     sampling_params=sampling_params,
                 )
-                answer_text = [seq.outputs[0].text for seq in seqs]
+                answer_text = [seq.outputs[0].text for seq in seqs][0].strip()
             elif use_pipeline:
                 outputs = pipe(
                     prompt, 
