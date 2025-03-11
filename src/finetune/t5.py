@@ -6,8 +6,11 @@ The model is trained on input-output pairs to mimic the behavior of another mode
 # external imports
 import os
 import torch
-from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments
+from transformers import T5ForConditionalGeneration, T5Tokenizer, Seq2SeqTrainer, Seq2SeqTrainingArguments, DataCollatorForSeq2Seq
 from datasets import load_dataset
+from evaluate import load
+import numpy as np
+import nltk
 
 # local imports
 # from src.utils.files import get_project_root, get_full_path, path_exists
@@ -76,48 +79,62 @@ class EpochEvalCallback(TrainerCallback):
             self.eval_history.append((logs["epoch"], logs["eval_accuracy"]))
         return control
 
-def compute_metrics(eval_pred, tokenizer):
-    """
-    Compute accuracy by comparing the decoded predictions with the labels.
-    Adjust the comparison as necessary for your task.
-    """
-    predictions, labels = eval_pred
-    decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
-    decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
-    
-    correct = sum(
-        1 for pred, label in zip(decoded_preds, decoded_labels)
-        if pred.strip().lower() == label.strip().lower()
-    )
-    accuracy = correct / len(decoded_preds) if decoded_preds else 0
-    return {"accuracy": accuracy}
+
 
 def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback):
     """
     Set up TrainingArguments and the Trainer.
     We use evaluation_strategy "epoch" so validation is run after every epoch.
     """
-    # Wrap compute_metrics to include the tokenizer
-    def compute_metrics_wrapper(eval_pred):
-        return compute_metrics(eval_pred, tokenizer)
+    def compute_metrics(eval_pred):
+        predictions, labels = eval_pred
+        decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
+        # Replace -100 in the labels as we can't decode them.
+        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+        
+        # Rouge expects a newline after each sentence
+        decoded_preds = ["\n".join(nltk.sent_tokenize(pred.strip())) for pred in decoded_preds]
+        decoded_labels = ["\n".join(nltk.sent_tokenize(label.strip())) for label in decoded_labels]
+        
+        # Note that other metrics may not have a `use_aggregator` parameter
+        # and thus will return a list, computing a metric for each sentence.
+        result = metric.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True, use_aggregator=True)
+        # Extract a few results
+        result = {key: value * 100 for key, value in result.items()}
+        
+        # Add mean generated length
+        prediction_lens = [np.count_nonzero(pred != tokenizer.pad_token_id) for pred in predictions]
+        result["gen_len"] = np.mean(prediction_lens)
+        
+        return {k: round(v, 4) for k, v in result.items()}
     
-    training_args = TrainingArguments(
-        output_dir="./results",
-        eval_strategy="epoch",      # Validate at the end of each epoch
-        save_strategy="epoch",
+    metric = load("rouge")
+    
+    training_args = Seq2SeqTrainingArguments(
+        f"t5-base-finetuned-mmlu",
+        evaluation_strategy = "epoch",
+        learning_rate=2e-5,
         per_device_train_batch_size=16,
-        per_device_eval_batch_size=8,
+        per_device_eval_batch_size=16,
+        weight_decay=0.01,
+        save_total_limit=3,
         num_train_epochs=3,
-        learning_rate=5e-5,
+        predict_with_generate=True,
+        fp16=True,
+        # push_to_hub=True,
     )
     
-    trainer = Trainer(
-        model=model,
-        args=training_args,
+    data_collator = DataCollatorForSeq2Seq(tokenizer, model=model)
+    
+    trainer = Seq2SeqTrainer(
+        model,
+        training_args,
         train_dataset=tokenized_dataset_train,
         eval_dataset=tokenized_dataset_validation,
-        compute_metrics=compute_metrics_wrapper,
-        callbacks=[eval_callback],
+        data_collator=data_collator,
+        tokenizer=tokenizer,
+        compute_metrics=compute_metrics
     )
     return trainer
 
@@ -163,7 +180,7 @@ def main():
     trainer.save_model(os.path.join("./results", "final_model"))
     
     # Plot the collected validation accuracy over epochs
-    plot_accuracy(eval_callback.eval_history)
+    # plot_accuracy(eval_callback.eval_history)
 
     # Test the model
     test_results = trainer.evaluate(tokenized_dataset_test)
