@@ -103,7 +103,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     
     training_args = TrainingArguments(
         output_dir="./results",
-        evaluation_strategy="epoch",      # Validate at the end of each epoch
+        eval_strategy="epoch",      # Validate at the end of each epoch
         logging_strategy="epoch",
         save_strategy="epoch",
         per_device_train_batch_size=64,

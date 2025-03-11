@@ -164,6 +164,7 @@ def recreate_llama_benchmark(
     model_name: str, 
     dataset_name: str, 
     config: dict, 
+    csv_filename: str = None,
     use_vllm: bool = False, 
     use_pipeline: bool = False, 
     use_hub: bool = False):
@@ -186,7 +187,7 @@ def recreate_llama_benchmark(
     else:
         model, tokenizer = load_model(model_name, config)
         
-    csv_filename = config["data_path"] + f"/{model_name.replace('/', '_')}_{dataset_name.replace('/', '_')}_results.csv"
+    # csv_filename = config["data_path"] + f"/{model_name.replace('/', '_')}_{dataset_name.replace('/', '_')}_results.csv"
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         # CSV header
@@ -254,13 +255,16 @@ if __name__ == "__main__":
     args = parse_args()
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
+        
+    csv_file_name = config["data_path"] + f"/{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
     recreate_llama_benchmark(
         config["model_name"], 
         config["dataset_name"], 
         config,
+        csv_filename=csv_file_name,
         use_vllm=args.use_vllm,
         use_pipeline=args.use_pipeline,
         use_hub=args.use_hub
     )
-    accuracy = compute_accuracy_from_csv(config["data_path"] + f"/{config['model_name']}_{config['dataset_name']}_results.csv")
+    accuracy = compute_accuracy_from_csv(csv_file_name)
     print(f"Accuracy: {accuracy}")
