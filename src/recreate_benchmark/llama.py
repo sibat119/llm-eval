@@ -9,6 +9,7 @@ from vllm.transformers_utils.config import get_config
 from transformers import pipeline
 from tqdm import tqdm
 from huggingface_hub import InferenceClient
+import argparse
 
 def format_prompt(example, dataset_name):
     # Format: "Question: <question text>\nOptions: A. <opt1> B. <opt2> ...\nAnswer:"
@@ -238,13 +239,27 @@ def recreate_llama_benchmark(
 
 
 if __name__ == "__main__":
+    
+    def parse_args():
+        parser = argparse.ArgumentParser(description="Run LLM benchmark evaluation")
+        parser.add_argument("--use_vllm", action="store_true", default=False, 
+                            help="Use VLLM for inference")
+        parser.add_argument("--use_pipeline", action="store_true", default=False,
+                            help="Use HuggingFace pipeline for inference")
+        parser.add_argument("--use_hub", action="store_true", default=False,
+                            help="Use HuggingFace hub for inference")
+        return parser.parse_args()
+    
+    args = parse_args()
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
     recreate_llama_benchmark(
         config["model_name"], 
         config["dataset_name"], 
         config,
-        use_pipeline=True
+        use_vllm=args.use_vllm,
+        use_pipeline=args.use_pipeline,
+        use_hub=args.use_hub
     )
     accuracy = compute_accuracy_from_csv(config["data_path"] + f"/{config['model_name']}_{config['dataset_name']}_results.csv")
     print(f"Accuracy: {accuracy}")
