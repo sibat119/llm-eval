@@ -1,6 +1,6 @@
 import pandas as pd
 import csv
-from datasets import load_dataset
+from datasets import load_dataset, DownloadMode
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import yaml
 import torch
@@ -169,12 +169,12 @@ def recreate_llama_benchmark(
     use_pipeline: bool = False, 
     use_hub: bool = False):
     if dataset_name == "cais/mmlu":
-        dataset = load_dataset(dataset_name, "all", split="test")
+        dataset = load_dataset(dataset_name, "all", split="test", download_mode=DownloadMode.FORCE_REDOWNLOAD)
         # print(dataset)
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals":
-        dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest")
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
     elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest")
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
     
