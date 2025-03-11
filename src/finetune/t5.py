@@ -104,14 +104,11 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     training_args = TrainingArguments(
         output_dir="./results",
         eval_strategy="epoch",      # Validate at the end of each epoch
-        logging_strategy="epoch",
         save_strategy="epoch",
-        per_device_train_batch_size=64,
+        per_device_train_batch_size=16,
         per_device_eval_batch_size=8,
         num_train_epochs=3,
         learning_rate=5e-5,
-        load_best_model_at_end=True,
-        report_to="none", 
     )
     
     trainer = Trainer(
@@ -119,8 +116,8 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         args=training_args,
         train_dataset=tokenized_dataset_train,
         eval_dataset=tokenized_dataset_validation,
-        compute_metrics=compute_metrics_wrapper,
-        callbacks=[eval_callback],
+        # compute_metrics=compute_metrics_wrapper,
+        # callbacks=[eval_callback],
     )
     return trainer
 
