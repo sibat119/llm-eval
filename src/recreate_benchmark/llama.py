@@ -142,7 +142,10 @@ def compute_accuracy_from_csv(csv_filename):
     """
     df = pd.read_csv(csv_filename)
     breakpoint()
-    df["correct"] = df.apply(lambda row: 1 if row["model_output"].strip() == row["ground_truth"].strip() else 0, axis=1)
+    # Extract the first element from ground_truth list if it's a list, otherwise use as is
+    df["ground_truth_str"] = df["ground_truth"].apply(lambda x: x[0] if isinstance(x, list) else x)
+    # Compare model output with the extracted ground truth
+    df["correct"] = df.apply(lambda row: 1 if row["model_output"] == row["ground_truth_str"] else 0, axis=1)
     accuracy = df["correct"].mean()
     return accuracy
 
