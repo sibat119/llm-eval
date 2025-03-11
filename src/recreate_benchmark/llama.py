@@ -200,6 +200,7 @@ def recreate_llama_benchmark(
             # Extract fields; adjust field names if needed.
             question, options, ground_truth = get_mmlu_example(example, dataset_name)
             
+            ground_truth = ground_truth[0] if isinstance(ground_truth, list) else ground_truth
             prompt = format_prompt(example, dataset_name)
             # breakpoint()
             # Generate output using greedy decoding
