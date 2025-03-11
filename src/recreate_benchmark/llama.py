@@ -141,11 +141,8 @@ def compute_accuracy_from_csv(csv_filename):
     Reads the CSV file and computes accuracy by comparing the saved model output to the ground truth.
     """
     df = pd.read_csv(csv_filename)
-    breakpoint()
     # Extract the first element from ground_truth list if it's a list, otherwise use as is
-    df["ground_truth_str"] = df["ground_truth"].apply(lambda x: x[0] if isinstance(x, list) else x)
-    # Compare model output with the extracted ground truth
-    df["correct"] = df.apply(lambda row: 1 if row["model_output"] == row["ground_truth_str"] else 0, axis=1)
+    df["correct"] = df.apply(lambda row: 1 if row["model_output"] == row["ground_truth"] else 0, axis=1)
     accuracy = df["correct"].mean()
     return accuracy
 
@@ -177,7 +174,7 @@ def recreate_llama_benchmark(
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals":
         dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest")
     elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest[:1000]")
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest")
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
     
