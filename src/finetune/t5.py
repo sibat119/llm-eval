@@ -111,7 +111,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         num_train_epochs=3,
         learning_rate=5e-5,
         load_best_model_at_end=True,
-        no_cuda=not torch.cuda.is_available(),
+        report_to="none", 
     )
     
     trainer = Trainer(
