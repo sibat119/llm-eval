@@ -6,12 +6,21 @@ import yaml
 import torch
 from vllm import LLM, SamplingParams
 from vllm.transformers_utils.config import get_config
+from transformers import pipeline
 from tqdm import tqdm
+from huggingface_hub import InferenceClient
 
-def format_prompt(question, options):
+def format_prompt(example, dataset_name):
     # Format: "Question: <question text>\nOptions: A. <opt1> B. <opt2> ...\nAnswer:"
-    option_text = " ".join([f"{chr(65 + i)}. {opt}" for i, opt in enumerate(options)])
-    prompt = f"Question: {question}\nOptions: {option_text}\nAnswer:"
+    if dataset_name == "cais/mmlu":
+        question = example["question"]
+        options = example["choices"]
+        option_text = " ".join([f"{chr(65 + i)}. {opt}" for i, opt in enumerate(options)])
+        prompt = f"Question: {question}\nOptions: {option_text}\nAnswer:"
+    elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
+        prompt = example["input_final_prompts"]
+    else:
+        raise ValueError(f"Dataset {dataset_name} not supported")
     return prompt
 
 def load_model(model_name, config):
@@ -28,6 +37,48 @@ def load_model(model_name, config):
     )
     model.eval()  # Set the model to evaluation mode
     return model, tokenizer
+
+def get_response_from_hub(model_name, prompt):
+    client = InferenceClient(
+        provider="hf-inference",
+        api_key="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"
+    )
+
+    messages = [
+        {
+            "role": "user",
+            "content": prompt
+        }
+    ]
+
+    stream = client.chat.completions.create(
+        model=model_name, 
+        messages=messages, 
+        temperature=0.5,
+        max_tokens=2048,
+        top_p=0.7,
+        stream=False
+    )
+
+    for chunk in stream:
+        print(chunk.choices[0].delta.content, end="")
+
+    return chunk.choices[0].message.content
+
+def load_model_pipeline(model_name, config):
+    pipe = pipeline(
+        "text-generation",
+        model=model_name,
+        torch_dtype=torch.float32,
+        device_map="auto",
+    )
+
+
+    tokenizer = pipe.tokenizer
+    model = pipe.model
+    tokenizer.pad_token = tokenizer.eos_token
+
+    return model, tokenizer, pipe
 
 def set_tensor_parallel(num_devices, model_name):
 
@@ -93,16 +144,43 @@ def compute_accuracy_from_csv(csv_filename):
     accuracy = df["correct"].mean()
     return accuracy
 
+def get_mmlu_example(example, dataset_name):
+    """
+    Get the question, options, and ground truth from the example.
+    """
+    if dataset_name == "cais/mmlu":
+        question = example["question"]
+        options = example["choices"]
+        ground_truth = example['choices'][example['answer']]
+    elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
+        question = example["input_question"]
+        options = example["input_choice_list"]
+        ground_truth = example['input_correct_responses']
+    return question, options, ground_truth
 
-def recreate_llama_benchmark(model_name: str, dataset_name: str, config: dict, use_vllm: bool = True):
+def recreate_llama_benchmark(
+    model_name: str, 
+    dataset_name: str, 
+    config: dict, 
+    use_vllm: bool = False, 
+    use_pipeline: bool = False, 
+    use_hub: bool = False):
     if dataset_name == "cais/mmlu":
         dataset = load_dataset(dataset_name, "all", split="test")
         # print(dataset)
+    elif dataset_name == "meta-llama/Llama-3.2-3B-evals":
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest")
+    elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest")
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
     
     if use_vllm:
         model, tokenizer, sampling_params = load_model_vllm(model_name, config)
+    elif use_pipeline:
+        model, tokenizer, pipe = load_model_pipeline(model_name, config)
+    elif get_response_from_hub:
+        model, tokenizer = None, None
     else:
         model, tokenizer = load_model(model_name, config)
         
@@ -114,12 +192,9 @@ def recreate_llama_benchmark(model_name: str, dataset_name: str, config: dict, u
         
         for example in tqdm(dataset):
             # Extract fields; adjust field names if needed.
-            question = example["question"]
-            options = example["choices"]
-            ground_truth = example['choices'][example['answer']]
+            question, options, ground_truth = get_mmlu_example(example, dataset_name)
             
-            prompt = format_prompt(question, options)
-            inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+            prompt = format_prompt(example, dataset_name)
             
             # Generate output using greedy decoding
             if use_vllm:
@@ -128,7 +203,21 @@ def recreate_llama_benchmark(model_name: str, dataset_name: str, config: dict, u
                     sampling_params=sampling_params,
                 )
                 answer_text = [seq.outputs[0].text for seq in seqs]
+            elif use_pipeline:
+                outputs = pipe(
+                    prompt, 
+                    max_new_tokens=config["max_new_tokens"],
+                    temperature=config["temperature"],
+                    top_p=config["top_p"],
+                    top_k=config["top_k"],
+                    do_sample=True,
+                    )
+                generated_text = outputs[0][0]['generated_text']
+                answer_text = outputs[0][0]['generated_text'][len(prompt[0]):].strip()
+            elif use_hub:
+                answer_text = get_response_from_hub(model_name, prompt)
             else:
+                inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
                 outputs = model.generate(**inputs, max_new_tokens=config["max_new_tokens"], do_sample=False)
                 generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
             
@@ -151,6 +240,11 @@ def recreate_llama_benchmark(model_name: str, dataset_name: str, config: dict, u
 if __name__ == "__main__":
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
-    recreate_llama_benchmark(config["model_name"], config["dataset_name"], config, use_vllm=False)
+    recreate_llama_benchmark(
+        config["model_name"], 
+        config["dataset_name"], 
+        config,
+        use_pipeline=True
+    )
     accuracy = compute_accuracy_from_csv(config["data_path"] + f"/{config['model_name']}_{config['dataset_name']}_results.csv")
     print(f"Accuracy: {accuracy}")
