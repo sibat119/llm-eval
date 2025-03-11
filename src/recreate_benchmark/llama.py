@@ -173,7 +173,7 @@ def recreate_llama_benchmark(
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals":
         dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest")
     elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details:100", split="latest")
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest[:1000]")
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
     
