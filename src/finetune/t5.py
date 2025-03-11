@@ -158,6 +158,7 @@ def main():
     # Setup the Trainer
     trainer = setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback)
     
+    breakpoint()
     # Start training (validation will run after each epoch)
     trainer.train()
     
