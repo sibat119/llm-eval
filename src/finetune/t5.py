@@ -120,7 +120,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         train_dataset=tokenized_dataset_train,
         eval_dataset=tokenized_dataset_validation,
         compute_metrics=compute_metrics_wrapper,
-        # callbacks=[eval_callback],
+        callbacks=[eval_callback],
     )
     return trainer
 
