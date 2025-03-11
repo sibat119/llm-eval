@@ -126,7 +126,7 @@ def load_model_vllm(model_name, config):
     model = LLM(
         model_name,
         trust_remote_code=True,
-        download_dir=config['model_cache'],
+        # download_dir=config['model_cache'],
         dtype=config['dtype'],
         # tensor_parallel_size=tensor_parallel_size,
         max_model_len=config['max_length'],
