@@ -179,7 +179,7 @@ def recreate_llama_benchmark(
         model, tokenizer, sampling_params = load_model_vllm(model_name, config)
     elif use_pipeline:
         model, tokenizer, pipe = load_model_pipeline(model_name, config)
-    elif get_response_from_hub:
+    elif use_hub:
         model, tokenizer = None, None
     else:
         model, tokenizer = load_model(model_name, config)
@@ -195,7 +195,7 @@ def recreate_llama_benchmark(
             question, options, ground_truth = get_mmlu_example(example, dataset_name)
             
             prompt = format_prompt(example, dataset_name)
-            
+            breakpoint()
             # Generate output using greedy decoding
             if use_vllm:
                 seqs = model.generate(
