@@ -33,7 +33,7 @@ def load_model(model_name, config):
         device_map="auto",
         torch_dtype='auto',
         trust_remote_code=True,
-        cache_dir=config['model_cache'],
+        # cache_dir=config['model_cache'],
     )
     model.eval()  # Set the model to evaluation mode
     return model, tokenizer
