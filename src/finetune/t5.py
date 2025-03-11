@@ -116,8 +116,8 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         args=training_args,
         train_dataset=tokenized_dataset_train,
         eval_dataset=tokenized_dataset_validation,
-        # compute_metrics=compute_metrics_wrapper,
-        # callbacks=[eval_callback],
+        compute_metrics=compute_metrics_wrapper,
+        callbacks=[eval_callback],
     )
     return trainer
 
@@ -155,7 +155,7 @@ def main():
     # Setup the Trainer
     trainer = setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback)
     
-    breakpoint()
+    # breakpoint()
     # Start training (validation will run after each epoch)
     trainer.train()
     
