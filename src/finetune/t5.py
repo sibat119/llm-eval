@@ -5,20 +5,13 @@ The model is trained on input-output pairs to mimic the behavior of another mode
 
 # external imports
 import os
-import numpy as np
 import torch
-from torch.utils.data import Dataset, DataLoader
 from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer, TrainingArguments
-from sklearn.model_selection import KFold
-from typing import List, Dict, Tuple
-import logging
-from tqdm import tqdm
-import os
 from datasets import load_dataset
 
 # local imports
-from src.utils.files import get_project_root, get_full_path, path_exists
-from src.utils.strings import now, green, yellow, red
+# from src.utils.files import get_project_root, get_full_path, path_exists
+# from src.utils.strings import now, green, yellow, red
 
 import os
 import matplotlib.pyplot as plt
@@ -113,7 +106,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         evaluation_strategy="epoch",      # Validate at the end of each epoch
         logging_strategy="epoch",
         save_strategy="epoch",
-        per_device_train_batch_size=8,
+        per_device_train_batch_size=64,
         per_device_eval_batch_size=8,
         num_train_epochs=3,
         learning_rate=5e-5,
