@@ -188,7 +188,7 @@ def recreate_llama_benchmark(
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         # CSV header
-        writer.writerow(["question", "options", "prompt", "model_output", "ground_truth"])
+        writer.writerow(["question", "options", "prompt", "model_output", "ground_truth", "response"])
         
         for example in tqdm(dataset):
             # Extract fields; adjust field names if needed.
@@ -226,7 +226,7 @@ def recreate_llama_benchmark(
             
             predicted = answer_text[0].upper() if answer_text else ""
             
-            writer.writerow([question, " | ".join(options), prompt, predicted, ground_truth])
+            writer.writerow([question, " | ".join(options), prompt, predicted, ground_truth, answer_text])
     
     print(f"Saved evaluation results to {csv_filename}")
 
