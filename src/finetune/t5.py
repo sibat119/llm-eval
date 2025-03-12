@@ -107,6 +107,17 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     """
     def compute_metrics(eval_pred):
         predictions, labels = eval_pred
+        decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
+        # Replace -100 in labels
+        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+        
+        # Simple exact-match accuracy
+        correct = sum([p.strip() == l.strip() for p, l in zip(decoded_preds, decoded_labels)])
+        return {'accuracy': correct/len(decoded_labels)}
+    
+    def compute_metrics_rouge(eval_pred):
+        predictions, labels = eval_pred
         # Add safety check for predictions - filter out any invalid token IDs
         predictions = np.where(
             (predictions >= 0) & (predictions < tokenizer.vocab_size),
@@ -145,7 +156,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     training_args = Seq2SeqTrainingArguments(
         f"t5-base-finetuned-mmlu",
         evaluation_strategy="epoch",
-        learning_rate=5e-6,  # Reduced learning rate for stability
+        learning_rate=1e-5,  # Reduced learning rate for stability
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
         weight_decay=0.01,
