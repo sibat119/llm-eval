@@ -114,7 +114,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     training_args = Seq2SeqTrainingArguments(
         f"t5-base-finetuned-mmlu",
         evaluation_strategy = "epoch",
-        learning_rate=2e-5,
+        learning_rate=1e-5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
         weight_decay=0.01,
@@ -122,6 +122,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         num_train_epochs=3,
         predict_with_generate=True,
         fp16=True,
+        max_grad_norm=1.0,  # Add gradient clipping
         # push_to_hub=True,
     )
     
@@ -134,7 +135,8 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         eval_dataset=tokenized_dataset_validation,
         data_collator=data_collator,
         tokenizer=tokenizer,
-        compute_metrics=compute_metrics
+        compute_metrics=compute_metrics,
+        callbacks=[eval_callback] 
     )
     return trainer
 
