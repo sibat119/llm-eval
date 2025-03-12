@@ -7,7 +7,7 @@ The model is trained on input-output pairs to mimic the behavior of another mode
 import os
 import torch
 from transformers import T5ForConditionalGeneration, T5Tokenizer, Seq2SeqTrainer, Seq2SeqTrainingArguments, DataCollatorForSeq2Seq
-from datasets import load_dataset
+from datasets import load_dataset, DownloadMode
 from evaluate import load
 import numpy as np
 import nltk
@@ -55,9 +55,9 @@ def get_tokenized_dataset(dataset_name, tokenizer):
     Load the dataset and apply tokenization.
     Replace 'dataset_name' with your actual dataset identifier or local script.
     """
-    dataset_train = load_dataset(dataset_name, "all", split="auxiliary_train[:1000]")
-    dataset_val = load_dataset(dataset_name, "all", split="validation")
-    dataset_test = load_dataset(dataset_name, "all", split="test")
+    dataset_train = load_dataset(dataset_name, "all", split="auxiliary_train", download_mode=DownloadMode.FORCE_REDOWNLOAD)
+    dataset_val = load_dataset(dataset_name, "all", split="validation", download_mode=DownloadMode.FORCE_REDOWNLOAD)
+    dataset_test = load_dataset(dataset_name, "all", split="test", download_mode=DownloadMode.FORCE_REDOWNLOAD)
     tokenized_dataset_train = dataset_train.map(lambda examples: preprocess_function(examples, tokenizer), batched=True, batch_size=1000)
     tokenized_dataset_validation = dataset_val.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
     tokenized_dataset_test = dataset_test.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
