@@ -6,7 +6,17 @@ The model is trained on input-output pairs to mimic the behavior of another mode
 # external imports
 import os
 import torch
-from transformers import T5ForConditionalGeneration, T5Tokenizer, Seq2SeqTrainer, Seq2SeqTrainingArguments, DataCollatorForSeq2Seq
+from transformers import (
+    T5ForConditionalGeneration, 
+    T5Tokenizer, 
+    Seq2SeqTrainer, 
+    Seq2SeqTrainingArguments, 
+    DataCollatorForSeq2Seq, 
+    AdamW,
+    TrainerCallback,
+    TrainerState,
+    TrainerControl
+)
 from datasets import load_dataset, DownloadMode
 from evaluate import load
 import numpy as np
@@ -18,21 +28,12 @@ import nltk
 
 import os
 import matplotlib.pyplot as plt
-from transformers import (
-    T5ForConditionalGeneration,
-    T5Tokenizer,
-    Trainer,
-    TrainingArguments,
-    TrainerCallback,
-    TrainerState,
-    TrainerControl
-)
 from datasets import load_dataset
 
 def preprocess_function(examples, tokenizer):
     """
     Format the input prompt for T5 and tokenize both input and target.
-    Assumes examples has keys: "question", "choices", and "answer".
+    Improved to handle potential issues better.
     """
     inputs = [
         f"question: {q} choices: {', '.join(choices)} answer:" 
@@ -40,14 +41,32 @@ def preprocess_function(examples, tokenizer):
     ]
     targets = [str(c[a]) for c, a in zip(examples["choices"], examples["answer"])]
     
-    # Tokenize inputs
-    model_inputs = tokenizer(inputs, max_length=512, truncation=True, padding=True,)
+    # Tokenize inputs with padding='max_length' for consistency
+    model_inputs = tokenizer(
+        inputs, 
+        max_length=512, 
+        truncation=True, 
+        padding='max_length',
+    )
     
-    # Tokenize targets (labels)
+    # Tokenize targets with padding='max_length' for consistency
     with tokenizer.as_target_tokenizer():
-        labels = tokenizer(targets, max_length=128, truncation=True, padding=True)
+        labels = tokenizer(
+            targets, 
+            max_length=128, 
+            truncation=True, 
+            padding='max_length',
+        )
     
-    model_inputs["labels"] = labels["input_ids"]
+    # Replace pad token id with -100 for proper loss calculation
+    labels_with_ignore = np.array(labels["input_ids"])
+    labels_with_ignore = np.where(
+        labels_with_ignore != tokenizer.pad_token_id, 
+        labels_with_ignore, 
+        -100
+    )
+    
+    model_inputs["labels"] = labels_with_ignore.tolist()
     return model_inputs
 
 def get_tokenized_dataset(dataset_name, tokenizer):
@@ -71,7 +90,7 @@ class EpochEvalCallback(TrainerCallback):
     def __init__(self):
         self.eval_history = []
 
-    def on_evaluate(self, args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs):
+    def on_evaluate(self, args: Seq2SeqTrainingArguments, state: TrainerState, control: TrainerControl, **kwargs):
         # Assume the last logged dictionary contains the evaluation metrics.
         logs = state.log_history[-1]
         # The key is "eval_accuracy" if our compute_metrics returns {"accuracy": ...}
@@ -88,8 +107,15 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     """
     def compute_metrics(eval_pred):
         predictions, labels = eval_pred
+        # Add safety check for predictions - filter out any invalid token IDs
+        predictions = np.where(
+            (predictions >= 0) & (predictions < tokenizer.vocab_size),
+            predictions,
+            tokenizer.pad_token_id
+        )
+        
         decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
-        # Replace -100 in the labels as we can't decode them.
+        # Replace -100 in the labels as we can't decode them
         labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
         
@@ -97,36 +123,45 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         decoded_preds = ["\n".join(nltk.sent_tokenize(pred.strip())) for pred in decoded_preds]
         decoded_labels = ["\n".join(nltk.sent_tokenize(label.strip())) for label in decoded_labels]
         
-        # Note that other metrics may not have a `use_aggregator` parameter
-        # and thus will return a list, computing a metric for each sentence.
-        result = metric.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True, use_aggregator=True)
-        # Extract a few results
-        result = {key: value * 100 for key, value in result.items()}
-        
-        # Add mean generated length
-        prediction_lens = [np.count_nonzero(pred != tokenizer.pad_token_id) for pred in predictions]
-        result["gen_len"] = np.mean(prediction_lens)
-        
-        return {k: round(v, 4) for k, v in result.items()}
-    
+        try:
+            # Note that other metrics may not have a `use_aggregator` parameter
+            # and thus will return a list, computing a metric for each sentence
+            result = metric.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True, use_aggregator=True)
+            # Extract a few results
+            result = {key: value * 100 for key, value in result.items()}
+            
+            # Add mean generated length
+            prediction_lens = [np.count_nonzero(pred != tokenizer.pad_token_id) for pred in predictions]
+            result["gen_len"] = np.mean(prediction_lens)
+            
+            return {k: round(v, 4) for k, v in result.items()}
+        except Exception as e:
+            print(f"Error computing metrics: {e}")
+            # Return dummy metrics to allow training to continue
+            return {"rouge1": 0.0, "rouge2": 0.0, "rougeL": 0.0, "rougeLsum": 0.0, "gen_len": 0.0}
+
     metric = load("rouge")
     
     training_args = Seq2SeqTrainingArguments(
         f"t5-base-finetuned-mmlu",
-        evaluation_strategy = "epoch",
-        learning_rate=1e-5,
+        evaluation_strategy="epoch",
+        learning_rate=5e-6,  # Reduced learning rate for stability
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
         weight_decay=0.01,
         save_total_limit=3,
         num_train_epochs=3,
         predict_with_generate=True,
-        fp16=True,
+        fp16=False,  # Disable fp16 to improve stability
         max_grad_norm=1.0,  # Add gradient clipping
-        # push_to_hub=True,
+        generation_max_length=128,  # Set reasonable generation length
+        generation_num_beams=4,  # Use beam search for better predictions
     )
     
     data_collator = DataCollatorForSeq2Seq(tokenizer, model=model)
+    
+    # Initialize optimizer with epsilon parameter to avoid division by zero
+    optimizer = AdamW(model.parameters(), lr=training_args.learning_rate, eps=1e-8)
     
     trainer = Seq2SeqTrainer(
         model,
@@ -136,7 +171,8 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         data_collator=data_collator,
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
-        callbacks=[eval_callback] 
+        callbacks=[eval_callback],  # Add the callback
+        optimizers=(optimizer, None),  # Use our custom optimizer
     )
     return trainer
 
