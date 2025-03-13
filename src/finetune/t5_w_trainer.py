@@ -332,8 +332,8 @@ def main():
         
         
         # Setup the Trainer for this fold
-        os.makedirs(fold_output_dir, exist_ok=True)
         fold_output_dir = os.path.join("./results", f"fold_{fold_idx+1}")
+        os.makedirs(fold_output_dir, exist_ok=True)
         trainer = setup_trainer(model, train_dataset, val_dataset, tokenizer, fold_output_dir)
         
         # Train the model
