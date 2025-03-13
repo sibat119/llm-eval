@@ -180,16 +180,6 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     Set up TrainingArguments and the Trainer.
     We use evaluation_strategy "epoch" so validation is run after every epoch.
     """
-    def compute_metrics(eval_pred):
-        predictions, labels = eval_pred
-        decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
-        # Replace -100 in labels
-        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
-        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
-        
-        # Simple exact-match accuracy
-        correct = sum([p.strip() == l.strip() for p, l in zip(decoded_preds, decoded_labels)])
-        return {'accuracy': correct/len(decoded_labels)}
     
     def compute_metrics_rouge(eval_pred):
         predictions, labels = eval_pred
@@ -229,7 +219,6 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     metric = load("rouge")
     
     training_args = Seq2SeqTrainingArguments(
-        f"t5-base-finetuned-mmlu",
         evaluation_strategy="epoch",
         learning_rate=1e-5,  # Reduced learning rate for stability
         per_device_train_batch_size=128,
@@ -278,6 +267,18 @@ def plot_accuracy(eval_history):
     plt.grid(True)
     plt.show()
 
+def compute_metrics(eval_pred, tokenizer):
+        predictions, labels = eval_pred
+        breakpoint()
+        decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
+        # Replace -100 in labels
+        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+        
+        # Simple exact-match accuracy
+        correct = sum([p.strip() == l.strip() for p, l in zip(decoded_preds, decoded_labels)])
+        return {'accuracy': correct/len(decoded_labels)}
+
 def main():
     # Set model and dataset parameters
     model_name = "t5-base"
@@ -308,7 +309,7 @@ def main():
     # plot_accuracy(eval_callback.eval_history)
 
     # Test the model
-    test_results = trainer.evaluate(tokenized_dataset_test)
+    test_results = trainer.evaluate(tokenized_dataset_test, compute_metrics=compute_metrics, tokenizer=tokenizer)
     print(test_results)
 
 if __name__ == "__main__":
