@@ -256,8 +256,8 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         eval_dataset=tokenized_dataset_validation,
         data_collator=data_collator,
         tokenizer=tokenizer,
-        compute_metrics=compute_metrics,
-        callbacks=[eval_callback],  # Add the callback
+        # compute_metrics=compute_metrics,
+        # callbacks=[eval_callback],  # Add the callback
         optimizers=(optimizer, None),  # Use our custom optimizer
     )
     return trainer
