@@ -118,45 +118,71 @@ def get_tokenized_dataset(dataset_name, tokenizer):
     tokenized_dataset_test = dataset_test.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
     return tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test
 
-def get_custom_dataset(dataset_path, tokenizer):
+def get_custom_dataset(dataset_path, tokenizer, k=5, validation_size=0.1):
     """
-    Load the dataset and apply tokenization.
-    Replace 'dataset_name' with your actual dataset identifier or local script.
+    Load and tokenize the dataset with k-fold cross validation.
+    
+    Args:
+        dataset_path (str): Path to the dataset file
+        tokenizer: Tokenizer to use for preprocessing
+        k (int): Number of folds for cross-validation (default=5)
+        validation_size (float): Proportion of training data to use for validation (default=0.1)
+        
+    Returns:
+        list: List of tuples (train_dataset, validation_dataset, test_dataset) for each fold
     """
     dataset_path = "data/dataset/meta-llama_Llama-3.2-3B-Instruct_meta-llama_Llama-3.2-3B-Instruct-evals_results.csv"
     dataset = load_dataset("csv", data_files=dataset_path)
-    # Split the dataset into train, validation, and test sets with 70:20:10 ratio
-    dataset = dataset["train"]  # Get the train split from the loaded CSV dataset
+    
+    # Get the train split from the loaded CSV dataset
+    dataset = dataset["train"]
     
     # Shuffle the dataset to ensure random distribution
     dataset = dataset.shuffle(seed=42)
     
-    # Calculate split sizes
+    # Calculate fold size
     dataset_size = len(dataset)
-    train_size = int(0.7 * dataset_size)
-    val_size = int(0.2 * dataset_size)
-    test_size = dataset_size - train_size - val_size
+    fold_size = dataset_size // k
     
-    # Create the splits
-    train_dataset = dataset.select(range(train_size))
-    val_dataset = dataset.select(range(train_size, train_size + val_size))
-    test_dataset = dataset.select(range(train_size + val_size, dataset_size))
+    folds = []
+    for i in range(k):
+        # Determine start and end indices for test fold
+        test_start = i * fold_size
+        test_end = test_start + fold_size if i < k - 1 else dataset_size
+        
+        # Create test dataset for this fold
+        test_indices = list(range(test_start, test_end))
+        test_dataset = dataset.select(test_indices)
+        
+        # Create train dataset from all other folds
+        train_indices = list(range(0, test_start)) + list(range(test_end, dataset_size))
+        train_dataset_full = dataset.select(train_indices)
+        
+        # Split train dataset into train and validation
+        train_size = len(train_dataset_full)
+        val_size = int(train_size * validation_size)
+        
+        train_dataset = train_dataset_full.select(range(val_size, train_size))
+        val_dataset = train_dataset_full.select(range(val_size))
+        
+        # Tokenize datasets
+        tokenized_train = train_dataset.map(
+            lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), 
+            batched=True
+        )
+        tokenized_val = val_dataset.map(
+            lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), 
+            batched=True
+        )
+        tokenized_test = test_dataset.map(
+            lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), 
+            batched=True
+        )
+        
+        folds.append((tokenized_train, tokenized_val, tokenized_test))
     
-    # Create a new DatasetDict with the splits
-    dataset = DatasetDict({
-        'train': train_dataset,
-        'validation': val_dataset,
-        'test': test_dataset
-    })
-    
-    # Tokenize each split separately
-    tokenized_dataset_train = dataset['train'].map(lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), batched=True)
-    tokenized_dataset_validation = dataset['validation'].map(lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), batched=True)
-    tokenized_dataset_test = dataset['test'].map(lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), batched=True)
-    
-    # Return all three tokenized datasets
-    return tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test
-    
+    return folds
+
 class EpochEvalCallback(TrainerCallback):
     """
     Custom callback to capture evaluation metrics after each epoch.
@@ -175,7 +201,7 @@ class EpochEvalCallback(TrainerCallback):
 
 
 
-def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback):
+def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer):
     """
     Set up TrainingArguments and the Trainer.
     We use evaluation_strategy "epoch" so validation is run after every epoch.
@@ -288,29 +314,44 @@ def main():
     tokenizer = T5Tokenizer.from_pretrained(model_name)
     model = T5ForConditionalGeneration.from_pretrained(model_name)
     
+    # Prepare the tokenized dataset with k-fold cross validation
+    k = 5  # Number of folds
+    folds = get_custom_dataset(dataset_path="", tokenizer=tokenizer, k=k)
     
-    # Prepare the tokenized dataset
-    tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test = get_custom_dataset(dataset_path="", tokenizer=tokenizer)
+    # Track metrics across folds
+    all_metrics = []
     
-    # Initialize custom callback for tracking evaluation metrics
-    eval_callback = EpochEvalCallback()
+    # Perform k-fold cross-validation
+    for fold_idx, (train_dataset, val_dataset, test_dataset) in enumerate(folds):
+        print(f"\n=== Training on fold {fold_idx+1}/{k} ===")
+        
+        # For each fold, create a new model instance to start fresh
+        if fold_idx > 0:  # Only reload for folds after the first one
+            model = T5ForConditionalGeneration.from_pretrained(model_name)
+        
+        
+        # Setup the Trainer for this fold
+        trainer = setup_trainer(model, train_dataset, val_dataset, tokenizer)
+        
+        # Train the model
+        trainer.train()
+        
+        # Save the model for this fold
+        fold_output_dir = os.path.join("./results", f"fold_{fold_idx+1}")
+        os.makedirs(fold_output_dir, exist_ok=True)
+        trainer.save_model(fold_output_dir)
+        
+        # Evaluate on the test set
+        test_results = trainer.evaluate(test_dataset, compute_metrics=compute_metrics, tokenizer=tokenizer)
+        all_metrics.append(test_results)
+        print(f"Fold {fold_idx+1} test results: {test_results}")
     
-    # Setup the Trainer
-    trainer = setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, eval_callback)
-    
-    # breakpoint()
-    # Start training (validation will run after each epoch)
-    trainer.train()
-    
-    # Optionally, save the final model
-    trainer.save_model(os.path.join("./results", "final_model"))
-    
-    # Plot the collected validation accuracy over epochs
-    # plot_accuracy(eval_callback.eval_history)
-
-    # Test the model
-    test_results = trainer.evaluate(tokenized_dataset_test, compute_metrics=compute_metrics, tokenizer=tokenizer)
-    print(test_results)
+    # Calculate and print average metrics across all folds
+    avg_metrics = {key: np.mean([fold_metrics.get(key, 0) for fold_metrics in all_metrics]) 
+                  for key in all_metrics[0].keys()}
+    print("\n=== Average performance across all folds ===")
+    for key, value in avg_metrics.items():
+        print(f"{key}: {value:.4f}")
 
 if __name__ == "__main__":
     main()
