@@ -6,6 +6,7 @@ The model is trained on input-output pairs to mimic the behavior of another mode
 # external imports
 import os
 import torch
+import random
 from transformers import (
     T5ForConditionalGeneration, 
     T5Tokenizer, 
@@ -142,29 +143,44 @@ def get_custom_dataset(dataset_path, tokenizer, k=5, validation_size=0.1):
     
     # Calculate fold size
     dataset_size = len(dataset)
-    fold_size = dataset_size // k
     
-    folds = []
-    for i in range(k):
-        # Determine start and end indices for test fold
-        test_start = i * fold_size
-        test_end = test_start + fold_size if i < k - 1 else dataset_size
+    fold_results = []
+
+    # Define test ratios for k=2 to k=5
+    test_ratios = {
+        2: 0.50,
+        3: 0.33,
+        4: 0.25,
+        5: 0.20
+    }
+
+    dataset_size = len(dataset)
+
+    for k in range(2, 6):  # Loop through k=2 to k=5
+        test_ratio = test_ratios[k]
+        test_size = int(dataset_size * test_ratio)
+        train_size = dataset_size - test_size  # Remaining data for train + val
+        val_size = int(train_size * 0.10)  # 10% of training data
+        train_size = train_size - val_size  # Adjust train size
+
         
+        
+        # Define start and end indices for test fold
+        test_start = 0
+        test_end = test_start + test_size
+
         # Create test dataset for this fold
         test_indices = list(range(test_start, test_end))
         test_dataset = dataset.select(test_indices)
-        
-        # Create train dataset from all other folds
-        train_indices = list(range(0, test_start)) + list(range(test_end, dataset_size))
+
+        # Remaining indices for train + validation
+        train_indices = list(set(range(dataset_size)) - set(test_indices))
         train_dataset_full = dataset.select(train_indices)
-        
-        # Split train dataset into train and validation
-        train_size = len(train_dataset_full)
-        val_size = int(train_size * validation_size)
-        
-        train_dataset = train_dataset_full.select(range(val_size, train_size))
+
+        # Split into train and validation
+        train_dataset = train_dataset_full.select(range(val_size, val_size + train_size))
         val_dataset = train_dataset_full.select(range(val_size))
-        
+
         # Tokenize datasets
         tokenized_train = train_dataset.map(
             lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), 
@@ -179,9 +195,15 @@ def get_custom_dataset(dataset_path, tokenizer, k=5, validation_size=0.1):
             batched=True
         )
         
-        folds.append((tokenized_train, tokenized_val, tokenized_test))
-    breakpoint()
-    return folds
+        fold_results.append(
+            {
+                "fold": k, 
+                "train": tokenized_train, 
+                "val": tokenized_val, 
+                "test": tokenized_test 
+            }
+            )
+    return fold_results
 
 class EpochEvalCallback(TrainerCallback):
     """
@@ -248,8 +270,8 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
         output_dir=output_dir,
         evaluation_strategy="epoch",
         learning_rate=1e-5,  # Reduced learning rate for stability
-        per_device_train_batch_size=128,
-        per_device_eval_batch_size=128,
+        per_device_train_batch_size=64,
+        per_device_eval_batch_size=64,
         weight_decay=0.01,
         save_total_limit=3,
         num_train_epochs=3,
@@ -323,7 +345,11 @@ def main():
     all_metrics = []
     
     # Perform k-fold cross-validation
-    for fold_idx, (train_dataset, val_dataset, test_dataset) in enumerate(folds):
+    for fold in folds:
+        fold_idx = fold["fold"]
+        train_dataset = fold["train"]
+        val_dataset = fold["val"]
+        test_dataset = fold["test"]
         print(f"\n=== Training on fold {fold_idx+1}/{k} ===")
         
         # For each fold, create a new model instance to start fresh
