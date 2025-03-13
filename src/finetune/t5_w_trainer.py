@@ -17,7 +17,7 @@ from transformers import (
     TrainerState,
     TrainerControl
 )
-from datasets import load_dataset, DownloadMode
+from datasets import load_dataset, DownloadMode, DatasetDict
 from evaluate import load
 import numpy as np
 import nltk
@@ -69,6 +69,42 @@ def preprocess_function(examples, tokenizer):
     model_inputs["labels"] = labels_with_ignore.tolist()
     return model_inputs
 
+def preprocess_function_custom_mmlu(examples, tokenizer):
+    """
+    Format the input prompt for T5 and tokenize both input and target.
+    Improved to handle potential issues better.
+    """
+    inputs = examples["prompt"]
+    targets = examples["response"]
+    
+    # Tokenize inputs with padding='max_length' for consistency
+    model_inputs = tokenizer(
+        inputs, 
+        max_length=512, 
+        truncation=True, 
+        padding='max_length',
+    )
+    
+    # Tokenize targets with padding='max_length' for consistency
+    with tokenizer.as_target_tokenizer():
+        labels = tokenizer(
+            targets, 
+            max_length=128, 
+            truncation=True, 
+            padding='max_length',
+        )
+    
+    # Replace pad token id with -100 for proper loss calculation
+    labels_with_ignore = np.array(labels["input_ids"])
+    labels_with_ignore = np.where(
+        labels_with_ignore != tokenizer.pad_token_id, 
+        labels_with_ignore, 
+        -100
+    )
+    
+    model_inputs["labels"] = labels_with_ignore.tolist()
+    return model_inputs
+
 def get_tokenized_dataset(dataset_name, tokenizer):
     """
     Load the dataset and apply tokenization.
@@ -82,6 +118,45 @@ def get_tokenized_dataset(dataset_name, tokenizer):
     tokenized_dataset_test = dataset_test.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
     return tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test
 
+def get_custom_dataset(dataset_path, tokenizer):
+    """
+    Load the dataset and apply tokenization.
+    Replace 'dataset_name' with your actual dataset identifier or local script.
+    """
+    dataset_path = "data/dataset/meta-llama_Llama-3.2-3B-Instruct_meta-llama_Llama-3.2-3B-Instruct-evals_results.csv"
+    dataset = load_dataset("csv", data_files=dataset_path)
+    # Split the dataset into train, validation, and test sets with 70:20:10 ratio
+    dataset = dataset["train"]  # Get the train split from the loaded CSV dataset
+    
+    # Shuffle the dataset to ensure random distribution
+    dataset = dataset.shuffle(seed=42)
+    
+    # Calculate split sizes
+    dataset_size = len(dataset)
+    train_size = int(0.7 * dataset_size)
+    val_size = int(0.2 * dataset_size)
+    test_size = dataset_size - train_size - val_size
+    
+    # Create the splits
+    train_dataset = dataset.select(range(train_size))
+    val_dataset = dataset.select(range(train_size, train_size + val_size))
+    test_dataset = dataset.select(range(train_size + val_size, dataset_size))
+    
+    # Create a new DatasetDict with the splits
+    dataset = DatasetDict({
+        'train': train_dataset,
+        'validation': val_dataset,
+        'test': test_dataset
+    })
+    
+    # Tokenize each split separately
+    tokenized_dataset_train = dataset['train'].map(lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), batched=True)
+    tokenized_dataset_validation = dataset['validation'].map(lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), batched=True)
+    tokenized_dataset_test = dataset['test'].map(lambda examples: preprocess_function_custom_mmlu(examples, tokenizer), batched=True)
+    
+    # Return all three tokenized datasets
+    return tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test
+    
 class EpochEvalCallback(TrainerCallback):
     """
     Custom callback to capture evaluation metrics after each epoch.
@@ -212,8 +287,9 @@ def main():
     tokenizer = T5Tokenizer.from_pretrained(model_name)
     model = T5ForConditionalGeneration.from_pretrained(model_name)
     
+    
     # Prepare the tokenized dataset
-    tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test = get_tokenized_dataset(dataset_name, tokenizer)
+    tokenized_dataset_train, tokenized_dataset_validation, tokenized_dataset_test = get_custom_dataset(dataset_path="", tokenizer=tokenizer)
     
     # Initialize custom callback for tracking evaluation metrics
     eval_callback = EpochEvalCallback()
