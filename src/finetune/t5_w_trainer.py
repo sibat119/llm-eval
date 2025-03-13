@@ -180,7 +180,7 @@ def get_custom_dataset(dataset_path, tokenizer, k=5, validation_size=0.1):
         )
         
         folds.append((tokenized_train, tokenized_val, tokenized_test))
-    
+    breakpoint()
     return folds
 
 class EpochEvalCallback(TrainerCallback):
@@ -201,7 +201,7 @@ class EpochEvalCallback(TrainerCallback):
 
 
 
-def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer):
+def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, tokenizer, output_dir):
     """
     Set up TrainingArguments and the Trainer.
     We use evaluation_strategy "epoch" so validation is run after every epoch.
@@ -245,6 +245,7 @@ def setup_trainer(model, tokenized_dataset_train, tokenized_dataset_validation, 
     metric = load("rouge")
     
     training_args = Seq2SeqTrainingArguments(
+        output_dir=output_dir,
         evaluation_strategy="epoch",
         learning_rate=1e-5,  # Reduced learning rate for stability
         per_device_train_batch_size=128,
@@ -331,14 +332,14 @@ def main():
         
         
         # Setup the Trainer for this fold
-        trainer = setup_trainer(model, train_dataset, val_dataset, tokenizer)
+        os.makedirs(fold_output_dir, exist_ok=True)
+        fold_output_dir = os.path.join("./results", f"fold_{fold_idx+1}")
+        trainer = setup_trainer(model, train_dataset, val_dataset, tokenizer, fold_output_dir)
         
         # Train the model
         trainer.train()
         
         # Save the model for this fold
-        fold_output_dir = os.path.join("./results", f"fold_{fold_idx+1}")
-        os.makedirs(fold_output_dir, exist_ok=True)
         trainer.save_model(fold_output_dir)
         
         # Evaluate on the test set
