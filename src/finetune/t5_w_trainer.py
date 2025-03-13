@@ -16,7 +16,8 @@ from transformers import (
     AdamW,
     TrainerCallback,
     TrainerState,
-    TrainerControl
+    TrainerControl,
+    pipeline
 )
 from datasets import load_dataset, DownloadMode, DatasetDict
 from evaluate import load
@@ -330,10 +331,10 @@ def compute_metrics(eval_pred, tokenizer):
 
 def main():
     # Set model and dataset parameters
-    model_name = "t5-base"
     dataset_name = "cais/mmlu"  # Replace with your actual dataset identifier
     
     # Load tokenizer and model
+    model_name = "t5-base"
     tokenizer = T5Tokenizer.from_pretrained(model_name)
     model = T5ForConditionalGeneration.from_pretrained(model_name)
     
@@ -350,7 +351,7 @@ def main():
         train_dataset = fold["train"]
         val_dataset = fold["val"]
         test_dataset = fold["test"]
-        print(f"\n=== Training on fold {fold_idx+1}/{k} ===")
+        print(f"\n=== Training on fold {fold_idx}/{k} ===")
         
         # For each fold, create a new model instance to start fresh
         if fold_idx > 0:  # Only reload for folds after the first one
@@ -358,7 +359,7 @@ def main():
         
         
         # Setup the Trainer for this fold
-        fold_output_dir = os.path.join("./results", f"fold_{fold_idx+1}")
+        fold_output_dir = os.path.join("./results", f"fold_{fold_idx}")
         os.makedirs(fold_output_dir, exist_ok=True)
         trainer = setup_trainer(model, train_dataset, val_dataset, tokenizer, fold_output_dir)
         
@@ -371,7 +372,7 @@ def main():
         # Evaluate on the test set
         test_results = trainer.evaluate(test_dataset, compute_metrics=compute_metrics, tokenizer=tokenizer)
         all_metrics.append(test_results)
-        print(f"Fold {fold_idx+1} test results: {test_results}")
+        print(f"Fold {fold_idx} test results: {test_results}")
     
     # Calculate and print average metrics across all folds
     avg_metrics = {key: np.mean([fold_metrics.get(key, 0) for fold_metrics in all_metrics]) 
@@ -379,6 +380,33 @@ def main():
     print("\n=== Average performance across all folds ===")
     for key, value in avg_metrics.items():
         print(f"{key}: {value:.4f}")
+
+def load_local_model_and_calculate_metrics(test_dataset):
+    model_name = "t5-base"
+    tokenizer = T5Tokenizer.from_pretrained(model_name)
+    
+    
+    
+    k = 5  # Number of folds
+    folds = get_custom_dataset(dataset_path="", tokenizer=tokenizer, k=k)
+    for fold in folds:
+        
+        fold_idx = fold["fold"]
+        test_dataset = fold["test"]
+        breakpoint()
+        model_path = os.path.join("./results", f"fold_{fold_idx + 1}")
+        pipe = pipeline(
+            "text-generation",
+            model=model_path,
+            torch_dtype=torch.float32,
+            device_map="auto",
+        )
+        for i in range(len(test_dataset)):
+            prompt = test_dataset[i]["prompt"]
+            target = test_dataset[i]["response"]
+            breakpoint()
+            results = pipe(prompt)
+    
 
 if __name__ == "__main__":
     main()
