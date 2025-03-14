@@ -76,7 +76,6 @@ def preprocess_function_custom_mmlu(examples, tokenizer):
     Format the input prompt for T5 and tokenize both input and target.
     Improved to handle potential issues better.
     """
-    breakpoint()
     inputs = examples["prompt"]
     targets = examples["response"]
     
