@@ -6,7 +6,7 @@ The model is trained on input-output pairs to mimic the behavior of another mode
 # external imports
 import os
 import torch
-import random
+from tqdm import tqdm
 from transformers import (
     T5ForConditionalGeneration, 
     T5Tokenizer, 
@@ -406,11 +406,11 @@ def load_local_model_and_calculate_metrics():
         targets = test_dataset["response"]
         
         # Process in batches (default batch_size is usually 1)
-        batch_size = 8  # Adjust based on your GPU memory
+        batch_size = 64  # Adjust based on your GPU memory
         results = []
         
         # Process dataset in batches
-        for i in range(0, len(prompts), batch_size):
+        for i in tqdm(range(0, len(prompts), batch_size)):
             batch_prompts = prompts[i:i+batch_size]
             batch_results = pipe(batch_prompts, batch_size=batch_size)
             results.extend(batch_results)
