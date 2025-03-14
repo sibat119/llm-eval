@@ -76,6 +76,7 @@ def preprocess_function_custom_mmlu(examples, tokenizer):
     Format the input prompt for T5 and tokenize both input and target.
     Improved to handle potential issues better.
     """
+    breakpoint()
     inputs = examples["prompt"]
     targets = examples["response"]
     
@@ -381,32 +382,53 @@ def main():
     for key, value in avg_metrics.items():
         print(f"{key}: {value:.4f}")
 
-def load_local_model_and_calculate_metrics(test_dataset):
+def load_local_model_and_calculate_metrics():
     model_name = "t5-base"
     tokenizer = T5Tokenizer.from_pretrained(model_name)
     
-    
-    
     k = 5  # Number of folds
     folds = get_custom_dataset(dataset_path="", tokenizer=tokenizer, k=k)
+    fold_accuracies = []
+    
     for fold in folds:
-        
         fold_idx = fold["fold"]
         test_dataset = fold["test"]
-        breakpoint()
+        
         model_path = os.path.join("./results", f"fold_{fold_idx + 1}")
         pipe = pipeline(
-            "text-generation",
+            "text2text-generation",
             model=model_path,
             torch_dtype=torch.float32,
             device_map="auto",
         )
-        for i in range(len(test_dataset)):
-            prompt = test_dataset[i]["prompt"]
-            target = test_dataset[i]["response"]
-            breakpoint()
-            results = pipe(prompt)
+        
+        # Extract all prompts and targets at once
+        prompts = test_dataset["prompt"]
+        targets = test_dataset["response"]
+        
+        # Process in batches (default batch_size is usually 1)
+        batch_size = 8  # Adjust based on your GPU memory
+        results = []
+        
+        # Process dataset in batches
+        for i in range(0, len(prompts), batch_size):
+            batch_prompts = prompts[i:i+batch_size]
+            batch_results = pipe(batch_prompts, batch_size=batch_size)
+            results.extend(batch_results)
+        
+        # Extract generated texts
+        generated_texts = [r['generated_text'] for r in results]
+        
+        # Calculate accuracy 
+        correct = sum(pred.strip() == target.strip() for pred, target in zip(generated_texts, targets))
+        accuracy = correct / len(targets)
+        
+        fold_accuracies.append({fold_idx: accuracy})
+        
+    print(fold_accuracies)
+    breakpoint()
+    return fold_accuracies
     
 
 if __name__ == "__main__":
-    main()
+    load_local_model_and_calculate_metrics()
