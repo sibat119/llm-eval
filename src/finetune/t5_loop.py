@@ -680,6 +680,11 @@ def prepare_dataset(
             )
     elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
         dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
+        dataset = get_custom_dataset_split(
+            dataset=dataset, 
+            validation_size=0.1, 
+            fold_number=fold_number
+            )
     else:
         dataset = load_dataset(dataset_name, "1.0.0")
     
@@ -727,7 +732,8 @@ def prepare_dataset(
     return (
         tokenized_datasets["train"],
         tokenized_datasets["validation"],
-        tokenized_datasets["test"] if "test" in tokenized_datasets else tokenized_datasets["validation"]
+        tokenized_datasets["test"] if "test" in tokenized_datasets else tokenized_datasets["validation"],
+        dataset["test"]
     )
 
 
@@ -770,7 +776,7 @@ def main():
     
     # Prepare dataset
     print(f"Loading and tokenizing dataset: {args.dataset}")
-    train_dataset, val_dataset, test_dataset = prepare_dataset(
+    train_dataset, val_dataset, test_dataset, test_dataset_full = prepare_dataset(
         args.dataset,
         tokenizer,
         args.input_column,
@@ -824,7 +830,7 @@ def main():
     print("\nExample Predictions:")
     examples = []
     for i in range(min(3, len(evaluation_results['predictions']))):
-        input_text, _ = get_mmlu_inputs(test_dataset[i])
+        input_text, _ = get_mmlu_inputs(test_dataset_full[i])
         example = {
             "input": input_text,
             "prediction": evaluation_results['predictions'][i],
