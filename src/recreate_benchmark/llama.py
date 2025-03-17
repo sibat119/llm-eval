@@ -1,7 +1,7 @@
 import pandas as pd
 import csv
 from datasets import load_dataset, DownloadMode
-from src.recreate_benchmark.model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
+from .model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
 import yaml
 from tqdm import tqdm
 import argparse
