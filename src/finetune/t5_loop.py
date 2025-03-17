@@ -12,7 +12,9 @@ from transformers import (
     T5Tokenizer, 
     T5ForConditionalGeneration
 )
+from datasets import DatasetDict, DownloadMode
 from tqdm import tqdm
+import json
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from datasets import load_dataset
 
@@ -551,14 +553,101 @@ def load_t5_model(model_name_or_path, device='cuda'):
     return model, tokenizer
 
 
+def get_custom_dataset_split(dataset, validation_size=0.1, fold_number=2):
+    """
+    Load and tokenize the dataset with k-fold cross validation.
+    
+    Args:
+        dataset_path (str): Path to the dataset file
+        tokenizer: Tokenizer to use for preprocessing
+        k (int): Number of folds for cross-validation (default=5)
+        validation_size (float): Proportion of training data to use for validation (default=0.1)
+        
+    Returns:
+        list: List of tuples (train_dataset, validation_dataset, test_dataset) for each fold
+    """
+    
+    # Shuffle the dataset to ensure random distribution
+    dataset = dataset.shuffle(seed=42)
+    
+    # Calculate fold size
+    dataset_size = len(dataset)
+
+    # Define test ratios for k=2 to k=5
+    test_ratios = {
+        2: 0.50,
+        3: 0.33,
+        4: 0.25,
+        5: 0.20
+    }
+
+    dataset_size = len(dataset)
+
+    test_ratio = test_ratios[fold_number]
+    test_size = int(dataset_size * test_ratio)
+    train_size = dataset_size - test_size  # Remaining data for train + val
+    val_size = int(train_size * validation_size)  # 10% of training data
+    train_size = train_size - val_size  # Adjust train size
+
+    
+    
+    # Define start and end indices for test fold
+    test_start = 0
+    test_end = test_start + test_size
+
+    # Create test dataset for this fold
+    test_indices = list(range(test_start, test_end))
+    test_dataset = dataset.select(test_indices)
+
+    # Remaining indices for train + validation
+    train_indices = list(set(range(dataset_size)) - set(test_indices))
+    train_dataset_full = dataset.select(train_indices)
+
+    # Split into train and validation
+    train_dataset = train_dataset_full.select(range(val_size, val_size + train_size))
+    val_dataset = train_dataset_full.select(range(val_size))
+
+    # Create a DatasetDict with train, validation, and test splits
+    
+    
+    datasets = DatasetDict({
+        "train": train_dataset,
+        "validation": val_dataset,  # Using "validation" instead of "val" for standard HF naming
+        "test": test_dataset
+    })
+        
+    return datasets
+
+def get_mmlu_inputs(examples):
+    inputs = []
+    targets = []
+    if isinstance(examples["input_question"], list):
+        for i in range(len(examples["input_question"])):
+            input_str = examples["input_question"][i]
+            formatted_string = '\n'.join(f"{key}: {value}" for key, value in examples['input_choice_list'][i].items())
+            full_input = input_str + formatted_string
+            inputs.append(full_input)
+            target_str = f"{input_str} {formatted_string} \nAnswer:  {examples['output_parsed_answer'][i] if examples['output_parsed_answer'][i] else ''}"
+            targets.append(target_str)
+    else:
+        input_str = examples["input_question"]
+        formatted_string = '\n'.join(f"{key}: {value}" for key, value in examples['input_choice_list'].items())
+        full_input = input_str + "\n" + formatted_string
+        inputs.append(full_input)
+        target_str = f"{input_str} {formatted_string} \nAnswer:  {examples['output_parsed_answer'] if examples['output_parsed_answer'] else ''}"
+        targets.append(target_str)
+    return inputs, targets
+
 def prepare_dataset(
     dataset_name,
     tokenizer,
     input_column,
     target_column,
     prefix="",
+    data_path="data/dataset/meta-llama_Llama-3.2-3B-Instruct_meta-llama_Llama-3.2-3B-Instruct-evals_results.csv",
     max_input_length=512,
-    max_target_length=128
+    max_target_length=128,
+    fold_number=2,
 ):
     """
     Load and tokenize a dataset from Hugging Face's datasets.
@@ -576,12 +665,34 @@ def prepare_dataset(
         Tuple of (train_dataset, val_dataset, test_dataset)
     """
     # Load dataset
-    dataset = load_dataset(dataset_name)
+    if dataset_name == "mmlu_custom":
+        dataset = get_custom_dataset_split(
+            dataset=load_dataset("csv", data_files=data_path), 
+            validation_size=0.1, 
+            fold_number=fold_number
+            )
+    elif dataset_name == "meta-llama/Llama-3.2-3B-evals":
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
+        dataset = get_custom_dataset_split(
+            dataset=dataset, 
+            validation_size=0.1, 
+            fold_number=fold_number
+            )
+    elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
+        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
+    else:
+        dataset = load_dataset(dataset_name, "1.0.0")
+    
+    
     
     # Tokenization function
     def tokenize_function(examples):
-        inputs = [prefix + text for text in examples[input_column]]
-        targets = examples[target_column]
+        if dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
+            inputs, targets = get_mmlu_inputs(examples)
+            
+        else:
+            inputs = [prefix + text for text in examples[input_column]]
+            targets = examples[target_column]
         
         model_inputs = tokenizer(
             inputs, 
@@ -628,7 +739,8 @@ def main():
     
     parser = argparse.ArgumentParser(description="Fine-tune a T5 model")
     parser.add_argument("--model_name", type=str, default="t5-small", help="Name or path of T5 model")
-    parser.add_argument("--dataset", type=str, default="cnn_dailymail", help="Dataset name")
+    parser.add_argument("--dataset", type=str, default="mmlu_custom", help="Dataset name")
+    parser.add_argument("--data_path", type=str, default="data/dataset/meta-llama_Llama-3.2-3B-Instruct_meta-llama_Llama-3.2-3B-Instruct-evals_results.csv", help="Path to dataset")
     parser.add_argument("--input_column", type=str, default="article", help="Column name for input text")
     parser.add_argument("--target_column", type=str, default="highlights", help="Column name for target text")
     parser.add_argument("--prefix", type=str, default="summarize: ", help="Prefix to add to input text")
@@ -637,6 +749,7 @@ def main():
     parser.add_argument("--learning_rate", type=float, default=5e-5, help="Learning rate")
     parser.add_argument("--save_path", type=str, default="./t5_model", help="Path to save model")
     parser.add_argument("--device", type=str, default="cuda", help="Device to use (cuda or cpu)")
+    parser.add_argument("--fold_count", type=int, default=2, help="Number of folds for train-test split")
     args = parser.parse_args()
     
     # Check for CUDA
@@ -666,7 +779,12 @@ def main():
     )
     
     # Set up data loaders
-    collator = DataCollatorForSeq2Seq(tokenizer, model=model, padding=True)
+    collator = DataCollatorForSeq2Seq(
+        tokenizer, 
+        model=model, 
+        padding=True,
+        return_tensors="pt"
+    )
     trainer.prepare_dataloaders(
         train_dataset,
         val_dataset,
@@ -696,12 +814,32 @@ def main():
     print(f"BLEU Score: {evaluation_results['bleu_score']:.4f}")
     print(f"Exact Match Accuracy: {evaluation_results['exact_match']:.4f}")
     
+    # Save evaluation results to file
+    results_file = os.path.join(args.save_path, 'evaluation_results.json')
+    with open(results_file, 'w') as f:
+        json.dump(evaluation_results, f, indent=4)
+    print(f"Evaluation results saved to {results_file}")
+    
     # Show some example predictions
     print("\nExample Predictions:")
+    examples = []
     for i in range(min(3, len(evaluation_results['predictions']))):
-        print(f"\nInput: {test_dataset[i][args.input_column]}")
-        print(f"Prediction: {evaluation_results['predictions'][i]}")
-        print(f"Reference: {evaluation_results['references'][i]}")
+        input_text, _ = get_mmlu_inputs(test_dataset[i])
+        example = {
+            "input": input_text,
+            "prediction": evaluation_results['predictions'][i],
+            "reference": evaluation_results['references'][i]
+        }
+        examples.append(example)
+        print(f"\nInput: {example['input']}")
+        print(f"Prediction: {example['prediction']}")
+        print(f"Reference: {example['reference']}")
+    
+    # Save example predictions to file
+    examples_file = os.path.join(args.save_path, 'example_predictions.json')
+    with open(examples_file, 'w') as f:
+        json.dump(examples, f, indent=4)
+    print(f"Example predictions saved to {examples_file}")
 
 if __name__ == "__main__":
     main()
