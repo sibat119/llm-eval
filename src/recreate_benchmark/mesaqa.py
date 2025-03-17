@@ -1,47 +1,40 @@
-import pandas as pd
-import csv
-from datasets import load_dataset, DownloadMode
+from datasets import load_dataset
 from src.recreate_benchmark.model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
+import csv
+import argparse
 import yaml
 from tqdm import tqdm
-import argparse
+import pandas as pd
+import evaluate
 
-def format_prompt(example, dataset_name):
-    # Format: "Question: <question text>\nOptions: A. <opt1> B. <opt2> ...\nAnswer:"
-    if dataset_name == "cais/mmlu":
-        question = example["question"]
-        options = example["choices"]
-        option_text = " ".join([f"{chr(65 + i)}. {opt}" for i, opt in enumerate(options)])
-        prompt = f"Question: {question}\nOptions: {option_text}\nAnswer:"
-    elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        prompt = example["input_final_prompts"]
-    else:
-        raise ValueError(f"Dataset {dataset_name} not supported")
+def get_prompt(context, question):
+    prompt = """You are a helpful assistant who are good at answering healthcare question.
+I will give you, context, which is the sentences split from the context with the format of "index: sentence",
+followed by the question, then you need to reply me with two things:
+First, find the index of sentences that is the answer-related to the question, namely the evidence sentences.
+(You have to find more than one evidence sentence.)
+Second, base on the evidence sentences you chose, give me the abstractive answer to the question.
+context: {context}
+question: {question}
+You should reply me with the following format:
+Evidence sentences: [index1,index2,index3...]
+Answer: <your answer>"""
+    prompt = prompt.format(context=context, question=question)
     return prompt
 
-def compute_accuracy_from_csv(csv_filename):
-    """
-    Reads the CSV file and computes accuracy by comparing the saved model output to the ground truth.
-    """
-    df = pd.read_csv(csv_filename)
-    # Extract the first element from ground_truth list if it's a list, otherwise use as is
-    df["correct"] = df.apply(lambda row: 1 if row["model_output"] == row["ground_truth"] else 0, axis=1)
-    accuracy = df["correct"].mean()
-    return accuracy
+def get_dataset(dataset_name):
+    if dataset_name == "mesaqa":
+        return load_dataset("riiwang/MESAQA")
+    else:
+        raise ValueError(f"Dataset {dataset_name} not found")
 
-def get_mmlu_example(example, dataset_name):
-    """
-    Get the question, options, and ground truth from the example.
-    """
-    if dataset_name == "cais/mmlu":
-        question = example["question"]
-        options = example["choices"]
-        ground_truth = example['choices'][example['answer']]
-    elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        question = example["input_question"]
-        options = example["input_choice_list"]
-        ground_truth = example['input_correct_responses']
-    return question, options, ground_truth
+def get_mesaqa_example(example):
+    context = example["context"]
+    question = example["question"]
+    evidence = example["evidence"]
+    answer = example["answer"]
+    ground_truth = f"Evidence sentences: {evidence}\nAnswer: {answer}"
+    return context, question, ground_truth
 
 def recreate_llama_benchmark(
     model_name: str, 
@@ -51,15 +44,8 @@ def recreate_llama_benchmark(
     use_vllm: bool = False, 
     use_pipeline: bool = False, 
     use_hub: bool = False):
-    if dataset_name == "cais/mmlu":
-        dataset = load_dataset(dataset_name, "all", split="test", download_mode=DownloadMode.FORCE_REDOWNLOAD)
-        # print(dataset)
-    elif dataset_name == "meta-llama/Llama-3.2-3B-evals":
-        dataset = load_dataset(dataset_name, "Llama-3.2-3B-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
-    elif dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        dataset = load_dataset(dataset_name, "Llama-3.2-3B-Instruct-evals__mmlu__details", split="latest", download_mode=DownloadMode.FORCE_REDOWNLOAD)
-    else:
-        raise ValueError(f"Dataset {dataset_name} not supported")
+    
+    dataset = get_dataset(dataset_name)
     
     if use_vllm:
         model, tokenizer, sampling_params = load_model_vllm(model_name, config)
@@ -70,19 +56,16 @@ def recreate_llama_benchmark(
     else:
         model, tokenizer = load_model(model_name, config)
         
-    # csv_filename = config["data_path"] + f"/{model_name.replace('/', '_')}_{dataset_name.replace('/', '_')}_results.csv"
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         # CSV header
-        writer.writerow(["question", "options", "prompt", "model_output", "ground_truth", "response"])
+        writer.writerow(["question", "context", "prompt", "model_output", "ground_truth", "response"])
         
         for example in tqdm(dataset):
             # Extract fields; adjust field names if needed.
-            question, options, ground_truth = get_mmlu_example(example, dataset_name)
+            context, question, ground_truth = get_mesaqa_example(example)
             
-            ground_truth = ground_truth[0] if isinstance(ground_truth, list) else ground_truth
-            prompt = format_prompt(example, dataset_name)
-            # breakpoint()
+            prompt = get_prompt(context, question)
             # Generate output using greedy decoding
             if use_vllm:
                 seqs = model.generate(
@@ -111,18 +94,51 @@ def recreate_llama_benchmark(
                 # Extract the answer: assume answer appears immediately after the prompt.
                 answer_text = generated_text[len(prompt):].strip()
             
+            breakpoint()
             predicted = answer_text[0].upper() if answer_text else ""
             
-            writer.writerow([question, " | ".join(options), prompt, predicted, ground_truth, answer_text])
+            writer.writerow([question, context, prompt, predicted, ground_truth, answer_text])
     
     print(f"Saved evaluation results to {csv_filename}")
 
+def compute_accuracy_from_csv(csv_filename):
+    """
+    Reads the CSV file and computes accuracy by comparing the saved model output to the ground truth.
+    """
+    df = pd.read_csv(csv_filename)
+    df["correct"] = df.apply(lambda row: 1 if row["model_output"] == row["ground_truth"] else 0, axis=1)
+    accuracy = df["correct"].mean()
     
+    def calculate_f1_recall(pred, truth):
+        if not pred or not truth:
+            return 0, 0
+        pred_tokens = set(pred.lower().split())
+        truth_tokens = set(truth.lower().split())
+        
+        common = len(pred_tokens.intersection(truth_tokens))
+        if common == 0:
+            return 0, 0
+            
+        precision = common / len(pred_tokens)
+        recall = common / len(truth_tokens)
+        
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+        return f1, recall
     
+    f1_scores = []
+    recall_scores = []
     
+    for _, row in df.iterrows():
+        f1, recall = calculate_f1_recall(row["model_output"], row["ground_truth"])
+        f1_scores.append(f1)
+        recall_scores.append(recall)
     
+    avg_f1 = sum(f1_scores) / len(f1_scores) if f1_scores else 0
+    avg_recall = sum(recall_scores) / len(recall_scores) if recall_scores else 0
     
-
+    df["f1_score"] = f1_scores
+    df["recall_score"] = recall_scores
+    return accuracy, avg_f1, avg_recall
 
 if __name__ == "__main__":
     
@@ -150,5 +166,7 @@ if __name__ == "__main__":
         use_pipeline=args.use_pipeline,
         use_hub=args.use_hub
     )
-    accuracy = compute_accuracy_from_csv(csv_file_name)
+    accuracy, f1, recall = compute_accuracy_from_csv(csv_file_name)
     print(f"Accuracy: {accuracy}")
+    print(f"F1: {f1}")
+    print(f"Recall: {recall}")

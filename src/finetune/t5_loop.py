@@ -197,7 +197,7 @@ class BaseModelTrainer:
             progress_bar.set_postfix({"loss": loss.item()})
             
             # Save model checkpoint periodically
-            if self.global_step % 1000 == 0:
+            if self.global_step % 5000 == 0:
                 self.save_checkpoint(f"checkpoint-{self.global_step}")
         
         # Calculate average loss for this epoch
