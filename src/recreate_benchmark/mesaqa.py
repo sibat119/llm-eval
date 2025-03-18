@@ -91,7 +91,7 @@ def recreate_llama_benchmark(
         # CSV header
         writer.writerow(["question", "prompt", "model_output", "ground_truth", "response"])
         
-        for example in tqdm(dataset):
+        for i, example in tqdm(enumerate(dataset)):
             # Extract fields; adjust field names if needed.
             if dataset_name == "mesaqa":
                 context, question, ground_truth = get_mesaqa_example(example)
@@ -147,8 +147,8 @@ def compute_accuracy_from_csv(csv_filename):
     def calculate_f1_recall(pred, truth):
         if not pred or not truth:
             return 0, 0
-        pred_tokens = set(pred.lower().split())
-        truth_tokens = set(truth.lower().split())
+        pred_tokens = set(str(pred).lower().split())
+        truth_tokens = set(str(truth).lower().split())
         
         common = len(pred_tokens.intersection(truth_tokens))
         if common == 0:
