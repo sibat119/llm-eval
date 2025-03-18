@@ -7,7 +7,7 @@ from tqdm import tqdm
 import pandas as pd
 import evaluate
 
-def get_prompt(context, question):
+def get_prompt_mesaqa(context, question):
     prompt = """You are a helpful assistant who are good at answering healthcare question.
 I will give you, context, which is the sentences split from the context with the format of "index: sentence",
 followed by the question, then you need to reply me with two things:
@@ -22,9 +22,27 @@ Answer: <your answer>"""
     prompt = prompt.format(context=context, question=question)
     return prompt
 
+def get_prompt_milu(question, A, B, C, D):
+    prompt = """Given the following question and four candidate answers (A, B, C and D), choose the best answer. answer should in format of A: <answer>.\nQuestion: {question}\nA: {A}\nB: {B}\nC: {C}\nD: {D}\nAnswer: """
+    prompt = prompt.format(question=question, A=A, B=B, C=C, D=D)
+    return prompt
+
 def get_dataset(dataset_name):
     if dataset_name == "mesaqa":
-        return load_dataset("riiwang/MESAQA")
+        dataset = load_dataset("riiwang/MESAQA")
+        return dataset["train"]
+    elif dataset_name == "peerqa":
+        dataset = load_dataset("UKPLab/PeerQA")
+        return dataset["train"]
+    elif dataset_name == "truthfulqa":
+        dataset = load_dataset("rahmanidashti/TruthfulQA", 'generation')
+        return dataset["validation"]
+    elif dataset_name == "medicalqa":
+        dataset = load_dataset("Detsutut/MedQA-USMLE-back-translated")
+        return dataset["train"]
+    elif dataset_name == "milu":
+        dataset = load_dataset("ai4bharat/MILU", "English")
+        return dataset["test"]
     else:
         raise ValueError(f"Dataset {dataset_name} not found")
 
@@ -35,6 +53,18 @@ def get_mesaqa_example(example):
     answer = example["answer"]
     ground_truth = f"Evidence sentences: {evidence}\nAnswer: {answer}"
     return context, question, ground_truth
+
+def get_milu_example(example):
+    question = example["question"]
+    A = example["option1"]
+    B = example["option2"]
+    C = example["option3"]
+    D = example["option4"]
+    target = example["target"]
+    ground_truth = f"{example[target]}"
+    prompt = get_prompt_milu(question, A, B, C, D)
+    
+    return prompt, question, ground_truth
 
 def recreate_llama_benchmark(
     model_name: str, 
@@ -59,13 +89,16 @@ def recreate_llama_benchmark(
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         # CSV header
-        writer.writerow(["question", "context", "prompt", "model_output", "ground_truth", "response"])
+        writer.writerow(["question", "prompt", "model_output", "ground_truth", "response"])
         
         for example in tqdm(dataset):
             # Extract fields; adjust field names if needed.
-            context, question, ground_truth = get_mesaqa_example(example)
+            if dataset_name == "mesaqa":
+                context, question, ground_truth = get_mesaqa_example(example)
+                prompt = get_prompt_mesaqa(context, question)
+            elif dataset_name == "milu":
+                prompt, question, ground_truth = get_milu_example(example)
             
-            prompt = get_prompt(context, question)
             # Generate output using greedy decoding
             if use_vllm:
                 seqs = model.generate(
@@ -94,10 +127,12 @@ def recreate_llama_benchmark(
                 # Extract the answer: assume answer appears immediately after the prompt.
                 answer_text = generated_text[len(prompt):].strip()
             
-            breakpoint()
-            predicted = answer_text[0].upper() if answer_text else ""
+            if dataset_name == "milu":  
+                predicted = answer_text[3:] if answer_text else ""
+            else:
+                predicted = answer_text[0].upper() if answer_text else ""
             
-            writer.writerow([question, context, prompt, predicted, ground_truth, answer_text])
+            writer.writerow([question, prompt, predicted, ground_truth, answer_text])
     
     print(f"Saved evaluation results to {csv_filename}")
 

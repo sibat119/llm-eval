@@ -5,23 +5,50 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "mesaqa",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.recreate_benchmark.mesaqa",
+            "args": [
+                "--use_vllm"
+            ]
+        },
+        {
             "name": "mmlu",
             "type": "debugpy",
             "request": "launch",
             "program": "/home/sibat/repoes/llm-eval/src/recreate_benchmark/mmlu.py",
             "console": "integratedTerminal",
             "env": {
-                "CUDA_VISIBLE_DEVICES": "0"  // Change the number to select different GPU(s)
+                "CUDA_VISIBLE_DEVICES": "0" // Change the number to select different GPU(s)
             }
         },
         {
             "name": "t5 finetune",
             "type": "debugpy",
             "request": "launch",
-            "program": "/home/sibat/repoes/llm-eval/src/finetune/t5.py",
+            "program": "/home/sibat/repoes/llm-eval/src/finetune/t5_loop.py",
             "console": "integratedTerminal",
+            "args": [
+                "--fold_count",
+                "5",
+                "--dataset",
+                "meta-llama/Llama-3.2-3B-evals",
+                "--data_path",
+                "data/dataset/meta-llama_Llama-3.2-3B-Instruct_meta-llama_Llama-3.2-3B-Instruct-evals_results.csv",
+                "--model_name",
+                "google/flan-t5-base",
+                "--batch_size",
+                "4",
+                "--epochs",
+                "1",
+                "--learning_rate",
+                "5e-5",
+                "--save_path",
+                "./t5_model"
+            ],
             "env": {
-                "CUDA_VISIBLE_DEVICES": "1"  // Change the number to select different GPU(s)
+                "CUDA_VISIBLE_DEVICES": "1" // Change the number to select different GPU(s)
             }
         }
     ]
