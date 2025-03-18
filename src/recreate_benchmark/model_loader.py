@@ -10,13 +10,22 @@ def load_model(model_name, config):
     Load the pre-trained model and tokenizer.
     """
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        device_map="auto",
-        torch_dtype='auto',
-        trust_remote_code=True,
-        # cache_dir=config['model_cache'],
-    )
+    cache_dir = config.get('model_cache', None)
+    if cache_dir:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map="auto",
+            torch_dtype='auto',
+            trust_remote_code=True,
+            cache_dir=cache_dir,
+        )
+    else:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map="auto",
+            torch_dtype='auto',
+            trust_remote_code=True,
+        )
     model.eval()  # Set the model to evaluation mode
     return model, tokenizer
 
@@ -104,14 +113,23 @@ def load_model_vllm(model_name, config):
         max_tokens=config['num_output_tokens'],
         temperature=config['temperature'],
     )
-    model = LLM(
-        model_name,
-        trust_remote_code=True,
-        # download_dir=config['model_cache'],
-        dtype=config['dtype'],
-        # tensor_parallel_size=tensor_parallel_size,
-        max_model_len=config['max_length'],
-    )
+    cache_dir = config.get('model_cache', None)
+    if cache_dir is None:
+        model = LLM(
+            model_name,
+            trust_remote_code=True,
+            dtype=config['dtype'],
+            # tensor_parallel_size=tensor_parallel_size,
+            max_model_len=config['max_length'],
+        )
+    else:
+        model = LLM(
+            model_name,
+            trust_remote_code=True,
+            dtype=config['dtype'],
+            download_dir=cache_dir,
+            max_model_len=config['max_length'],
+        )
     
     tokenizer = model.get_tokenizer()
     
