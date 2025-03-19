@@ -699,29 +699,43 @@ def prepare_dataset(
     
     # Tokenization function
     def tokenize_function(examples):
-        if dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-            inputs, targets = get_mmlu_inputs(examples)
-        elif dataset_name == "milu":
-            inputs = examples["prompt"]
-            targets = examples["ground_truth"]
-        else:
-            inputs = [prefix + text for text in examples[input_column]]
-            targets = examples[target_column]
+        try:
+            
+            if dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
+                inputs, targets = get_mmlu_inputs(examples)
+            elif dataset_name == "milu":
+                inputs = examples["prompt"]
+                targets = examples["ground_truth"]
+                
+                inputs = [str(x) if x is not None else "" for x in inputs]
+                targets = [str(x) if x is not None else "" for x in targets]
+            else:
+                inputs = [prefix + text for text in examples[input_column]]
+                targets = examples[target_column]
+        except Exception as e:
+            breakpoint()
+            print(f"Error tokenizing dataset: {e}")
+            return None
         
-        model_inputs = tokenizer(
-            inputs, 
-            max_length=max_input_length,
-            padding="max_length",
-            truncation=True
-        )
+        try:
+            model_inputs = tokenizer(
+                inputs, 
+                max_length=max_input_length,
+                padding="max_length",
+                truncation=True
+            )
         
-        # Tokenize targets with special handling for T5
-        labels = tokenizer(
-            targets,
-            max_length=max_target_length,
-            padding="max_length",
-            truncation=True
-        ).input_ids
+            # Tokenize targets with special handling for T5
+            labels = tokenizer(
+                targets,
+                max_length=max_target_length,
+                padding="max_length",
+                truncation=True
+            ).input_ids
+        except Exception as e:
+            breakpoint()
+            print(f"Error tokenizing dataset: {e}")
+            return None
         
         # Replace padding token id with -100 for loss calculation
         model_inputs["labels"] = [
