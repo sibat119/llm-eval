@@ -863,7 +863,7 @@ def main():
         if args.dataset == "milu":
             input_text, _ = test_dataset_full[i]['prompt'], test_dataset_full[i]['ground_truth']
         else:
-            input_text, _ = get_mmlu_inputs(test_dataset_full[i])
+            input_text, _ = get_mmlu_inputs(test_dataset_full[i], "test")
         example = {
             "input": input_text,
             "prediction": evaluation_results['predictions'][i],
