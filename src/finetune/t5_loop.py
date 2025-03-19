@@ -618,23 +618,24 @@ def get_custom_dataset_split(dataset, validation_size=0.1, fold_number=2):
         
     return datasets
 
-def get_mmlu_inputs(examples):
+def get_mmlu_inputs(examples, split_name):
     inputs = []
     targets = []
+    gt_column = "input_correct_responses" if split_name == "test" else "output_parsed_answer"
     if isinstance(examples["input_question"], list):
         for i in range(len(examples["input_question"])):
             input_str = examples["input_question"][i]
             formatted_string = '\n'.join(f"{key}: {value}" for key, value in examples['input_choice_list'][i].items())
             full_input = input_str + formatted_string
             inputs.append(full_input)
-            target_str = f"{input_str} {formatted_string} \nAnswer:  {examples['output_parsed_answer'][i] if examples['output_parsed_answer'][i] else ''}"
+            target_str = f"{input_str} {formatted_string} \nAnswer:  {examples[gt_column][i] if examples[gt_column][i] else ''}"
             targets.append(target_str)
     else:
         input_str = examples["input_question"]
         formatted_string = '\n'.join(f"{key}: {value}" for key, value in examples['input_choice_list'].items())
         full_input = input_str + "\n" + formatted_string
         inputs.append(full_input)
-        target_str = f"{input_str} {formatted_string} \nAnswer:  {examples['output_parsed_answer'] if examples['output_parsed_answer'] else ''}"
+        target_str = f"{input_str} {formatted_string} \nAnswer:  {examples[gt_column] if examples[gt_column] else ''}"
         targets.append(target_str)
     return inputs, targets
 
@@ -697,15 +698,19 @@ def prepare_dataset(
     
     
     
-    # Tokenization function
-    def tokenize_function(examples):
+    # Tokenize each split separately to handle different target columns
+    def tokenize_split(examples, split_name):
         try:
-            
             if dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-                inputs, targets = get_mmlu_inputs(examples)
+                inputs, targets = get_mmlu_inputs(examples, split_name)
             elif dataset_name == "milu":
                 inputs = examples["prompt"]
-                targets = examples["ground_truth"]
+                
+                # Use different target based on split
+                if split_name == "test":
+                    targets = examples["ground_truth"]
+                else:
+                    targets = examples["response"]
                 
                 inputs = [str(x) if x is not None else "" for x in inputs]
                 targets = [str(x) if x is not None else "" for x in targets]
@@ -713,8 +718,7 @@ def prepare_dataset(
                 inputs = [prefix + text for text in examples[input_column]]
                 targets = examples[target_column]
         except Exception as e:
-            breakpoint()
-            print(f"Error tokenizing dataset: {e}")
+            print(f"Error tokenizing dataset ({split_name}): {e}")
             return None
         
         try:
@@ -732,25 +736,27 @@ def prepare_dataset(
                 padding="max_length",
                 truncation=True
             ).input_ids
+            
+            # Replace padding token id with -100 for loss calculation
+            model_inputs["labels"] = [
+                [(l if l != tokenizer.pad_token_id else -100) for l in label]
+                for label in labels
+            ]
+            
+            return model_inputs
+        
         except Exception as e:
-            breakpoint()
-            print(f"Error tokenizing dataset: {e}")
+            print(f"Error tokenizing dataset ({split_name}): {e}")
             return None
-        
-        # Replace padding token id with -100 for loss calculation
-        model_inputs["labels"] = [
-            [(l if l != tokenizer.pad_token_id else -100) for l in label]
-            for label in labels
-        ]
-        
-        return model_inputs
     
-    # Tokenize datasets
-    tokenized_datasets = dataset.map(
-        tokenize_function,
-        batched=True,
-        remove_columns=dataset["train"].column_names
-    )
+    # Create tokenized datasets for all splits in one go
+    tokenized_datasets = DatasetDict()
+    for split_name in dataset.keys():
+        tokenized_datasets[split_name] = dataset[split_name].map(
+            lambda examples: tokenize_split(examples, split_name),
+            batched=True,
+            remove_columns=dataset[split_name].column_names
+        )
     
     return (
         tokenized_datasets["train"],
