@@ -685,6 +685,13 @@ def prepare_dataset(
             validation_size=0.1, 
             fold_number=fold_number
             )
+    elif dataset_name == "milu":
+        dataset = load_dataset("csv", data_files=data_path)['train']
+        dataset = get_custom_dataset_split(
+            dataset=dataset, 
+            validation_size=0.1, 
+            fold_number=fold_number
+            )
     else:
         dataset = load_dataset(dataset_name, "1.0.0")
     
@@ -694,7 +701,9 @@ def prepare_dataset(
     def tokenize_function(examples):
         if dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
             inputs, targets = get_mmlu_inputs(examples)
-            
+        elif dataset_name == "milu":
+            inputs = examples["prompt"]
+            targets = examples["ground_truth"]
         else:
             inputs = [prefix + text for text in examples[input_column]]
             targets = examples[target_column]
@@ -781,7 +790,8 @@ def main():
         tokenizer,
         args.input_column,
         args.target_column,
-        prefix=args.prefix
+        prefix=args.prefix,
+        data_path=args.data_path
     )
     
     # Set up data loaders
@@ -830,7 +840,10 @@ def main():
     print("\nExample Predictions:")
     examples = []
     for i in range(min(3, len(evaluation_results['predictions']))):
-        input_text, _ = get_mmlu_inputs(test_dataset_full[i])
+        if args.dataset == "milu":
+            input_text, _ = test_dataset_full[i]['prompt'], test_dataset_full[i]['ground_truth']
+        else:
+            input_text, _ = get_mmlu_inputs(test_dataset_full[i])
         example = {
             "input": input_text,
             "prediction": evaluation_results['predictions'][i],
