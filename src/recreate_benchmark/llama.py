@@ -13,7 +13,7 @@ def format_prompt(example, dataset_name):
         question = example["question"]
         options = example["choices"]
         option_text = "\n".join([f"- {opt}" for i, opt in enumerate(options)])
-        prompt = f"Given the following question and candidate answers, choose the best answer. Do not include option labels (A, B, C, D); respond only with the exact, natural answer text. Provide only the answer text in your response. \nQuestion: {question}\nOptions: {option_text}."
+        prompt = f"Given the following question and candidate answers, choose the best answer. Do not include option labels (A, B, C, D); respond only with natural answer text. Provide only the answer text in your response. \nQuestion: {question}\nOptions: {option_text}."
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
         prompt = example["input_final_prompts"]
     else:
