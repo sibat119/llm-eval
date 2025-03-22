@@ -14,6 +14,17 @@
             ]
         },
         {
+            "name": "llama_mmlu",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.recreate_benchmark.llama",
+            "args": [
+                "--use_vllm",
+                "--surrogate_few_shot",
+                "--shot", "5",
+            ]
+        },
+        {
             "name": "mmlu",
             "type": "debugpy",
             "request": "launch",
@@ -33,13 +44,13 @@
                 "--fold_count",
                 "5",
                 "--dataset",
-                "meta-llama/Llama-3.2-3B-evals",
+                "milu",
                 "--data_path",
-                "data/dataset/meta-llama_Llama-3.2-3B-Instruct_meta-llama_Llama-3.2-3B-Instruct-evals_results.csv",
+                "data/dataset/meta-llama_Llama-3.2-3B-Instruct_milu_results.csv",
                 "--model_name",
-                "google/flan-t5-base",
+                "t5-small",
                 "--batch_size",
-                "4",
+                "16",
                 "--epochs",
                 "1",
                 "--learning_rate",
