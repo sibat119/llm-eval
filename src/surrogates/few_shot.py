@@ -37,7 +37,7 @@ Below are examples of inputs (questions) and the black-box model's actual respon
     
     return prompt
 
-def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3):
+def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath=""):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     if use_vllm:
         model, tokenizer, sampling_params = model_loader.load_model_vllm(model_name, config)
@@ -76,11 +76,9 @@ def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3):
         
         response_list.append(response_dict)
         
-    # Write results to JSON file
     
-    json_filename = f"data/dataset/qwen_surrogate_{shot}.json"
-    with open(json_filename, 'w') as f:
-        json.dump(response_list, f, indent=4)
+    ds = Dataset.from_list(response_list)
+    ds.to_csv(surrogate_datapath)
     
     return response_list
 
@@ -136,11 +134,11 @@ if __name__ == "__main__":
 
     llms = config.get("model_list", [])
     surrogate_llm = "Qwen/Qwen2.5-7B-Instruct"
-    candidate_model_data_path = "data/dataset/custom_Qwen_Qwen2.5-7B-Instruct_mmlu_results.csv"
     for llm in llms:
-        ds_file_name = config["data_path"] + f"/{llm.replace('/', '_')}_surrogate_responses.csv"
+        ds_file_name = config["data_path"] + f"/{llm.replace('/', '_')}__qwen_surrogate_responses.csv"
+        candidate_model_data_path = f"data/dataset/custom_{{llm.replace('/', '_')}}_mmlu_results.csv"
         
-        get_few_shot_surrogate(model_name=surrogate_llm, dataset_path=candidate_model_data_path, shot=args.shot)
+        get_few_shot_surrogate(model_name=surrogate_llm, dataset_path=candidate_model_data_path, shot=args.shot, surrogate_datapath=ds_file_name)
         results = compute_dual_metrics_from_csv(ds_file_name)
-        with open(f"data/surrogate/candidate-{llm.replace('/', '-')}-surrogate{surrogate_llm.replace('/', '-')}.json", "w") as f:
+        with open(f"data/surrogate/candidate-{llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
             json.dump(results, f, indent=4)
