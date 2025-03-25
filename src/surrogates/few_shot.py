@@ -135,11 +135,12 @@ if __name__ == "__main__":
         config = yaml.safe_load(file)
 
     llms = config.get("model_list", [])
+    surrogate_llm = "Qwen/Qwen2.5-7B-Instruct"
     candidate_model_data_path = "data/dataset/custom_Qwen_Qwen2.5-7B-Instruct_mmlu_results.csv"
     for llm in llms:
         ds_file_name = config["data_path"] + f"/{llm.replace('/', '_')}_surrogate_responses.csv"
         
-        get_few_shot_surrogate(model_name=llm, dataset_path=candidate_model_data_path, shot=args.shot)
+        get_few_shot_surrogate(model_name=surrogate_llm, dataset_path=candidate_model_data_path, shot=args.shot)
         results = compute_dual_metrics_from_csv(ds_file_name)
-        with open(f"data/surrogate/{llm}.json", "w") as f:
+        with open(f"data/surrogate/candidate-{llm.replace('/', '-')}-surrogate{surrogate_llm.replace('/', '-')}.json", "w") as f:
             json.dump(results, f, indent=4)
