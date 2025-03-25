@@ -5,43 +5,78 @@ import torch
 from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
 from sklearn.metrics import f1_score
 import pandas as pd
+from collections import Counter
 
 
 def compute_exact_match(predictions, ground_truths):
     """
     Compute exact match score between predictions and ground truths
+    with proper text normalization for seq2seq tasks
     """
     if not predictions or not ground_truths:
         return 0.0
     if len(predictions) != len(ground_truths):
         raise ValueError("Predictions and ground truths must have the same length")
     
-    # Handle None or empty strings
-    matches = [1 if p == g and p is not None and g is not None else 0 
-               for p, g in zip(predictions, ground_truths)]
+    def normalize_text(text):
+        if text is None:
+            return None
+        # Convert to lowercase
+        text = text.lower()
+        # Remove leading/trailing whitespace
+        text = text.strip()
+        # Normalize whitespace between words
+        text = " ".join(text.split())
+        return text
+    
+    # Compare normalized versions
+    matches = [1 if normalize_text(p) == normalize_text(g) and p is not None and g is not None else 0 
+              for p, g in zip(predictions, ground_truths)]
+    
     return sum(matches) / len(matches) if matches else 0.0
 
 def compute_f1_score(predictions, ground_truths):
     """
-    Compute F1 score for the predictions
+    Compute token-level F1 score preserving token frequencies
     """
     if not predictions or not ground_truths:
         return 0.0
-    if len(predictions) != len(ground_truths):
-        raise ValueError("Predictions and ground truths must have the same length")
     
-    # Filter out None values
-    valid_pairs = [(p, g) for p, g in zip(predictions, ground_truths) 
-                   if p is not None and g is not None]
-    if not valid_pairs:
-        return 0.0
+    def calculate_f1(pred, truth):
+        if not pred or not truth:
+            return 0.0
+            
+        # Tokenize and keep duplicates (using lists, not sets)
+        pred_tokens = pred.lower().split()
+        truth_tokens = truth.lower().split()
+        
+        if not pred_tokens or not truth_tokens:
+            return 0.0
+        
+        # Count token frequencies
+        pred_counter = Counter(pred_tokens)
+        truth_counter = Counter(truth_tokens)
+        
+        # Calculate intersection using counters
+        # Takes the minimum count for each shared token
+        true_positives = sum((pred_counter & truth_counter).values())
+        
+        # Handle empty predictions or truths
+        if true_positives == 0:
+            return 0.0
+            
+        precision = true_positives / len(pred_tokens)
+        recall = true_positives / len(truth_tokens)
+        
+        # Calculate F1
+        f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
+        return f1
     
-    valid_preds, valid_truths = zip(*valid_pairs)
-    try:
-        return f1_score(valid_truths, valid_preds, average='macro')
-    except Exception as e:
-        print(f"F1 score calculation failed: {e}")
-        return 0.0
+    # Calculate F1 for each pair
+    f1_scores = [calculate_f1(pred, truth) 
+                for pred, truth in zip(predictions, ground_truths)]
+    
+    return np.mean(f1_scores) if f1_scores else 0.0
 
 def compute_rouge_scores(predictions, ground_truths):
     """
