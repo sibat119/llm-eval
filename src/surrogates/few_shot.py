@@ -39,13 +39,13 @@ Below are examples of inputs (questions) and the black-box model's actual respon
 
 def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath=""):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
+    ds = Dataset.from_csv(dataset_path)
     if use_vllm:
         model, tokenizer, sampling_params = model_loader.load_model_vllm(model_name, config)
     else:
         model, tokenizer, pipe = model_loader.load_model_pipeline(model_name, config)
     
     # ds = Dataset.from_csv(dataset_path).select(range(20))
-    ds = Dataset.from_csv(dataset_path)
     response_list = []
     for idx, example in tqdm(enumerate(ds)):
         response_dict = {}
@@ -135,8 +135,8 @@ if __name__ == "__main__":
     llms = config.get("model_list", [])
     surrogate_llm = "Qwen/Qwen2.5-7B-Instruct"
     for llm in llms:
-        ds_file_name = config["data_path"] + f"/{llm.replace('/', '_')}__qwen_surrogate_responses.csv"
-        candidate_model_data_path = f"data/dataset/custom_{{llm.replace('/', '_')}}_mmlu_results.csv"
+        ds_file_name = config["data_path"] + f"/{llm.replace('/', '_')}_qwen_surrogate_responses.csv"
+        candidate_model_data_path = f"data/dataset/custom_{llm.replace('/', '_')}_mmlu_results.csv"
         
         get_few_shot_surrogate(model_name=surrogate_llm, dataset_path=candidate_model_data_path, shot=args.shot, surrogate_datapath=ds_file_name)
         results = compute_dual_metrics_from_csv(ds_file_name)
