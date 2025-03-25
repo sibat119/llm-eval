@@ -39,8 +39,7 @@ def get_few_shot_prompt(shot, ds, question):
 
 def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath=""):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
-    # ds = Dataset.from_csv(dataset_path)
-    ds = Dataset.from_csv(dataset_path).select(range(20))
+    ds = Dataset.from_csv(dataset_path)
     if use_vllm:
         model, tokenizer, sampling_params = model_loader.load_model_vllm(model_name, config)
     else:
@@ -144,5 +143,5 @@ if __name__ == "__main__":
             
             get_few_shot_surrogate(model_name=surrogate_llm, dataset_path=candidate_model_data_path, shot=args.shot, surrogate_datapath=ds_file_name)
             results = compute_dual_metrics_from_csv(ds_file_name)
-            with open(f"data/surrogate/candidate-{llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
+            with open(f"{surrogate_dir}/candidate-{llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
                 json.dump(results, f, indent=4)
