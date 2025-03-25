@@ -1,0 +1,11 @@
+{
+    "exact_match": 0.0,
+    "f1_score": 0.0,
+    "rouge_scores": {
+        "rouge1": 0.0,
+        "rouge2": 0.0,
+        "rougeL": 0.0
+    },
+    "bleu_score": 0.0,
+    "sbert_similarity": 0.0
+}
