@@ -92,9 +92,9 @@ def compute_dual_metrics_from_csv(csv_filename):
         df = pd.read_csv(csv_filename)
         
         # Handle missing values
-        df['model_output'] = df['model_output'].fillna('')
+        df['blackbox_output'] = df['blackbox_output'].fillna('')
         df['ground_truth'] = df['ground_truth'].fillna('')
-        df['ground_truth'] = df['ground_truth'].fillna('')
+        df['surrogate_output'] = df['surrogate_output'].fillna('')
         
         predictions = df['surrogate_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
