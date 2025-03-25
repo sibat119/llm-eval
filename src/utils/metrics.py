@@ -1,0 +1,186 @@
+import numpy as np
+from rouge_score import rouge_scorer
+from sentence_transformers import SentenceTransformer
+import torch
+from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
+from sklearn.metrics import f1_score
+import pandas as pd
+
+
+def compute_exact_match(predictions, ground_truths):
+    """
+    Compute exact match score between predictions and ground truths
+    """
+    if not predictions or not ground_truths:
+        return 0.0
+    if len(predictions) != len(ground_truths):
+        raise ValueError("Predictions and ground truths must have the same length")
+    
+    # Handle None or empty strings
+    matches = [1 if p == g and p is not None and g is not None else 0 
+               for p, g in zip(predictions, ground_truths)]
+    return sum(matches) / len(matches) if matches else 0.0
+
+def compute_f1_score(predictions, ground_truths):
+    """
+    Compute F1 score for the predictions
+    """
+    if not predictions or not ground_truths:
+        return 0.0
+    if len(predictions) != len(ground_truths):
+        raise ValueError("Predictions and ground truths must have the same length")
+    
+    # Filter out None values
+    valid_pairs = [(p, g) for p, g in zip(predictions, ground_truths) 
+                   if p is not None and g is not None]
+    if not valid_pairs:
+        return 0.0
+    
+    valid_preds, valid_truths = zip(*valid_pairs)
+    try:
+        return f1_score(valid_truths, valid_preds, average='macro')
+    except Exception as e:
+        print(f"F1 score calculation failed: {e}")
+        return 0.0
+
+def compute_rouge_scores(predictions, ground_truths):
+    """
+    Compute ROUGE scores (ROUGE-1, ROUGE-2, ROUGE-L)
+    """
+    if not predictions or not ground_truths:
+        return {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0}
+    
+    scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
+    scores = {'rouge1': [], 'rouge2': [], 'rougeL': []}
+    
+    for pred, truth in zip(predictions, ground_truths):
+        # Handle None or empty strings
+        if pred is None or truth is None or pred.strip() == "" or truth.strip() == "":
+            for key in scores:
+                scores[key].append(0.0)
+            continue
+            
+        try:
+            score = scorer.score(truth, pred)
+            for key in scores:
+                scores[key].append(score[key].fmeasure)
+        except Exception as e:
+            print(f"ROUGE calculation failed for '{pred}' and '{truth}': {e}")
+            for key in scores:
+                scores[key].append(0.0)
+    
+    return {k: np.mean(v) if v else 0.0 for k, v in scores.items()}
+
+def compute_bleu_score(predictions, ground_truths):
+    """
+    Compute BLEU score for the predictions
+    """
+    if not predictions or not ground_truths:
+        return 0.0
+        
+    smoother = SmoothingFunction().method1
+    scores = []
+    
+    for pred, truth in zip(predictions, ground_truths):
+        # Handle None or empty strings
+        if pred is None or truth is None:
+            scores.append(0.0)
+            continue
+            
+        # Convert strings to lists of tokens
+        pred_tokens = pred.split() if pred.strip() else []
+        truth_tokens = truth.split() if truth.strip() else []
+        
+        # Skip empty references or hypotheses
+        if not pred_tokens or not truth_tokens:
+            scores.append(0.0)
+            continue
+            
+        try:
+            # Calculate BLEU score for this pair
+            score = sentence_bleu([truth_tokens], pred_tokens, 
+                                smoothing_function=smoother)
+            scores.append(score)
+        except Exception as e:
+            print(f"BLEU calculation failed for '{pred}' and '{truth}': {e}")
+            scores.append(0.0)
+    
+    return np.mean(scores) if scores else 0.0
+
+def compute_sbert_similarity(predictions, ground_truths):
+    """
+    Compute cosine similarity using Sentence-BERT embeddings
+    """
+    if not predictions or not ground_truths:
+        return 0.0
+        
+    # Filter out None values and empty strings
+    valid_pairs = [(p, g) for p, g in zip(predictions, ground_truths) 
+                  if p is not None and g is not None and p.strip() and g.strip()]
+    
+    if not valid_pairs:
+        return 0.0
+        
+    valid_preds, valid_truths = zip(*valid_pairs)
+    
+    try:
+        # Load the model
+        model = SentenceTransformer('all-mpnet-base-v2')
+        
+        # Generate embeddings
+        pred_embeddings = model.encode(valid_preds)
+        truth_embeddings = model.encode(valid_truths)
+        
+        # Compute cosine similarities
+        similarities = []
+        for pred_emb, truth_emb in zip(pred_embeddings, truth_embeddings):
+            similarity = torch.nn.functional.cosine_similarity(
+                torch.tensor(pred_emb).unsqueeze(0),
+                torch.tensor(truth_emb).unsqueeze(0)
+            )
+            similarities.append(similarity.item())
+        
+        return np.mean(similarities) if similarities else 0.0
+    except Exception as e:
+        print(f"SBERT similarity calculation failed: {e}")
+        return 0.0
+    
+    
+def compute_all_metrics(predictions, ground_truths):
+    """
+    Compute all metrics at once and return as a dictionary
+    """
+    metrics = {
+        'exact_match': compute_exact_match(predictions, ground_truths),
+        'f1_score': compute_f1_score(predictions, ground_truths),
+        'rouge_scores': compute_rouge_scores(predictions, ground_truths),
+        'bleu_score': compute_bleu_score(predictions, ground_truths),
+        'sbert_similarity': compute_sbert_similarity(predictions, ground_truths)
+    }
+    return metrics
+
+
+def compute_metrics_from_csv(csv_filename):
+    """
+    Reads the CSV file and computes all metrics with error handling
+    """
+    try:
+        df = pd.read_csv(csv_filename)
+        
+        # Handle missing values
+        df['model_output'] = df['model_output'].fillna('')
+        df['ground_truth'] = df['ground_truth'].fillna('')
+        
+        predictions = df['model_output'].tolist()
+        ground_truths = df['ground_truth'].tolist()
+        
+        return compute_all_metrics(predictions, ground_truths)
+    except Exception as e:
+        print(f"Error processing CSV file: {e}")
+        return {
+            'exact_match': 0.0,
+            'f1_score': 0.0,
+            'rouge_scores': {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0},
+            'bleu_score': 0.0,
+            'sbert_similarity': 0.0
+        }

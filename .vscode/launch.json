@@ -19,8 +19,19 @@
             "request": "launch",
             "module": "src.recreate_benchmark.llama",
             "args": [
+                "--eval",
                 "--use_vllm",
                 "--surrogate_few_shot",
+                "--shot", "5",
+            ]
+        },
+        {
+            "name": "surrogate finder",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.surrogates.few_shot",
+            "args": [
+                "--use_vllm",
                 "--shot", "5",
             ]
         },

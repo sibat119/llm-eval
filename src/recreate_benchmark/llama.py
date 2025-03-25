@@ -1,11 +1,12 @@
 import pandas as pd
 import csv
 from datasets import load_dataset, DownloadMode, Dataset
-from .model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
+from ..utils.model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
 import yaml
 from tqdm import tqdm
 import argparse
 import random
+from src.utils import metrics
 
 def format_prompt(example, dataset_name):
     # Format: "Question: <question text>\nOptions: A. <opt1> B. <opt2> ...\nAnswer:"
@@ -20,15 +21,7 @@ def format_prompt(example, dataset_name):
         raise ValueError(f"Dataset {dataset_name} not supported")
     return prompt
 
-def compute_accuracy_from_csv(csv_filename):
-    """
-    Reads the CSV file and computes accuracy by comparing the saved model output to the ground truth.
-    """
-    df = pd.read_csv(csv_filename)
-    # Extract the first element from ground_truth list if it's a list, otherwise use as is
-    df["correct"] = df.apply(lambda row: 1 if row["model_output"] == row["ground_truth"] else 0, axis=1)
-    accuracy = df["correct"].mean()
-    return accuracy
+
 
 def get_mmlu_example(example, dataset_name):
     """
@@ -246,6 +239,8 @@ def get_few_shot_surrogate(dataset_path, use_vllm=True, shot=3):
     
     return response_list
 
+
+
 if __name__ == "__main__":
     
     def parse_args():
@@ -264,6 +259,8 @@ if __name__ == "__main__":
                             help="get response from surrogate model")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
+        parser.add_argument("--eval",action="store_true", default=False,
+                            help="run evaluation script")
         
         return parser.parse_args()
     
@@ -271,42 +268,47 @@ if __name__ == "__main__":
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
         
-    if args.surrogate_few_shot:
-        ds_file_name = config["data_path"] + f"/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
-        
-        get_few_shot_surrogate(dataset_path=ds_file_name, shot=args.shot)
-    elif args.custom_resp:
-        if args.multiple_llm:
-            llms = config.get('model_list', [])
-            for llm in llms:
-                
-                csv_file_name = config["data_path"] + f"/custom_{llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+    if args.eval:
+        data_path = "data/dataset/custom_allenai_OLMo-2-1124-7B-Instruct_mmlu_results.csv"
+        results = metrics.compute_metrics_from_csv(data_path)
+        print(results)
+    else:    
+        if args.surrogate_few_shot:
+            ds_file_name = config["data_path"] + f"/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+            
+            get_few_shot_surrogate(dataset_path=ds_file_name, shot=args.shot)
+        elif args.custom_resp:
+            if args.multiple_llm:
+                llms = config.get('model_list', [])
+                for llm in llms:
+                    
+                    csv_file_name = config["data_path"] + f"/custom_{llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+                    get_custom_mmlu_response(
+                        model_name=llm,
+                        config=config,
+                        csv_filename=csv_file_name,
+                        use_vllm=args.use_vllm,
+                    )
+            else:
+                csv_file_name = config["data_path"] + f"/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
                 get_custom_mmlu_response(
-                    model_name=llm,
+                    model_name=config['model_name'],
                     config=config,
                     csv_filename=csv_file_name,
                     use_vllm=args.use_vllm,
                 )
+            metrics = metrics.compute_metrics_from_csv(csv_file_name)
+            print(f"Result: {metrics}")
         else:
-            csv_file_name = config["data_path"] + f"/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
-            get_custom_mmlu_response(
-                model_name=config['model_name'],
-                config=config,
+            csv_file_name = config["data_path"] + f"/{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+            recreate_llama_benchmark(
+                config["model_name"], 
+                config["dataset_name"], 
+                config,
                 csv_filename=csv_file_name,
                 use_vllm=args.use_vllm,
+                use_pipeline=args.use_pipeline,
+                use_hub=args.use_hub
             )
-        accuracy = compute_accuracy_from_csv(csv_file_name)
-        print(f"Accuracy: {accuracy}")
-    else:
-        csv_file_name = config["data_path"] + f"/{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
-        recreate_llama_benchmark(
-            config["model_name"], 
-            config["dataset_name"], 
-            config,
-            csv_filename=csv_file_name,
-            use_vllm=args.use_vllm,
-            use_pipeline=args.use_pipeline,
-            use_hub=args.use_hub
-        )
-        accuracy = compute_accuracy_from_csv(csv_file_name)
-        print(f"Accuracy: {accuracy}")
+            metrics = metrics.compute_metrics_from_csv(csv_file_name)
+            print(f"Result: {metrics}")

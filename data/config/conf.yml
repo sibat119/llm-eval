@@ -7,7 +7,7 @@ model_list:
   - meta-llama/Llama-3.1-8B-Instruct
   - mistralai/Mistral-7B-Instruct-v0.3
   - allenai/OLMo-2-1124-7B-Instruct
-  - Qwen/Qwen2.5-7B-Instruct
+  # - Qwen/Qwen2.5-7B-Instruct
 max_new_tokens: 100
 # model_cache: "/data/shared/llm_cache"
 num_devices: 1

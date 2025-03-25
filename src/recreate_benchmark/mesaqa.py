@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from .model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
+from ..utils.model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
 import csv
 import argparse
 import yaml
