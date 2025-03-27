@@ -8,7 +8,8 @@ from tqdm import tqdm
 import pandas as pd
 import csv
 import re
-from src.utils.model_loader import load_model
+from src.utils.model_loader import load_model, load_model_vllm, load_model_pipeline
+from src.utils import metrics
 
 def create_dataset(candidate_model="meta-llama/Llama-3.1-8B-Instruct", surrogate_model="Qwen/Qwen2.5-7B-Instruct"):
     data_map = {
@@ -192,7 +193,7 @@ def load_and_test_local_model(model_path="./dpo/", example_prompt=None):
     print("\nTesting locally loaded model:")
     
     # Load model and tokenizer from local path
-    model, tokenizer, _ = load_model_and_tokenizer(model_path=model_path)
+    model, tokenizer, _ = load_model_and_tokenizer(model_name=model_path)
     device = torch.device('cuda')
     
     # Set up generator with loaded model
@@ -204,6 +205,71 @@ def load_and_test_local_model(model_path="./dpo/", example_prompt=None):
     test_generation(generator, example_prompt)
     
     return model, tokenizer
+
+
+def get_surrogate_responses(model_name, dataset_path, use_vllm=True, surrogate_datapath="", batch_size=4):
+    with open("data/config/conf.yml", "r") as file:
+        config = yaml.safe_load(file)
+    # model_name = "Qwen/Qwen2.5-7B-Instruct"
+    ds = Dataset.from_csv(dataset_path).select(range(100))
+    
+    
+    response_list = []
+    # Process examples in batches
+    batch_size = 8  # Adjust batch size as needed
+    for i in tqdm(range(0, len(ds), batch_size)):
+        batch = ds[i:i + min(batch_size, len(ds) - i)]
+        
+        # Create all prompts for the batch
+        batch_prompts = [eval(example)[-1] for example in batch['prompt']]
+        
+        if use_vllm:
+            model, tokenizer, sampling_params = load_model_vllm(model_name, config)
+        else:
+            model, tokenizer, pipe = load_model_pipeline(model_name, config)
+        batch_prompts = [format_chat_prompt(prompt_str=p, tokenizer=tokenizer) for p in batch_prompts]
+        
+        # Process the batch with vLLM or pipeline
+        if use_vllm:
+            # vLLM handles batching efficiently
+            seqs = model.generate(
+                batch_prompts,
+                sampling_params=sampling_params,
+            )
+            batch_answers = [seq.outputs[0].text for seq in seqs]
+        else:
+            # Process non-vllm batches one at a time
+            batch_answers = []
+            for prompt in batch_prompts:
+                outputs = pipe(
+                    prompt, 
+                    max_new_tokens=config["max_new_tokens"],
+                    temperature=config["temperature"],
+                    top_p=config["top_p"],
+                    top_k=config["top_k"],
+                    do_sample=True,
+                )
+                answer = outputs[0][0]['generated_text'][len(prompt):].strip()
+                batch_answers.append(answer)
+        
+        # Create response dictionaries for all examples in the batch
+        for question, options, model_output, prompt, answer, ground_truth in zip(batch['question'], batch['options'], batch['model_output'], batch_prompts, batch_answers, batch['ground_truth']):
+            if '<|start_header_id|>assistant<|end_header_id|>' in answer:
+                answer = answer.replace("<|start_header_id|>assistant<|end_header_id|>", "")
+            response_dict = {
+                'question': question,
+                'options': options,
+                'prompt': prompt,
+                'blackbox_output': model_output,
+                'surrogate_output': answer,
+                'ground_truth': ground_truth
+            }
+            response_list.append(response_dict)
+        
+    ds = Dataset.from_list(response_list)
+    ds.to_csv(surrogate_datapath)
+    
+    return response_list
 
 
 def main():
@@ -255,7 +321,46 @@ def main():
     # Test loading and generating from local model
     load_and_test_local_model(example_prompt=example_prompt)
 
+def compute_dual_metrics_from_csv(csv_filename):
+    """
+    Reads the CSV file and computes all metrics with error handling
+    """
+    try:
+        results = {}
+        df = pd.read_csv(csv_filename)
+        
+        # Handle missing values
+        df['blackbox_output'] = df['blackbox_output'].fillna('')
+        df['ground_truth'] = df['ground_truth'].fillna('')
+        df['surrogate_output'] = df['surrogate_output'].fillna('')
+        
+        predictions = df['surrogate_output'].tolist()
+        ground_truths = df['ground_truth'].tolist()
+        
+        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths)
+        
+        ground_truths = df['blackbox_output'].tolist()
+        results['wrt_blackbox'] = metrics.compute_all_metrics(predictions, ground_truths)
+        
+        return results
+    except Exception as e:
+        print(f"Error processing CSV file: {e}")
+        return {
+            'exact_match': 0.0,
+            'f1_score': 0.0,
+            'rouge_scores': {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0},
+            'bleu_score': 0.0,
+            'sbert_similarity': 0.0
+        }
 
 if __name__ == "__main__":
-    main()
+    # main()
+    surrogate_response_path = "data/dataset/surrogate/dpo_qwen.csv"
+    get_surrogate_responses(
+        model_name="./dpo",
+        dataset_path="data/dataset/full/custom_meta-llama_Llama-3.1-8B-Instruct_mmlu_results.csv",
+        surrogate_datapath=surrogate_response_path,
+        batch_size=4
+    )
+    results = compute_dual_metrics_from_csv(surrogate_response_path)
     # 
