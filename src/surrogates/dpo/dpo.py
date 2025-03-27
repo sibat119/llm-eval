@@ -213,6 +213,10 @@ def get_surrogate_responses(model_name, dataset_path, use_vllm=True, surrogate_d
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     ds = Dataset.from_csv(dataset_path).select(range(100))
     
+    if use_vllm:
+        model, tokenizer, sampling_params = load_model_vllm(model_name, config)
+    else:
+        model, tokenizer, pipe = load_model_pipeline(model_name, config)
     
     response_list = []
     # Process examples in batches
@@ -223,10 +227,7 @@ def get_surrogate_responses(model_name, dataset_path, use_vllm=True, surrogate_d
         # Create all prompts for the batch
         batch_prompts = [eval(example)[-1] for example in batch['prompt']]
         
-        if use_vllm:
-            model, tokenizer, sampling_params = load_model_vllm(model_name, config)
-        else:
-            model, tokenizer, pipe = load_model_pipeline(model_name, config)
+        
         batch_prompts = [format_chat_prompt(prompt_str=p, tokenizer=tokenizer) for p in batch_prompts]
         
         # Process the batch with vLLM or pipeline
