@@ -8,34 +8,63 @@ import argparse
 import random
 from src.utils import metrics
 
-def format_prompt(example, dataset_name):
-    # Format: "Question: <question text>\nOptions: A. <opt1> B. <opt2> ...\nAnswer:"
+def format_prompt(examples, dataset_name):
+    """
+    Format prompts for a batch of examples.
+    
+    Args:
+        examples: Either a single example dict or a batch of examples (list or dataset batch)
+        dataset_name: Name of the dataset being used
+        
+    Returns:
+        A single prompt string if input is a single example, or a list of prompts if input is a batch
+    """
+    
+    # Batch case
+    prompts = []
+    # Handle batch from HuggingFace dataset
     if dataset_name == "cais/mmlu":
-        question = example["question"]
-        options = example["choices"]
-        option_text = "\n".join([f"- {opt}" for i, opt in enumerate(options)])
-        prompt = f"Given the following question and candidate answers, choose the best answer. Do not include option labels (A, B, C, D); respond only with natural answer text. Provide only the answer text in your response. \nQuestion: {question}\nOptions: {option_text}."
+        questions = examples["question"]
+        options = examples["choices"]
+        for q, opts in zip(questions, options):
+            option_text = "\n".join([f"- {opt}" for i, opt in enumerate(opts)])
+            prompt = f"Given the following question and candidate answers, choose the best answer. Do not include option labels (A, B, C, D); respond only with natural answer text. Provide only the answer text in your response. \nQuestion: {q}\nOptions: {option_text}."
+            prompts.append(prompt)
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        prompt = example["input_final_prompts"]
+        prompts.extend(examples["input_final_prompts"])
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
-    return prompt
+    
+    return prompts
 
 
 
-def get_mmlu_example(example, dataset_name):
+def get_mmlu_example(examples, dataset_name):
     """
-    Get the question, options, and ground truth from the example.
+    Get the question, options, and ground truth from a batch of examples.
+    
+    Args:
+        examples: List of examples/batch from dataset
+        dataset_name: Name of dataset being used
+        
+    Returns:
+        Tuple of lists containing questions, options, and ground truths
     """
+    questions = []
+    options_list = []
+    ground_truths = []
+    
+    # Handle batch from HuggingFace dataset
     if dataset_name == "cais/mmlu":
-        question = example["question"]
-        options = example["choices"]
-        ground_truth = example['choices'][example['answer']]
+        questions.extend(examples["question"])
+        options_list.extend(examples["choices"])
+        ground_truths.extend([choices[answer] for choices, answer in zip(examples["choices"], examples["answer"])])
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
-        question = example["input_question"]
-        options = example["input_choice_list"]
-        ground_truth = example['input_correct_responses']
-    return question, options, ground_truth
+        questions.extend(examples["input_question"])
+        options_list.extend(examples["input_choice_list"]) 
+        ground_truths.extend(examples["input_correct_responses"])
+            
+    return questions, options_list, ground_truths
 
 def recreate_llama_benchmark(
     model_name: str, 
@@ -114,12 +143,13 @@ def recreate_llama_benchmark(
     
     
 def get_custom_mmlu_response(
-    model_name, csv_filename, use_vllm, config
+    model_name, csv_filename, use_vllm, config, batch_size
 ):
     dataset_name = "cais/mmlu"
     # data_sub_field = "high_school_computer_science"
     data_sub_field = "all"
-    dataset = load_dataset(dataset_name, data_sub_field, split="test", download_mode=DownloadMode.FORCE_REDOWNLOAD)
+    dataset = load_dataset(dataset_name, data_sub_field, split="test")
+    
     if use_vllm:
         model, tokenizer, sampling_params = load_model_vllm(model_name, config)
     else:
@@ -130,35 +160,50 @@ def get_custom_mmlu_response(
         # CSV header
         writer.writerow(["question", "options", "prompt", "model_output", "ground_truth"])
         
-        for example in tqdm(dataset):
-            # Extract fields; adjust field names if needed.
-            question, options, ground_truth = get_mmlu_example(example, dataset_name)
-            ground_truth = ground_truth[0] if isinstance(ground_truth, list) else ground_truth
-            prompt = format_prompt(example, dataset_name)
+        # Process examples in batches
+        # batch_size = 2
+        for i in tqdm(range(0, len(dataset), batch_size)):
+            batch = dataset[i:i + batch_size]
             
-            print(ground_truth)
+            # Process batch of examples
+            if dataset_name == "cais/mmlu":
+                questions, options_list, ground_truths = get_mmlu_example(batch, dataset_name)
+                # Use format_prompt with the constructed example dictionaries
+                prompts = format_prompt(batch, dataset_name)
+            else:
+                # For other dataset formats, use the existing function
+                questions, options_list, ground_truths = zip(*[get_mmlu_example(ex, dataset_name) for ex in batch])
+            
+            ground_truths = [gt[0] if isinstance(gt, list) else gt for gt in ground_truths]
+            
             
             if use_vllm:
                 seqs = model.generate(
-                    prompt,
+                    prompts,
                     sampling_params=sampling_params,
                 )
-                answer_text = [seq.outputs[0].text for seq in seqs][0].strip()
+                answer_text = [seq.outputs[0].text for seq in seqs]
             else:
-                outputs = pipe(
-                    prompt, 
-                    max_new_tokens=config["max_new_tokens"],
-                    temperature=config["temperature"],
-                    top_p=config["top_p"],
-                    top_k=config["top_k"],
-                    do_sample=True,
+                # Process non-vllm batches one at a time since pipeline doesn't support batching
+                answer_text = []
+                for prompt in prompts:
+                    outputs = pipe(
+                        prompt, 
+                        max_new_tokens=config["max_new_tokens"],
+                        temperature=config["temperature"],
+                        top_p=config["top_p"],
+                        top_k=config["top_k"],
+                        do_sample=True,
                     )
-                generated_text = outputs[0][0]['generated_text']
-                answer_text = outputs[0][0]['generated_text'][len(prompt[0]):].strip()
-                
-            # predicted = answer_text[0].upper() if answer_text else ""
+                    generated_text = outputs[0][0]['generated_text']
+                    answer = generated_text[len(prompt):].strip()
+                    answer_text.append(answer)
             
-            writer.writerow([question, options, prompt, answer_text, ground_truth])
+            breakpoint()
+            # Write batch of rows
+            for question, options, prompt, answer, ground_truth in zip(questions, options_list, prompts, answer_text, ground_truths):
+                writer.writerow([question, options, prompt, answer, ground_truth])
+            
     
     print(f"Saved evaluation results to {csv_filename}")
     
@@ -264,6 +309,8 @@ if __name__ == "__main__":
                             help="run evaluation script")
         parser.add_argument("--model_name",type=str, default=None,
                             help="provide model name")
+        parser.add_argument("--batch_size",type=int, default=16,
+                            help="provide batch size")
         
         return parser.parse_args()
     
@@ -299,6 +346,7 @@ if __name__ == "__main__":
                     config=config,
                     csv_filename=csv_file_name,
                     use_vllm=args.use_vllm,
+                    batch_size=args.batch_size,
                 )
             metrics = metrics.compute_metrics_from_csv(csv_file_name)
             print(f"Result: {metrics}")
