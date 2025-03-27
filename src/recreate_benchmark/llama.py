@@ -117,7 +117,8 @@ def get_custom_mmlu_response(
     model_name, csv_filename, use_vllm, config
 ):
     dataset_name = "cais/mmlu"
-    data_sub_field = "high_school_computer_science"
+    # data_sub_field = "high_school_computer_science"
+    data_sub_field = "all"
     dataset = load_dataset(dataset_name, data_sub_field, split="test", download_mode=DownloadMode.FORCE_REDOWNLOAD)
     if use_vllm:
         model, tokenizer, sampling_params = load_model_vllm(model_name, config)

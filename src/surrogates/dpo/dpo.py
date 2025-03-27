@@ -93,6 +93,24 @@ def save_model(trainer, path="./dpo/"):
     # model_id = f"shawhin/{ft_model_name}"
     # trainer.push_to_hub(model_id)
 
+def load_and_test_local_model(model_path="./dpo/", example_prompt=None):
+    """Load locally saved model and test generation."""
+    print("\nTesting locally loaded model:")
+    
+    # Load model and tokenizer from local path
+    model, tokenizer, _ = load_model_and_tokenizer(model_path=model_path)
+    device = torch.device('cuda')
+    
+    # Set up generator with loaded model
+    generator = setup_generator(model, tokenizer, device)
+    
+    # Test generation
+    if example_prompt is None:
+        example_prompt = "What is machine learning?"
+    test_generation(generator, example_prompt)
+    
+    return model, tokenizer
+
 
 def main():
     # Load dataset
@@ -131,7 +149,11 @@ def main():
     test_generation(generator, example_prompt)
     
     # Save the model
-    save_model(trainer)
+    save_model(trainer)    
+    
+
+    # Test loading and generating from local model
+    load_and_test_local_model(example_prompt=example_prompt)
 
 
 if __name__ == "__main__":
