@@ -1,7 +1,7 @@
 import pandas as pd
 import csv
 from datasets import load_dataset, DownloadMode, Dataset
-from ..utils.model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub
+from ..utils.model_loader import load_model, load_model_pipeline, load_model_vllm, get_response_from_hub, prepare_batch
 import yaml
 from tqdm import tqdm
 import argparse
@@ -22,6 +22,7 @@ def format_prompt(examples, dataset_name):
     
     # Batch case
     prompts = []
+    system_messages = []
     # Handle batch from HuggingFace dataset
     if dataset_name == "cais/mmlu":
         questions = examples["question"]
@@ -29,13 +30,16 @@ def format_prompt(examples, dataset_name):
         for q, opts in zip(questions, options):
             option_text = "\n".join([f"- {opt}" for i, opt in enumerate(opts)])
             prompt = f"Given the following question and candidate answers, choose the best answer. Do not include option labels (A, B, C, D); respond only with natural answer text. Provide only the answer text in your response. \nQuestion: {q}\nOptions: {option_text}."
+            system_message = "You are a helpful AI assistant answering questions. Provide only accurate answers in natural language."
+            
             prompts.append(prompt)
+            system_messages.append(system_message)
     elif dataset_name == "meta-llama/Llama-3.2-3B-evals" or dataset_name == "meta-llama/Llama-3.2-3B-Instruct-evals":
         prompts.extend(examples["input_final_prompts"])
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
     
-    return prompts
+    return prompts, system_messages
 
 
 
@@ -65,6 +69,23 @@ def get_mmlu_example(examples, dataset_name):
         ground_truths.extend(examples["input_correct_responses"])
             
     return questions, options_list, ground_truths
+
+def apply_chat_template(tokenizer, prompts):
+    model_name = tokenizer.name_or_path
+    if 'allenai/OLMo-2-1124-7B-Instruct' in model_name or 'Qwen/Qwen2.5-7B-Instruct' in model_name:
+        text = tokenizer.apply_chat_template(
+            prompts,
+            tokenize=False,
+            add_generation_prompt=True
+        )
+    else:
+        text = tokenizer.apply_chat_template(
+            prompts,
+            tokenize=False
+        )
+    
+    return text
+        
 
 def recreate_llama_benchmark(
     model_name: str, 
@@ -164,22 +185,27 @@ def get_custom_mmlu_response(
         # batch_size = 2
         for i in tqdm(range(0, len(dataset), batch_size)):
             batch = dataset[i:i + batch_size]
-            
+            system_messages = None
             # Process batch of examples
             if dataset_name == "cais/mmlu":
                 questions, options_list, ground_truths = get_mmlu_example(batch, dataset_name)
                 # Use format_prompt with the constructed example dictionaries
-                prompts = format_prompt(batch, dataset_name)
+                prompts, system_messages = format_prompt(batch, dataset_name)
             else:
                 # For other dataset formats, use the existing function
                 questions, options_list, ground_truths = zip(*[get_mmlu_example(ex, dataset_name) for ex in batch])
+                
+                prompts = format_prompt(batch, dataset_name)
             
             ground_truths = [gt[0] if isinstance(gt, list) else gt for gt in ground_truths]
             
+            prompts, return_str = prepare_batch(model_name=model_name, usr_msg=prompts, sys_msg=system_messages)
+            
+            templated_prompts = apply_chat_template(tokenizer=tokenizer, prompts=prompts)
             
             if use_vllm:
                 seqs = model.generate(
-                    prompts,
+                    templated_prompts,
                     sampling_params=sampling_params,
                 )
                 answer_text = [seq.outputs[0].text for seq in seqs]
@@ -188,7 +214,7 @@ def get_custom_mmlu_response(
                 answer_text = []
                 for prompt in prompts:
                     outputs = pipe(
-                        prompt, 
+                        templated_prompts, 
                         max_new_tokens=config["max_new_tokens"],
                         temperature=config["temperature"],
                         top_p=config["top_p"],
@@ -199,9 +225,11 @@ def get_custom_mmlu_response(
                     answer = generated_text[len(prompt):].strip()
                     answer_text.append(answer)
             
-            breakpoint()
+            # breakpoint()
             # Write batch of rows
             for question, options, prompt, answer, ground_truth in zip(questions, options_list, prompts, answer_text, ground_truths):
+                if '<|start_header_id|>assistant<|end_header_id|>\n\n' in answer:
+                    answer = answer.replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
                 writer.writerow([question, options, prompt, answer, ground_truth])
             
     

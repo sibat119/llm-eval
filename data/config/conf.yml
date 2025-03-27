@@ -8,13 +8,13 @@ model_list:
   - mistralai/Mistral-7B-Instruct-v0.3
   - allenai/OLMo-2-1124-7B-Instruct
   - Qwen/Qwen2.5-7B-Instruct
-max_new_tokens: 2048
+max_new_tokens: 1024
 # model_cache: "/data/shared/llm_cache"
 num_devices: 1
-top_p: 0.7
+top_p: 0.9
 temperature: 0.5
-top_k: 100
-num_output_tokens: 4096
-max_length: 8000
+top_k: 50
+num_output_tokens: 2048
+max_length: 2048
 dtype: "auto"
 

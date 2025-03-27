@@ -105,7 +105,7 @@ def load_model_vllm(model_name, config):
         torch.cuda.device_count()
     )
     
-    # self.is_generation_model = is_generation_model
+    # is_generation_model = is_generation_model
     tensor_parallel_size = set_tensor_parallel(num_devices, model_name)
     
     sampling_params = SamplingParams(
@@ -134,3 +134,80 @@ def load_model_vllm(model_name, config):
     tokenizer = model.get_tokenizer()
     
     return model, tokenizer, sampling_params
+
+def preprocess_model_msg(model_name, usr_msg, sys_msg=None):
+        
+    if model_name == 'Phind/Phind-CodeLlama-34B-v2':
+        msg = f'### User Message\n{usr_msg}\n\n### Assistant\n'
+        if sys_msg is not None:
+            msg = f'### System Prompt\n{sys_msg}\n\n' + msg
+        return msg
+    elif 'WizardLM' in model_name:
+        msg = f'### Instruction:\n{usr_msg}\n\n### Response:'
+        if sys_msg is not None:
+            msg = f'{sys_msg.strip()}\n\n' + msg
+        else:
+            msg = 'Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n' + msg
+        return msg
+    elif 'codellama' in model_name and 'Instruct' in model_name:
+        msg = f'[INST]{usr_msg.strip()}[/INST]'
+        if sys_msg is not None:
+            msg = f'<<SYS>>{sys_msg.strip()}<</SYS>>' + msg
+        return msg
+    elif 'Salesforce' in model_name and 'instruct' in model_name:
+        msg = f'### Instruction:\n{usr_msg.strip()}\n\n### Response:\n'
+        if sys_msg is not None:
+            msg = f'{sys_msg.strip()}\n\n' + msg
+        else:
+            msg = 'Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.\n\n' + msg
+
+        return msg
+    elif model_name == 'mistralai/Mistral-7B-Instruct-v0.1':
+        msg = f'[INST] {usr_msg} [/INST]'
+        return msg 
+    elif 'lmsys/vicuna' in model_name:
+        msg = f'USER: {usr_msg.strip()}\nASSISTANT: '
+        if sys_msg is not None:
+            msg = sys_msg.strip() + '\n\n' + msg
+        return msg
+    elif ('Meta-Llama-3-8B-Instruct' in model_name 
+            or 'Llama-3.1-8B-Instruct' in model_name
+            or 'OLMo-7B-Instruct' in model_name
+            or 'open_llama_13b' in model_name
+            or 'Qwen/Qwen2.5-7B-Instruct' in model_name
+            or 'allenai/OLMo-2-1124-7B-Instruct' in model_name
+            ):
+        if sys_msg:
+            messages = [
+                {"role": "system", "content": sys_msg},
+                {"role": "user", "content": usr_msg},
+            ]
+        else:
+            messages = [
+                {"role": "user", "content": usr_msg},
+            ]
+        return messages
+    else:
+        return usr_msg
+
+def prepare_batch(model_name, usr_msg, sys_msg=None):
+
+    # convert string input to list
+    return_str=False
+    if type(usr_msg) == str:
+        msg = [preprocess_model_msg(model_name, usr_msg, sys_msg)]
+        return_str=True
+        return msg, return_str
+
+    if sys_msg is None:
+        sys_msg = [None] * len(usr_msg)
+
+    # ensure length of usr_msg and sys_msg match
+    if len(usr_msg) != len(sys_msg):
+        print('length of usr_msg does not match length of sys_msg')
+        raise ValueError()
+
+    msg = [preprocess_model_msg(model_name, prompt, sys)
+            for prompt, sys in zip(usr_msg, sys_msg)]
+    
+    return msg, return_str
