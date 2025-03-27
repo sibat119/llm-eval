@@ -346,13 +346,14 @@ if __name__ == "__main__":
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
         
+    model_name = args.model_name if args.model_name else config['model_name']
     if args.eval:
         data_path = "data/dataset/custom_allenai_OLMo-2-1124-7B-Instruct_mmlu_results.csv"
         results = metrics.compute_metrics_from_csv(data_path)
         print(results)
     else:    
         if args.surrogate_few_shot:
-            ds_file_name = config["data_path"] + f"/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+            ds_file_name = config["data_path"] + f"/custom_{model_name.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
             
             get_few_shot_surrogate(dataset_path=ds_file_name, shot=args.shot)
         elif args.custom_resp:
@@ -368,9 +369,9 @@ if __name__ == "__main__":
                         use_vllm=args.use_vllm,
                     )
             else:
-                csv_file_name = f"{config['data_path']}/full/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+                csv_file_name = f"{config['data_path']}/full/custom_{model_name.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
                 get_custom_mmlu_response(
-                    model_name=args.model_name if args.model_name else config['model_name'],
+                    model_name=model_name,
                     config=config,
                     csv_filename=csv_file_name,
                     use_vllm=args.use_vllm,
@@ -379,9 +380,9 @@ if __name__ == "__main__":
             metrics = metrics.compute_metrics_from_csv(csv_file_name)
             print(f"Result: {metrics}")
         else:
-            csv_file_name = config["data_path"] + f"/{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+            csv_file_name = config["data_path"] + f"/{model_name.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
             recreate_llama_benchmark(
-                args.model_name if args.model_name else config['model_name'], 
+                model_name, 
                 config["dataset_name"], 
                 config,
                 csv_filename=csv_file_name,
