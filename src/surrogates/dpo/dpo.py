@@ -20,15 +20,18 @@ def create_dataset(candidate_model="meta-llama/Llama-3.1-8B-Instruct", surrogate
     candidate_ds = Dataset.from_csv(data_map[candidate_model]) 
        
     if len(surrogate_ds) != len(candidate_ds):
-        min_len = min(100, len(surrogate_ds), len(candidate_ds))
+        min_len = min(len(surrogate_ds), len(candidate_ds))
         surrogate_ds = surrogate_ds.select(range(min_len))
         candidate_ds = candidate_ds.select(range(min_len))
     
     # Create new dataset in DPO format
     dpo_data = []
     for i, _ in enumerate(tqdm(range(len(candidate_ds)), desc="Creating DPO dataset")):
+        prompt_str = candidate_ds['prompt'][i]
+        prompt_list = eval(prompt_str)
+        user_prompt = prompt_list[-1]
         dpo_example = {
-            'prompt': [candidate_ds['prompt'][i]],
+            'prompt': [user_prompt],
             'chosen': [{'content': candidate_ds['model_output'][i], 'role': 'assistant'}],
             'rejected': [{'content': surrogate_ds['model_output'][i], 'role': 'assistant'}]
         }
@@ -120,7 +123,10 @@ def format_chat_prompt(prompt_str, tokenizer):
     Returns:
         str: Formatted prompt for the model.
     """
-    messages = eval(prompt_str)
+    messages = []
+    sys_msg = "You are a helpful AI assistant answering questions. Provide only accurate answers in natural language."
+    messages.append({"role": "system", "content": sys_msg})
+    messages.append(prompt_str)
     
     # Combine prompts
     formatted_prompt = apply_chat_template(tokenizer=tokenizer, prompts=messages)
