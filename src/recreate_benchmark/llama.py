@@ -262,6 +262,8 @@ if __name__ == "__main__":
                             help="prompt shot count")
         parser.add_argument("--eval",action="store_true", default=False,
                             help="run evaluation script")
+        parser.add_argument("--model_name",type=str, default=None,
+                            help="provide model name")
         
         return parser.parse_args()
     
@@ -293,7 +295,7 @@ if __name__ == "__main__":
             else:
                 csv_file_name = f"{config['data_path']}/full/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
                 get_custom_mmlu_response(
-                    model_name=config['model_name'],
+                    model_name=args.model_name if args.model_name else config['model_name'],
                     config=config,
                     csv_filename=csv_file_name,
                     use_vllm=args.use_vllm,
@@ -303,7 +305,7 @@ if __name__ == "__main__":
         else:
             csv_file_name = config["data_path"] + f"/{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
             recreate_llama_benchmark(
-                config["model_name"], 
+                args.model_name if args.model_name else config['model_name'], 
                 config["dataset_name"], 
                 config,
                 csv_filename=csv_file_name,
