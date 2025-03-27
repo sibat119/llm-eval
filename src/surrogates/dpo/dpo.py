@@ -1,23 +1,116 @@
-from datasets import load_dataset
+import os
+import yaml
+from datasets import load_dataset, Dataset, DatasetDict
 from trl import DPOConfig, DPOTrainer
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 import torch
+from tqdm import tqdm
+import pandas as pd
+import csv
+import re
+from src.utils.model_loader import load_model
 
+def create_dataset(candidate_model="meta-llama/Llama-3.1-8B-Instruct", surrogate_model="Qwen/Qwen2.5-7B-Instruct"):
+    data_map = {
+        "allenai/OLMo-2-1124-7B-Instruct": "",
+        "Qwen/Qwen2.5-7B-Instruct": "data/dataset/full/custom_Qwen_Qwen2.5-7B-Instruct_mmlu_results.csv",
+        "meta-llama/Llama-3.1-8B-Instruct": "data/dataset/full/custom_meta-llama_Llama-3.1-8B-Instruct_mmlu_results.csv",
+    }
+    surrogate_ds = Dataset.from_csv(data_map[surrogate_model])    
+    candidate_ds = Dataset.from_csv(data_map[candidate_model]) 
+       
+    if len(surrogate_ds) != len(candidate_ds):
+        min_len = min(100, len(surrogate_ds), len(candidate_ds))
+        surrogate_ds = surrogate_ds.select(range(min_len))
+        candidate_ds = candidate_ds.select(range(min_len))
+    
+    # Create new dataset in DPO format
+    dpo_data = []
+    for i, _ in enumerate(tqdm(range(len(candidate_ds)), desc="Creating DPO dataset")):
+        dpo_example = {
+            'prompt': [candidate_ds['prompt'][i]],
+            'chosen': [{'content': candidate_ds['model_output'][i], 'role': 'assistant'}],
+            'rejected': [{'content': surrogate_ds['model_output'][i], 'role': 'assistant'}]
+        }
+        dpo_data.append(dpo_example)
+    
+    # Convert to dataset
+    dpo_dataset = Dataset.from_list(dpo_data)
+    
+    # Create a safe filename by removing problematic characters
+    def create_safe_filename(name):
+        # Replace special characters with underscores
+        safe_name = re.sub(r'[<>:/\\|?*.-]', '_', name)
+        # Remove any duplicate underscores
+        safe_name = re.sub(r'_+', '_', safe_name)
+        return safe_name
+    
+    candidate_name = create_safe_filename(candidate_model.split('/')[-1])
+    surrogate_name = create_safe_filename(surrogate_model.split('/')[-1])
+    
+    # Create a safe output path
+    output_path = f"data/dataset/dpo/dpo_{candidate_name}_vs_{surrogate_name}.csv"
+    
+    # Convert to pandas and save with careful quoting settings
+    dpo_df = dpo_dataset.to_pandas()
+    dpo_df.to_csv(output_path, index=False, quoting=csv.QUOTE_ALL)
+    
+    print(f"DPO dataset created and saved to {output_path}")
+    return output_path
+
+def apply_chat_template(tokenizer, prompts):
+    model_name = tokenizer.name_or_path
+    if 'allenai/OLMo-2-1124-7B-Instruct' in model_name or 'Qwen/Qwen2.5-7B-Instruct' in model_name:
+        text = tokenizer.apply_chat_template(
+            prompts,
+            tokenize=False,
+            add_generation_prompt=True
+        )
+    else:
+        text = tokenizer.apply_chat_template(
+            prompts,
+            tokenize=False
+        )
+    
+    return text
 
 def load_data(dataset_name="shawhin/youtube-titles-dpo"):
     """Load and return the dataset."""
-    return load_dataset(dataset_name)
+    if dataset_name =="shawhin/youtube-titles-dpo":
+        # This is a HuggingFace dataset path (e.g., "shawhin/youtube-titles-dpo")
+        return load_dataset(dataset_name)
+    elif dataset_name.endswith('.csv'):
+        # This is a local CSV file path
+        # Load full dataset
+        dataset = load_dataset("csv", data_files=dataset_name)
+        
+        # Split into train/validation/test (80-10-10)
+        splits = dataset["train"].train_test_split(test_size=0.2, shuffle=True, seed=42)
+        train_valid = splits["train"]
+        test = splits["test"]
+        
+        # Split the remaining 80% into train and validation
+        splits = train_valid.train_test_split(test_size=0.125, shuffle=True, seed=42) # 0.125 of 80 is 10% of total
+        
+        return DatasetDict({
+            "train": splits["train"],
+            "valid": splits["test"], 
+            "test": test
+        })
+    else:
+        raise ValueError(f"Invalid dataset name format: {dataset_name}. "
+                        "Must be either a HuggingFace dataset path or a CSV file path")
 
 
 def load_model_and_tokenizer(model_name="Qwen/Qwen2.5-0.5B-Instruct"):
     """Load and return the model and tokenizer."""
-    model = AutoModelForCausalLM.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name,)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token  # set pad token
     return model, tokenizer, model_name
 
 
-def format_chat_prompt(user_input, system_message="You are a helpful assistant."):
+def format_chat_prompt(prompt_str, tokenizer):
     """
     Formats user input into the chat template format with <|im_start|> and <|im_end|> tags.
 
@@ -27,22 +120,17 @@ def format_chat_prompt(user_input, system_message="You are a helpful assistant."
     Returns:
         str: Formatted prompt for the model.
     """
-    
-    # Format user message
-    user_prompt = f"<|im_start|>user\n{user_input}<|im_end|>\n"
-    
-    # Start assistant's turn
-    assistant_prompt = "<|im_start|>assistant\n"
+    messages = eval(prompt_str)
     
     # Combine prompts
-    formatted_prompt = user_prompt + assistant_prompt
+    formatted_prompt = apply_chat_template(tokenizer=tokenizer, prompts=messages)
     
     return formatted_prompt
 
 
 def setup_generator(model, tokenizer, device='cuda'):
     """Set up and return a text generation pipeline."""
-    return pipeline("text-generation", model=model, tokenizer=tokenizer, device=device)
+    return pipeline("text-generation", model=model, tokenizer=tokenizer)
 
 
 def test_generation(generator, prompt, max_length=100, temperature=0.7):
@@ -113,11 +201,17 @@ def load_and_test_local_model(model_path="./dpo/", example_prompt=None):
 
 
 def main():
+    with open("data/config/conf.yml", "r") as file:
+        config = yaml.safe_load(file)
+    data_path = create_dataset()
     # Load dataset
-    dataset = load_data()
+    # data_path = "data/dataset/dpo/dpo_Llama_3_1_8B_Instruct_vs_Qwen2_5_7B_Instruct.csv"
+    dataset = load_data(dataset_name=data_path)
     
     # Load model and tokenizer
-    model, tokenizer, model_name = load_model_and_tokenizer()
+    model_name = "Qwen/Qwen2.5-7B-Instruct"
+    model, tokenizer = load_model(model_name=model_name, config=config)
+    # model, tokenizer, model_name = load_model_and_tokenizer(model_name=surrogate_model)
     
     # Set up device
     device = torch.device('cuda')
@@ -126,7 +220,7 @@ def main():
     generator = setup_generator(model, tokenizer, device)
     
     # Get example prompt
-    example_prompt = format_chat_prompt(dataset['valid']['prompt'][0][0]['content'])
+    example_prompt = format_chat_prompt(tokenizer=tokenizer, prompt_str=dataset['valid']['prompt'][0])
     
     # Test generation before training
     print("Output before training:")
@@ -158,3 +252,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # 
