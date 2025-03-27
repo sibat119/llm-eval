@@ -291,7 +291,7 @@ if __name__ == "__main__":
                         use_vllm=args.use_vllm,
                     )
             else:
-                csv_file_name = config["data_path"] + f"/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+                csv_file_name = f"{config['data_path']}/full/custom_{config['model_name'].replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
                 get_custom_mmlu_response(
                     model_name=config['model_name'],
                     config=config,
