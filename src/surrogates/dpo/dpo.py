@@ -1,5 +1,6 @@
 import os
 import yaml
+import json
 from datasets import load_dataset, Dataset, DatasetDict
 from trl import DPOConfig, DPOTrainer
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
@@ -220,7 +221,7 @@ def get_surrogate_responses(model_name, dataset_path, use_vllm=True, surrogate_d
     
     response_list = []
     # Process examples in batches
-    batch_size = 8  # Adjust batch size as needed
+    
     for i in tqdm(range(0, len(ds), batch_size)):
         batch = ds[i:i + min(batch_size, len(ds) - i)]
         
@@ -361,7 +362,10 @@ if __name__ == "__main__":
         model_name="./dpo",
         dataset_path="data/dataset/full/custom_meta-llama_Llama-3.1-8B-Instruct_mmlu_results.csv",
         surrogate_datapath=surrogate_response_path,
-        batch_size=4
+        batch_size=16
     )
     results = compute_dual_metrics_from_csv(surrogate_response_path)
+    print(results)
+    with open(f"data/dataset/surrogate/dpo_qwen_result.json", "w") as f:
+        json.dump(results, f, indent=4)
     # 
