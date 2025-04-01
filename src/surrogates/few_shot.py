@@ -37,7 +37,7 @@ def get_few_shot_prompt(shot, ds, question):
     
     return prompt
 
-def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath=""):
+def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath="", batch_size=4):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     ds = Dataset.from_csv(dataset_path)
     if use_vllm:
@@ -46,36 +46,49 @@ def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surr
         model, tokenizer, pipe = model_loader.load_model_pipeline(model_name, config)
     
     response_list = []
-    for idx, example in tqdm(enumerate(ds)):
-        response_dict = {}
-        prompt = get_few_shot_prompt(shot=shot, ds=ds, question=example['question'])
+    # Process examples in batches
+    batch_size = 8  # Adjust batch size as needed
+    for i in tqdm(range(0, len(ds), batch_size)):
+        batch = ds[i:i + min(batch_size, len(ds) - i)]
         
+        # Create all prompts for the batch
+        batch_questions = [example['question'] for example in batch]
+        batch_prompts = [get_few_shot_prompt(shot=shot, ds=ds, question=q) for q in batch_questions]
+        
+        # Process the batch with vLLM or pipeline
         if use_vllm:
+            # vLLM handles batching efficiently
             seqs = model.generate(
-                prompt,
+                batch_prompts,
                 sampling_params=sampling_params,
             )
-            answer_text = [seq.outputs[0].text for seq in seqs][0].strip()
+            batch_answers = [seq.outputs[0].text for seq in seqs]
         else:
-            outputs = pipe(
-                prompt, 
-                max_new_tokens=config["max_new_tokens"],
-                temperature=config["temperature"],
-                top_p=config["top_p"],
-                top_k=config["top_k"],
-                do_sample=True,
+            # Process non-vllm batches one at a time
+            batch_answers = []
+            for prompt in batch_prompts:
+                outputs = pipe(
+                    prompt, 
+                    max_new_tokens=config["max_new_tokens"],
+                    temperature=config["temperature"],
+                    top_p=config["top_p"],
+                    top_k=config["top_k"],
+                    do_sample=True,
                 )
-            answer_text = outputs[0][0]['generated_text'][len(prompt[0]):].strip()
+                answer = outputs[0][0]['generated_text'][len(prompt):].strip()
+                batch_answers.append(answer)
         
-        response_dict['question'] = example['question']
-        response_dict['options'] = example['options']
-        response_dict['blackbox_output'] = example['model_output']
-        response_dict['surrogate_output'] = answer_text
-        response_dict['ground_truth'] = example['ground_truth']
+        # Create response dictionaries for all examples in the batch
+        for example, prompt, answer in zip(batch, batch_prompts, batch_answers):
+            response_dict = {
+                'question': example['question'],
+                'options': example['options'],
+                'blackbox_output': example['model_output'],
+                'surrogate_output': answer,
+                'ground_truth': example['ground_truth']
+            }
+            response_list.append(response_dict)
         
-        response_list.append(response_dict)
-        
-    
     ds = Dataset.from_list(response_list)
     ds.to_csv(surrogate_datapath)
     
@@ -124,6 +137,8 @@ if __name__ == "__main__":
                             help="Use HuggingFace pipeline for inference")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
+        parser.add_argument("--batch_size",type=int, default=16,
+                            help="provide batch size")
         
         return parser.parse_args()
     
@@ -141,7 +156,13 @@ if __name__ == "__main__":
             ds_file_name = f"{surrogate_dir}/{llm.replace('/', '_')}_qwen_surrogate_responses.csv"
             candidate_model_data_path = f"data/dataset/custom_{llm.replace('/', '_')}_mmlu_results.csv"
             
-            get_few_shot_surrogate(model_name=surrogate_llm, dataset_path=candidate_model_data_path, shot=args.shot, surrogate_datapath=ds_file_name)
+            get_few_shot_surrogate(
+                model_name=surrogate_llm, 
+                dataset_path=candidate_model_data_path, 
+                shot=args.shot, 
+                surrogate_datapath=ds_file_name,
+                batch_size=args.batch_size,
+                )
             results = compute_dual_metrics_from_csv(ds_file_name)
             with open(f"{surrogate_dir}/candidate-{llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
                 json.dump(results, f, indent=4)
