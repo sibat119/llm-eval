@@ -92,11 +92,11 @@ def compute_dual_metrics_from_csv(csv_filename):
         predictions = df['surrogate_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
         options = df['options'].tolist()
+        blackbox_output = df['blackbox_output'].tolist()
         
-        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options)
+        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options, blackbox_output)
         
-        ground_truths = df['blackbox_output'].tolist()
-        results['wrt_blackbox'] = metrics.compute_all_metrics_wo_rank(predictions, ground_truths)
+        results['wrt_blackbox'] = metrics.compute_all_metrics_wo_rank(predictions, blackbox_output)
         
         return results
     except Exception as e:
@@ -123,6 +123,10 @@ if __name__ == "__main__":
                             help="prompt shot count")
         parser.add_argument("--batch_size",type=int, default=16,
                             help="provide batch size")
+        parser.add_argument("--eval",action="store_true", default=False,
+                            help="run evaluation script")
+        
+        
         
         return parser.parse_args()
     
@@ -137,15 +141,15 @@ if __name__ == "__main__":
     ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
     data_folder = f"{config['data_path']}/{args.sub_field}/0"
     candidate_model_data_path = f"{data_folder}/custom_{candidate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
-    
-    get_few_shot_surrogate(
-        model_name=surrogate_llm, 
-        dataset_path=candidate_model_data_path, 
-        shot=args.shot, 
-        surrogate_datapath=ds_file_name,
-        batch_size=args.batch_size,
-        cfg=config
-        )
+    if not args.eval:
+        get_few_shot_surrogate(
+            model_name=surrogate_llm, 
+            dataset_path=candidate_model_data_path, 
+            shot=args.shot, 
+            surrogate_datapath=ds_file_name,
+            batch_size=args.batch_size,
+            cfg=config
+            )
     results = compute_dual_metrics_from_csv(ds_file_name)
     with open(f"{surrogate_dir}/candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
         json.dump(results, f, indent=4)

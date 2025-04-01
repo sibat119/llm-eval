@@ -242,7 +242,7 @@ def compute_sbert_similarity(predictions, ground_truths):
         return 0.0
     
     
-def compute_all_metrics(predictions, ground_truths, options):
+def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=None):
     """
     Compute all metrics at once and return as a dictionary
     """
@@ -255,6 +255,12 @@ def compute_all_metrics(predictions, ground_truths, options):
         'bleu_score': compute_bleu_score(predictions, ground_truths),
         'sbert_similarity': compute_sbert_similarity(predictions, ground_truths)
     }
+    
+    # Add agreement metrics if blackbox outputs are provided
+    if blackbox_outputs is not None:
+        agreement_metrics = compute_output_agreement(predictions, blackbox_outputs, ground_truths, options)
+        metrics.update(agreement_metrics)
+    
     return metrics
 
 def compute_all_metrics_wo_rank(predictions, ground_truths):
@@ -285,8 +291,9 @@ def compute_metrics_from_csv(csv_filename):
         predictions = df['model_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
         options = df['options'].tolist()
+        blackbox_output = df['blackbox_output'].tolist()
         
-        return compute_all_metrics(predictions, ground_truths, options)
+        return compute_all_metrics(predictions, ground_truths, options, blackbox_output)
     except Exception as e:
         print(f"Error processing CSV file: {e}")
         return {
@@ -352,3 +359,144 @@ def compute_accuracy_from_rankings(predictions, ground_truths, options):
     accuracy = correct_count / total_count if total_count > 0 else 0.0
     
     return accuracy
+
+def compute_output_agreement(model_outputs, blackbox_outputs, ground_truths, options):
+    """
+    Compute agreement between model and blackbox outputs using embeddings.
+    Checks how often both outputs point to the same option or match ground truth.
+    
+    Args:
+        model_outputs: List of model predictions (text strings)
+        blackbox_outputs: List of blackbox model predictions (text strings)
+        ground_truths: List of ground truth answers (text strings)
+        options: List of lists, where each inner list contains the options for a question
+        
+    Returns:
+        Dictionary containing:
+        - agreement_score: How often both outputs select same option
+        - model_ground_truth_match: How often model matches ground truth
+        - blackbox_ground_truth_match: How often blackbox matches ground truth
+        - both_ground_truth_match: How often both match ground truth
+        - agreement_samples: Up to 10 random samples where outputs agree
+        - disagreement_samples: Up to 10 random samples where outputs disagree
+    """
+    if not model_outputs or not blackbox_outputs or not ground_truths or not options:
+        return {
+            'agreement_score': 0.0,
+            'model_ground_truth_match': 0.0,
+            'blackbox_ground_truth_match': 0.0,
+            'both_ground_truth_match': 0.0,
+            'agreement_samples': [],
+            'disagreement_samples': []
+        }
+    
+    # Load SBERT model
+    model = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Initialize counters and sample lists
+    agreement_count = 0
+    model_gt_match = 0
+    blackbox_gt_match = 0
+    both_gt_match = 0
+    total_count = 0
+    
+    # Lists to store indices for sampling
+    agreement_indices = []
+    disagreement_indices = []
+    
+    for idx, (model_pred, blackbox_pred, truth, opts) in enumerate(zip(model_outputs, blackbox_outputs, ground_truths, options)):
+        if not model_pred or not blackbox_pred or not truth or not opts:
+            continue
+            
+        # Convert options string to list if needed
+        opts = eval(opts) if isinstance(opts, str) else opts
+        
+        # Get embeddings for all inputs
+        model_embedding = model.encode([model_pred], convert_to_numpy=True)
+        blackbox_embedding = model.encode([blackbox_pred], convert_to_numpy=True)
+        opts_embeddings = model.encode(opts, convert_to_numpy=True)
+        
+        # Calculate similarities for model
+        model_similarities = cosine_similarity(model_embedding, opts_embeddings)[0]
+        model_top_idx = np.argmax(model_similarities)
+        
+        # Calculate similarities for blackbox
+        blackbox_similarities = cosine_similarity(blackbox_embedding, opts_embeddings)[0]
+        blackbox_top_idx = np.argmax(blackbox_similarities)
+        
+        # Find ground truth index
+        try:
+            truth_idx = opts.index(truth)
+            
+            # Check agreement between model and blackbox
+            if model_top_idx == blackbox_top_idx:
+                agreement_count += 1
+                agreement_indices.append(idx)
+            else:
+                disagreement_indices.append(idx)
+            
+            # Check matches with ground truth
+            if model_top_idx == truth_idx:
+                model_gt_match += 1
+            if blackbox_top_idx == truth_idx:
+                blackbox_gt_match += 1
+            if model_top_idx == truth_idx and blackbox_top_idx == truth_idx:
+                both_gt_match += 1
+                
+            total_count += 1
+            
+        except ValueError:
+            # Ground truth not in options, skip this example
+            continue
+    
+    # Calculate scores
+    if total_count == 0:
+        return {
+            'agreement_score': 0.0,
+            'model_ground_truth_match': 0.0,
+            'blackbox_ground_truth_match': 0.0,
+            'both_ground_truth_match': 0.0,
+            'agreement_samples': [],
+            'disagreement_samples': []
+        }
+    
+    # Sample random indices
+    np.random.seed(42)  # For reproducibility
+    agreement_samples = []
+    disagreement_samples = []
+    
+    if agreement_indices:
+        sample_size = min(10, len(agreement_indices))
+        sampled_agreement_indices = np.random.choice(agreement_indices, size=sample_size, replace=False)
+        agreement_samples = [
+            {
+                'model_output': model_outputs[idx],
+                'blackbox_output': blackbox_outputs[idx],
+                'ground_truth': ground_truths[idx],
+                'options': options[idx]
+            }
+            for idx in sampled_agreement_indices
+        ]
+    
+    if disagreement_indices:
+        sample_size = min(10, len(disagreement_indices))
+        sampled_disagreement_indices = np.random.choice(disagreement_indices, size=sample_size, replace=False)
+        disagreement_samples = [
+            {
+                'model_output': model_outputs[idx],
+                'blackbox_output': blackbox_outputs[idx],
+                'ground_truth': ground_truths[idx],
+                'options': options[idx]
+            }
+            for idx in sampled_disagreement_indices
+        ]
+    
+    return {
+        'agreement_score': agreement_count / total_count,
+        'model_ground_truth_match': model_gt_match / total_count,
+        'blackbox_ground_truth_match': blackbox_gt_match / total_count,
+        'both_ground_truth_match': both_gt_match / total_count,
+        'agreement_samples': agreement_samples,
+        'disagreement_samples': disagreement_samples
+    }
+
