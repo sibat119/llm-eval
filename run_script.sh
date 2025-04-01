@@ -20,10 +20,10 @@ python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_scie
 python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct
 
 # python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field philosophy --batch_size 16 --shot 0
-python -m src.surrogates.few_shot.get_candidate_response --sub_field philosophy --batch_size 16 --shot 3 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct
-python -m src.surrogates.few_shot.get_candidate_response --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct
-python -m src.surrogates.few_shot.get_candidate_response --sub_field philosophy --batch_size 16 --shot 3 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct
-python -m src.surrogates.few_shot.get_candidate_response --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct
+python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 3 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct
+python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct
+python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 3 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct
+python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct
 
 # python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field public_relations --batch_size 16 --shot 0
 python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 3 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct
