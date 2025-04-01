@@ -1,3 +1,6 @@
 
 
 
+[submodule "src/inference"]
+	path = src/inference
+	url = git@github.com:sibat119/llm_inference.git
