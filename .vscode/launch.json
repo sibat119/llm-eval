@@ -21,9 +21,25 @@
             "args": [
                 "--use_vllm",
                 "--custom_resp",
-                "--batch_size", "4",
+                "--batch_size", "16",
                 "--model_name", "Qwen/Qwen2.5-7B-Instruct",
+                "--shot", "0",
             ]
+        },
+        {
+            "name": "response_gen",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.surrogates.few_shot.get_candidate_response",
+            "args": [
+                "--model_name", "Qwen/Qwen2.5-7B-Instruct",
+                "--sub_field", "high_school_computer_science",
+                "--batch_size", "1",
+                "--shot", "0",
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "3"
+            }
         },
         {
             "name": "surrogate finder",

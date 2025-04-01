@@ -7,6 +7,7 @@ from src.utils import model_loader, metrics
 from tqdm import tqdm
 import random
 import pandas as pd
+from src.inference import selector
 
 def get_few_shot_prompt(shot, ds, question):
     prompt = """You are a mind reader tasked with predicting how someone will answer a given question. To simplify this process, here are some examples of how the person previously responded to questions on similar topics:
@@ -37,13 +38,10 @@ def get_few_shot_prompt(shot, ds, question):
     
     return prompt
 
-def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath="", batch_size=4):
+def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath="", batch_size=4, cfg=None):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     ds = Dataset.from_csv(dataset_path)
-    if use_vllm:
-        model, tokenizer, sampling_params = model_loader.load_model_vllm(model_name, config)
-    else:
-        model, tokenizer, pipe = model_loader.load_model_pipeline(model_name, config)
+    session = selector.select_chat_model(model_name=model_name, cfg=cfg)
     
     response_list = []
     # Process examples in batches
@@ -55,28 +53,7 @@ def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surr
         batch_questions = [example['question'] for example in batch]
         batch_prompts = [get_few_shot_prompt(shot=shot, ds=ds, question=q) for q in batch_questions]
         
-        # Process the batch with vLLM or pipeline
-        if use_vllm:
-            # vLLM handles batching efficiently
-            seqs = model.generate(
-                batch_prompts,
-                sampling_params=sampling_params,
-            )
-            batch_answers = [seq.outputs[0].text for seq in seqs]
-        else:
-            # Process non-vllm batches one at a time
-            batch_answers = []
-            for prompt in batch_prompts:
-                outputs = pipe(
-                    prompt, 
-                    max_new_tokens=config["max_new_tokens"],
-                    temperature=config["temperature"],
-                    top_p=config["top_p"],
-                    top_k=config["top_k"],
-                    do_sample=True,
-                )
-                answer = outputs[0][0]['generated_text'][len(prompt):].strip()
-                batch_answers.append(answer)
+        batch_answers = session.get_response(user_message=batch_prompts) 
         
         # Create response dictionaries for all examples in the batch
         for example, prompt, answer in zip(batch, batch_prompts, batch_answers):
