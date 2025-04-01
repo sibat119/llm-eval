@@ -6,6 +6,8 @@ from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
 from sklearn.metrics import f1_score
 import pandas as pd
 from collections import Counter
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics import precision_recall_fscore_support
 
 
 def compute_exact_match(predictions, ground_truths):
@@ -77,6 +79,65 @@ def compute_f1_score(predictions, ground_truths):
                 for pred, truth in zip(predictions, ground_truths)]
     
     return np.mean(f1_scores) if f1_scores else 0.0
+
+def compute_classification_f1_from_rankings(predictions, ground_truths, options):
+    """
+    Compute classification F1 score by checking if the highest-ranked option
+    matches the ground truth.
+    
+    Args:
+        predictions: List of model predictions (text strings)
+        ground_truths: List of ground truth answers (text strings)
+        options: List of lists, where each inner list contains the options for a question
+        
+    Returns:
+        F1 score based on whether the correct option was ranked highest
+    """
+    if not predictions or not ground_truths or not options:
+        return 0.0
+    
+    # Load SBERT model
+    model = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Track correct classifications
+    y_true = []
+    y_pred = []
+    
+    for pred, truth, opts in zip(predictions, ground_truths, options):
+        if not pred or not truth or not opts:
+            continue
+        
+        # Get embeddings for prediction and options
+        opts = eval(opts)
+        pred_embedding = model.encode([pred], convert_to_numpy=True)
+        opts_embeddings = model.encode(opts, convert_to_numpy=True)
+        
+        # Calculate cosine similarities
+        similarities = cosine_similarity(pred_embedding, opts_embeddings)[0]
+        
+        # Get the index of the highest-ranked option
+        top_option_idx = np.argmax(similarities)
+        predicted_option = opts[top_option_idx]
+        
+        # Find the ground truth in the options
+        try:
+            truth_idx = opts.index(truth)
+            
+            # Add to classification arrays
+            y_true.append(truth_idx)
+            y_pred.append(top_option_idx)
+        except ValueError:
+            # Ground truth not in options, skip this example
+            continue
+    
+    if not y_true:
+        return 0.0
+    
+    # Calculate F1 score (macro average for multi-class)
+    precision, recall, f1, _ = precision_recall_fscore_support(
+        y_true, y_pred, average='macro', zero_division=0)
+    
+    return f1
 
 def compute_rouge_scores(predictions, ground_truths):
     """
@@ -181,13 +242,15 @@ def compute_sbert_similarity(predictions, ground_truths):
         return 0.0
     
     
-def compute_all_metrics(predictions, ground_truths):
+def compute_all_metrics(predictions, ground_truths, options):
     """
     Compute all metrics at once and return as a dictionary
     """
     metrics = {
         'exact_match': compute_exact_match(predictions, ground_truths),
-        'f1_score': compute_f1_score(predictions, ground_truths),
+        'f1_score_token_agreement': compute_f1_score(predictions, ground_truths),
+        'f1_score_ranking': compute_classification_f1_from_rankings(predictions, ground_truths, options),
+        'accuracy_ranking': compute_accuracy_from_rankings(predictions, ground_truths, options),
         'rouge_scores': compute_rouge_scores(predictions, ground_truths),
         'bleu_score': compute_bleu_score(predictions, ground_truths),
         'sbert_similarity': compute_sbert_similarity(predictions, ground_truths)
@@ -208,8 +271,9 @@ def compute_metrics_from_csv(csv_filename):
         
         predictions = df['model_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
+        options = df['options'].tolist()
         
-        return compute_all_metrics(predictions, ground_truths)
+        return compute_all_metrics(predictions, ground_truths, options)
     except Exception as e:
         print(f"Error processing CSV file: {e}")
         return {
@@ -219,3 +283,59 @@ def compute_metrics_from_csv(csv_filename):
             'bleu_score': 0.0,
             'sbert_similarity': 0.0
         }
+
+def compute_accuracy_from_rankings(predictions, ground_truths, options):
+    """
+    Compute accuracy by checking if the highest-ranked option matches the ground truth.
+    
+    Args:
+        predictions: List of model predictions (text strings)
+        ground_truths: List of ground truth answers (text strings)
+        options: List of lists, where each inner list contains the options for a question
+        
+    Returns:
+        Accuracy score based on whether the correct option was ranked highest
+    """
+    if not predictions or not ground_truths or not options:
+        return 0.0
+    
+    # Load SBERT model
+    model = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Track correct predictions
+    correct_count = 0
+    total_count = 0
+    
+    for pred, truth, opts in zip(predictions, ground_truths, options):
+        if not pred or not truth or not opts:
+            continue
+        
+        # Get embeddings for prediction and options
+        opts = eval(opts)
+        pred_embedding = model.encode([pred], convert_to_numpy=True)
+        opts_embeddings = model.encode(opts, convert_to_numpy=True)
+        
+        # Calculate cosine similarities
+        similarities = cosine_similarity(pred_embedding, opts_embeddings)[0]
+        
+        # Get the index of the highest-ranked option
+        top_option_idx = np.argmax(similarities)
+        predicted_option = opts[top_option_idx]
+        
+        # Find the ground truth in the options
+        try:
+            truth_idx = opts.index(truth)
+            
+            # Increment counter if prediction matches ground truth
+            if top_option_idx == truth_idx:
+                correct_count += 1
+            
+            total_count += 1
+        except ValueError:
+            # Ground truth not in options, skip this example
+            continue
+    
+    # Calculate accuracy
+    accuracy = correct_count / total_count if total_count > 0 else 0.0
+    
+    return accuracy
