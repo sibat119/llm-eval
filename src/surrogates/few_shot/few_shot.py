@@ -115,6 +115,10 @@ if __name__ == "__main__":
         parser = argparse.ArgumentParser(description="Run LLM benchmark evaluation")
         parser.add_argument("--sub_field",type=str, default="high_school_computer_science",
                             help="provide field name")
+        parser.add_argument("--candidate",type=str, default="meta-llama/Llama-3.1-8B-Instruct",
+                            help="Candidate model name")
+        parser.add_argument("--surrogate",type=str, default="Qwen/Qwen2.5-7B-Instruct",
+                            help="Surrogate model name")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
         parser.add_argument("--batch_size",type=int, default=16,
@@ -126,25 +130,22 @@ if __name__ == "__main__":
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
 
-    llm_list = config.get("model_list", [])
-    surrogates = config.get("model_list", [])
-    for surrogate_llm in surrogates:
-        surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field)
-        os.makedirs(surrogate_dir, exist_ok=True)
-        llms = [llm for llm in llm_list if llm != surrogate_llm]
-        for llm in llms:
-            ds_file_name = f"{surrogate_dir}/candidate_{llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
-            data_folder = f"{config['data_path']}/{args.sub_field}/0"
-            candidate_model_data_path = f"{data_folder}/custom_{llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
-            
-            get_few_shot_surrogate(
-                model_name=surrogate_llm, 
-                dataset_path=candidate_model_data_path, 
-                shot=args.shot, 
-                surrogate_datapath=ds_file_name,
-                batch_size=args.batch_size,
-                cfg=config
-                )
-            results = compute_dual_metrics_from_csv(ds_file_name)
-            with open(f"{surrogate_dir}/candidate-{llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
-                json.dump(results, f, indent=4)
+    surrogate_llm = args.surrogate
+    candidate_llm  = args.candidate
+    surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, f"{args.shot}-shot")
+    os.makedirs(surrogate_dir, exist_ok=True)
+    ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
+    data_folder = f"{config['data_path']}/{args.sub_field}/0"
+    candidate_model_data_path = f"{data_folder}/custom_{candidate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+    
+    get_few_shot_surrogate(
+        model_name=surrogate_llm, 
+        dataset_path=candidate_model_data_path, 
+        shot=args.shot, 
+        surrogate_datapath=ds_file_name,
+        batch_size=args.batch_size,
+        cfg=config
+        )
+    results = compute_dual_metrics_from_csv(ds_file_name)
+    with open(f"{surrogate_dir}/candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
+        json.dump(results, f, indent=4)
