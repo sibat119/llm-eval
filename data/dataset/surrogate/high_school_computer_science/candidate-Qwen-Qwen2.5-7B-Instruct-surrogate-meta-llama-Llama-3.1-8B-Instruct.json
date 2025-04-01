@@ -1,0 +1,26 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.12507938740685248,
+        "f1_score_ranking": 0.44502801120448177,
+        "accuracy_ranking": 0.45,
+        "rouge_scores": {
+            "rouge1": 0.17488028863873079,
+            "rouge2": 0.055313807176877665,
+            "rougeL": 0.16013492230299978
+        },
+        "bleu_score": 0.024622781957422624,
+        "sbert_similarity": 0.3124772106483579
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.12450042644041417,
+        "rouge_scores": {
+            "rouge1": 0.17200987321722852,
+            "rouge2": 0.058996059161471964,
+            "rougeL": 0.15544434563587292
+        },
+        "bleu_score": 0.02613953025241115,
+        "sbert_similarity": 0.3157568401843309
+    }
+}
