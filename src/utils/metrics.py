@@ -257,6 +257,19 @@ def compute_all_metrics(predictions, ground_truths, options):
     }
     return metrics
 
+def compute_all_metrics_wo_rank(predictions, ground_truths):
+    """
+    Compute all metrics at once and return as a dictionary
+    """
+    metrics = {
+        'exact_match': compute_exact_match(predictions, ground_truths),
+        'f1_score_token_agreement': compute_f1_score(predictions, ground_truths),
+        'rouge_scores': compute_rouge_scores(predictions, ground_truths),
+        'bleu_score': compute_bleu_score(predictions, ground_truths),
+        'sbert_similarity': compute_sbert_similarity(predictions, ground_truths)
+    }
+    return metrics
+
 
 def compute_metrics_from_csv(csv_filename):
     """

@@ -27,14 +27,14 @@ python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2
 
 
 
-python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 0
-# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 3
-# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 5
+# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 0
+python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 3
+python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5
 
-python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field philosophy --batch_size 16 --shot 0
-# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field philosophy --batch_size 16 --shot 3
-# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field philosophy --batch_size 16 --shot 5
+# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field philosophy --batch_size 16 --shot 0
+python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 3
+python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5
 
-python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field public_relations --batch_size 16 --shot 0
-# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field public_relations --batch_size 16 --shot 3
-# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field public_relations --batch_size 16 --shot 5
+# python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field public_relations --batch_size 16 --shot 0
+python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 3
+python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5

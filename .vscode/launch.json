@@ -45,11 +45,14 @@
             "name": "surrogate finder",
             "type": "debugpy",
             "request": "launch",
-            "module": "src.surrogates.few_shot",
+            "module": "src.surrogates.few_shot.few_shot",
             "args": [
-                "--use_vllm",
+                "--sub_field", "high_school_computer_science",
                 "--shot", "5",
-            ]
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "3"
+            }
         },
         {
             "name": "dpo trainer",

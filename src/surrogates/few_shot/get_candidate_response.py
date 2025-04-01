@@ -74,7 +74,10 @@ def get_custom_mmlu_response(
 ):
     dataset_name = "cais/mmlu"
     # data_sub_field = "high_school_computer_science"
-    dataset = load_dataset(dataset_name, data_sub_field, split="test")    
+    dataset = load_dataset(dataset_name, data_sub_field, split="test")   
+    # Select a reasonable number of examples for testing
+    # Using slice notation to get first few examples instead of just one index
+    dataset = dataset.select(range(min(4, len(dataset))))
     session = selector.select_chat_model(cfg=cfg, model_name=model_name)
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)

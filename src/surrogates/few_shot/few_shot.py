@@ -38,31 +38,35 @@ def get_few_shot_prompt(shot, ds, question):
     
     return prompt
 
-def get_few_shot_surrogate(model_name, dataset_path, use_vllm=True, shot=3, surrogate_datapath="", batch_size=4, cfg=None):
+def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath="", batch_size=4, cfg=None):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
+    # batch_size = 2  # Adjust batch size as needed
     ds = Dataset.from_csv(dataset_path)
+    # ds = ds.select(range(batch_size))
     session = selector.select_chat_model(model_name=model_name, cfg=cfg)
     
     response_list = []
     # Process examples in batches
-    batch_size = 8  # Adjust batch size as needed
     for i in tqdm(range(0, len(ds), batch_size)):
         batch = ds[i:i + min(batch_size, len(ds) - i)]
         
         # Create all prompts for the batch
-        batch_questions = [example['question'] for example in batch]
+        batch_questions = batch['question']
         batch_prompts = [get_few_shot_prompt(shot=shot, ds=ds, question=q) for q in batch_questions]
         
         batch_answers = session.get_response(user_message=batch_prompts) 
         
         # Create response dictionaries for all examples in the batch
-        for example, prompt, answer in zip(batch, batch_prompts, batch_answers):
+        # Process each item in the batch with clearer variable names
+        for idx in range(len(next(iter(batch.values())))):
+            # Create response dict directly from batch data
             response_dict = {
-                'question': example['question'],
-                'options': example['options'],
-                'blackbox_output': example['model_output'],
-                'surrogate_output': answer,
-                'ground_truth': example['ground_truth']
+                'question': batch['question'][idx],
+                'options': batch['options'][idx],
+                'blackbox_output': batch['model_output'][idx],
+                'surrogate_output': batch_answers[idx],
+                'ground_truth': batch['ground_truth'][idx],
+                'prompt': batch_prompts[idx]
             }
             response_list.append(response_dict)
         
@@ -87,11 +91,12 @@ def compute_dual_metrics_from_csv(csv_filename):
         
         predictions = df['surrogate_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
+        options = df['options'].tolist()
         
-        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths)
+        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options)
         
         ground_truths = df['blackbox_output'].tolist()
-        results['wrt_blackbox'] = metrics.compute_all_metrics(predictions, ground_truths)
+        results['wrt_blackbox'] = metrics.compute_all_metrics_wo_rank(predictions, ground_truths)
         
         return results
     except Exception as e:
@@ -108,10 +113,8 @@ if __name__ == "__main__":
     
     def parse_args():
         parser = argparse.ArgumentParser(description="Run LLM benchmark evaluation")
-        parser.add_argument("--use_vllm", action="store_true", default=False, 
-                            help="Use VLLM for inference")
-        parser.add_argument("--use_pipeline", action="store_true", default=False,
-                            help="Use HuggingFace pipeline for inference")
+        parser.add_argument("--sub_field",type=str, default="high_school_computer_science",
+                            help="provide field name")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
         parser.add_argument("--batch_size",type=int, default=16,
@@ -126,12 +129,13 @@ if __name__ == "__main__":
     llm_list = config.get("model_list", [])
     surrogates = config.get("model_list", [])
     for surrogate_llm in surrogates:
-        surrogate_dir = os.path.join(config['data_path'], 'surrogate', surrogate_llm.replace('/', '_'))
+        surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field)
         os.makedirs(surrogate_dir, exist_ok=True)
         llms = [llm for llm in llm_list if llm != surrogate_llm]
         for llm in llms:
-            ds_file_name = f"{surrogate_dir}/{llm.replace('/', '_')}_qwen_surrogate_responses.csv"
-            candidate_model_data_path = f"data/dataset/custom_{llm.replace('/', '_')}_mmlu_results.csv"
+            ds_file_name = f"{surrogate_dir}/candidate_{llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
+            data_folder = f"{config['data_path']}/{args.sub_field}/0"
+            candidate_model_data_path = f"{data_folder}/custom_{llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
             
             get_few_shot_surrogate(
                 model_name=surrogate_llm, 
@@ -139,6 +143,7 @@ if __name__ == "__main__":
                 shot=args.shot, 
                 surrogate_datapath=ds_file_name,
                 batch_size=args.batch_size,
+                cfg=config
                 )
             results = compute_dual_metrics_from_csv(ds_file_name)
             with open(f"{surrogate_dir}/candidate-{llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
