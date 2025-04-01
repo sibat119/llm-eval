@@ -13,17 +13,17 @@
 # python -m src.finetune.t5_loop --model_name t5-base --fold_count 5 --batch_size 32 --epochs 3 --learning_rate 5e-5 --save_path ./output/t5_base_milu/fold_5 --dataset milu --data_path data/dataset/meta-llama_Llama-3.2-3B-Instruct_milu_results.csv
 
 
-python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 0
-# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 3
-# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 5
+# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 0
+python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 3
+python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5
 
-python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field philosophy --batch_size 16 --shot 0
-# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field philosophy --batch_size 16 --shot 3
-# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field philosophy --batch_size 16 --shot 5
+# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field philosophy --batch_size 16 --shot 0
+python -m src.surrogates.few_shot.get_candidate_response --sub_field philosophy --batch_size 16 --shot 3
+python -m src.surrogates.few_shot.get_candidate_response --sub_field philosophy --batch_size 16 --shot 5
 
-python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field public_relations --batch_size 16 --shot 0
-# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field public_relations --batch_size 16 --shot 3
-# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field public_relations --batch_size 16 --shot 5
+# python -m src.surrogates.few_shot.get_candidate_response --model_name Qwen/Qwen2.5-7B-Instruct --sub_field public_relations --batch_size 16 --shot 0
+python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 3
+python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5
 
 
 
