@@ -143,4 +143,9 @@ if __name__ == "__main__":
     )
     metrics = metrics.compute_metrics_from_csv(csv_file_name)
     print(f"Result: {metrics}")
+    # Write metrics to results file
+    results_file = os.path.join(csv_dir, "results.txt")
+    with open(results_file, "a") as f:
+        f.write(f"{model_name}: {metrics}\n")
+    print(f"Saved metrics to {results_file}")
     
