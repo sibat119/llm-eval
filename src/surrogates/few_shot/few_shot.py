@@ -64,10 +64,11 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
                 'question': batch['question'][idx],
                 'options': batch['options'][idx],
                 'blackbox_output': batch['model_output'][idx],
-                'surrogate_output': batch_answers[idx],
+                'surrogate_output': batch_answers[idx].replace('<|start_header_id|>assistant<|end_header_id|>\n\n', ''),
                 'ground_truth': batch['ground_truth'][idx],
                 'prompt': batch_prompts[idx]
             }
+            breakpoint()
             response_list.append(response_dict)
         
     ds = Dataset.from_list(response_list)
@@ -115,9 +116,9 @@ if __name__ == "__main__":
         parser = argparse.ArgumentParser(description="Run LLM benchmark evaluation")
         parser.add_argument("--sub_field",type=str, default="high_school_computer_science",
                             help="provide field name")
-        parser.add_argument("--candidate",type=str, default="meta-llama/Llama-3.1-8B-Instruct",
+        parser.add_argument("--candidate",type=str, default="Qwen/Qwen2.5-7B-Instruct",
                             help="Candidate model name")
-        parser.add_argument("--surrogate",type=str, default="Qwen/Qwen2.5-7B-Instruct",
+        parser.add_argument("--surrogate",type=str, default="meta-llama/Llama-3.1-8B-Instruct",
                             help="Surrogate model name")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
