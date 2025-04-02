@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
         "exact_match": 0.012861736334405145,
-        "f1_score_token_agreement": 0.12910871342379215,
-        "f1_score_ranking": 0.44530081030081026,
-        "accuracy_ranking": 0.45016077170418006,
+        "f1_score_token_agreement": 0.11925874330882381,
+        "f1_score_ranking": 0.4201691183584452,
+        "accuracy_ranking": 0.42765273311897106,
         "rouge_scores": {
-            "rouge1": 0.1636808209253746,
-            "rouge2": 0.048194608887972716,
-            "rougeL": 0.15129738835962384
+            "rouge1": 0.1508243933658704,
+            "rouge2": 0.0410395971259742,
+            "rougeL": 0.13708232955803068
         },
-        "bleu_score": 0.029655050282737617,
-        "sbert_similarity": 0.31574853269197645
+        "bleu_score": 0.025429337618748205,
+        "sbert_similarity": 0.3158200299546985,
+        "agreement_score": 0.4180064308681672,
+        "model_ground_truth_match": 0.42765273311897106,
+        "blackbox_ground_truth_match": 0.5337620578778135,
+        "both_ground_truth_match": 0.2733118971061093,
+        "agreement_samples": [
+            {
+                "model_output": "<|start_header_id|>assistant\n\ndoubting and questioning everything in search of indubitable truth.",
+                "blackbox_output": "<|start_header_id|>assistant\n\na thing that thinks",
+                "ground_truth": "a thing that thinks",
+                "options": "['a body', 'a dream', 'a thing that thinks', 'a thing that cannot exist']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nIt can undermine trust and compromise the validity of the research.",
+                "blackbox_output": "It can damage the professional reputation of the researcher and their discipline.",
+                "ground_truth": "It can damage the professional reputation of the researcher and their discipline.",
+                "options": "['It can damage the professional reputation of the researcher and their discipline.', 'It makes it more difficult to gain access to deviant or hidden populations.', 'It means that records of personal data about the participants cannot be made anonymous.', 'None of the above.']"
+            },
+            {
+                "model_output": "\"Socrates.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nSocrates.",
+                "ground_truth": "Socrates",
+                "options": "['Aristotle', 'John Locke', 'Socrates', 'Plato']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nthe pleasure and pain they produce.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nboth a and b.",
+                "ground_truth": "their consequences.",
+                "options": "['the motives behind them.', 'their consequences.', 'both a and b.', 'neither a nor b.']"
+            },
+            {
+                "model_output": "a parent or guardian.",
+                "blackbox_output": "<|start_header_id|>assistant\n\na parent.",
+                "ground_truth": "a parent.",
+                "options": "['an employer.', 'a parent.', 'a friend.', 'a spouse.']"
+            },
+            {
+                "model_output": "God",
+                "blackbox_output": "<|start_header_id|>assistant\n\nGod",
+                "ground_truth": "God",
+                "options": "['the universe', 'God', 'nature', 'an infinite series']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\none is a strong version that applies to all beings capable of suffering, while the other is a weaker version that focuses on beings with a certain level of cognitive ability.\"",
+                "blackbox_output": "he considers the weaker version to be correct.",
+                "ground_truth": "he considers the stronger version to be correct.",
+                "options": "['he considers the stronger version to be correct.', 'he considers the weaker version to be correct.', 'he ends up rejecting them both.', 'he claims that they are equivalent.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\n Formalism.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nFormalism.",
+                "ground_truth": "formalism",
+                "options": "['informalism', 'expressionism', 'formalism', 'structuralism']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nis morally perfect but not necessarily happy.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nNone of the above.",
+                "ground_truth": "cannot have a sarcastic wit.",
+                "options": "['cannot read Victorian novels.', 'cannot have a sarcastic wit.', 'cannot have an interest in gourmet cooking.', 'all of the above.']"
+            },
+            {
+                "model_output": "\"arbitrary or morally arbitrary.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\narbitrary.",
+                "ground_truth": "arbitrary",
+                "options": "['well supported', 'unclear', 'unknowable', 'arbitrary']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "every man has a right to everything.",
+                "blackbox_output": "<|start_header_id|>assistant\n\neverything.",
+                "ground_truth": "everything",
+                "options": "['some things', 'lawful treatment', 'due process', 'everything']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\noutcomes beyond our control affect our moral assessment.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nthe self is threatened with dissolution by the absorption of its acts into the class of events.",
+                "ground_truth": "the self is threatened with dissolution by the absorption of its acts into the class of events.",
+                "options": "['philosophers try to apply arbitrarily stringent standards to moral responsibility.', 'the self is threatened with dissolution by the absorption of its acts into the class of events.', 'our moral theories are hopelessly off track.', 'our theories of human action are hopelessly off track.']"
+            },
+            {
+                "model_output": "\"cannot be added up.\"",
+                "blackbox_output": "can be compared, but only roughly.",
+                "ground_truth": "can be compared, but only roughly.",
+                "options": "['can be precisely compared.', 'can be compared, but only roughly.', 'can be compared within individuals, but not between individuals.', 'cannot compared either within individuals or between individuals.']"
+            },
+            {
+                "model_output": "ethical considerations and the well-being of participants.",
+                "blackbox_output": "All of the above.",
+                "ground_truth": "All of the above.",
+                "options": "['What constitutes a public space', 'Protecting individuals from potential harm', 'Any risk of invasion of privacy', 'All of the above.']"
+            },
+            {
+                "model_output": "reason is, and ought only to be the slave of the passions.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nThe first spring or impulse to desire.",
+                "ground_truth": "cool and disengaged.",
+                "options": "['cool and disengaged.', 'the source of all moral actions.', 'the first spring or impulse to desire.', 'all of the above.']"
+            },
+            {
+                "model_output": "to a higher form or idea.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nbeyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",
+                "ground_truth": "beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",
+                "options": "['to what our senses reveal to us about how things appear to us, not how they  really are.', 'beyond the Forms to images of goodness, beauty, and truth obtained from particular objects.', 'to what we sincerely believe is true about the Forms based on our experiences in the world.', 'beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nare flawed due to their reliance on circular reasoning or false premises.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nFeinberg claims that most arguments for psychological egoism are nonempirical in character.",
+                "ground_truth": "are nonempirical in character.",
+                "options": "['make reference to neuroscience.', 'are based on controlled studies.', 'are based on interviews and surveys.', 'are nonempirical in character.']"
+            },
+            {
+                "model_output": "\"the greatest happiness for the greatest number.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nusefulness to society.",
+                "ground_truth": "pleasure and the absence of pain.",
+                "options": "['usefulness for some craft.', 'usefulness to society.', 'pleasure and the absence of pain.', 'it promotes the interests of all and does not harm anyone.']"
+            },
+            {
+                "model_output": "good",
+                "blackbox_output": "<|start_header_id|>assistant\n\nhatred.",
+                "ground_truth": "good.",
+                "options": "['hatred.', 'greed.', 'love.', 'good.']"
+            },
+            {
+                "model_output": "justified",
+                "blackbox_output": "<|start_header_id|>assistant\n\njust.",
+                "ground_truth": "just.",
+                "options": "['to his advantage.', 'harmful to his enemies and advantageous to his friends.', 'pleasing to the gods.', 'just.']"
+            }
+        ]
     },
     "wrt_blackbox": {
         "exact_match": 0.00964630225080386,
-        "f1_score_token_agreement": 0.14616918457884975,
+        "f1_score_token_agreement": 0.14758245176563112,
         "rouge_scores": {
-            "rouge1": 0.3008705230579959,
-            "rouge2": 0.1975416441364997,
-            "rougeL": 0.289076296685261
+            "rouge1": 0.3089577827987617,
+            "rouge2": 0.20040015887243792,
+            "rougeL": 0.2942708492532239
         },
-        "bleu_score": 0.028814193034046268,
-        "sbert_similarity": 0.4516965018022338
+        "bleu_score": 0.02747772754017382,
+        "sbert_similarity": 0.46265786577171836
     }
 }

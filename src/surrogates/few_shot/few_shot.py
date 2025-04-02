@@ -68,7 +68,7 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
                 'ground_truth': batch['ground_truth'][idx],
                 'prompt': batch_prompts[idx]
             }
-            breakpoint()
+            # breakpoint()
             response_list.append(response_dict)
         
     ds = Dataset.from_list(response_list)

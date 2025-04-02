@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.09009776258995826,
-        "f1_score_ranking": 0.4134316128955147,
-        "accuracy_ranking": 0.4212218649517685,
+        "exact_match": 0.01607717041800643,
+        "f1_score_token_agreement": 0.10212050632754902,
+        "f1_score_ranking": 0.42369547758019993,
+        "accuracy_ranking": 0.4340836012861736,
         "rouge_scores": {
-            "rouge1": 0.09054239908807912,
-            "rouge2": 0.01836679977453264,
-            "rougeL": 0.08573407242544714
+            "rouge1": 0.17755993106282478,
+            "rouge2": 0.038468173561840555,
+            "rougeL": 0.17030492346142426
         },
-        "bleu_score": 0.01850522127588121,
-        "sbert_similarity": 0.17961746384015373
+        "bleu_score": 0.021101206903165894,
+        "sbert_similarity": 0.357003888935809,
+        "agreement_score": 0.3954983922829582,
+        "model_ground_truth_match": 0.4340836012861736,
+        "blackbox_ground_truth_match": 0.7202572347266881,
+        "both_ground_truth_match": 0.33762057877813506,
+        "agreement_samples": [
+            {
+                "model_output": "Philosophy.",
+                "blackbox_output": "the philosophical method",
+                "ground_truth": "the philosophical method",
+                "options": "['the argumentative method', 'the philosophical method', 'propositional logic', 'syllogistic reasoning']"
+            },
+            {
+                "model_output": "taste.",
+                "blackbox_output": "entirely subjective",
+                "ground_truth": "entirely subjective",
+                "options": "['entirely subjective', 'unchangeable', 'entirely objective', 'unknown']"
+            },
+            {
+                "model_output": "\"the realization of one's potential.\"",
+                "blackbox_output": "Godliness.",
+                "ground_truth": "delight.",
+                "options": "['delight.', 'peace.', 'pleasure.', 'Godliness.']"
+            },
+            {
+                "model_output": "\"a war of all against all\"",
+                "blackbox_output": "war of every man against every man..",
+                "ground_truth": "war of every man against every man.",
+                "options": "['peace and harmony.', 'mutual indifference.', 'cautious mistrust.', 'war of every man against every man.']"
+            },
+            {
+                "model_output": "\"act according to a maxim that could be willed as a universal law.\"",
+                "blackbox_output": "act only on maxims that we can will to become universal laws.",
+                "ground_truth": "act only on maxims that we can will to become universal laws.",
+                "options": "['perform the action that leads to the greatest total happiness.', 'act only on maxims that we can will to become universal laws.', 'behave only in such a way as a perfectly virtuous person would behave.', 'place the interests of others above the interests of ourselves.']"
+            },
+            {
+                "model_output": "\"examining the common moral judgments of ordinary people.\"",
+                "blackbox_output": "reflecting on what we really think.",
+                "ground_truth": "reflecting on what we really think.",
+                "options": "['constructing logical proofs for moral principles.', 'consulting social conventions.', 'reflecting on what we really think.', 'consulting scripture.']"
+            },
+            {
+                "model_output": "\"the Russian aristocracy\"",
+                "blackbox_output": "things that no one would want",
+                "ground_truth": "what is considered complete happiness",
+                "options": "['what is considered complete happiness', 'things that no one would want', 'what is considered heavenly bliss', 'what is considered deep insight']"
+            },
+            {
+                "model_output": "coercion",
+                "blackbox_output": "Covert observation",
+                "ground_truth": "Covert observation",
+                "options": "['Qualitative content analysis', 'In-depth interviewing', 'Covert observation', 'Structured interviewing']"
+            },
+            {
+                "model_output": "Fabricating data.",
+                "blackbox_output": "The researcher representing their research as being about a different topic.",
+                "ground_truth": "The researcher representing their research as being about a different topic.",
+                "options": "['The obtaining of company material without permission.', 'The researcher wearing a disguise during an observation.', 'The researcher representing their research as being about a different topic.', 'The researcher failing to ask permission to interview someone.']"
+            },
+            {
+                "model_output": "\"a thinking thing.\"",
+                "blackbox_output": "a thing that thinks",
+                "ground_truth": "a thing that thinks",
+                "options": "['a body', 'a dream', 'a thing that thinks', 'a thing that cannot exist']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "\"known to all members of the group.\"",
+                "blackbox_output": "all of the above",
+                "ground_truth": "all of the above.",
+                "options": "['part of the mores of the group.', 'universally teachable.', 'not merely a taboo.', 'all of the above.']"
+            },
+            {
+                "model_output": "to argue that moral judgments are a matter of personal preference.",
+                "blackbox_output": "provide an account of what makes right actions right.",
+                "ground_truth": "make ethical questions clear.",
+                "options": "['provide an account of what makes right actions right.', 'establish which things are good in themselves.', 'develop a theory of good moral character.', 'make ethical questions clear.']"
+            },
+            {
+                "model_output": "self-love.",
+                "blackbox_output": "desires for external goods.",
+                "ground_truth": "desires for external goods.",
+                "options": "['desires for external goods.', 'love of injustice.', 'ill-will toward others.', 'self-hatred.']"
+            },
+            {
+                "model_output": "he is not justified in acting as if he knows what they are.",
+                "blackbox_output": "he knows what he is supposed to be looking for--knowledge of the essences of things.",
+                "ground_truth": "he knows what he is supposed to be looking for--knowledge of the essences of things.",
+                "options": "['justice, like knowledge, requires that we admit that we know nothing and never will.', 'he knows what he is supposed to be looking for--knowledge of the essences of things.', 'knowledge of the essences of things is impossible, because that would require that we know what we are looking for before we know what it is we are looking for.', 'his method of asking questions about essences is itself unjustified because he does not know why he engages in such a practice.']"
+            },
+            {
+                "model_output": "\"by arguing that the kind of goodness in question is not the kind that his theory is intended to account for.\"",
+                "blackbox_output": "He claims to have offered an account of just such a property.",
+                "ground_truth": "He claims he does not understand such a property.",
+                "options": "['He claims to have proven that such a property does not exist.', 'He claims to have offered an account of just such a property.', 'He claims he does not understand such a property.', 'None of the above.']"
+            },
+            {
+                "model_output": "\"he is defining the holy in terms of the gods' actions, rather than the other way around.\"",
+                "blackbox_output": "all of the above",
+                "ground_truth": "there are many other things that are also holy.",
+                "options": "['there are many other things that are also holy.', 'prosecuting wrongdoers is not always holy.', 'there is disagreement about what counts as \u201cwrongdoing.\u201d', 'all of the above.']"
+            },
+            {
+                "model_output": "\"pessimistic.\"",
+                "blackbox_output": "He thought life was bereft of meaning.",
+                "ground_truth": "He thought life was bereft of meaning.",
+                "options": "['He thought life was uncertain but worthwhile.', 'He thought life was hard but ultimately hopeful.', 'He thought life was bereft of meaning.', 'He believed in an afterlife in which all misery vanishes.']"
+            },
+            {
+                "model_output": "reason",
+                "blackbox_output": "a moral sense that is universal in our species.",
+                "ground_truth": "a moral sense that is universal in our species.",
+                "options": "['reason.', 'a moral sense that is unique to each person.', 'a moral sense that is universal in our species.', 'emotion.']"
+            },
+            {
+                "model_output": "naturalistic fallacy.",
+                "blackbox_output": "begging the question.",
+                "ground_truth": "the naturalistic fallacy.",
+                "options": "['begging the question.', 'circular reasoning.', 'the naturalistic fallacy.', 'the ad hominem fallacy.']"
+            },
+            {
+                "model_output": "\"to protect the privacy and rights of the participants.\"",
+                "blackbox_output": "In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.",
+                "ground_truth": "In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.",
+                "options": "['So that the participants cannot find out what has been written about them.', 'In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.', 'So that government officials, teachers, and other people in authority can have easy access to the data.', 'To enable the researcher to track down individuals and find out more about their lives.']"
+            }
+        ]
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.09107016401850354,
+        "exact_match": 0.012861736334405145,
+        "f1_score_token_agreement": 0.1017865463895,
         "rouge_scores": {
-            "rouge1": 0.09604791641491076,
-            "rouge2": 0.021578459497446384,
-            "rougeL": 0.09106643113476967
+            "rouge1": 0.18361899620162597,
+            "rouge2": 0.044263354202276534,
+            "rougeL": 0.17638646361960242
         },
-        "bleu_score": 0.01853055921849278,
-        "sbert_similarity": 0.17308300620819356
+        "bleu_score": 0.02247728609115604,
+        "sbert_similarity": 0.3456396864715161
     }
 }

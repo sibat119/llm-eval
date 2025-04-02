@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.10392483778847415,
-        "f1_score_ranking": 0.41958355384247925,
-        "accuracy_ranking": 0.42727272727272725,
+        "exact_match": 0.06363636363636363,
+        "f1_score_token_agreement": 0.13285443529227794,
+        "f1_score_ranking": 0.5163272713274638,
+        "accuracy_ranking": 0.5181818181818182,
         "rouge_scores": {
-            "rouge1": 0.07189315914407386,
-            "rouge2": 0.01497979359821465,
-            "rougeL": 0.06926292044572371
+            "rouge1": 0.17505121962344966,
+            "rouge2": 0.03631624515835042,
+            "rougeL": 0.17173262662743732
         },
-        "bleu_score": 0.020692696044628985,
-        "sbert_similarity": 0.21454045157879592
+        "bleu_score": 0.024090973691016065,
+        "sbert_similarity": 0.4480539866469123,
+        "agreement_score": 0.5363636363636364,
+        "model_ground_truth_match": 0.5181818181818182,
+        "blackbox_ground_truth_match": 0.7090909090909091,
+        "both_ground_truth_match": 0.4,
+        "agreement_samples": [
+            {
+                "model_output": "Transparency and prompt recall of the contaminated product from the market.",
+                "blackbox_output": "Stop all sales of the product throughout the nation and issue a recall for that product.",
+                "ground_truth": "Stop all sales of the product throughout the nation and issue a recall for that product.",
+                "options": "['Quickly investigate to make certain your product is definitely the cause of the illness.', 'Stop all sales of the product throughout the nation and issue a recall for that product.', 'Stop sales of the product in the Albany, New York, market and issue a recall for that product.', 'Issue a press release to the Albany, New York, market explaining how to treat the symptoms.']"
+            },
+            {
+                "model_output": "1922",
+                "blackbox_output": "1922",
+                "ground_truth": "1922",
+                "options": "['1917', '1922', '1925', '1927']"
+            },
+            {
+                "model_output": "\"Conflict of Interest\"",
+                "blackbox_output": "Personality conflicts.",
+                "ground_truth": "Clients' questions about costs",
+                "options": "[\"Clients' questions about costs\", 'Resistance to outside advice', \"Superficial grasp of the client's unique problems\", 'Personality conflicts']"
+            },
+            {
+                "model_output": "Crisis management",
+                "blackbox_output": "crisis management",
+                "ground_truth": "crisis management",
+                "options": "['public issues', 'crisis management', 'consumer relations', 'community relations']"
+            },
+            {
+                "model_output": "Twitter",
+                "blackbox_output": "Twitter",
+                "ground_truth": "Twitter",
+                "options": "['YouTube', 'Facebook', 'Wikipedia', 'Twitter']"
+            },
+            {
+                "model_output": "\"public opinion\"",
+                "blackbox_output": "democracy, dialogic",
+                "ground_truth": "democracy, dialogic",
+                "options": "['intelligentsia, democratic', 'democracy, dialogic', 'democracy, logical', 'democracy, bipartisan']"
+            },
+            {
+                "model_output": "Lack of in-house expertise.",
+                "blackbox_output": "They offer flexibility of talents and skills. They bring greater credibility to the work. They can provide more attention and detail to a project that in-house staff.",
+                "ground_truth": "They offer flexibility of talents and skills.",
+                "options": "['They offer flexibility of talents and skills.', 'They bring greater credibility to the work. ', 'They will provide sound ROI on the project or program.', 'They can provide more attention and detail to a project that in-house staff.']"
+            },
+            {
+                "model_output": "Shannon-Weaver model",
+                "blackbox_output": "Shannon and Weaver model",
+                "ground_truth": "Osgood and Schramm model",
+                "options": "['Shannon and Weaver model', 'Osgood and Schramm model', 'Westley and MacLean model', 'Maletzke model']"
+            },
+            {
+                "model_output": "\"Denial of responsibility\"",
+                "blackbox_output": "evasion of responsibility",
+                "ground_truth": "denial",
+                "options": "['denial', 'evasion of responsibility', 'reducing the offensiveness', 'corrective action']"
+            },
+            {
+                "model_output": "Publics analysis",
+                "blackbox_output": "stakeholder analysis",
+                "ground_truth": "stakeholder analysis",
+                "options": "['exploratory survey', 'situation interview', 'communication audit', 'stakeholder analysis']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "Evaluation",
+                "blackbox_output": "the number who change attitudes and opinions",
+                "ground_truth": "the number who change attitudes and opinions",
+                "options": "['the quality of the messages and activities', 'the number who change attitudes and opinions', 'the number who responded to communications', 'the number of messages and activities implemented']"
+            },
+            {
+                "model_output": "tactics relate to promotion of the overall organisation in the area of public relations known as \"implementation\"",
+                "blackbox_output": "Corporate",
+                "ground_truth": "Corporate",
+                "options": "['Corporate', 'Internal communications', 'Financial relations', 'Business to business']"
+            },
+            {
+                "model_output": "planning",
+                "blackbox_output": "Defining the program",
+                "ground_truth": "Planning the program",
+                "options": "['Defining the program', 'Planning the program', 'Taking action and implementing ideas', 'Evaluation of the program']"
+            },
+            {
+                "model_output": "Analyzing the person's previous responses, it appears they tend to provide concise and direct answers. \n\nBased on this pattern, I predict their response to the question will be:\n\n\"Reviewing existing literature.\"",
+                "blackbox_output": "Examining public records.",
+                "ground_truth": "Examining public records",
+                "options": "['Conducting a content analysis', 'Conducting a survey', 'Observing people', 'Examining public records']"
+            },
+            {
+                "model_output": "\"Categorical.\"",
+                "blackbox_output": "People should be treated as an end, not a means to an end.",
+                "ground_truth": "People should be treated as an end, not a means to an end.",
+                "options": "['What is right and what is wrong are predetermined.', 'People should be treated as an end, not a means to an end.', 'The greatest good for the greatest number.', 'Those better off should give to people who are not as well off.']"
+            },
+            {
+                "model_output": "\"to stay ahead of the curve and anticipate potential issues.\"",
+                "blackbox_output": "to interpret trends for management",
+                "ground_truth": "to interpret trends for management",
+                "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+            },
+            {
+                "model_output": "\"audience\"",
+                "blackbox_output": "Traffic",
+                "ground_truth": "Readership",
+                "options": "['Circulation', 'Distribution', 'Traffic', 'Readership']"
+            },
+            {
+                "model_output": "Publicity",
+                "blackbox_output": "Event",
+                "ground_truth": "Event",
+                "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
+            },
+            {
+                "model_output": "Counter-narrative",
+                "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+            },
+            {
+                "model_output": "Public relations.",
+                "blackbox_output": "Marketing communications",
+                "ground_truth": "Marketing communications",
+                "options": "['Issues management', 'Investor relations', 'Public affairs', 'Marketing communications']"
+            }
+        ]
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.11797101383465018,
+        "exact_match": 0.08181818181818182,
+        "f1_score_token_agreement": 0.15257661693145563,
         "rouge_scores": {
-            "rouge1": 0.08186938079532254,
-            "rouge2": 0.019314618263182856,
-            "rougeL": 0.07928471056359344
+            "rouge1": 0.19878520469429561,
+            "rouge2": 0.046068438224326484,
+            "rougeL": 0.19553364144273236
         },
-        "bleu_score": 0.02433522927297016,
-        "sbert_similarity": 0.22520091809671033
+        "bleu_score": 0.028589951150411918,
+        "sbert_similarity": 0.4544906467876651
     }
 }

@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.08536208807862516,
-        "f1_score_ranking": 0.4066814297342262,
-        "accuracy_ranking": 0.4115755627009646,
+        "exact_match": 0.01929260450160772,
+        "f1_score_token_agreement": 0.09678068586430986,
+        "f1_score_ranking": 0.47349808298307805,
+        "accuracy_ranking": 0.48231511254019294,
         "rouge_scores": {
-            "rouge1": 0.09104804966661421,
-            "rouge2": 0.017819908378776707,
-            "rougeL": 0.08792126640997631
+            "rouge1": 0.18085790141266286,
+            "rouge2": 0.03647104497148364,
+            "rougeL": 0.17668470081625937
         },
-        "bleu_score": 0.018669810719893876,
-        "sbert_similarity": 0.1837388970410014
+        "bleu_score": 0.022790368503308872,
+        "sbert_similarity": 0.36794024728720715,
+        "agreement_score": 0.44694533762057875,
+        "model_ground_truth_match": 0.48231511254019294,
+        "blackbox_ground_truth_match": 0.7202572347266881,
+        "both_ground_truth_match": 0.3858520900321543,
+        "agreement_samples": [
+            {
+                "model_output": "\"teaches us to be aware of our own moral feelings and to be able to distinguish between right and wrong.\"",
+                "blackbox_output": "will produce someone who does the right thing simply because it is right.",
+                "ground_truth": "will produce someone who does the right thing simply because it is right.",
+                "options": "['will make no use of pleasure or pain as sanctions.', 'will be based entirely on the use of pleasure and pain as sanctions.', 'will produce someone who does the right thing out of deference to authority.', 'will produce someone who does the right thing simply because it is right.']"
+            },
+            {
+                "model_output": "\"cannot be used to settle moral questions.\"",
+                "blackbox_output": "are sometimes useful in resolving ethical disagreement, but are not always sufficient.",
+                "ground_truth": "are sometimes useful in resolving ethical disagreement, but are not always sufficient.",
+                "options": "['are never useful in resolving ethical disagreement.', 'are sometimes useful in resolving ethical disagreement, but are not always sufficient.', 'are in principle always sufficient for resolving ethical disagreement.', 'provide the only responsible way to engage in moral philosophy.']"
+            },
+            {
+                "model_output": "\"sentiment and feeling.\"",
+                "blackbox_output": "sympathy.",
+                "ground_truth": "sympathy.",
+                "options": "['reason.', 'God\u2019s commands.', 'social agreements.', 'sympathy.']"
+            },
+            {
+                "model_output": "\"substantial forms are the principles of being.\"",
+                "blackbox_output": "pleasure exists for the sake of operation.",
+                "ground_truth": "pleasure exists for the sake of operation.",
+                "options": "['pleasure exists for its own sake.', 'pleasure exists for the sake of operation.', 'operation exists for the sake of pleasure.', 'both b and c.']"
+            },
+            {
+                "model_output": "\"appealing to intuitions.\"",
+                "blackbox_output": "reflecting on what we really think.",
+                "ground_truth": "reflecting on what we really think.",
+                "options": "['constructing logical proofs for moral principles.', 'consulting social conventions.', 'reflecting on what we really think.', 'consulting scripture.']"
+            },
+            {
+                "model_output": "\"Because it lacks self-awareness.\"",
+                "blackbox_output": "Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                "ground_truth": "Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                "options": "['Because if someone did not know how to act virtuously, he or she would still be considered virtuous by others who also did not know the principles for good living.', 'Because since Socrates was a philosopher, he of course thought that people who examined their lives philosophically were more virtuous than those who did not.', 'Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.', \"Because a virtuous life would be one in which someone does what the rest of the society says is right, and that means examining views other than one's own.\"]"
+            },
+            {
+                "model_output": "\"the world in a different way\"",
+                "blackbox_output": "a different beauty",
+                "ground_truth": "a different beauty",
+                "options": "['the same beauty', 'a different beauty', 'a warped sense of beauty', 'objective beauty']"
+            },
+            {
+                "model_output": "public reason.",
+                "blackbox_output": "the mutual support of many considerations, which it fits into one coherent view.",
+                "ground_truth": "the mutual support of many considerations, which it fits into one coherent view.",
+                "options": "['deducing it from self-evident premises.', 'direct acquaintance via moral intuition.', 'the mutual support of many considerations, which it fits into one coherent view.', 'none of the above.']"
+            },
+            {
+                "model_output": "the preservation of their property.",
+                "blackbox_output": "the preservation of their property",
+                "ground_truth": "the preservation of their property",
+                "options": "['domination over other commonwealths', 'the preservation of the state of nature', 'the preservation of their property', 'the preservation of their absolute power']"
+            },
+            {
+                "model_output": "all of the above",
+                "blackbox_output": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                "ground_truth": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                "options": "['it is morally wrong to ever lose control of oneself.', 'it is morally wrong to try to control the lives of (adult) others.', 'one cannot be morally assessed for what is due to factors outside one\u2019s control.', 'one cannot be morally blamed for taking control of one\u2019s own life.']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "\"desire and value.\"",
+                "blackbox_output": "meaning",
+                "ground_truth": "meaning",
+                "options": "['philosophy', 'religion', 'meaning', 'time']"
+            },
+            {
+                "model_output": "to defend a form of moral subjectivism.",
+                "blackbox_output": "provide an account of what makes right actions right.",
+                "ground_truth": "make ethical questions clear.",
+                "options": "['provide an account of what makes right actions right.', 'establish which things are good in themselves.', 'develop a theory of good moral character.', 'make ethical questions clear.']"
+            },
+            {
+                "model_output": "\"Butler's view of moral motivation is too narrow, as it relies solely on self-interest.\"",
+                "blackbox_output": "the notion of \u201clegislating for oneself\u201d is absurd.",
+                "ground_truth": "our consciences are fallible.",
+                "options": "['our consciences are fallible.', 'the notion of \u201clegislating for oneself\u201d is absurd.', 'we really can derive an \u201cought\u201d from an \u201cis.\u201d', 'the concept of \u201cpleasure\u201d is unclear.']"
+            },
+            {
+                "model_output": "the moral code's ability to promote the greatest happiness for the greatest number of people.",
+                "blackbox_output": "all of the above",
+                "ground_truth": "all of the above.",
+                "options": "['the complexity of the rules.', 'how many people would likely violate it.', 'the costs of its restrictions, in terms of the guilt it induces.', 'all of the above.']"
+            },
+            {
+                "model_output": "\"intelligent and purposeful.\"",
+                "blackbox_output": "greater and grander",
+                "ground_truth": "greater and grander",
+                "options": "['simpler', 'more natural', 'older', 'greater and grander']"
+            },
+            {
+                "model_output": "\"has the power to evoke an emotional response in the viewer.\"",
+                "blackbox_output": "has no utility",
+                "ground_truth": "serves some important function",
+                "options": "['cannot be defined', 'has no utility', 'serves some important function', 'has no meaning']"
+            },
+            {
+                "model_output": "reason.",
+                "blackbox_output": "rational part.",
+                "ground_truth": "rational part.",
+                "options": "['respect for the law.', 'rational part.', 'desire for honor.', 'none of the above.']"
+            },
+            {
+                "model_output": "\"a slave of the passions.\"",
+                "blackbox_output": "all of the above",
+                "ground_truth": "cool and disengaged.",
+                "options": "['cool and disengaged.', 'the source of all moral actions.', 'the first spring or impulse to desire.', 'all of the above.']"
+            },
+            {
+                "model_output": "Peter Singer",
+                "blackbox_output": "Aristotle.",
+                "ground_truth": "Thomas Aquinas.",
+                "options": "['Plato.', 'Aristotle.', 'Thomas Aquinas.', 'Immanuel Kant.']"
+            },
+            {
+                "model_output": "their tendency to promote the greatest happiness for the greatest number of people.",
+                "blackbox_output": "their consequences.",
+                "ground_truth": "their consequences.",
+                "options": "['the motives behind them.', 'their consequences.', 'both a and b.', 'neither a nor b.']"
+            }
+        ]
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.09803547515451139,
+        "exact_match": 0.022508038585209004,
+        "f1_score_token_agreement": 0.10995569384035216,
         "rouge_scores": {
-            "rouge1": 0.09980847341879644,
-            "rouge2": 0.023464926937545972,
-            "rougeL": 0.09589433265609966
+            "rouge1": 0.19355167072149038,
+            "rouge2": 0.04781859463135349,
+            "rougeL": 0.18804263760800544
         },
-        "bleu_score": 0.02400114616499324,
-        "sbert_similarity": 0.17694415200735258
+        "bleu_score": 0.030561608698561248,
+        "sbert_similarity": 0.3614519144725833
     }
 }

@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.09886624961491272,
-        "f1_score_ranking": 0.4679826517009341,
-        "accuracy_ranking": 0.4727272727272727,
+        "exact_match": 0.045454545454545456,
+        "f1_score_token_agreement": 0.12634557016242626,
+        "f1_score_ranking": 0.552991452991453,
+        "accuracy_ranking": 0.5545454545454546,
         "rouge_scores": {
-            "rouge1": 0.0711837620904948,
-            "rouge2": 0.01221045621045621,
-            "rougeL": 0.0700982804079982
+            "rouge1": 0.1911067193675889,
+            "rouge2": 0.03913021844056327,
+            "rougeL": 0.18989459815546772
         },
-        "bleu_score": 0.01653246521497348,
-        "sbert_similarity": 0.212593410003253
+        "bleu_score": 0.017469096929980225,
+        "sbert_similarity": 0.44602372775023635,
+        "agreement_score": 0.5272727272727272,
+        "model_ground_truth_match": 0.5545454545454546,
+        "blackbox_ground_truth_match": 0.7090909090909091,
+        "both_ground_truth_match": 0.41818181818181815,
+        "agreement_samples": [
+            {
+                "model_output": "\"Press trip\"",
+                "blackbox_output": "Media tour",
+                "ground_truth": "Media tour",
+                "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
+            },
+            {
+                "model_output": "\"Formulation\"",
+                "blackbox_output": "Defining the program",
+                "ground_truth": "Planning the program",
+                "options": "['Defining the program', 'Planning the program', 'Taking action and implementing ideas', 'Evaluation of the program']"
+            },
+            {
+                "model_output": "\"Grunig\"",
+                "blackbox_output": "Grunig and Hunt (1984)",
+                "ground_truth": "Grunig and Hunt (1984)",
+                "options": "['Cutlip (2006)', 'Leitch and Neilson (2001)', 'Amaral and Phillips (2010)', 'Grunig and Hunt (1984)']"
+            },
+            {
+                "model_output": "Audience analysis",
+                "blackbox_output": "stakeholder analysis",
+                "ground_truth": "stakeholder analysis",
+                "options": "['exploratory survey', 'situation interview', 'communication audit', 'stakeholder analysis']"
+            },
+            {
+                "model_output": "The planning phase.",
+                "blackbox_output": "planning",
+                "ground_truth": "planning",
+                "options": "['identification', 'evaluation', 'implementation', 'planning']"
+            },
+            {
+                "model_output": "Marketing",
+                "blackbox_output": "Marketing communications",
+                "ground_truth": "Marketing communications",
+                "options": "['Issues management', 'Investor relations', 'Public affairs', 'Marketing communications']"
+            },
+            {
+                "model_output": "Surveys.",
+                "blackbox_output": "conducting a pre and post analysis of constituents' opinions.",
+                "ground_truth": "conducting a pre and post analysis of constituents' opinions",
+                "options": "['preparing a content analysis of media coverage', 'studying the content of blog postings about your issue', 'analyzing pre and post sales reports for changes in sales', \"conducting a pre and post analysis of constituents' opinions\"]"
+            },
+            {
+                "model_output": "opinion",
+                "blackbox_output": "An opinion",
+                "ground_truth": "An opinion",
+                "options": "['An opinion', 'A belief', 'A behaviour', 'A point of view']"
+            },
+            {
+                "model_output": "Credibility",
+                "blackbox_output": "legitimacy",
+                "ground_truth": "legitimacy",
+                "options": "['legitimacy', 'identity', 'reliability', 'agency']"
+            },
+            {
+                "model_output": "Simplify the message.",
+                "blackbox_output": "Consider the comprehension level of all of the target audiences.",
+                "ground_truth": "Consider how riding the bus could similarly affect all of the target audiences.",
+                "options": "['Consider the comprehension level of all of the target audiences.', 'Consider how riding the bus could similarly affect all of the target audiences.', 'Consider which mediums would most effectively reach all of the target audiences.', 'Consider the geographic locations where all of the target audiences live and work.']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "Crisis",
+                "blackbox_output": "When an organization's trading is interrupted.",
+                "ground_truth": "It happens suddenly.",
+                "options": "['A gap between corporate and stakeholder expectations.', \"When an organization's trading is interrupted.\", 'Can be avoided with constant monitoring and relationship building.', 'It happens suddenly.']"
+            },
+            {
+                "model_output": "\"Significantly.\"",
+                "blackbox_output": "Quadrupled",
+                "ground_truth": "Tripled",
+                "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+            },
+            {
+                "model_output": "\"interdependent\"",
+                "blackbox_output": "It adapts to changing organizational environments.",
+                "ground_truth": "It adapts to changing organizational environments.",
+                "options": "['It adapts to changing organizational environments.', 'It adopts the policy of transparency to build public trust.', 'It focuses on removing communication barriers between its business divisions.', 'It communicates with its publics frequently to effect change outside the organization.']"
+            },
+            {
+                "model_output": "\"Reviewing existing literature and data from other studies.\"",
+                "blackbox_output": "Examining public records.",
+                "ground_truth": "Examining public records",
+                "options": "['Conducting a content analysis', 'Conducting a survey', 'Observing people', 'Examining public records']"
+            },
+            {
+                "model_output": "Promotional",
+                "blackbox_output": "Event",
+                "ground_truth": "Event",
+                "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
+            },
+            {
+                "model_output": "\"Anticipation\"",
+                "blackbox_output": "Strategy",
+                "ground_truth": "Strategy",
+                "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+            },
+            {
+                "model_output": "\"Social norms\"",
+                "blackbox_output": "When people hide their opinions if they do not agree with the majority",
+                "ground_truth": "When victims of abuse remain silent about the abuse",
+                "options": "['When victims of abuse remain silent about the abuse', 'When people hide their opinions if they do not agree with the majority', 'When people hide their opinions if they are in disagreement with their close peers or family members', 'When public relations uses opinion poll results to generate support for a particular issue']"
+            },
+            {
+                "model_output": "\"about 70 percent\"",
+                "blackbox_output": "Almost all.",
+                "ground_truth": "Two thirds",
+                "options": "['One-quarter', 'One-half', 'Two thirds', 'Almost all']"
+            },
+            {
+                "model_output": "Conduct a thorough analysis of the target audience.",
+                "blackbox_output": "Conduct a situation analysis to gain a better understanding of the issue.",
+                "ground_truth": "Conduct a situation analysis to gain a better understanding of the issue.",
+                "options": "['Research pricing and development costs for different services.', \"Develop a survey to discover which factors impact families' savings.\", 'Conduct a situation analysis to gain a better understanding of the issue.', 'Hold a focus group to determine which messages are most effective for the program.']"
+            },
+            {
+                "model_output": "Informative.",
+                "blackbox_output": "Business writing",
+                "ground_truth": "Promotional writing",
+                "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+            }
+        ]
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.11320798630959059,
+        "exact_match": 0.05454545454545454,
+        "f1_score_token_agreement": 0.14515680278944834,
         "rouge_scores": {
-            "rouge1": 0.07891887246394509,
-            "rouge2": 0.013615814137553268,
-            "rougeL": 0.07495460290266061
+            "rouge1": 0.20949201293580932,
+            "rouge2": 0.03777823708858192,
+            "rougeL": 0.20372164509227075
         },
-        "bleu_score": 0.021143387490513196,
-        "sbert_similarity": 0.22045271575281566
+        "bleu_score": 0.022303224775440857,
+        "sbert_similarity": 0.44673412997614254
     }
 }

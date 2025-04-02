@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.045454545454545456,
-        "f1_score_token_agreement": 0.12138494083894928,
-        "f1_score_ranking": 0.4252678299330563,
-        "accuracy_ranking": 0.43636363636363634,
+        "exact_match": 0.03636363636363636,
+        "f1_score_token_agreement": 0.09450673752416751,
+        "f1_score_ranking": 0.3698413615408613,
+        "accuracy_ranking": 0.38181818181818183,
         "rouge_scores": {
-            "rouge1": 0.1418338089998831,
-            "rouge2": 0.029922337816232252,
-            "rougeL": 0.1372389722279288
+            "rouge1": 0.1379339558605465,
+            "rouge2": 0.027424097334494052,
+            "rougeL": 0.13262337291438
         },
-        "bleu_score": 0.019515118781466865,
-        "sbert_similarity": 0.3732726923444054
+        "bleu_score": 0.01191233969289983,
+        "sbert_similarity": 0.34596943599595265,
+        "agreement_score": 0.38181818181818183,
+        "model_ground_truth_match": 0.38181818181818183,
+        "blackbox_ground_truth_match": 0.5636363636363636,
+        "both_ground_truth_match": 0.2818181818181818,
+        "agreement_samples": [
+            {
+                "model_output": "Relevance.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nTimeliness.",
+                "ground_truth": "Impact",
+                "options": "['Proximity', 'Timeliness', 'Prominence', 'Impact']"
+            },
+            {
+                "model_output": "financial performance",
+                "blackbox_output": "Financial performance.",
+                "ground_truth": "Financial performance",
+                "options": "['Workforce development', 'Impact on local communities', 'Impact on the environment', 'Financial performance']"
+            },
+            {
+                "model_output": "Industry-related publics.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nFunctional.",
+                "ground_truth": "Normative",
+                "options": "['Enabling', 'Functional', 'Normative', 'Diffused']"
+            },
+            {
+                "model_output": "Monitoring",
+                "blackbox_output": "<|start_header_id|>assistant\n\nIssues management.",
+                "ground_truth": "Issues management",
+                "options": "['Public opinion', 'Issues management', 'Public affairs', 'Lobbying']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nCause-based.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nMessage-oriented advertising campaigns are focused on gathering support for a particular message or cause.",
+                "ground_truth": "Idea-oriented",
+                "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Message-oriented']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nTesla",
+                "blackbox_output": "<|start_header_id|>assistant\n\nStarbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.",
+                "ground_truth": "Starbucks",
+                "options": "['Starbucks', 'Coca-Cola', 'Wholefoods', 'Redbull']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nSituation analysis is done at the bottom of the pyramid and used to form objectives and implementation plans.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nOutcomes.",
+                "ground_truth": "Inputs",
+                "options": "['Inputs', 'Outputs', 'Outtakes', 'Outcomes']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nViolence.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nWorkplace violence.",
+                "ground_truth": "workplace violence",
+                "options": "['workplace violence', 'organizational misdeeds', 'megadamage', 'crisis management']"
+            },
+            {
+                "model_output": "Psychographics refers to the study of consumer behavior based on attitudes, interests, and opinions.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nindividual values, lifestyles and characteristics.",
+                "ground_truth": "individual values, lifestyles and characteristics",
+                "options": "['individual values, lifestyles and characteristics', 'individual sex, age, race and income statistics', 'potential influence', 'all of the above']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\n1922.\"",
+                "blackbox_output": "1922.",
+                "ground_truth": "1922",
+                "options": "['1917', '1922', '1925', '1927']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nUnderstanding the target audience and objectives for the tuition savings program.\"",
+                "blackbox_output": "Conduct a situation analysis to gain a better understanding of the issue.",
+                "ground_truth": "Conduct a situation analysis to gain a better understanding of the issue.",
+                "options": "['Research pricing and development costs for different services.', \"Develop a survey to discover which factors impact families' savings.\", 'Conduct a situation analysis to gain a better understanding of the issue.', 'Hold a focus group to determine which messages are most effective for the program.']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nInoculation\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nDownplaying.",
+                "ground_truth": "downplaying",
+                "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nAppeal to authority.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nProduct-oriented.",
+                "ground_truth": "Result-oriented",
+                "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Result-oriented']"
+            },
+            {
+                "model_output": "Persuasive communication is most effective in forming or changing predispositions toward an issue.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nInterpersonal communication is most effective in forming or changing predispositions toward an issue. This is because interpersonal communication involves direct, personal interaction between individuals, allowing for a deeper level of understanding, empathy, and emotional connection. It enables individuals to share personal experiences, values, and perspectives, which can lead to more meaningful and lasting changes in attitudes and predispositions.",
+                "ground_truth": "Media",
+                "options": "['Interpersonal', 'Media', 'Group', 'Public']"
+            },
+            {
+                "model_output": "A book launch would be a marketing tactic.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nEvent.",
+                "ground_truth": "Event",
+                "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nDuring the planning phase, pre-testing of strategy and tactics should be carried out to ensure that the communication efforts are effective and aligned with the organization's goals.\"",
+                "blackbox_output": "Step 1.",
+                "ground_truth": "3",
+                "options": "['1', '2', '3', '4']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nResource constraints and stakeholder expectations.\"",
+                "blackbox_output": "Strategy and evaluation.",
+                "ground_truth": "Research and evaluation",
+                "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+            },
+            {
+                "model_output": "\"Progressive Era.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nThe Booming Twenties Era, 1919 - 1929.",
+                "ground_truth": "Seedbed Era, 1900 ' 1917",
+                "options": "['Postwar Era, 1945 - 1965', 'Roosevelt Era, 1930 - 1945', 'Booming Twenties Era, 1919 - 1929', \"Seedbed Era, 1900 ' 1917\"]"
+            },
+            {
+                "model_output": "Shifting the blame to the company's general manager.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nDenial.",
+                "ground_truth": "denial",
+                "options": "['denial', 'evasion of responsibility', 'reducing the offensiveness', 'corrective action']"
+            },
+            {
+                "model_output": "Transactional Writing",
+                "blackbox_output": "<|start_header_id|>assistant\n\nMedia writing.",
+                "ground_truth": "Promotional writing",
+                "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+            }
+        ]
     },
     "wrt_blackbox": {
         "exact_match": 0.00909090909090909,
-        "f1_score_token_agreement": 0.12704383563040111,
+        "f1_score_token_agreement": 0.12085481926985354,
         "rouge_scores": {
-            "rouge1": 0.2619227351642325,
-            "rouge2": 0.15338491927538084,
-            "rougeL": 0.2560684219246714
+            "rouge1": 0.22959260161798759,
+            "rouge2": 0.13578831103072467,
+            "rougeL": 0.22280332887722284
         },
-        "bleu_score": 0.03192419998914551,
-        "sbert_similarity": 0.43811658739366316
+        "bleu_score": 0.029484851972136166,
+        "sbert_similarity": 0.37858740253881973
     }
 }

@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.06363636363636363,
-        "f1_score_token_agreement": 0.12643628956679479,
-        "f1_score_ranking": 0.4426813098120604,
+        "exact_match": 0.00909090909090909,
+        "f1_score_token_agreement": 0.09839727763661135,
+        "f1_score_ranking": 0.4275057818893435,
         "accuracy_ranking": 0.44545454545454544,
         "rouge_scores": {
-            "rouge1": 0.15540106574192686,
-            "rouge2": 0.030112517991208624,
-            "rougeL": 0.1516275259092987
+            "rouge1": 0.16256808355063454,
+            "rouge2": 0.03479789216631322,
+            "rougeL": 0.15784438012102092
         },
-        "bleu_score": 0.015733147149703797,
-        "sbert_similarity": 0.3696503730152141
+        "bleu_score": 0.011668141107241445,
+        "sbert_similarity": 0.36683879255063156,
+        "agreement_score": 0.45454545454545453,
+        "model_ground_truth_match": 0.44545454545454544,
+        "blackbox_ground_truth_match": 0.5636363636363636,
+        "both_ground_truth_match": 0.33636363636363636,
+        "agreement_samples": [
+            {
+                "model_output": "Viral marketing.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nViral campaigns.",
+                "ground_truth": "Viral campaigns",
+                "options": "['Fan pages', 'Street activities', 'Grassroots marketing', 'Viral campaigns']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nCrisis management.\"",
+                "blackbox_output": "When an organization's trading is interrupted.",
+                "ground_truth": "It happens suddenly.",
+                "options": "['A gap between corporate and stakeholder expectations.', \"When an organization's trading is interrupted.\", 'Can be avoided with constant monitoring and relationship building.', 'It happens suddenly.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nTailor the news releases to fit local interests and issues.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nLocalize the news releases for audiences in your geography.",
+                "ground_truth": "Localize the news releases for audiences in your geography.",
+                "options": "['Use your relationships with local donors to gain coverage.', 'Localize the news releases for audiences in your geography.', \"Pitch the news releases as written, but include a quote from your chapter's executive director.\", 'Remind editors that your organization is a national, prominent non-profit to which their publisher donates.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nTesla",
+                "blackbox_output": "<|start_header_id|>assistant\n\nStarbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.",
+                "ground_truth": "Starbucks",
+                "options": "['Starbucks', 'Coca-Cola', 'Wholefoods', 'Redbull']"
+            },
+            {
+                "model_output": "Business-to-Business (B2B) communications.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nBusiness and commercial areas.",
+                "ground_truth": "business and commercial areas",
+                "options": "['government', 'business and commercial areas', 'health care and hospitals', 'public relations firms']"
+            },
+            {
+                "model_output": "Gathering existing data and information from sources such as reports, publications, and databases.",
+                "blackbox_output": "Examining public records.",
+                "ground_truth": "Examining public records",
+                "options": "['Conducting a content analysis', 'Conducting a survey', 'Observing people', 'Examining public records']"
+            },
+            {
+                "model_output": "Copyright law",
+                "blackbox_output": "<|start_header_id|>assistant\n\nCopyright and trademark law.",
+                "ground_truth": "copyright and trademark law",
+                "options": "['libel and publication regulations', 'access and deregulation', 'Securities and Exchange Commission', 'copyright and trademark law']"
+            },
+            {
+                "model_output": "Public relations activities are most common to political campaigns because they focus on raising the public's awareness about a particular person in hopes they will either support or not support the person.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nPerson-oriented advertising.",
+                "ground_truth": "Person-oriented advertising",
+                "options": "['Product-oriented advertising', 'Idea-oriented advertising', 'Person-oriented advertising', 'Platform-oriented advertising']"
+            },
+            {
+                "model_output": "Violence",
+                "blackbox_output": "<|start_header_id|>assistant\n\nWorkplace violence.",
+                "ground_truth": "workplace violence",
+                "options": "['workplace violence', 'organizational misdeeds', 'megadamage', 'crisis management']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nForming objectives and implementation plans.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nOutcomes.",
+                "ground_truth": "Inputs",
+                "options": "['Inputs', 'Outputs', 'Outtakes', 'Outcomes']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "Awareness.",
+                "blackbox_output": "<|start_header_id|>assistant\n\npenetration",
+                "ground_truth": "penetration",
+                "options": "['participation', 'penetration', 'distribution', 'identification']"
+            },
+            {
+                "model_output": "Planning stage.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nDefining the program.",
+                "ground_truth": "Planning the program",
+                "options": "['Defining the program', 'Planning the program', 'Taking action and implementing ideas', 'Evaluation of the program']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nApproximately 75%.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nOne-quarter.",
+                "ground_truth": "Two thirds",
+                "options": "['One-quarter', 'One-half', 'Two thirds', 'Almost all']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nAn idea from Kantian ethics is that moral principles should be universal and applicable in all situations, regardless of the consequences.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nPeople should be treated as an end, not a means to an end.",
+                "ground_truth": "People should be treated as an end, not a means to an end.",
+                "options": "['What is right and what is wrong are predetermined.', 'People should be treated as an end, not a means to an end.', 'The greatest good for the greatest number.', 'Those better off should give to people who are not as well off.']"
+            },
+            {
+                "model_output": "Focus groups can provide deep insights into participant attitudes and behaviors.",
+                "blackbox_output": "It is an example of a formal research tool for practitioners.",
+                "ground_truth": "The findings generate qualitative data that can be used to develop surveys.",
+                "options": "['The participants should be selected at random.', 'It is an example of a formal research tool for practitioners.', 'The information can be generalized to describe a larger population.', 'The findings generate qualitative data that can be used to develop surveys.']"
+            },
+            {
+                "model_output": "Impact assessment",
+                "blackbox_output": "<|start_header_id|>assistant\n\nthe number who change attitudes and opinions",
+                "ground_truth": "the number who change attitudes and opinions",
+                "options": "['the quality of the messages and activities', 'the number who change attitudes and opinions', 'the number who responded to communications', 'the number of messages and activities implemented']"
+            },
+            {
+                "model_output": "To stay relevant and effective in their counsel, as organizational needs and external environments can change rapidly.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nto interpret trends for management",
+                "ground_truth": "to interpret trends for management",
+                "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nAttitudinal measurement.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nConducting a pre and post analysis of constituents' opinions.",
+                "ground_truth": "conducting a pre and post analysis of constituents' opinions",
+                "options": "['preparing a content analysis of media coverage', 'studying the content of blog postings about your issue', 'analyzing pre and post sales reports for changes in sales', \"conducting a pre and post analysis of constituents' opinions\"]"
+            },
+            {
+                "model_output": "News articles.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nBusiness writing.",
+                "ground_truth": "Media writing",
+                "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+            },
+            {
+                "model_output": "Initiate a well-researched and balanced blog that presents the overwhelming evidence of the health benefits of fluoridated water, while also addressing the concerns of the activists and encouraging a constructive dialogue.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nWrite the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+            }
+        ]
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.09349819527584616,
+        "exact_match": 0.01818181818181818,
+        "f1_score_token_agreement": 0.1437877152074225,
         "rouge_scores": {
-            "rouge1": 0.2578911957807465,
-            "rouge2": 0.14272435981579418,
-            "rougeL": 0.253520607636833
+            "rouge1": 0.2819937043894964,
+            "rouge2": 0.1701658458409473,
+            "rougeL": 0.2761661977840251
         },
-        "bleu_score": 0.017436674646613966,
-        "sbert_similarity": 0.4182772610336542
+        "bleu_score": 0.03224060764079435,
+        "sbert_similarity": 0.4228025264360688
     }
 }

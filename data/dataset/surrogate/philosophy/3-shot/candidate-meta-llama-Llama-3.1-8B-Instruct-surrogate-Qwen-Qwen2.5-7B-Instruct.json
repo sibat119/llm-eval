@@ -1,26 +1,154 @@
 {
     "wrt_gt": {
-        "exact_match": 0.01929260450160772,
-        "f1_score_token_agreement": 0.12052239155266511,
-        "f1_score_ranking": 0.4533917286036248,
-        "accuracy_ranking": 0.4630225080385852,
+        "exact_match": 0.012861736334405145,
+        "f1_score_token_agreement": 0.11432637431631543,
+        "f1_score_ranking": 0.37818694340220005,
+        "accuracy_ranking": 0.3890675241157556,
         "rouge_scores": {
-            "rouge1": 0.16135797438860688,
-            "rouge2": 0.04940019407173152,
-            "rougeL": 0.15140058947588533
+            "rouge1": 0.15550537336274986,
+            "rouge2": 0.04643409169492945,
+            "rougeL": 0.14229088810984267
         },
-        "bleu_score": 0.028196793945031863,
-        "sbert_similarity": 0.3362237874723947
+        "bleu_score": 0.02589912385123147,
+        "sbert_similarity": 0.31115104447020114,
+        "agreement_score": 0.4212218649517685,
+        "model_ground_truth_match": 0.3890675241157556,
+        "blackbox_ground_truth_match": 0.5337620578778135,
+        "both_ground_truth_match": 0.2572347266881029,
+        "agreement_samples": [
+            {
+                "model_output": "unmoved mover.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nGod",
+                "ground_truth": "God",
+                "options": "['the universe', 'God', 'nature', 'an infinite series']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nnot objective but subjective.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nentirely subjective",
+                "ground_truth": "entirely subjective",
+                "options": "['entirely subjective', 'unchangeable', 'entirely objective', 'unknown']"
+            },
+            {
+                "model_output": "<Prompt_start_header_id>assistant\n\ndesigned by a creator.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nmore natural.",
+                "ground_truth": "greater and grander",
+                "options": "['simpler', 'more natural', 'older', 'greater and grander']"
+            },
+            {
+                "model_output": "\"arbitrary or capricious.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\narbitrary.",
+                "ground_truth": "arbitrary",
+                "options": "['well supported', 'unclear', 'unknowable', 'arbitrary']"
+            },
+            {
+                "model_output": "\"they can derive moral obligations from it.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nthey will disagree morally only if they disagree about the facts of the case.",
+                "ground_truth": "none of the above.",
+                "options": "['they will share all the same moral opinions.', 'they will disagree morally only if they disagree about the facts of the case.', 'they will disagree morally only if they have different inclinations.', 'none of the above.']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\npursues pleasure without harming his soul.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nis unconcerned with death.",
+                "ground_truth": "is unconcerned with death.",
+                "options": "['yearns for the end of life.', 'fears the cessation of life.', 'is unconcerned with death.', 'realizes that death is an illusion.']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\nthe majority.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nthe majority",
+                "ground_truth": "the majority",
+                "options": "['the majority', 'the king', 'the judges', 'his own will']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\ndivine revelation.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nPleasure exists for the sake of operation.",
+                "ground_truth": "pleasure exists for the sake of operation.",
+                "options": "['pleasure exists for its own sake.', 'pleasure exists for the sake of operation.', 'operation exists for the sake of pleasure.', 'both b and c.']"
+            },
+            {
+                "model_output": "\"both a and b.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nBaier argues that moral rules must be applied to everyone alike in the absence of morally relevant differences.",
+                "ground_truth": "must applied to everyone alike in the absence of morally relevant differences.",
+                "options": "['always must be applied to everyone alike.', 'must applied to everyone alike in the absence of morally relevant differences.', 'only apply to some members of a group.', 'are the same in every society.']"
+            },
+            {
+                "model_output": "whether the action respects the integrity of the individuals involved.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nwhether the moral rule forbidding it is a genuine moral rule.",
+                "ground_truth": "whether the moral rule forbidding it is a genuine moral rule.",
+                "options": "['whether it is forbidden by a moral rule of one\u2019s group.', 'whether the moral rule forbidding it is a genuine moral rule.', 'whether it is forbidden by a law.', 'whether one can approve of it.']"
+            }
+        ],
+        "disagreement_samples": [
+            {
+                "model_output": "<|start_header_id|>assistant\n\na ticket in a lottery where each ticket has a certain chance of winning, but you must first buy the ticket to have any chance.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nthe laws of a nation.",
+                "ground_truth": "natural laws.",
+                "options": "['natural laws.', 'the laws of a nation.', 'the commands of a dictator.', 'our emotions.']"
+            },
+            {
+                "model_output": "\"ideals without obligations.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\namoralists.",
+                "ground_truth": "fanatics.",
+                "options": "['fanatics.', 'amoralists.', 'immoralists.', 'maniacs.']"
+            },
+            {
+                "model_output": "\"<|start_header_id|>assistant\n\npractical importance.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nmoral virtue.",
+                "ground_truth": "moral virtue.",
+                "options": "['pleasure.', 'desire.', 'moral virtue.', 'piety.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nideas.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nonly sensations existing in our minds.",
+                "ground_truth": "only sensations existing in our minds",
+                "options": "['illusions', 'physical objects', 'only things existing apart from our minds', 'only sensations existing in our minds']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nutility is the ultimate measure.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nWe should always calculate the expected consequences of our action.",
+                "ground_truth": "we should depend on rules of thumb derived from the principle of utility.",
+                "options": "['we should always calculate the expected consequences of our action.', 'we should depend on rules of thumb derived from the principle of utility.', 'we should consult tradition.', 'we should consult scripture.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nshould instill an understanding of moral principles and their importance in guiding behavior.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nwill produce someone who does the right thing simply because it is right.",
+                "ground_truth": "will produce someone who does the right thing simply because it is right.",
+                "options": "['will make no use of pleasure or pain as sanctions.', 'will be based entirely on the use of pleasure and pain as sanctions.', 'will produce someone who does the right thing out of deference to authority.', 'will produce someone who does the right thing simply because it is right.']"
+            },
+            {
+                "model_output": "\"is derived from social conventions and customs.\"",
+                "blackbox_output": "<|start_header_id|>assistant\n\nhas value solely because it is useful to society.",
+                "ground_truth": "has value solely because it is useful to society.",
+                "options": "['has no value.', 'has value in part because it is useful to society.', 'has value solely because it is useful to society.', 'has value solely because it is useful to the agent.']"
+            },
+            {
+                "model_output": "to clarify the nature of moral language and its evaluative aspects.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nprovide an account of what makes right actions right.",
+                "ground_truth": "make ethical questions clear.",
+                "options": "['provide an account of what makes right actions right.', 'establish which things are good in themselves.', 'develop a theory of good moral character.', 'make ethical questions clear.']"
+            },
+            {
+                "model_output": "<|start_header_id|>assistant\n\nour perception is inherently subjective and may not align with an objective reality outside our individual experiences.",
+                "blackbox_output": "<|start_header_id|>assistant\n\nWhatever we appeal to in order to prove that our perspective is right itself would be part of the standard we use in evaluating that perspective.",
+                "ground_truth": "whatever we appeal to in order to prove that our perspective is right itself would be part of the standard we use in evaluating that perspective.",
+                "options": "['we know whether our internal perspective is correct only by comparing it with an objective, external perspective (the \"real\" world).', 'whatever we appeal to in order to prove that our perspective is right itself would be part of the standard we use in evaluating that perspective.', 'scientific research that reveals facts about the world would cause us to challenge our perceptions in a dreamworld of our own making.', 'without limiting our perspective to an internal dreamworld, we cannot achieve any objective, external knowledge of the real world.']"
+            },
+            {
+                "model_output": "Gauthier claims that moral agreements that are equally favorable to all parties are desirable because they ensure mutual benefit and cooperation.",
+                "blackbox_output": "<|start_header_id|>assistant\n\ninvite the stable compliance of everyone.",
+                "ground_truth": "satisfy our desire for fairness.",
+                "options": "['satisfy our desire for fairness.', 'satisfy the conceptual constraint against exploitation.', 'maximize the productivity of society.', 'invite the stable compliance of everyone.']"
+            }
+        ]
     },
     "wrt_blackbox": {
         "exact_match": 0.0,
-        "f1_score_token_agreement": 0.1474387206587378,
+        "f1_score_token_agreement": 0.13851934547193015,
         "rouge_scores": {
-            "rouge1": 0.258310332613522,
-            "rouge2": 0.1528617334555954,
-            "rougeL": 0.2473049384179244
+            "rouge1": 0.26466905244589484,
+            "rouge2": 0.15887808661914193,
+            "rougeL": 0.25306307267033523
         },
-        "bleu_score": 0.029613868982812458,
-        "sbert_similarity": 0.3979999195347118
+        "bleu_score": 0.02640047618619629,
+        "sbert_similarity": 0.4006577391129502
     }
 }
