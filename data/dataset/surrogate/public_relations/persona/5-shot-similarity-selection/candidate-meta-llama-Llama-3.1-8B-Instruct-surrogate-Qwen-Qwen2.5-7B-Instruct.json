@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.0475805167978883,
+        "f1_score_ranking": 0.4183451137629035,
+        "accuracy_ranking": 0.42727272727272725,
+        "rouge_scores": {
+            "rouge1": 0.07470510928507572,
+            "rouge2": 0.007138379643685216,
+            "rougeL": 0.06767218721475125
+        },
+        "bleu_score": 0.005147566889686189,
+        "sbert_similarity": 0.3648032662628049,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.6272727272727273,
+            "model_ground_truth_match": 0.7090909090909091,
+            "blackbox_ground_truth_match": 0.5636363636363636,
+            "both_ground_truth_match": 0.4818181818181818,
+            "agreement_samples": [
+                {
+                    "model_output": "Open-ended",
+                    "blackbox_output": "Open-ended.",
+                    "ground_truth": "Open-ended",
+                    "options": "['Likert scale', 'Multiple choice', 'Open-ended', 'Yes/No']"
+                },
+                {
+                    "model_output": "Media tour",
+                    "blackbox_output": "Media tour.",
+                    "ground_truth": "Media tour",
+                    "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
+                },
+                {
+                    "model_output": "conducting a pre and post analysis of constituents' opinions.",
+                    "blackbox_output": "Conducting a pre and post analysis of constituents' opinions.",
+                    "ground_truth": "conducting a pre and post analysis of constituents' opinions",
+                    "options": "['preparing a content analysis of media coverage', 'studying the content of blog postings about your issue', 'analyzing pre and post sales reports for changes in sales', \"conducting a pre and post analysis of constituents' opinions\"]"
+                },
+                {
+                    "model_output": "to interpret trends for management",
+                    "blackbox_output": "to interpret trends for management",
+                    "ground_truth": "to interpret trends for management",
+                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+                },
+                {
+                    "model_output": "2",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "Viral campaigns",
+                    "blackbox_output": "Viral campaigns.",
+                    "ground_truth": "Viral campaigns",
+                    "options": "['Fan pages', 'Street activities', 'Grassroots marketing', 'Viral campaigns']"
+                },
+                {
+                    "model_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                },
+                {
+                    "model_output": "Impact",
+                    "blackbox_output": "Impact.",
+                    "ground_truth": "Impact",
+                    "options": "['Implementation', 'Impact', 'Attitude change', 'Preparation']"
+                },
+                {
+                    "model_output": "Grunig and Hunt (1984)",
+                    "blackbox_output": "Grunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.",
+                    "ground_truth": "Grunig and Hunt (1984)",
+                    "options": "['Cutlip (2006)', 'Leitch and Neilson (2001)', 'Amaral and Phillips (2010)', 'Grunig and Hunt (1984)']"
+                },
+                {
+                    "model_output": "Analysis",
+                    "blackbox_output": "Analysis.",
+                    "ground_truth": "Analysis",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Arthur Page",
+                    "blackbox_output": "Doris Fleischman.",
+                    "ground_truth": "Arthur Page",
+                    "options": "['Carl Byoir', 'Edward Bernays', 'Doris Fleischman', 'Arthur Page']"
+                },
+                {
+                    "model_output": "Personal",
+                    "blackbox_output": "Abstract.",
+                    "ground_truth": "Personal",
+                    "options": "['Formal', 'Abstract', 'Personal', 'Objective']"
+                },
+                {
+                    "model_output": "opinion change",
+                    "blackbox_output": "coorientation",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
+                },
+                {
+                    "model_output": "2,800",
+                    "blackbox_output": "There are approximately 600 regional newspapers in the UK.",
+                    "ground_truth": "2,800",
+                    "options": "['270', '600', '2,800', '5,200']"
+                },
+                {
+                    "model_output": "Nonprofits",
+                    "blackbox_output": "Politics.",
+                    "ground_truth": "Politics",
+                    "options": "['Politics', 'Retail business', 'Automotive sales', 'Nonprofits']"
+                },
+                {
+                    "model_output": "Quadrupled",
+                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
+                    "ground_truth": "Tripled",
+                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                },
+                {
+                    "model_output": "legitimacy",
+                    "blackbox_output": "reliability",
+                    "ground_truth": "legitimacy",
+                    "options": "['legitimacy', 'identity', 'reliability', 'agency']"
+                },
+                {
+                    "model_output": "Strategy and implementation",
+                    "blackbox_output": "Strategy and evaluation.",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "Chanel",
+                    "blackbox_output": "Givenchy",
+                    "ground_truth": "Chanel",
+                    "options": "['Dior', 'Givenchy', 'Chanel', 'Lacroix']"
+                },
+                {
+                    "model_output": "Business writing",
+                    "blackbox_output": "Media writing.",
+                    "ground_truth": "Promotional writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.41818181818181815,
+            "model_ground_truth_match": 0.42727272727272725,
+            "blackbox_ground_truth_match": 0.5636363636363636,
+            "both_ground_truth_match": 0.2818181818181818,
+            "agreement_samples": [
+                {
+                    "model_output": "The predicted response based on the pattern observed in the previous examples is:\n\nAssistant\n\nStrategic planning",
+                    "blackbox_output": "planning.",
+                    "ground_truth": "planning",
+                    "options": "['identification', 'evaluation', 'implementation', 'planning']"
+                },
+                {
+                    "model_output": "\"London.\"\n\nGiven the previous responses, it's reasonable to predict that the respondent is familiar with British media history and likely to provide specific, factual answers. The capital city, London, is often associated with the origins of significant cultural and historical events in Britain, including the first British newspaper.",
+                    "blackbox_output": "London.",
+                    "ground_truth": "Oxford",
+                    "options": "['London', 'Oxford', 'Manchester', 'Edinburgh']"
+                },
+                {
+                    "model_output": "In recent years, social media has had the greatest impact on communication strategies and crisis management in public relations, as these areas require rapid response and engagement with a wide audience.",
+                    "blackbox_output": "Politics.",
+                    "ground_truth": "Politics",
+                    "options": "['Politics', 'Retail business', 'Automotive sales', 'Nonprofits']"
+                },
+                {
+                    "model_output": "\"Two examples of an evaluation of outcome could be the number who changed attitudes and opinions, and the impact of the program on stakeholders.\"",
+                    "blackbox_output": "Change in attitude and Placement of message.",
+                    "ground_truth": "Change in attitude",
+                    "options": "['Change in attitude', 'Placement of message', 'Distribution of message', 'Size of attentive audience']"
+                },
+                {
+                    "model_output": "\"Message-oriented advertising campaigns.\"\n\nGiven the pattern in the previous responses, it seems the respondent is familiar with the terminology related to advertising campaigns. Since the question asks which is NOT one of the three basic types of persuasive advertising campaigns, and considering the format of the previous answers, the predicted response would be a term that is commonly used but not listed as one of the three basic types. Message-oriented advertising campaigns are typically considered one of the main types, so it makes sense to predict that the other two would be different from this option.",
+                    "blackbox_output": "Product-oriented.",
+                    "ground_truth": "Result-oriented",
+                    "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Result-oriented']"
+                },
+                {
+                    "model_output": "Based on the examples provided, the predicted response to the new question \"Which type of writing employs the pyramid structure?\" would be:\n\n\"News articles.\"\n\nThis prediction is based on the pattern of responses indicating that the person tends to provide specific categories or models of writing for different types of content. Since newsletters were categorized as media writing and organizational publications were described in terms of their function, it's reasonable to infer that news articles would be similarly categorized based on their structural characteristics.",
+                    "blackbox_output": "Business writing.",
+                    "ground_truth": "Media writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                },
+                {
+                    "model_output": "\"It is not clear what the four categories are, but based on Coombs' work, the categories typically include informational, problem-solving, interactive, and defensive strategies. Without knowing the specific options provided in the new question, it's challenging to identify which one might not be correct. However, if we were to guess based on common exclusions, something like 'coercive' might fit as it doesn't align with the generally cooperative nature of crisis communication strategies.\"",
+                    "blackbox_output": "Downplaying.",
+                    "ground_truth": "downplaying",
+                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
+                },
+                {
+                    "model_output": "\"Misinformation.\"",
+                    "blackbox_output": "Staying abreast of changing technology.",
+                    "ground_truth": "Staying abreast of changing technology",
+                    "options": "['Representing clients using new social media environments', 'Finding stable, cost-effective Internet providers', 'Training staff to use social media', 'Staying abreast of changing technology']"
+                },
+                {
+                    "model_output": "Based on the pattern of responses provided, the predicted response does not seem to follow the same format as the previous examples (which include specific numbers or categories). Given the nature of the question, which asks for a specific number of regional newspapers in the UK, a more appropriate response would be an estimated number or a range, rather than a header ID.\n\nPredicted Response: \"Approximately 200-300.\"\n\nThis prediction is based on the assumption that the respondent might provide a general estimate rather than a specific number from the examples given.",
+                    "blackbox_output": "There are approximately 600 regional newspapers in the UK.",
+                    "ground_truth": "2,800",
+                    "options": "['270', '600', '2,800', '5,200']"
+                },
+                {
+                    "model_output": "\"A situation where individuals refrain from expressing opinions on a controversial issue because they perceive their views to be in the minority and therefore potentially unpopular.\"",
+                    "blackbox_output": "When people hide their opinions if they do not agree with the majority.",
+                    "ground_truth": "When victims of abuse remain silent about the abuse",
+                    "options": "['When victims of abuse remain silent about the abuse', 'When people hide their opinions if they do not agree with the majority', 'When people hide their opinions if they are in disagreement with their close peers or family members', 'When public relations uses opinion poll results to generate support for a particular issue']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Approximately 50% of nonprofit sector practitioners conduct audience research.\n\nThis prediction is based on the pattern of providing approximate percentages or proportions in the previous responses, such as \"half\" in Example 2 and \"80%\" in Example 4. Given the nature of the new question, a similar approximate percentage is likely to be the most appropriate and expected response.",
+                    "blackbox_output": "One-quarter.",
+                    "ground_truth": "Two thirds",
+                    "options": "['One-quarter', 'One-half', 'Two thirds', 'Almost all']"
+                },
+                {
+                    "model_output": "Predicted Response: Conducting targeted messaging and advocacy efforts.",
+                    "blackbox_output": "Interpersonal communication is most effective in forming or changing predispositions toward an issue. This is because interpersonal communication involves direct, personal interaction between individuals, allowing for a deeper level of understanding, empathy, and emotional connection. It enables individuals to share personal experiences, values, and perspectives, which can lead to more meaningful and lasting changes in attitudes and predispositions.",
+                    "ground_truth": "Media",
+                    "options": "['Interpersonal', 'Media', 'Group', 'Public']"
+                },
+                {
+                    "model_output": "\"Situation Analysis.\"",
+                    "blackbox_output": "Defining the program.",
+                    "ground_truth": "Planning the program",
+                    "options": "['Defining the program', 'Planning the program', 'Taking action and implementing ideas', 'Evaluation of the program']"
+                },
+                {
+                    "model_output": "Louis is using the image restoration strategy of **scapegoating**. By blaming the company's general manager for the irresponsible waste disposal practices and firing him, Louis is attempting to shift the blame away from himself and the company, thereby restoring the company's image and trying to mitigate the negative impact on the community and the company's reputation.",
+                    "blackbox_output": "Denial.",
+                    "ground_truth": "denial",
+                    "options": "['denial', 'evasion of responsibility', 'reducing the offensiveness', 'corrective action']"
+                },
+                {
+                    "model_output": "An open systems model of public relations in an organization recognizes the organization as part of a larger environment and emphasizes the importance of communication and interaction between the organization and its various publics.",
+                    "blackbox_output": "It adapts to changing organizational environments.",
+                    "ground_truth": "It adapts to changing organizational environments.",
+                    "options": "['It adapts to changing organizational environments.', 'It adopts the policy of transparency to build public trust.', 'It focuses on removing communication barriers between its business divisions.', 'It communicates with its publics frequently to effect change outside the organization.']"
+                },
+                {
+                    "model_output": "To ensure the PR strategies remain relevant and effective in addressing current and upcoming challenges and opportunities for the organization.",
+                    "blackbox_output": "to interpret trends for management",
+                    "ground_truth": "to interpret trends for management",
+                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+                },
+                {
+                    "model_output": "Predicted Response: \"Media convergence refers to the increasing overlap and integration of content, technology, and distribution across different media platforms, allowing for the sharing of information and entertainment across television, internet, mobile devices, and other mediums.\"",
+                    "blackbox_output": "Information being delivered in different formats via various digital channels.",
+                    "ground_truth": "Information being delivered in different formats via various digital channels.",
+                    "options": "['The conglomeration of media outlets into large corporations.', 'The way in which all media outlets post similar content to their competitors.', 'The many differing views and cultures expressed in modern media.', 'Information being delivered in different formats via various digital channels.']"
+                },
+                {
+                    "model_output": "\"Assessment.\"",
+                    "blackbox_output": "Analysis.",
+                    "ground_truth": "Analysis",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                },
+                {
+                    "model_output": "The most appropriate course of action is to initiate a well-crafted, evidence-based blog series that addresses the health benefits of fluoridated water, while also engaging with the concerns of the activists. This approach should include:\n\n1. **Providing Scientific Evidence**: Clearly present and explain the scientific research supporting the health benefits of fluoridated water, addressing common misconceptions and providing data to support your claims.\n\n2. **Engaging with Activists**: Actively engage with the activists through comments and social media interactions. Listen to their concerns and provide thoughtful, informed responses. This can help build trust and foster a dialogue.\n\n3. **Educating the Public**: Use the blog to educate the broader community about the importance of fluoridation, its history, and its role in public health. Highlight real-life success stories and case studies where fluoridation has made a positive impact.\n\n4. **Transparency and Openness**: Be transparent about the utility's stance and the evidence supporting it. Regularly update the blog with new information and developments related to fluoridation.\n\n5. **Collaboration with Experts**: Involve medical and dental experts in the blog content to lend credibility and authority to the arguments presented.\n\n6. **Monitoring and Adaptation**: Continuously monitor the online conversation and adapt the blog content based on feedback and new information. This shows responsiveness and a willingness to address concerns.\n\nBy taking this comprehensive approach, the utility can effectively communicate its position, address activist concerns, and ultimately promote public understanding and acceptance of fluoridated water.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                },
+                {
+                    "model_output": "\"Pre-testing\"\n\nThis prediction is based on the pattern observed in the previous responses where specific steps or phases in a process are mentioned. Since the new question refers to a step in the evaluation process, it is reasonable to predict that the response would identify a specific step, such as \"Pre-testing,\" which aligns with the format of the previous answers.",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.28,
+                "zero_agree_few_disagree": 0.35,
+                "zero_disagree_few_agree": 0.14,
+                "zero_disagree_few_disagree": 0.24
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 3.6,
+                    "blackbox_avg_token_length": 7.5,
+                    "agree_avg_combined_length": 14.0,
+                    "disagree_avg_combined_length": 6.4
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 41.0,
+                    "blackbox_avg_token_length": 7.5,
+                    "agree_avg_combined_length": 58.8,
+                    "disagree_avg_combined_length": 41.1
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.5426171460459309,
+                "zero_agree_few_disagree_cosine_distance": 0.30164883736717074,
+                "zero_disagree_few_agree_cosine_distance": 0.25769909818967185,
+                "zero_disagree_few_disagree_cosine_distance": 0.29859967716038227
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.04899909023300192,
+        "rouge_scores": {
+            "rouge1": 0.0888993089019541,
+            "rouge2": 0.017696124773433613,
+            "rougeL": 0.07434572064305044
+        },
+        "bleu_score": 0.005152784216691929,
+        "sbert_similarity": 0.39593268751420757
+    }
+}
