@@ -3,7 +3,7 @@ import json
 import argparse
 import yaml
 from datasets import Dataset
-from src.utils import model_loader, metrics
+from src.utils import metrics
 from tqdm import tqdm
 import random
 import pandas as pd
@@ -141,35 +141,33 @@ def select_few_shot_examples(ds, shot: int, question: str, selection_strategy: s
     
     return selected_examples
 
-def get_few_shot_prompt(shot, ds, question, selection_strategy="random"):
-    prompt = """You are an AI trained to predict responses based on past examples. Your goal is to identify patterns in how questions are answered and then accurately predict new responses. Study these examples carefully:\n\n"""
+def get_few_shot_prompt(shot, ds, question, selection_strategy="random", prompt_id="black_box"):
     
-    # You are a mind reader tasked with predicting how someone will answer a given question. To simplify this process, here are some examples of how the person previously responded to questions on similar topics:
-    # Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses:
+    with open('data/config/surrogate_prompts.yaml', "r") as file:
+        prompts = yaml.safe_load(file)
     
+    prompt = prompts.get(prompt_id)
     # Get selected examples using the new function
     selected_examples = select_few_shot_examples(ds, shot, question, selection_strategy)
     
     # Format the examples in the prompt
+    example_str = ""
     for i, example in enumerate(selected_examples):
-        prompt += f"Example {i+1}:\n"
-        prompt += f"Question: \"{example['question']}\"\n" 
-        prompt += f"Response: \"{example['model_output']}\"\n\n"
+        example_str += f"Example {i+1}:\n"
+        example_str += f"Question: \"{example['question']}\"\n" 
+        example_str += f"Response: \"{example['model_output']}\"\n\n"
     
-    # Add the target question
-    prompt += "Based solely on these examples, predict the most likely response to this new question. Focus on identifying common patterns in how questions are analyzed and answered. Your prediction should match both the content style and format of the previous responses.\n\n"
-    prompt += f"New Question: \"{question}\"\n"
-    prompt += "Predicted Response:"
+    prompt = prompt.format(examples=example_str, question=question)
     
     return prompt
 
-def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath="", batch_size=4, cfg=None):
+def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath="", batch_size=4, cfg=None, selection_strategy="random", prompt_variation="black_box"):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     # batch_size = 2  # Adjust batch size as needed
     ds = Dataset.from_csv(dataset_path)
     # ds = ds.select(range(batch_size))
-    session = selector.select_chat_model(model_name=model_name, cfg=cfg)
-    # session = None
+    # session = selector.select_chat_model(model_name=model_name, cfg=cfg)
+    session = None
     
     response_list = []
     # Process examples in batches
@@ -178,7 +176,7 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
         
         # Create all prompts for the batch
         batch_questions = batch['question']
-        batch_prompts = [get_few_shot_prompt(shot=shot, ds=ds, question=q) for q in batch_questions]
+        batch_prompts = [get_few_shot_prompt(shot=shot, ds=ds, question=q, selection_strategy=selection_strategy, prompt_id=prompt_variation) for q in batch_questions]
         
         batch_answers = session.get_response(user_message=batch_prompts) 
         
@@ -251,6 +249,8 @@ if __name__ == "__main__":
                             help="Surrogate model name")
         parser.add_argument("--selection_strategy",type=str, default="random",
                             help="prompt examples selection strategy")
+        parser.add_argument("--prompt_variation",type=str, default="black_box",
+                            help="pick the variation of prompt")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
         parser.add_argument("--batch_size",type=int, default=16,
@@ -268,7 +268,7 @@ if __name__ == "__main__":
 
     surrogate_llm = args.surrogate
     candidate_llm  = args.candidate
-    surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, f"{args.shot}-shot-{args.selection_strategy}-selection")
+    surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, args.prompt_variation, f"{args.shot}-shot-{args.selection_strategy}-selection")
     os.makedirs(surrogate_dir, exist_ok=True)
     print(surrogate_dir)
     ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
@@ -282,6 +282,8 @@ if __name__ == "__main__":
             shot=args.shot, 
             surrogate_datapath=ds_file_name,
             batch_size=args.batch_size,
+            selection_strategy=args.selection_strategy,
+            prompt_variation=args.prompt_variation,
             cfg=config
             )
     results = compute_dual_metrics_from_csv(ds_file_name, surrogate_wo_prior_ds_path)

@@ -20,13 +20,13 @@ def load_zero_shot_results(base_path):
     
     return results
 
-def load_surrogate_results(base_path, shot=5, selection_strategy="random"):
+def load_surrogate_results(base_path, shot=5, selection_strategy="random", prompt_variation="black_box"):
     """Load surrogate results for all domains."""
     domains = ['high_school_computer_science', 'philosophy', 'public_relations']
     results = {}
     
     for domain in domains:
-        domain_path = os.path.join(base_path, 'surrogate', domain, f'{shot}-shot-{selection_strategy}-selection')
+        domain_path = os.path.join(base_path, 'surrogate', domain, prompt_variation, f'{shot}-shot-{selection_strategy}-selection')
         results[domain] = {}
         
         # Look for surrogate result files
@@ -67,7 +67,7 @@ def load_surrogate_results(base_path, shot=5, selection_strategy="random"):
     
     return results
 
-def create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="random"):
+def create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="random", prompt_variation="black_box"):
     """Create standardized metric dashboard for each domain."""
     domains = list(zero_shot_results.keys())
     metrics = ['accuracy_ranking', 'f1_score_token_agreement', 'f1_score_ranking', 'sbert_similarity', 'agreement_score', 'both_ground_truth_match']
@@ -158,13 +158,13 @@ def create_metric_dashboard(zero_shot_results, surrogate_results, selection_stra
         
         plt.suptitle(f"{domain.replace('_', ' ').title()} - Metric Dashboard", fontsize=16)
         plt.tight_layout(rect=[0, 0, 1, 0.95])
-        directory = f"data/results/{domain}"
+        directory = f"data/results/{domain}/{prompt_variation}"
         os.makedirs(directory, exist_ok=True)
         plt.savefig(f'{directory}/{selection_strategy}_metric_dashboard.png', dpi=300)
         plt.close()
         
 
-def create_agreement_analysis_plots(surrogate_results, selection_strategy="random"):
+def create_agreement_analysis_plots(surrogate_results, selection_strategy="random", prompt_variation="black_box"):
     """
     Create a figure with four subplots for agreement analysis based on our metrics.py implementation
     
@@ -211,7 +211,7 @@ def create_agreement_analysis_plots(surrogate_results, selection_strategy="rando
         
         plt.tight_layout()
         plt.subplots_adjust(top=0.92)
-        directory = f"data/results/{domain}"
+        directory = f"data/results/{domain}/{prompt_variation}"
         os.makedirs(directory, exist_ok=True)
         plt.savefig(f'{directory}/{selection_strategy}_agreement_analysis.png', dpi=300)
         plt.close()
@@ -491,16 +491,20 @@ def create_confidence_correlation_plot(domain_results):
 def main():
     # Define base path
     base_path = 'data/dataset'
+    selection_strategies = ["random", "similarity"]
+    prompt_variations = ["black_box", "persona", "pattern_recognition"]
     
-    # Load results
-    zero_shot_results = load_zero_shot_results(base_path)
-    surrogate_results = load_surrogate_results(base_path, selection_strategy="similarity")
-    
-    # Create visualizations
-    create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="similarity")
-    
-    # Create agreement analysis plots
-    create_agreement_analysis_plots(surrogate_results, selection_strategy="similarity")
+    for prompt_variation in prompt_variations:
+        for selection_strategy in selection_strategies:
+            # Load results
+            zero_shot_results = load_zero_shot_results(base_path)
+            surrogate_results = load_surrogate_results(base_path, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
+            
+            # Create visualizations
+            create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
+            
+            # Create agreement analysis plots
+            create_agreement_analysis_plots(surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
     
     print("Visualizations generated successfully!")
 
