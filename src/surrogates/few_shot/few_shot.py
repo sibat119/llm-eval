@@ -168,8 +168,8 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
     # batch_size = 2  # Adjust batch size as needed
     ds = Dataset.from_csv(dataset_path)
     # ds = ds.select(range(batch_size))
-    # session = selector.select_chat_model(model_name=model_name, cfg=cfg)
-    session = None
+    session = selector.select_chat_model(model_name=model_name, cfg=cfg)
+    # session = None
     
     response_list = []
     # Process examples in batches
