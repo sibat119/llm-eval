@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.08378140620692327,
+        "f1_score_ranking": 0.47177262807038256,
+        "accuracy_ranking": 0.48,
+        "rouge_scores": {
+            "rouge1": 0.14930726766233227,
+            "rouge2": 0.058211893115078434,
+            "rougeL": 0.12970491664866682
+        },
+        "bleu_score": 0.007943675192535407,
+        "sbert_similarity": 0.4217309258133173,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.71,
+            "model_ground_truth_match": 0.84,
+            "blackbox_ground_truth_match": 0.7,
+            "both_ground_truth_match": 0.64,
+            "agreement_samples": [
+                {
+                    "model_output": "Yes",
+                    "blackbox_output": "Yes.",
+                    "ground_truth": "Yes",
+                    "options": "['Yes', 'No', \"It's machine-dependent\", 'None of the above']"
+                },
+                {
+                    "model_output": "8",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
+                },
+                {
+                    "model_output": "Both algorithms work correctly on all input values.",
+                    "blackbox_output": "Both algorithms work correctly on all input values.",
+                    "ground_truth": "Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.",
+                    "options": "['Both algorithms work correctly on all input values.', 'Algorithm I always works correctly, but Algorithm II only works correctly when the maximum value is not the first value in the list.', 'Algorithm II always works correctly, but Algorithm I only works correctly when the maximum value is greater than or equal to -l.', 'Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.']"
+                },
+                {
+                    "model_output": "255",
+                    "blackbox_output": "255.",
+                    "ground_truth": "255",
+                    "options": "['32', '225', '255', '256']"
+                },
+                {
+                    "model_output": "seed([x])",
+                    "blackbox_output": "seed([x])",
+                    "ground_truth": "seed([x])",
+                    "options": "['choice(seq)', 'randrange ([start,] stop [,step])', 'random()', 'seed([x])']"
+                },
+                {
+                    "model_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "blackbox_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "ground_truth": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "options": "['A school allows students to bring a graphing calculator from home to complete in-class mathematics assignments.', 'A school allows students to bring a tablet computer to class every day to participate in graded quizzes.', 'A school provides a laptop or tablet computer to all students enrolled at the school.', 'A school recommends that all students purchase a computer with as much processing speed as possible so that projects run faster.']"
+                },
+                {
+                    "model_output": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "blackbox_output": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "ground_truth": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "options": "['Express the simulation software using both recursive and iterative algorithms. Compare the results of the recursive algorithm to those of the iterative algorithm.', \"Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.\", 'Remove any unnecessary details from the model. Compare the running times of the original simulation and the simplified simulation.', 'Run the simulation software on multiple devices. Compare the results obtained from each of the devices.']"
+                },
+                {
+                    "model_output": "24",
+                    "blackbox_output": "24.",
+                    "ground_truth": "24",
+                    "options": "['8', '16', '24', '32']"
+                },
+                {
+                    "model_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "blackbox_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "ground_truth": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code",
+                    "options": "['Managing specification files created as part of the development process', 'Running and testing the executable created by the programmer', 'Tracking older versions of the software in case an error is found and the software needs to be reverted to an earlier form', 'Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code']"
+                },
+                {
+                    "model_output": "isupper()",
+                    "blackbox_output": "isupper()",
+                    "ground_truth": "isupper()",
+                    "options": "['isupper()', 'join(seq)', 'len(string)', 'ljust(width[, fillchar])']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Error",
+                    "blackbox_output": "abcd",
+                    "ground_truth": "abcd",
+                    "options": "[\"( 'abcd', 786 , 2.23, 'john', 70.2 )\", 'abcd', 'Error', 'None of the above.']"
+                },
+                {
+                    "model_output": "Changing line 3 to b \u2190 10",
+                    "blackbox_output": "Changing line 7 to a \u2190 b + 10. \n\nThis is because the condition in the IF statement is a = 0, and changing line 7 to a \u2190 b + 10 does not affect the value of 'a' when the condition is true or false, it only changes the value of 'a' inside the ELSE block, but the ELSE block is not executed when the condition is true.",
+                    "ground_truth": "Changing line 3 to b \u2190 10",
+                    "options": "['Changing line 3 to b \u2190 10', 'Changing line 3 to a \u2190 b + 10', 'Changing line 7 to b \u2190 20', 'Changing line 7 to a \u2190 b + 10']"
+                },
+                {
+                    "model_output": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "blackbox_output": "The method should be written so as to return the index of every occurrence of a larger value. This is because the problem specification does not indicate what should be done if there are multiple values larger than the given item, and returning all indices is a reasonable and useful default behavior.",
+                    "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
+                },
+                {
+                    "model_output": "A function that sorts values in a column or row.",
+                    "blackbox_output": "A function that averages numeric values in a column or row. This function would allow you to identify values that are significantly higher or lower than the average, indicating potential data entry errors.",
+                    "ground_truth": "A function that sorts values in a column or row",
+                    "options": "['A function that averages numeric values in a column or row', 'A function that counts the values in a column or row', 'A function that rounds a numeric value', 'A function that sorts values in a column or row']"
+                },
+                {
+                    "model_output": "II and III only",
+                    "blackbox_output": "I and III only.",
+                    "ground_truth": "II and III only",
+                    "options": "['II only', 'I and II only', 'I and III only', 'II and III only']"
+                },
+                {
+                    "model_output": "The company will be able to provide a human representative for any incoming call.",
+                    "blackbox_output": "Customers are likely to spend less time listening to information not relevant to their issue.",
+                    "ground_truth": "The company will be able to provide a human representative for any incoming call.",
+                    "options": "['Human representatives will not be needed to respond to some inquiries.', 'The company will be able to provide a human representative for any incoming call.', 'Customers are likely to spend less time listening to information not relevant to their issue.', 'Customers will be unable to mistakenly select the incorrect department for their particular issue.']"
+                },
+                {
+                    "model_output": "The simulation will not produce usable results because actual customer data are not available.",
+                    "blackbox_output": "The bank can use the simulation to investigate these two options without causing inconvenience for customers.",
+                    "ground_truth": "The simulation will not produce usable results because actual customer data are not available.",
+                    "options": "['The bank can incorporate other factors, such as the number of tellers, in the simulation.', 'The bank can use the simulation to investigate these two options without causing inconvenience for customers.', 'The bank may consider new alternatives based on the simulation results.', 'The simulation will not produce usable results because actual customer data are not available.']"
+                },
+                {
+                    "model_output": "Which items listed in the database are not currently in the store",
+                    "blackbox_output": "The total number of shoes sold in a particular month cannot be determined from the database, as it does not contain any sales data.",
+                    "ground_truth": "Which items listed in the database are not currently in the store",
+                    "options": "['Which items listed in the database are not currently in the store', 'Which colors are more popular among men than women', 'Which type of footwear is most popular among adults', 'The total number of shoes sold in a particular month']"
+                },
+                {
+                    "model_output": "10",
+                    "blackbox_output": "250. \n\nIn a binary search, the list is divided in half at each step, so the maximum number of elements examined is the height of a binary tree with 500 elements. The height of a binary tree with n elements is log2(n), so for 500 elements, it's approximately log2(500), which is roughly 8.965. Since we can't examine a fraction of an element, we round up to the nearest whole number, but in this case, we're looking for the closest answer, and 250 is the closest integer to 8.965 * 50 (since each level of the tree is roughly twice the previous one).",
+                    "ground_truth": "10",
+                    "options": "['10', '50', '250', '500']"
+                },
+                {
+                    "model_output": "Both of the above.",
+                    "blackbox_output": "It supports automatic garbage collection and can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java.",
+                    "ground_truth": "Both of the above.",
+                    "options": "['It supports automatic garbage collection.', 'It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java.', 'Both of the above.', 'None of the above.']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.52,
+            "model_ground_truth_match": 0.48,
+            "blackbox_ground_truth_match": 0.7,
+            "both_ground_truth_match": 0.42,
+            "agreement_samples": [
+                {
+                    "model_output": "\"**In Python 3, the `**` operator performs exponential (power) calculation on operands.**\"\n\nThis response follows the pattern of directly answering the question with the correct syntax or concept, matching the format and style of the previous examples provided.",
+                    "blackbox_output": "**",
+                    "ground_truth": "**",
+                    "options": "['**', '//', 'is', 'not in']"
+                },
+                {
+                    "model_output": "\"Chemistry.\"\n\nExplanation: The question is asking for the element at index 1 of the list `['a', 'Chemistry', 0, 1]`. In Python, list indexing starts at 0, so the element at index 1 is `'Chemistry'`. However, following the pattern of providing a direct and concise answer similar to the examples given, I have responded with \"Chemistry\" as the expected output.",
+                    "blackbox_output": "Chemistry",
+                    "ground_truth": "Chemistry",
+                    "options": "['a', 'Chemistry', '0', '1']"
+                },
+                {
+                    "model_output": "\"return low + (int)(Math.random() * (high - low + 1));\"\n\nThis predicted response follows the pattern seen in the provided examples by providing a specific code snippet that meets the requirements of the question. It also adheres to the format used in the previous responses, which typically include a concise and direct answer.",
+                    "blackbox_output": "(int) (Math.random() * (high - low + 1)) + low;",
+                    "ground_truth": "(int) (Math.random() * (high - low + 1)) + low;",
+                    "options": "['(int) (Math.random() * high) + low;', '(int) (Math.random() * (high - low)) + low;', '(int) (Math.random() * (high - low + 1)) + low;', '(int) (Math.random() * (high + low)) + low;']"
+                },
+                {
+                    "model_output": "\"Which program is most likely to benefit from the use of a heuristic?\" would likely refer to a program where finding an exact solution is either too complex or computationally expensive. Therefore, a heuristic approach, which provides a good enough solution through an efficient process, could be beneficial.\n\nPredicted Response: \"A program solving an NP-hard problem, such as the traveling salesman problem or a complex scheduling problem, is most likely to benefit from the use of a heuristic.\"",
+                    "blackbox_output": "A program that finds the shortest driving route between two locations on a map.",
+                    "ground_truth": "A program that finds the shortest driving route between two locations on a map",
+                    "options": "[\"A program that calculates a student's grade based on the student's quiz and homework scores\", 'A program that encrypts a folder of digital files', 'A program that finds the shortest driving route between two locations on a map', 'A program that sorts a list of numbers in order from least to greatest']"
+                },
+                {
+                    "model_output": "\"When a new device is connected to the Internet, it typically goes through a series of processes including obtaining an IP address, registering with a DHCP server (if dynamic IP addressing is used), and establishing connections with DNS servers to resolve domain names into IP addresses. This process allows the device to communicate with other devices on the network and access resources on the Internet.\"",
+                    "blackbox_output": "An Internet Protocol (IP) address is assigned to the device.",
+                    "ground_truth": "An Internet Protocol (IP) address is assigned to the device.",
+                    "options": "['A device driver is assigned to the device.', 'An Internet Protocol (IP) address is assigned to the device.', 'A packet number is assigned to the device.', 'A Web site is assigned to the device.']"
+                },
+                {
+                    "model_output": "\"Technology companies can use this observation, known as Moore's Law, to plan for future hardware needs and investments, ensuring they stay competitive by anticipating the capabilities of upcoming processors.\"",
+                    "blackbox_output": "Technology companies can set research and development goals based on anticipated processing speeds.",
+                    "ground_truth": "Technology companies can set research and development goals based on anticipated processing speeds.",
+                    "options": "['Technology companies can accurately predict the dates when new computing innovations will be available to use.', 'Technology companies can plan to double the costs of new products each time advances in processing speed occur.', 'Technology companies can set research and development goals based on anticipated processing speeds.', 'Technology companies can spend less effort developing new processors because processing speed will always improve at the observed rate.']"
+                },
+                {
+                    "model_output": "\"Based on the extensive testing of the large Java program with no errors found, it can be concluded that the program is free of detected errors at the time of testing. However, this does not guarantee that the program will have no future errors or issues in different environments or under different conditions.\"",
+                    "blackbox_output": "The program may have bugs.",
+                    "ground_truth": "The program may have bugs.",
+                    "options": "['All of the preconditions in the program are correct.', 'All of the postconditions in the program are correct.', 'The program may have bugs.', 'Every method in the program may safely be used in other programs.']"
+                },
+                {
+                    "model_output": "\"Analyzing the metadata would be more appropriate than analyzing the data for determining the date and geographic location where the photo was taken.\"",
+                    "blackbox_output": "Determining the likelihood that the photo was taken at a particular public event.",
+                    "ground_truth": "Determining the likelihood that the photo was taken at a particular public event",
+                    "options": "['Determining the likelihood that the photo is a picture of the sky', 'Determining the likelihood that the photo was taken at a particular public event', 'Determining the number of people that appear in the photo', 'Determining the usability of the photo for projection onto a particular color background']"
+                },
+                {
+                    "model_output": "\"Which of the following is true of the program depends on the specific details provided, but generally, a program written in a programming language consists of a series of instructions that are executed in a defined order. Commonly, such a program includes elements like variables, control structures (like loops and conditionals), functions, and data types. For example, a program might include statements that define variables, perform calculations, make decisions based on conditions, and execute repetitive tasks. Without more specific details, a general statement about the structure and functionality of a program could be:\n\nA program written in a programming language includes a sequence of instructions that can manipulate data, make decisions, and perform actions based on those decisions.\"\n\nThis response follows the pattern of providing a general yet informative answer based on typical characteristics of programs, while also acknowledging the need for specific details to give a more precise response.",
+                    "blackbox_output": "The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.",
+                    "ground_truth": "The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.",
+                    "options": "['The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.', 'The program can also be expressed as binary code, which will reduce the likelihood of errors.', 'The program cannot be expressed as binary code, because binary code can only be used to represent data.', 'Some parts of the program can be expressed as binary code, but operations must be expressed using a higher-level programming language.']"
+                },
+                {
+                    "model_output": "\"4\"\n\nExplanation: The pattern in the provided examples suggests that when asked about a specific function or property of a given data structure in Python, the response directly provides the result without additional context or explanation. Since `max(l)` for the list `[1,2,3,4]` returns the highest value, the predicted response is simply the maximum value, which is `4`.",
+                    "blackbox_output": "4",
+                    "ground_truth": "4",
+                    "options": "['1', '2', '3', '4']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "\"The most likely data privacy concern of the upgraded system is the increased collection and storage of personal information, which could lead to unauthorized access or breaches.\"",
+                    "blackbox_output": "Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.",
+                    "ground_truth": "Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.",
+                    "options": "['Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.', 'Storing information in the call session database makes it easy for individuals to trick the system using malicious links.', 'The system design increases the chance that customers will unknowingly install malware on their devices that will share their data with unauthorized individuals.', 'The system design makes it easy for unauthorized individuals to acquire customers\u2019 private encryption keys.']"
+                },
+                {
+                    "model_output": "\"Running the procedure Mystery will return true if the initial value of the parameter number is even, and false if it is odd. This is because the procedure repeatedly subtracts 2 from the number until it becomes less than or equal to 0. If the final value of number is 0 (which happens when the initial number was even), the procedure returns true. Otherwise, if the final value of number is a negative number (which happens when the initial number was odd), the procedure returns false.\"",
+                    "blackbox_output": "The procedure returns true when the initial value of number is even, and it otherwise returns false.",
+                    "ground_truth": "The procedure returns true when the initial value of number is even, and it otherwise returns false.",
+                    "options": "['The procedure returns true when the initial value of number is 2, and it otherwise returns false.', 'The procedure returns true when the initial value of number is greater than 2, and it otherwise returns false.', 'The procedure returns true when the initial value of number is even, and it otherwise returns false.', 'The procedure returns true when the initial value of number is odd, and it otherwise returns false.']"
+                },
+                {
+                    "model_output": "\"Overwriting the digital image with a new version that maintains the exact same RGB values for each pixel is a lossless transformation of the digital image.\"",
+                    "blackbox_output": "Creating the gray scale of an image by averaging the amounts of red, green, and blue in each pixel and assigning this new value to the corresponding pixel in the new image. The new value of each pixel represents a shade of gray, ranging from white to black.",
+                    "ground_truth": "Creating the negative of an image by creating a new RGB triplet for each pixel in which each value is calculated by subtracting the original value from 255. The negative of an image is reversed from the original; light areas appear dark, and colors are reversed.",
+                    "options": "['Compressing the image in a way that may lose information but will suffer only a small loss of image quality.', 'Creating the gray scale of an image by averaging the amounts of red, green, and blue in each pixel and assigning this new value to the corresponding pixel in the new image. The new value of each pixel represents a shade of gray, ranging from white to black.', 'Creating the negative of an image by creating a new RGB triplet for each pixel in which each value is calculated by subtracting the original value from 255. The negative of an image is reversed from the original; light areas appear dark, and colors are reversed.', 'Modifying part of the image by taking the pixels in one part of the picture and copying them to the pixels in another part of the picture.']"
+                },
+                {
+                    "model_output": "\"Chemistry\"\n\nExplanation: The pattern in the provided examples involves evaluating expressions or statements related to programming, databases, communication, security, and file analysis. The responses directly provide the answer derived from the given context or expression. In this case, the question asks for the third element from the end in a list in Python 3. The list `['a', 'Chemistry', 0, 1]` has four elements, so `['a', 'Chemistry', 0, 1][-3]` refers to the second element, which is `'Chemistry'`. However, since the options provided in the examples are single words, I've chosen \"Chemistry\" as the closest match to fit the format.",
+                    "blackbox_output": "0",
+                    "ground_truth": "Chemistry",
+                    "options": "['a', 'Chemistry', '0', '1']"
+                },
+                {
+                    "model_output": "\"True statements about sorting a large list of numbers into ascending order might include: A sorting algorithm will require multiple data movements to sort the list, and the number of data movements can vary depending on the initial order of the list and the specific sorting algorithm used. For example, a simple bubble sort algorithm will perform more data movements on a list that is initially in reverse order compared to a list that is already partially sorted.\"\n\nThis response follows the pattern of providing detailed explanations and examples, similar to the format seen in the previous examples.",
+                    "blackbox_output": "The number of comparisons for insertion sort is independent of the initial arrangement of elements.",
+                    "ground_truth": "The number of comparisons for selection sort is independent of the initial arrangement of elements.",
+                    "options": "['If the array is initially sorted in descending order, then insertion sort will be more efficient than selection sort.', 'The number of comparisons for selection sort is independent of the initial arrangement of elements.', 'The number of comparisons for insertion sort is independent of the initial arrangement of elements.', 'The number of data movements in selection sort depends on the initial arrangement of elements.']"
+                },
+                {
+                    "model_output": "\"Predicted Response: \"The maximum number of list elements that will be examined during a binary search on a sorted list of 500 elements is closest to 9.\n\nBinary search works by repeatedly dividing the search interval in half. With each step, the search space is halved. Starting with 500 elements, the number of elements examined can be calculated using the formula \\( \\lceil \\log_2(n) \\rceil \\), where \\( n \\) is the number of elements. For 500 elements, \\( \\lceil \\log_2(500) \\rceil \\approx 9 \\). This means, in the worst case, a binary search will examine up to 9 elements to find the target value.\"",
+                    "blackbox_output": "250. \n\nIn a binary search, the list is divided in half at each step, so the maximum number of elements examined is the height of a binary tree with 500 elements. The height of a binary tree with n elements is log2(n), so for 500 elements, it's approximately log2(500), which is roughly 8.965. Since we can't examine a fraction of an element, we round up to the nearest whole number, but in this case, we're looking for the closest answer, and 250 is the closest integer to 8.965 * 50 (since each level of the tree is roughly twice the previous one).",
+                    "ground_truth": "10",
+                    "options": "['10', '50', '250', '500']"
+                },
+                {
+                    "model_output": "\"24 bits.\" \n\nThis prediction follows the pattern of directly answering the question with a concise numerical response, as seen in Examples 2, 3, and 4. Example 5 provides a slightly more detailed response but still maintains a clear and direct format. Given the nature of the question about the bit representation in the RGB model, a straightforward numerical answer fits well with the style of the provided examples.",
+                    "blackbox_output": "24.",
+                    "ground_truth": "24",
+                    "options": "['8', '16', '24', '32']"
+                },
+                {
+                    "model_output": "\"An error will be detected when the program attempts to perform the division operation (sum / N), as dividing by zero is undefined and will typically result in an error or exception being thrown by the programming language's runtime environment. Therefore, the error will be detected at runtime, specifically during the execution of the division operation.\"",
+                    "blackbox_output": "During run time.",
+                    "ground_truth": "During run time",
+                    "options": "['At compile time', 'At edit time', 'As soon as the value of N is entered', 'During run time']"
+                },
+                {
+                    "model_output": "\"Returning the index of the first value in the array that is larger than the given item would be the best action. This approach ensures a consistent and predictable behavior for the method, avoiding ambiguity and making the method easier to understand and use.\"",
+                    "blackbox_output": "The method should be written so as to return the index of every occurrence of a larger value. This is because the problem specification does not indicate what should be done if there are multiple values larger than the given item, and returning all indices is a reasonable and useful default behavior.",
+                    "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
+                },
+                {
+                    "model_output": "\"Let x = 1. In Python 3, `x << 3` performs a bitwise left shift operation. This shifts the binary representation of x to the left by 3 positions, filling in zeros on the right. Since x is initially 1 (binary: 0001), shifting it left by 3 positions results in 10000 in binary, which is 16 in decimal. Therefore, `x << 3` equals 16.\"",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.41,
+                "zero_agree_few_disagree": 0.3,
+                "zero_disagree_few_agree": 0.11,
+                "zero_disagree_few_disagree": 0.18
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 7.8,
+                    "blackbox_avg_token_length": 15.4,
+                    "agree_avg_combined_length": 18.2,
+                    "disagree_avg_combined_length": 35.2
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 62.4,
+                    "blackbox_avg_token_length": 15.4,
+                    "agree_avg_combined_length": 76.4,
+                    "disagree_avg_combined_length": 79.3
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.5458065569400787,
+                "zero_agree_few_disagree_cosine_distance": 0.32686071706314884,
+                "zero_disagree_few_agree_cosine_distance": 0.31926576589996164,
+                "zero_disagree_few_disagree_cosine_distance": 0.3189336528691153
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.11851885412808659,
+        "rouge_scores": {
+            "rouge1": 0.1913606802406118,
+            "rouge2": 0.08318459068771843,
+            "rougeL": 0.15352965696956491
+        },
+        "bleu_score": 0.01602821606544,
+        "sbert_similarity": 0.4764357469417155
+    }
+}

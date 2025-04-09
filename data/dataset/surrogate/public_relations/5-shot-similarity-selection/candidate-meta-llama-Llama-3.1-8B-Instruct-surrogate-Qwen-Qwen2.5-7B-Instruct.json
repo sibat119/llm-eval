@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.03213195026731702,
+        "f1_score_ranking": 0.43118686868686873,
+        "accuracy_ranking": 0.44545454545454544,
+        "rouge_scores": {
+            "rouge1": 0.1259500742213016,
+            "rouge2": 0.022831843760671357,
+            "rougeL": 0.11966182376755127
+        },
+        "bleu_score": 0.0035855960092172905,
+        "sbert_similarity": 0.36884841075675057,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.6272727272727273,
+            "model_ground_truth_match": 0.7090909090909091,
+            "blackbox_ground_truth_match": 0.5636363636363636,
+            "both_ground_truth_match": 0.4818181818181818,
+            "agreement_samples": [
+                {
+                    "model_output": "Open-ended",
+                    "blackbox_output": "Open-ended.",
+                    "ground_truth": "Open-ended",
+                    "options": "['Likert scale', 'Multiple choice', 'Open-ended', 'Yes/No']"
+                },
+                {
+                    "model_output": "Media tour",
+                    "blackbox_output": "Media tour.",
+                    "ground_truth": "Media tour",
+                    "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
+                },
+                {
+                    "model_output": "conducting a pre and post analysis of constituents' opinions.",
+                    "blackbox_output": "Conducting a pre and post analysis of constituents' opinions.",
+                    "ground_truth": "conducting a pre and post analysis of constituents' opinions",
+                    "options": "['preparing a content analysis of media coverage', 'studying the content of blog postings about your issue', 'analyzing pre and post sales reports for changes in sales', \"conducting a pre and post analysis of constituents' opinions\"]"
+                },
+                {
+                    "model_output": "to interpret trends for management",
+                    "blackbox_output": "to interpret trends for management",
+                    "ground_truth": "to interpret trends for management",
+                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+                },
+                {
+                    "model_output": "2",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "Viral campaigns",
+                    "blackbox_output": "Viral campaigns.",
+                    "ground_truth": "Viral campaigns",
+                    "options": "['Fan pages', 'Street activities', 'Grassroots marketing', 'Viral campaigns']"
+                },
+                {
+                    "model_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                },
+                {
+                    "model_output": "Impact",
+                    "blackbox_output": "Impact.",
+                    "ground_truth": "Impact",
+                    "options": "['Implementation', 'Impact', 'Attitude change', 'Preparation']"
+                },
+                {
+                    "model_output": "Grunig and Hunt (1984)",
+                    "blackbox_output": "Grunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.",
+                    "ground_truth": "Grunig and Hunt (1984)",
+                    "options": "['Cutlip (2006)', 'Leitch and Neilson (2001)', 'Amaral and Phillips (2010)', 'Grunig and Hunt (1984)']"
+                },
+                {
+                    "model_output": "Analysis",
+                    "blackbox_output": "Analysis.",
+                    "ground_truth": "Analysis",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Arthur Page",
+                    "blackbox_output": "Doris Fleischman.",
+                    "ground_truth": "Arthur Page",
+                    "options": "['Carl Byoir', 'Edward Bernays', 'Doris Fleischman', 'Arthur Page']"
+                },
+                {
+                    "model_output": "Personal",
+                    "blackbox_output": "Abstract.",
+                    "ground_truth": "Personal",
+                    "options": "['Formal', 'Abstract', 'Personal', 'Objective']"
+                },
+                {
+                    "model_output": "opinion change",
+                    "blackbox_output": "coorientation",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
+                },
+                {
+                    "model_output": "2,800",
+                    "blackbox_output": "There are approximately 600 regional newspapers in the UK.",
+                    "ground_truth": "2,800",
+                    "options": "['270', '600', '2,800', '5,200']"
+                },
+                {
+                    "model_output": "Nonprofits",
+                    "blackbox_output": "Politics.",
+                    "ground_truth": "Politics",
+                    "options": "['Politics', 'Retail business', 'Automotive sales', 'Nonprofits']"
+                },
+                {
+                    "model_output": "Quadrupled",
+                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
+                    "ground_truth": "Tripled",
+                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                },
+                {
+                    "model_output": "legitimacy",
+                    "blackbox_output": "reliability",
+                    "ground_truth": "legitimacy",
+                    "options": "['legitimacy', 'identity', 'reliability', 'agency']"
+                },
+                {
+                    "model_output": "Strategy and implementation",
+                    "blackbox_output": "Strategy and evaluation.",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "Chanel",
+                    "blackbox_output": "Givenchy",
+                    "ground_truth": "Chanel",
+                    "options": "['Dior', 'Givenchy', 'Chanel', 'Lacroix']"
+                },
+                {
+                    "model_output": "Business writing",
+                    "blackbox_output": "Media writing.",
+                    "ground_truth": "Promotional writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.4636363636363636,
+            "model_ground_truth_match": 0.44545454545454544,
+            "blackbox_ground_truth_match": 0.5636363636363636,
+            "both_ground_truth_match": 0.32727272727272727,
+            "agreement_samples": [
+                {
+                    "model_output": "The planning phase of the PR model consists of primary and secondary research about a client, identifying the target audiences for the campaign, proposing channels of communication and strategies to be used in the campaign, and constructing goals, objectives, messages, and themes.",
+                    "blackbox_output": "planning.",
+                    "ground_truth": "planning",
+                    "options": "['identification', 'evaluation', 'implementation', 'planning']"
+                },
+                {
+                    "model_output": "\"Advertising.\"",
+                    "blackbox_output": "advertising",
+                    "ground_truth": "advertising",
+                    "options": "['public persuasive', 'public relations', 'advertising', 'consumerism']"
+                },
+                {
+                    "model_output": "\"According to Russian philosopher Mikhail Bakhtin, in order to create a well-informed public, or a 'heteroglossia', all communication about an issue must be dialogic, or take the form of a dialogue.\"",
+                    "blackbox_output": "democracy, dialogic",
+                    "ground_truth": "democracy, dialogic",
+                    "options": "['intelligentsia, democratic', 'democracy, dialogic', 'democracy, logical', 'democracy, bipartisan']"
+                },
+                {
+                    "model_output": "\"Digital divide.\"",
+                    "blackbox_output": "Staying abreast of changing technology.",
+                    "ground_truth": "Staying abreast of changing technology",
+                    "options": "['Representing clients using new social media environments', 'Finding stable, cost-effective Internet providers', 'Training staff to use social media', 'Staying abreast of changing technology']"
+                },
+                {
+                    "model_output": "\"Tyler and his wife are engaging in support mobilization, the third step of the advertising campaign.\"",
+                    "blackbox_output": "participation.",
+                    "ground_truth": "participation",
+                    "options": "['identification', 'legitimacy', 'penetration', 'participation']"
+                },
+                {
+                    "model_output": "\"In recent years, social media has had the greatest impact on the immediacy and scope of audience engagement in public relations practices.\"",
+                    "blackbox_output": "Politics.",
+                    "ground_truth": "Politics",
+                    "options": "['Politics', 'Retail business', 'Automotive sales', 'Nonprofits']"
+                },
+                {
+                    "model_output": "\"the primary goal of targeted advertising is to promote a specific product and service to a target audience.\"",
+                    "blackbox_output": "Product-oriented.",
+                    "ground_truth": "product-oriented",
+                    "options": "['person-oriented', 'product-oriented', 'profit-oriented', 'idea-oriented']"
+                },
+                {
+                    "model_output": "\"Tailoring the news releases to fit the local context and audience would most improve your chances of success with these materials.\"",
+                    "blackbox_output": "Localize the news releases for audiences in your geography.",
+                    "ground_truth": "Localize the news releases for audiences in your geography.",
+                    "options": "['Use your relationships with local donors to gain coverage.', 'Localize the news releases for audiences in your geography.', \"Pitch the news releases as written, but include a quote from your chapter's executive director.\", 'Remind editors that your organization is a national, prominent non-profit to which their publisher donates.']"
+                },
+                {
+                    "model_output": "\"1922.\"\n\nThis prediction follows the pattern observed in the previous examples where specific factual answers are provided directly and concisely. The format matches the direct answer style seen in all given responses.",
+                    "blackbox_output": "1922.",
+                    "ground_truth": "1922",
+                    "options": "['1917', '1922', '1925', '1927']"
+                },
+                {
+                    "model_output": "\"The implementation phase of the PR process consists of making decisions about which strategies and tactics will be used to respond to the goals of the organization and executing those strategies and tactics.\"",
+                    "blackbox_output": "Implementation",
+                    "ground_truth": "implementation",
+                    "options": "['planning', 'implementation', 'evaluation', 'tactical']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "\"A press release can provide a 'halo effect.' Press releases are a common public relations tactic used to disseminate positive information about an organization or individual to the media and the public. When executed effectively, a well-crafted press release can generate favorable coverage, which can enhance the reputation and credibility of the subject, creating a positive perception that extends beyond the specific topic covered in the release. This positive perception can lead to a 'halo effect,' where the subject is viewed more favorably in other areas as well.\"",
+                    "blackbox_output": "Sponsorship.",
+                    "ground_truth": "Sponsorship",
+                    "options": "['Placement on TV or radio', 'Stunts', 'Third parties', 'Sponsorship']"
+                },
+                {
+                    "model_output": "\"The number of practitioners working in consultancies in the UK has grown significantly since 25 years ago.\"",
+                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
+                    "ground_truth": "Tripled",
+                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                },
+                {
+                    "model_output": "\"Predicted Response: \"spin and occur only after something negative has occurred.\"\"\n\nThis response follows the pattern of providing a concise answer that directly addresses the question, using the exact wording needed to complete the statement. It matches the format seen in the previous examples, where the answer is a clear and direct phrase that fits into the given context.",
+                    "blackbox_output": "The publicist's statement seems manipulative, as it appears to be an attempt to downplay the situation and shift blame rather than addressing the issue directly.",
+                    "ground_truth": "reactive",
+                    "options": "['proactive', 'reactive', 'manipulative', 'manipulative']"
+                },
+                {
+                    "model_output": "\"Pre-testing of strategy and tactics should be carried out at Step 2.\"",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "\"Focus group research is a qualitative method used to gather detailed insights and opinions from a small, targeted group of individuals, making it true that it is associated with formative evaluation, as it helps in understanding attitudes, perceptions, and reactions before launching a broader campaign or strategy.\"",
+                    "blackbox_output": "It is an example of a formal research tool for practitioners.",
+                    "ground_truth": "The findings generate qualitative data that can be used to develop surveys.",
+                    "options": "['The participants should be selected at random.', 'It is an example of a formal research tool for practitioners.', 'The information can be generalized to describe a larger population.', 'The findings generate qualitative data that can be used to develop surveys.']"
+                },
+                {
+                    "model_output": "\"Assessment of the organization's leadership potential.\"",
+                    "blackbox_output": "Analysis.",
+                    "ground_truth": "Strategy",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                },
+                {
+                    "model_output": "\"strategic planning and stakeholder analysis\"",
+                    "blackbox_output": "Strategy and evaluation.",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "\"Approximately 60% of nonprofit sector practitioners conduct audience research.\"",
+                    "blackbox_output": "One-quarter.",
+                    "ground_truth": "Two thirds",
+                    "options": "['One-quarter', 'One-half', 'Two thirds', 'Almost all']"
+                },
+                {
+                    "model_output": "\"This question does not provide specific options to choose from, so a direct answer cannot be given. However, based on common practices in public relations, organizations that excel in social media management, customer engagement strategies, and digital communication tend to be the most effective in engaging with customers online.\"\n\nNote: The predicted response follows the format and style of the previous examples while addressing the structure of the new question.",
+                    "blackbox_output": "Starbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.",
+                    "ground_truth": "Starbucks",
+                    "options": "['Starbucks', 'Coca-Cola', 'Wholefoods', 'Redbull']"
+                },
+                {
+                    "model_output": "\"Engage proactively with transparency and empathy.\"\n\nThis response follows the pattern of providing a concise, strategic advice that addresses the core issue presented in the question, while also reflecting the need for effective communication and community engagement.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.32,
+                "zero_agree_few_disagree": 0.31,
+                "zero_disagree_few_agree": 0.15,
+                "zero_disagree_few_disagree": 0.23
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 3.6,
+                    "blackbox_avg_token_length": 7.5,
+                    "agree_avg_combined_length": 14.0,
+                    "disagree_avg_combined_length": 6.4
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 24.5,
+                    "blackbox_avg_token_length": 7.5,
+                    "agree_avg_combined_length": 32.9,
+                    "disagree_avg_combined_length": 31.3
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.5339094323771341,
+                "zero_agree_few_disagree_cosine_distance": 0.31078503258964596,
+                "zero_disagree_few_agree_cosine_distance": 0.241503881290555,
+                "zero_disagree_few_disagree_cosine_distance": 0.274971804022789
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.04588279334418238,
+        "rouge_scores": {
+            "rouge1": 0.15984358429574141,
+            "rouge2": 0.032650059640008465,
+            "rougeL": 0.14533919888277597
+        },
+        "bleu_score": 0.006938852986208901,
+        "sbert_similarity": 0.41028553667393597
+    }
+}

@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.08564326518646831,
+        "f1_score_ranking": 0.48870573870573875,
+        "accuracy_ranking": 0.49,
+        "rouge_scores": {
+            "rouge1": 0.1312145596025879,
+            "rouge2": 0.04256594393799797,
+            "rougeL": 0.11156473488600625
+        },
+        "bleu_score": 0.008922834221913567,
+        "sbert_similarity": 0.4218898448348045,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.71,
+            "model_ground_truth_match": 0.84,
+            "blackbox_ground_truth_match": 0.7,
+            "both_ground_truth_match": 0.64,
+            "agreement_samples": [
+                {
+                    "model_output": "Yes",
+                    "blackbox_output": "Yes.",
+                    "ground_truth": "Yes",
+                    "options": "['Yes', 'No', \"It's machine-dependent\", 'None of the above']"
+                },
+                {
+                    "model_output": "8",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
+                },
+                {
+                    "model_output": "Both algorithms work correctly on all input values.",
+                    "blackbox_output": "Both algorithms work correctly on all input values.",
+                    "ground_truth": "Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.",
+                    "options": "['Both algorithms work correctly on all input values.', 'Algorithm I always works correctly, but Algorithm II only works correctly when the maximum value is not the first value in the list.', 'Algorithm II always works correctly, but Algorithm I only works correctly when the maximum value is greater than or equal to -l.', 'Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.']"
+                },
+                {
+                    "model_output": "255",
+                    "blackbox_output": "255.",
+                    "ground_truth": "255",
+                    "options": "['32', '225', '255', '256']"
+                },
+                {
+                    "model_output": "seed([x])",
+                    "blackbox_output": "seed([x])",
+                    "ground_truth": "seed([x])",
+                    "options": "['choice(seq)', 'randrange ([start,] stop [,step])', 'random()', 'seed([x])']"
+                },
+                {
+                    "model_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "blackbox_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "ground_truth": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "options": "['A school allows students to bring a graphing calculator from home to complete in-class mathematics assignments.', 'A school allows students to bring a tablet computer to class every day to participate in graded quizzes.', 'A school provides a laptop or tablet computer to all students enrolled at the school.', 'A school recommends that all students purchase a computer with as much processing speed as possible so that projects run faster.']"
+                },
+                {
+                    "model_output": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "blackbox_output": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "ground_truth": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "options": "['Express the simulation software using both recursive and iterative algorithms. Compare the results of the recursive algorithm to those of the iterative algorithm.', \"Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.\", 'Remove any unnecessary details from the model. Compare the running times of the original simulation and the simplified simulation.', 'Run the simulation software on multiple devices. Compare the results obtained from each of the devices.']"
+                },
+                {
+                    "model_output": "24",
+                    "blackbox_output": "24.",
+                    "ground_truth": "24",
+                    "options": "['8', '16', '24', '32']"
+                },
+                {
+                    "model_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "blackbox_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "ground_truth": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code",
+                    "options": "['Managing specification files created as part of the development process', 'Running and testing the executable created by the programmer', 'Tracking older versions of the software in case an error is found and the software needs to be reverted to an earlier form', 'Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code']"
+                },
+                {
+                    "model_output": "isupper()",
+                    "blackbox_output": "isupper()",
+                    "ground_truth": "isupper()",
+                    "options": "['isupper()', 'join(seq)', 'len(string)', 'ljust(width[, fillchar])']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Error",
+                    "blackbox_output": "abcd",
+                    "ground_truth": "abcd",
+                    "options": "[\"( 'abcd', 786 , 2.23, 'john', 70.2 )\", 'abcd', 'Error', 'None of the above.']"
+                },
+                {
+                    "model_output": "Changing line 3 to b \u2190 10",
+                    "blackbox_output": "Changing line 7 to a \u2190 b + 10. \n\nThis is because the condition in the IF statement is a = 0, and changing line 7 to a \u2190 b + 10 does not affect the value of 'a' when the condition is true or false, it only changes the value of 'a' inside the ELSE block, but the ELSE block is not executed when the condition is true.",
+                    "ground_truth": "Changing line 3 to b \u2190 10",
+                    "options": "['Changing line 3 to b \u2190 10', 'Changing line 3 to a \u2190 b + 10', 'Changing line 7 to b \u2190 20', 'Changing line 7 to a \u2190 b + 10']"
+                },
+                {
+                    "model_output": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "blackbox_output": "The method should be written so as to return the index of every occurrence of a larger value. This is because the problem specification does not indicate what should be done if there are multiple values larger than the given item, and returning all indices is a reasonable and useful default behavior.",
+                    "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
+                },
+                {
+                    "model_output": "A function that sorts values in a column or row.",
+                    "blackbox_output": "A function that averages numeric values in a column or row. This function would allow you to identify values that are significantly higher or lower than the average, indicating potential data entry errors.",
+                    "ground_truth": "A function that sorts values in a column or row",
+                    "options": "['A function that averages numeric values in a column or row', 'A function that counts the values in a column or row', 'A function that rounds a numeric value', 'A function that sorts values in a column or row']"
+                },
+                {
+                    "model_output": "II and III only",
+                    "blackbox_output": "I and III only.",
+                    "ground_truth": "II and III only",
+                    "options": "['II only', 'I and II only', 'I and III only', 'II and III only']"
+                },
+                {
+                    "model_output": "The company will be able to provide a human representative for any incoming call.",
+                    "blackbox_output": "Customers are likely to spend less time listening to information not relevant to their issue.",
+                    "ground_truth": "The company will be able to provide a human representative for any incoming call.",
+                    "options": "['Human representatives will not be needed to respond to some inquiries.', 'The company will be able to provide a human representative for any incoming call.', 'Customers are likely to spend less time listening to information not relevant to their issue.', 'Customers will be unable to mistakenly select the incorrect department for their particular issue.']"
+                },
+                {
+                    "model_output": "The simulation will not produce usable results because actual customer data are not available.",
+                    "blackbox_output": "The bank can use the simulation to investigate these two options without causing inconvenience for customers.",
+                    "ground_truth": "The simulation will not produce usable results because actual customer data are not available.",
+                    "options": "['The bank can incorporate other factors, such as the number of tellers, in the simulation.', 'The bank can use the simulation to investigate these two options without causing inconvenience for customers.', 'The bank may consider new alternatives based on the simulation results.', 'The simulation will not produce usable results because actual customer data are not available.']"
+                },
+                {
+                    "model_output": "Which items listed in the database are not currently in the store",
+                    "blackbox_output": "The total number of shoes sold in a particular month cannot be determined from the database, as it does not contain any sales data.",
+                    "ground_truth": "Which items listed in the database are not currently in the store",
+                    "options": "['Which items listed in the database are not currently in the store', 'Which colors are more popular among men than women', 'Which type of footwear is most popular among adults', 'The total number of shoes sold in a particular month']"
+                },
+                {
+                    "model_output": "10",
+                    "blackbox_output": "250. \n\nIn a binary search, the list is divided in half at each step, so the maximum number of elements examined is the height of a binary tree with 500 elements. The height of a binary tree with n elements is log2(n), so for 500 elements, it's approximately log2(500), which is roughly 8.965. Since we can't examine a fraction of an element, we round up to the nearest whole number, but in this case, we're looking for the closest answer, and 250 is the closest integer to 8.965 * 50 (since each level of the tree is roughly twice the previous one).",
+                    "ground_truth": "10",
+                    "options": "['10', '50', '250', '500']"
+                },
+                {
+                    "model_output": "Both of the above.",
+                    "blackbox_output": "It supports automatic garbage collection and can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java.",
+                    "ground_truth": "Both of the above.",
+                    "options": "['It supports automatic garbage collection.', 'It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java.', 'Both of the above.', 'None of the above.']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.51,
+            "model_ground_truth_match": 0.49,
+            "blackbox_ground_truth_match": 0.7,
+            "both_ground_truth_match": 0.41,
+            "agreement_samples": [
+                {
+                    "model_output": "\"Upon connecting a new device to the Internet, it typically goes through a series of processes including obtaining an IP address, performing a DNS lookup to resolve domain names into IP addresses, and establishing connections with servers to verify the device's identity and update its configuration, among other initializations.\"",
+                    "blackbox_output": "An Internet Protocol (IP) address is assigned to the device.",
+                    "ground_truth": "An Internet Protocol (IP) address is assigned to the device.",
+                    "options": "['A device driver is assigned to the device.', 'An Internet Protocol (IP) address is assigned to the device.', 'A packet number is assigned to the device.', 'A Web site is assigned to the device.']"
+                },
+                {
+                    "model_output": "\"The electronic storage required for the text in all the books of the university's libraries would best be measured in terabytes (TB). Given the assumptions, we can calculate the total storage as follows:\n\n- Total number of books: 3 million\n- Average pages per book: 400\n- Average lines per page: 50\n- Average words per line: 10\n- Average characters per word: 5\n- Characters per byte: 1\n\nSo, the total number of characters per book is \\(400 \\times 50 \\times 10 \\times 5 = 1,000,000\\).\n\nFor 3 million books, the total number of characters is \\(3,000,000 \\times 1,000,000 = 3 \\times 10^{12}\\) characters.\n\nSince each character is represented by 1 byte, the total storage required is \\(3 \\times 10^{12}\\) bytes.\n\nTo convert bytes to terabytes (1 TB = \\(10^{12}\\) bytes), the total storage is \\(3\\) TB.\n\nTherefore, the unit in which the electronic storage required for the text in all the books of the university's libraries would best be measured is terabytes (TB).\"",
+                    "blackbox_output": "Terabyte ( 2^30 or approximately 10^9 bytes).",
+                    "ground_truth": "Terabyte ( 2^40 or approximately 10^12 bytes)",
+                    "options": "['Megabyte ( 2^20 or approximately 10^6 bytes)', 'Gigabyte ( 2^30 or approximately 10^9 bytes)', 'Terabyte ( 2^40 or approximately 10^12 bytes)', 'Petabyte ( 2^50 or approximately 10^15 bytes)']"
+                },
+                {
+                    "model_output": "\"Using only the database, the following can be determined:\n- The item identification number of each footwear item.\n- The footwear type of each item.\n- The selling price of each item in dollars.\n- The size of each item.\n- The color of each item.\n- The quantity available for each item.\"\n\nThis response follows the pattern of listing specific pieces of information that can be extracted from the given database, formatted similarly to the previous examples.",
+                    "blackbox_output": "The total number of shoes sold in a particular month cannot be determined from the database, as it does not contain any sales data.",
+                    "ground_truth": "Which items listed in the database are not currently in the store",
+                    "options": "['Which items listed in the database are not currently in the store', 'Which colors are more popular among men than women', 'Which type of footwear is most popular among adults', 'The total number of shoes sold in a particular month']"
+                },
+                {
+                    "model_output": "\"Which of the following programs is most likely to benefit from the use of a heuristic?\"  \nPredicted Response: \"A program that needs to find a satisfactory solution quickly rather than the optimal solution.\"\n\nThis response follows the pattern of identifying a scenario where an alternative approach (in this case, heuristics) can provide benefits over a more computationally intensive method (like evaluating all potential moves).",
+                    "blackbox_output": "A program that finds the shortest driving route between two locations on a map.",
+                    "ground_truth": "A program that finds the shortest driving route between two locations on a map",
+                    "options": "[\"A program that calculates a student's grade based on the student's quiz and homework scores\", 'A program that encrypts a folder of digital files', 'A program that finds the shortest driving route between two locations on a map', 'A program that sorts a list of numbers in order from least to greatest']"
+                },
+                {
+                    "model_output": "\"Given the format of the previous responses and the pattern of providing a direct answer to the question asked, the predicted response would be:\n\n\"The function would return the item from the list that has the maximum value, assuming the list contains comparable items (e.g., numbers, strings). If the list contains non-comparable items, the function would raise a TypeError.\"",
+                    "blackbox_output": "max(list)",
+                    "ground_truth": "max(list)",
+                    "options": "['cmp(list)', 'len(list)', 'max(list)', 'min(list)']"
+                },
+                {
+                    "model_output": "\"Decimal 11, Binary 1100, Hexadecimal D\"\n\nExplanation: The pattern in the examples shows that the questions are often about converting or comparing numerical representations. The response directly lists the options in the correct order as requested, matching the format of the previous answers.",
+                    "blackbox_output": "Decimal 11, Hexadecimal D, Binary 1100.",
+                    "ground_truth": "Decimal 11, Binary 1100, Hexadecimal D",
+                    "options": "['Binary 1100, Decimal 11, Hexadecimal D', 'Decimal 11, Binary 1100, Hexadecimal D', 'Decimal 11, Hexadecimal D, Binary 1100', 'Hexadecimal D, Decimal 11, Binary 1100']"
+                },
+                {
+                    "model_output": "\"** in python performs exponential (power) calculation on operands.\"",
+                    "blackbox_output": "**",
+                    "ground_truth": "**",
+                    "options": "['**', '//', 'is', 'not in']"
+                },
+                {
+                    "model_output": "\"During the development of executable software, the role of the compiler is to translate source code written in a high-level programming language into machine code that can be executed by the computer's processor. This process involves checking the source code for syntax errors and generating optimized machine code.\"",
+                    "blackbox_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "ground_truth": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code",
+                    "options": "['Managing specification files created as part of the development process', 'Running and testing the executable created by the programmer', 'Tracking older versions of the software in case an error is found and the software needs to be reverted to an earlier form', 'Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code']"
+                },
+                {
+                    "model_output": "\"Upgraded systems often provide enhanced performance, improved security features, and better user interfaces. However, increased physical office space is least likely to be a direct benefit of an upgraded system, as it is more related to infrastructure or real estate needs rather than the technological upgrade itself.\"",
+                    "blackbox_output": "Customers are likely to spend less time listening to information not relevant to their issue.",
+                    "ground_truth": "The company will be able to provide a human representative for any incoming call.",
+                    "options": "['Human representatives will not be needed to respond to some inquiries.', 'The company will be able to provide a human representative for any incoming call.', 'Customers are likely to spend less time listening to information not relevant to their issue.', 'Customers will be unable to mistakenly select the incorrect department for their particular issue.']"
+                },
+                {
+                    "model_output": "\"Fault tolerance in routing on the Internet is characterized by the ability to reroute data packets through alternative paths if the primary path fails. This ensures that data can still be delivered even if some parts of the network are down. Therefore, a characteristic of the fault-tolerant nature of routing on the Internet is the capability to dynamically switch to backup routes when necessary.\"",
+                    "blackbox_output": "The ability to provide data transmission even when some connections have failed.",
+                    "ground_truth": "The ability to provide data transmission even when some connections have failed",
+                    "options": "['The ability to use a hierarchical naming system to avoid naming conflicts', 'The ability to provide data transmission even when some connections have failed', 'The ability to resolve errors in domain name system (DNS) lookups', 'The ability to use multiple protocols such as hypertext transfer protocol (HTTP), Internet protocol (LP), and simple mail transfer protocol (SMTP) to transfer data']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "\"min(l) in Python3 would return 1, as the min() function returns the smallest element in an iterable, and in the list l = [1,2,3,4], the smallest element is 1.\"",
+                    "blackbox_output": "1",
+                    "ground_truth": "1",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "\"Which of the following is NOT an example of multifactor authentication?\" does not directly correspond to the coding or mathematical examples provided. However, based on the pattern of providing specific answers to technical questions, I will predict a response that fits the format and context of the given examples.\n\nPredicted Response: \"Using only a password.\"\n\nThis response assumes that multifactor authentication typically requires more than one form of verification (such as a password and a security token, or a biometric and a password). Therefore, using only a password would not qualify as multifactor authentication.",
+                    "blackbox_output": "Each employee for a company is issued a USB device that contains a unique token code. To log into a company computer, an employee must insert the USB device into the computer and provide a correct password.",
+                    "ground_truth": "When a user enters an incorrect password more than two times in a row, the user is locked out of the account for 24 hours.",
+                    "options": "['Each employee for a company is issued a USB device that contains a unique token code. To log into a company computer, an employee must insert the USB device into the computer and provide a correct password.', 'After logging into an account from a new device, a user must enter a code that is sent via e-mail to the e-mail address on file with the account.', 'In order to log into an account, a user must provide both a password and a fingerprint that is captured using the user\u2019s device.', 'When a user enters an incorrect password more than two times in a row, the user is locked out of the account for 24 hours.']"
+                },
+                {
+                    "model_output": "\"HTTP (Hypertext Transfer Protocol) is used to send the file from the Web server to the user's browser. Here\u2019s a step-by-step description of the process:\n\n1. The user enters a Web address (URL) into their browser.\n2. The browser constructs an HTTP request and sends it to the Web server.\n3. The Web server receives the request and looks for the requested file.\n4. If the file is found, the server reads the file and sends it back to the browser in the form of an HTTP response.\n5. The browser receives the file and displays it to the user, depending on the file type (e.g., HTML, image, video).\n\nThis process ensures that the correct file is delivered to the user's browser and displayed appropriately.\"",
+                    "blackbox_output": "The file is broken into packets for transmission. The packets must be reassembled upon receipt.",
+                    "ground_truth": "The file is broken into packets for transmission. The packets must be reassembled upon receipt.",
+                    "options": "['The file is broken into packets for transmission. The packets must be reassembled upon receipt.', \"The file is broken into packets for transmission. The user's browser must request each packet in order until all packets are received.\", \"The server attempts to connect directly to the user's computer. If the connection is successful, the entire file is sent. If the connection is unsuccessful, an error message is sent to the user.\", \"The server repeatedly attempts to connect directly to the user's computer until a connection is made. Once the connection is made, the entire file is sent.\"]"
+                },
+                {
+                    "model_output": "\"['a', 'Chemistry', 0, 1][-3] returns 'Chemistry'.\n\nIn Python, negative indices are used to index from the end of the list. Specifically, -1 refers to the last item, -2 refers to the second last item, and so on. Therefore, -3 refers to the third last item in the list. The list ['a', 'Chemistry', 0, 1] has four elements, so ['a', 'Chemistry', 0, 1][-3] accesses the third last element, which is 'Chemistry'.\"",
+                    "blackbox_output": "0",
+                    "ground_truth": "Chemistry",
+                    "options": "['a', 'Chemistry', '0', '1']"
+                },
+                {
+                    "model_output": "\"Sharing personal information on public social media platforms has the greatest potential for compromising a user's personal privacy. This is because such platforms can collect and potentially share large amounts of personal data with third parties, and users may not always be aware of how their information is being used or who has access to it.\"",
+                    "blackbox_output": "The Internet Protocol (IP) address of the user's computer.",
+                    "ground_truth": "A group of cookies stored by the user's Web browser",
+                    "options": "[\"A group of cookies stored by the user's Web browser\", \"The Internet Protocol (IP) address of the user's computer\", \"The user's e-mail address\", \"The user's public key used for encryption\"]"
+                },
+                {
+                    "model_output": "\"```python\nimport random\nrandom.seed(value)\n```\n\nThe `random.seed(value)` function sets the integer starting value (seed) used in generating random numbers. This seed determines the sequence of random numbers generated by subsequent calls to random functions in Python.\"",
+                    "blackbox_output": "seed([x])",
+                    "ground_truth": "seed([x])",
+                    "options": "['choice(seq)', 'randrange ([start,] stop [,step])', 'random()', 'seed([x])']"
+                },
+                {
+                    "model_output": "\"4\"\n\nExplanation: The pattern in the given examples suggests that when a numerical operation is asked about in Python, the response directly provides the result of the operation. In Example 5, shifting the bits of `x = 1` (which is `0001` in binary) three places to the left (`x << 3`) results in `8` (or `1000` in binary). Similarly, for the new question, shifting the bits of `x = 8` (which is `1000` in binary) one place to the right (`x >> 1`) results in `4` (or `0100` in binary).",
+                    "blackbox_output": "8 >> 1 is 4.",
+                    "ground_truth": "4",
+                    "options": "['3', '4', '2', '8']"
+                },
+                {
+                    "model_output": "\"During the division operation, when the program attempts to calculate the average using the formula `average = sum / N`, a division by zero error will occur. This error will be detected at runtime, specifically when the program tries to divide by zero, causing the program to either throw an exception or produce undefined behavior depending on the programming language and environment. Therefore, the error will be detected immediately upon execution when N is zero.\"",
+                    "blackbox_output": "During run time.",
+                    "ground_truth": "During run time",
+                    "options": "['At compile time', 'At edit time', 'As soon as the value of N is entered', 'During run time']"
+                },
+                {
+                    "model_output": "\"Returning the index of the first value in the array that is larger than the given item.\"",
+                    "blackbox_output": "The method should be written so as to return the index of every occurrence of a larger value. This is because the problem specification does not indicate what should be done if there are multiple values larger than the given item, and returning all indices is a reasonable and useful default behavior.",
+                    "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
+                },
+                {
+                    "model_output": "\"Let x = 1. In Python 3, x << 3 performs a bitwise left shift operation, shifting the bits of x three places to the left. This is equivalent to multiplying x by 2^3, which results in 8.\"\n\nThis response follows the pattern of directly answering the question with relevant details and context, similar to the previous examples provided.",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.38,
+                "zero_agree_few_disagree": 0.33,
+                "zero_disagree_few_agree": 0.13,
+                "zero_disagree_few_disagree": 0.16
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 7.8,
+                    "blackbox_avg_token_length": 15.4,
+                    "agree_avg_combined_length": 18.2,
+                    "disagree_avg_combined_length": 35.2
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 60.4,
+                    "blackbox_avg_token_length": 15.4,
+                    "agree_avg_combined_length": 73.8,
+                    "disagree_avg_combined_length": 77.8
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.5392612234542244,
+                "zero_agree_few_disagree_cosine_distance": 0.3348101102041476,
+                "zero_disagree_few_agree_cosine_distance": 0.3932412782540688,
+                "zero_disagree_few_disagree_cosine_distance": 0.3015717314556241
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.11748098541977439,
+        "rouge_scores": {
+            "rouge1": 0.1731896587509651,
+            "rouge2": 0.06463392346968995,
+            "rougeL": 0.13898171714821683
+        },
+        "bleu_score": 0.019402153725483425,
+        "sbert_similarity": 0.4827129327505827
+    }
+}

@@ -1,0 +1,1 @@
+Qwen/Qwen2.5-7B-Instruct: {'exact_match': 0.5, 'f1_score_token_agreement': 0.8541666666666666, 'f1_score_ranking': 1.0, 'accuracy_ranking': 1.0, 'rouge_scores': {'rouge1': 1.0, 'rouge2': 1.0, 'rougeL': 1.0}, 'bleu_score': 0.48853606795345966, 'sbert_similarity': 0.9782179445028305}
