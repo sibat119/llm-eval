@@ -12,59 +12,47 @@
 # python -m src.finetune.t5_loop --model_name t5-base --fold_count 4 --batch_size 32 --epochs 3 --learning_rate 5e-5 --save_path ./output/t5_base_milu/fold_4 --dataset milu --data_path data/dataset/meta-llama_Llama-3.2-3B-Instruct_milu_results.csv
 # python -m src.finetune.t5_loop --model_name t5-base --fold_count 5 --batch_size 32 --epochs 3 --learning_rate 5e-5 --save_path ./output/t5_base_milu/fold_5 --dataset milu --data_path data/dataset/meta-llama_Llama-3.2-3B-Instruct_milu_results.csv
 
+#!/bin/bash
 
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy black_box
+# Define arrays for variables
+sub_fields=("high_school_computer_science" "philosophy" "public_relations")
+prompt_strategies=("black_box" "persona" "pattern_recognition")
+selection_strategies=("similarity" "random")
 
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy black_box
+# Base models
+llama="meta-llama/Llama-3.1-8B-Instruct"
+qwen="Qwen/Qwen2.5-7B-Instruct"
 
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy black_box
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy black_box
+# Common parameters
+batch_size=16
+shot=5
 
+# Loop through all combinations
+for sub_field in "${sub_fields[@]}"; do
+    for prompt_strategy in "${prompt_strategies[@]}"; do
+        for selection_strategy in "${selection_strategies[@]}"; do
+            # First configuration: Llama as surrogate, Qwen as candidate
+            python -m src.surrogates.few_shot.few_shot \
+                --sub_field "$sub_field" \
+                --batch_size $batch_size \
+                --shot $shot \
+                --surrogate "$llama" \
+                --candidate "$qwen" \
+                --selection_strategy "$selection_strategy" \
+                --prompt_strategy "$prompt_strategy"
 
-
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy persona
-
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy persona
-
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy persona
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy persona
-
-
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy pattern_recognition
-
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field philosophy --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy pattern_recognition
-
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy similarity --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --candidate meta-llama/Llama-3.1-8B-Instruct --surrogate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy pattern_recognition
-python -m src.surrogates.few_shot.few_shot --sub_field public_relations --batch_size 16 --shot 5 --surrogate meta-llama/Llama-3.1-8B-Instruct --candidate Qwen/Qwen2.5-7B-Instruct --selection_strategy random --prompt_strategy pattern_recognition
-
-
-
-
-
+            # Second configuration: Qwen as surrogate, Llama as candidate
+            python -m src.surrogates.few_shot.few_shot \
+                --sub_field "$sub_field" \
+                --batch_size $batch_size \
+                --shot $shot \
+                --surrogate "$qwen" \
+                --candidate "$llama" \
+                --selection_strategy "$selection_strategy" \
+                --prompt_strategy "$prompt_strategy"
+        done
+    done
+done
 
 # python -m src.surrogates.few_shot.get_candidate_response --model_name meta-llama/Llama-3.1-8B-Instruct --sub_field high_school_computer_science --batch_size 16 --shot 0
 # python -m src.surrogates.few_shot.few_shot --sub_field high_school_computer_science --batch_size 16 --shot 3
