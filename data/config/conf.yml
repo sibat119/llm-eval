@@ -9,7 +9,7 @@ model_list:
   # - allenai/OLMo-2-1124-7B-Instruct
   - Qwen/Qwen2.5-7B-Instruct
 max_new_tokens: 1024
-model_cache: "/data/shared/llm_cache"
+# model_cache: "/data/shared/llm_cache"
 num_devices: 1
 top_p: 0.9
 temperature: 0.5
