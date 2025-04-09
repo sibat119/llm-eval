@@ -49,6 +49,7 @@
             "args": [
                 "--sub_field", "high_school_computer_science",
                 "--shot", "5",
+                "--eval"
             ],
             "env": {
                 "CUDA_VISIBLE_DEVICES": "3"

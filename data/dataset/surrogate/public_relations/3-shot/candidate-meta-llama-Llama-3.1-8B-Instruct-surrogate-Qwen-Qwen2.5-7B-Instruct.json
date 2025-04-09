@@ -10,135 +10,295 @@
             "rougeL": 0.13262337291438
         },
         "bleu_score": 0.01191233969289983,
-        "sbert_similarity": 0.34596943599595265,
-        "agreement_score": 0.38181818181818183,
-        "model_ground_truth_match": 0.38181818181818183,
-        "blackbox_ground_truth_match": 0.5636363636363636,
-        "both_ground_truth_match": 0.2818181818181818,
-        "agreement_samples": [
-            {
-                "model_output": "Relevance.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nTimeliness.",
-                "ground_truth": "Impact",
-                "options": "['Proximity', 'Timeliness', 'Prominence', 'Impact']"
+        "sbert_similarity": 0.3459694318896668,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.6272727272727273,
+            "model_ground_truth_match": 0.7090909090909091,
+            "blackbox_ground_truth_match": 0.5636363636363636,
+            "both_ground_truth_match": 0.4818181818181818,
+            "agreement_samples": [
+                {
+                    "model_output": "Open-ended",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nOpen-ended.",
+                    "ground_truth": "Open-ended",
+                    "options": "['Likert scale', 'Multiple choice', 'Open-ended', 'Yes/No']"
+                },
+                {
+                    "model_output": "Media tour",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nMedia tour.",
+                    "ground_truth": "Media tour",
+                    "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
+                },
+                {
+                    "model_output": "conducting a pre and post analysis of constituents' opinions.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nConducting a pre and post analysis of constituents' opinions.",
+                    "ground_truth": "conducting a pre and post analysis of constituents' opinions",
+                    "options": "['preparing a content analysis of media coverage', 'studying the content of blog postings about your issue', 'analyzing pre and post sales reports for changes in sales', \"conducting a pre and post analysis of constituents' opinions\"]"
+                },
+                {
+                    "model_output": "to interpret trends for management",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nto interpret trends for management",
+                    "ground_truth": "to interpret trends for management",
+                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+                },
+                {
+                    "model_output": "2",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "Viral campaigns",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nViral campaigns.",
+                    "ground_truth": "Viral campaigns",
+                    "options": "['Fan pages', 'Street activities', 'Grassroots marketing', 'Viral campaigns']"
+                },
+                {
+                    "model_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nWrite the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                },
+                {
+                    "model_output": "Impact",
+                    "blackbox_output": "Impact.",
+                    "ground_truth": "Impact",
+                    "options": "['Implementation', 'Impact', 'Attitude change', 'Preparation']"
+                },
+                {
+                    "model_output": "Grunig and Hunt (1984)",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nGrunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.",
+                    "ground_truth": "Grunig and Hunt (1984)",
+                    "options": "['Cutlip (2006)', 'Leitch and Neilson (2001)', 'Amaral and Phillips (2010)', 'Grunig and Hunt (1984)']"
+                },
+                {
+                    "model_output": "Analysis",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nAnalysis.",
+                    "ground_truth": "Analysis",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Arthur Page",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nDoris Fleischman.",
+                    "ground_truth": "Arthur Page",
+                    "options": "['Carl Byoir', 'Edward Bernays', 'Doris Fleischman', 'Arthur Page']"
+                },
+                {
+                    "model_output": "Personal",
+                    "blackbox_output": "Abstract.",
+                    "ground_truth": "Personal",
+                    "options": "['Formal', 'Abstract', 'Personal', 'Objective']"
+                },
+                {
+                    "model_output": "opinion change",
+                    "blackbox_output": "<|start_header_id|>assistant\n\ncoorientation",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
+                },
+                {
+                    "model_output": "Functional",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nFunctional.",
+                    "ground_truth": "Normative",
+                    "options": "['Enabling', 'Functional', 'Normative', 'Diffused']"
+                },
+                {
+                    "model_output": "Nonprofits",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nPolitics.",
+                    "ground_truth": "Politics",
+                    "options": "['Politics', 'Retail business', 'Automotive sales', 'Nonprofits']"
+                },
+                {
+                    "model_output": "New organizational practices are developed as a result of each.",
+                    "blackbox_output": "They both deal with acute risks.",
+                    "ground_truth": "They both deal with acute risks.",
+                    "options": "['They both require research monitoring.', 'They both deal with acute risks.', 'New organizational practices are developed as a result of each.', \"Both have the potential to damage an organisation's reputation.\"]"
+                },
+                {
+                    "model_output": "legitimacy",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nreliability",
+                    "ground_truth": "legitimacy",
+                    "options": "['legitimacy', 'identity', 'reliability', 'agency']"
+                },
+                {
+                    "model_output": "Strategy and implementation",
+                    "blackbox_output": "Strategy and evaluation.",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "Chanel",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nGivenchy",
+                    "ground_truth": "Chanel",
+                    "options": "['Dior', 'Givenchy', 'Chanel', 'Lacroix']"
+                },
+                {
+                    "model_output": "Business writing",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nMedia writing.",
+                    "ground_truth": "Promotional writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.38181818181818183,
+            "model_ground_truth_match": 0.38181818181818183,
+            "blackbox_ground_truth_match": 0.5636363636363636,
+            "both_ground_truth_match": 0.2818181818181818,
+            "agreement_samples": [
+                {
+                    "model_output": "Relevance.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nTimeliness.",
+                    "ground_truth": "Impact",
+                    "options": "['Proximity', 'Timeliness', 'Prominence', 'Impact']"
+                },
+                {
+                    "model_output": "financial performance",
+                    "blackbox_output": "Financial performance.",
+                    "ground_truth": "Financial performance",
+                    "options": "['Workforce development', 'Impact on local communities', 'Impact on the environment', 'Financial performance']"
+                },
+                {
+                    "model_output": "Industry-related publics.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nFunctional.",
+                    "ground_truth": "Normative",
+                    "options": "['Enabling', 'Functional', 'Normative', 'Diffused']"
+                },
+                {
+                    "model_output": "Monitoring",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nIssues management.",
+                    "ground_truth": "Issues management",
+                    "options": "['Public opinion', 'Issues management', 'Public affairs', 'Lobbying']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\nCause-based.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nMessage-oriented advertising campaigns are focused on gathering support for a particular message or cause.",
+                    "ground_truth": "Idea-oriented",
+                    "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Message-oriented']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\nTesla",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nStarbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.",
+                    "ground_truth": "Starbucks",
+                    "options": "['Starbucks', 'Coca-Cola', 'Wholefoods', 'Redbull']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nSituation analysis is done at the bottom of the pyramid and used to form objectives and implementation plans.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nOutcomes.",
+                    "ground_truth": "Inputs",
+                    "options": "['Inputs', 'Outputs', 'Outtakes', 'Outcomes']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\nViolence.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nWorkplace violence.",
+                    "ground_truth": "workplace violence",
+                    "options": "['workplace violence', 'organizational misdeeds', 'megadamage', 'crisis management']"
+                },
+                {
+                    "model_output": "Psychographics refers to the study of consumer behavior based on attitudes, interests, and opinions.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nindividual values, lifestyles and characteristics.",
+                    "ground_truth": "individual values, lifestyles and characteristics",
+                    "options": "['individual values, lifestyles and characteristics', 'individual sex, age, race and income statistics', 'potential influence', 'all of the above']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\n1922.\"",
+                    "blackbox_output": "1922.",
+                    "ground_truth": "1922",
+                    "options": "['1917', '1922', '1925', '1927']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nUnderstanding the target audience and objectives for the tuition savings program.\"",
+                    "blackbox_output": "Conduct a situation analysis to gain a better understanding of the issue.",
+                    "ground_truth": "Conduct a situation analysis to gain a better understanding of the issue.",
+                    "options": "['Research pricing and development costs for different services.', \"Develop a survey to discover which factors impact families' savings.\", 'Conduct a situation analysis to gain a better understanding of the issue.', 'Hold a focus group to determine which messages are most effective for the program.']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nInoculation\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nDownplaying.",
+                    "ground_truth": "downplaying",
+                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nAppeal to authority.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nProduct-oriented.",
+                    "ground_truth": "Result-oriented",
+                    "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Result-oriented']"
+                },
+                {
+                    "model_output": "Persuasive communication is most effective in forming or changing predispositions toward an issue.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nInterpersonal communication is most effective in forming or changing predispositions toward an issue. This is because interpersonal communication involves direct, personal interaction between individuals, allowing for a deeper level of understanding, empathy, and emotional connection. It enables individuals to share personal experiences, values, and perspectives, which can lead to more meaningful and lasting changes in attitudes and predispositions.",
+                    "ground_truth": "Media",
+                    "options": "['Interpersonal', 'Media', 'Group', 'Public']"
+                },
+                {
+                    "model_output": "A book launch would be a marketing tactic.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nEvent.",
+                    "ground_truth": "Event",
+                    "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nDuring the planning phase, pre-testing of strategy and tactics should be carried out to ensure that the communication efforts are effective and aligned with the organization's goals.\"",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nResource constraints and stakeholder expectations.\"",
+                    "blackbox_output": "Strategy and evaluation.",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "\"Progressive Era.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nThe Booming Twenties Era, 1919 - 1929.",
+                    "ground_truth": "Seedbed Era, 1900 ' 1917",
+                    "options": "['Postwar Era, 1945 - 1965', 'Roosevelt Era, 1930 - 1945', 'Booming Twenties Era, 1919 - 1929', \"Seedbed Era, 1900 ' 1917\"]"
+                },
+                {
+                    "model_output": "Shifting the blame to the company's general manager.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nDenial.",
+                    "ground_truth": "denial",
+                    "options": "['denial', 'evasion of responsibility', 'reducing the offensiveness', 'corrective action']"
+                },
+                {
+                    "model_output": "Transactional Writing",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nMedia writing.",
+                    "ground_truth": "Promotional writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.28,
+                "zero_agree_few_disagree": 0.35,
+                "zero_disagree_few_agree": 0.1,
+                "zero_disagree_few_disagree": 0.27
             },
-            {
-                "model_output": "financial performance",
-                "blackbox_output": "Financial performance.",
-                "ground_truth": "Financial performance",
-                "options": "['Workforce development', 'Impact on local communities', 'Impact on the environment', 'Financial performance']"
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 3.6,
+                    "blackbox_avg_token_length": 8.3,
+                    "agree_avg_combined_length": 15.0,
+                    "disagree_avg_combined_length": 6.6
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 7.3,
+                    "blackbox_avg_token_length": 8.3,
+                    "agree_avg_combined_length": 17.7,
+                    "disagree_avg_combined_length": 14.2
+                }
             },
-            {
-                "model_output": "Industry-related publics.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nFunctional.",
-                "ground_truth": "Normative",
-                "options": "['Enabling', 'Functional', 'Normative', 'Diffused']"
-            },
-            {
-                "model_output": "Monitoring",
-                "blackbox_output": "<|start_header_id|>assistant\n\nIssues management.",
-                "ground_truth": "Issues management",
-                "options": "['Public opinion', 'Issues management', 'Public affairs', 'Lobbying']"
-            },
-            {
-                "model_output": "<|start_header_id|>assistant\n\nCause-based.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nMessage-oriented advertising campaigns are focused on gathering support for a particular message or cause.",
-                "ground_truth": "Idea-oriented",
-                "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Message-oriented']"
-            },
-            {
-                "model_output": "<|start_header_id|>assistant\n\nTesla",
-                "blackbox_output": "<|start_header_id|>assistant\n\nStarbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.",
-                "ground_truth": "Starbucks",
-                "options": "['Starbucks', 'Coca-Cola', 'Wholefoods', 'Redbull']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nSituation analysis is done at the bottom of the pyramid and used to form objectives and implementation plans.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nOutcomes.",
-                "ground_truth": "Inputs",
-                "options": "['Inputs', 'Outputs', 'Outtakes', 'Outcomes']"
-            },
-            {
-                "model_output": "<|start_header_id|>assistant\n\nViolence.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nWorkplace violence.",
-                "ground_truth": "workplace violence",
-                "options": "['workplace violence', 'organizational misdeeds', 'megadamage', 'crisis management']"
-            },
-            {
-                "model_output": "Psychographics refers to the study of consumer behavior based on attitudes, interests, and opinions.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nindividual values, lifestyles and characteristics.",
-                "ground_truth": "individual values, lifestyles and characteristics",
-                "options": "['individual values, lifestyles and characteristics', 'individual sex, age, race and income statistics', 'potential influence', 'all of the above']"
-            },
-            {
-                "model_output": "<|start_header_id|>assistant\n\n1922.\"",
-                "blackbox_output": "1922.",
-                "ground_truth": "1922",
-                "options": "['1917', '1922', '1925', '1927']"
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.5271482818549679,
+                "zero_agree_few_disagree_cosine_distance": 0.28369829117467527,
+                "zero_disagree_few_agree_cosine_distance": 0.26182499121535907,
+                "zero_disagree_few_disagree_cosine_distance": 0.26750344143559535
             }
-        ],
-        "disagreement_samples": [
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nUnderstanding the target audience and objectives for the tuition savings program.\"",
-                "blackbox_output": "Conduct a situation analysis to gain a better understanding of the issue.",
-                "ground_truth": "Conduct a situation analysis to gain a better understanding of the issue.",
-                "options": "['Research pricing and development costs for different services.', \"Develop a survey to discover which factors impact families' savings.\", 'Conduct a situation analysis to gain a better understanding of the issue.', 'Hold a focus group to determine which messages are most effective for the program.']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nInoculation\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nDownplaying.",
-                "ground_truth": "downplaying",
-                "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nAppeal to authority.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nProduct-oriented.",
-                "ground_truth": "Result-oriented",
-                "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Result-oriented']"
-            },
-            {
-                "model_output": "Persuasive communication is most effective in forming or changing predispositions toward an issue.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nInterpersonal communication is most effective in forming or changing predispositions toward an issue. This is because interpersonal communication involves direct, personal interaction between individuals, allowing for a deeper level of understanding, empathy, and emotional connection. It enables individuals to share personal experiences, values, and perspectives, which can lead to more meaningful and lasting changes in attitudes and predispositions.",
-                "ground_truth": "Media",
-                "options": "['Interpersonal', 'Media', 'Group', 'Public']"
-            },
-            {
-                "model_output": "A book launch would be a marketing tactic.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nEvent.",
-                "ground_truth": "Event",
-                "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nDuring the planning phase, pre-testing of strategy and tactics should be carried out to ensure that the communication efforts are effective and aligned with the organization's goals.\"",
-                "blackbox_output": "Step 1.",
-                "ground_truth": "3",
-                "options": "['1', '2', '3', '4']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nResource constraints and stakeholder expectations.\"",
-                "blackbox_output": "Strategy and evaluation.",
-                "ground_truth": "Research and evaluation",
-                "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
-            },
-            {
-                "model_output": "\"Progressive Era.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nThe Booming Twenties Era, 1919 - 1929.",
-                "ground_truth": "Seedbed Era, 1900 ' 1917",
-                "options": "['Postwar Era, 1945 - 1965', 'Roosevelt Era, 1930 - 1945', 'Booming Twenties Era, 1919 - 1929', \"Seedbed Era, 1900 ' 1917\"]"
-            },
-            {
-                "model_output": "Shifting the blame to the company's general manager.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nDenial.",
-                "ground_truth": "denial",
-                "options": "['denial', 'evasion of responsibility', 'reducing the offensiveness', 'corrective action']"
-            },
-            {
-                "model_output": "Transactional Writing",
-                "blackbox_output": "<|start_header_id|>assistant\n\nMedia writing.",
-                "ground_truth": "Promotional writing",
-                "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
-            }
-        ]
+        }
     },
     "wrt_blackbox": {
         "exact_match": 0.00909090909090909,
@@ -149,6 +309,6 @@
             "rougeL": 0.22280332887722284
         },
         "bleu_score": 0.029484851972136166,
-        "sbert_similarity": 0.37858740253881973
+        "sbert_similarity": 0.3785874054682526
     }
 }

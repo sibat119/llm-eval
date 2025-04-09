@@ -242,7 +242,7 @@ def compute_sbert_similarity(predictions, ground_truths):
         return 0.0
     
     
-def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=None):
+def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=None, surrogate_output_wo_prior=None):
     """
     Compute all metrics at once and return as a dictionary
     """
@@ -258,8 +258,17 @@ def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=No
     
     # Add agreement metrics if blackbox outputs are provided
     if blackbox_outputs is not None:
-        agreement_metrics = compute_output_agreement(predictions, blackbox_outputs, ground_truths, options)
-        metrics.update(agreement_metrics)
+        agreement_without_mind_model = compute_output_agreement(surrogate_output_wo_prior, blackbox_outputs, ground_truths, options)
+        agreement_after_mind_model = compute_output_agreement(predictions, blackbox_outputs, ground_truths, options)
+        metrics['agreement_without_mind_model'] = agreement_without_mind_model
+        metrics['agreement_after_mind_model'] = agreement_after_mind_model
+        
+        # Add transition metrics if we have both with and without mind model outputs
+        if surrogate_output_wo_prior is not None:
+            transition_metrics = compute_agreement_transitions(
+                surrogate_output_wo_prior, predictions, blackbox_outputs, ground_truths, options
+            )
+            metrics['transition_metrics'] = transition_metrics
     
     return metrics
 
@@ -499,4 +508,262 @@ def compute_output_agreement(model_outputs, blackbox_outputs, ground_truths, opt
         'agreement_samples': agreement_samples,
         'disagreement_samples': disagreement_samples
     }
+
+def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_w_prior, blackbox_outputs, ground_truths, options):
+    """
+    Compute agreement transitions between outputs without mind model (zero-shot) and with mind model (few-shot).
+    
+    Args:
+        surrogate_outputs_wo_prior: List of surrogate model outputs without mind model (zero-shot)
+        surrogate_outputs_w_prior: List of surrogate model outputs with mind model (few-shot)
+        blackbox_outputs: List of blackbox model predictions (text strings)
+        ground_truths: List of ground truth answers (text strings)
+        options: List of lists, where each inner list contains the options for a question
+        
+    Returns:
+        Dictionary containing agreement transition statistics and response length metrics
+    """
+    if not surrogate_outputs_wo_prior or not surrogate_outputs_w_prior or not blackbox_outputs:
+        return {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.0,
+                "zero_agree_few_disagree": 0.0,
+                "zero_disagree_few_agree": 0.0,
+                "zero_disagree_few_disagree": 0.0,
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 0.0,
+                    "blackbox_avg_token_length": 0.0,
+                    "agree_avg_combined_length": 0.0,
+                    "disagree_avg_combined_length": 0.0
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 0.0,
+                    "blackbox_avg_token_length": 0.0,
+                    "agree_avg_combined_length": 0.0,
+                    "disagree_avg_combined_length": 0.0
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.0,
+                "zero_agree_few_disagree_cosine_distance": 0.0,
+                "zero_disagree_few_agree_cosine_distance": 0.0,
+                "zero_disagree_few_disagree_cosine_distance": 0.0,
+            }
+        }
+    
+    # Load SBERT model
+    model = SentenceTransformer('all-mpnet-base-v2')
+    
+    # Counters for transitions
+    zero_agree_few_agree = 0
+    zero_agree_few_disagree = 0
+    zero_disagree_few_agree = 0
+    zero_disagree_few_disagree = 0
+    total_valid = 0
+    
+    # Lists for length calculations
+    zero_surrogate_lengths = []
+    zero_blackbox_lengths = []
+    zero_agree_combined_lengths = []
+    zero_disagree_combined_lengths = []
+    
+    few_surrogate_lengths = []
+    few_blackbox_lengths = []
+    few_agree_combined_lengths = []
+    few_disagree_combined_lengths = []
+    
+    # Lists for semantic similarity by agreement transition type
+    zero_agree_few_agree_similarities = []
+    zero_agree_few_disagree_similarities = []
+    zero_disagree_few_agree_similarities = []
+    zero_disagree_few_disagree_similarities = []
+    
+    for zero_out, few_out, bb_out, truth, opts in zip(
+        surrogate_outputs_wo_prior, surrogate_outputs_w_prior, blackbox_outputs, ground_truths, options
+    ):
+        if not zero_out or not few_out or not bb_out or not opts:
+            continue
+            
+        # Convert options string to list if needed
+        opts = eval(opts) if isinstance(opts, str) else opts
+        
+        # Get embeddings for all inputs
+        zero_embedding = model.encode([zero_out], convert_to_numpy=True)
+        few_embedding = model.encode([few_out], convert_to_numpy=True)
+        bb_embedding = model.encode([bb_out], convert_to_numpy=True)
+        opts_embeddings = model.encode(opts, convert_to_numpy=True)
+        
+        # Calculate similarities for zero-shot (without mind model)
+        zero_similarities = cosine_similarity(zero_embedding, opts_embeddings)[0]
+        zero_top_idx = np.argmax(zero_similarities)
+        
+        # Calculate similarities for few-shot (with mind model)
+        few_similarities = cosine_similarity(few_embedding, opts_embeddings)[0]
+        few_top_idx = np.argmax(few_similarities)
+        
+        # Calculate similarities for blackbox
+        bb_similarities = cosine_similarity(bb_embedding, opts_embeddings)[0]
+        bb_top_idx = np.argmax(bb_similarities)
+        
+        # Calculate cosine similarity between zero-shot and few-shot outputs
+        # Convert NumPy float32 to native Python float to ensure JSON serialization
+        cosine_sim = float(cosine_similarity(zero_embedding, few_embedding)[0][0])
+        
+        # Track token lengths (using simple splitting as approximation)
+        zero_surrogate_length = len(zero_out.split())
+        few_surrogate_length = len(few_out.split())
+        bb_length = len(bb_out.split())
+        
+        zero_surrogate_lengths.append(zero_surrogate_length)
+        few_surrogate_lengths.append(few_surrogate_length)
+        zero_blackbox_lengths.append(bb_length)
+        few_blackbox_lengths.append(bb_length)  # Same blackbox outputs used in both conditions
+        
+        # Check agreements in zero-shot (without mind model)
+        zero_agreement = (zero_top_idx == bb_top_idx)
+        
+        # Check agreements in few-shot (with mind model)
+        few_agreement = (few_top_idx == bb_top_idx)
+        
+        # Track combined lengths by agreement state
+        if zero_agreement:
+            zero_agree_combined_lengths.append(zero_surrogate_length + bb_length)
+        else:
+            zero_disagree_combined_lengths.append(zero_surrogate_length + bb_length)
+            
+        if few_agreement:
+            few_agree_combined_lengths.append(few_surrogate_length + bb_length)
+        else:
+            few_disagree_combined_lengths.append(few_surrogate_length + bb_length)
+        
+        # Count transitions and track semantic similarity by transition type
+        if zero_agreement and few_agreement:
+            zero_agree_few_agree += 1
+            zero_agree_few_agree_similarities.append(cosine_sim)
+        elif zero_agreement and not few_agreement:
+            zero_agree_few_disagree += 1
+            zero_agree_few_disagree_similarities.append(cosine_sim)
+        elif not zero_agreement and few_agreement:
+            zero_disagree_few_agree += 1
+            zero_disagree_few_agree_similarities.append(cosine_sim)
+        else:  # not zero_agreement and not few_agreement
+            zero_disagree_few_disagree += 1
+            zero_disagree_few_disagree_similarities.append(cosine_sim)
+            
+        total_valid += 1
+    
+    # Calculate percentages
+    if total_valid == 0:
+        return {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.0,
+                "zero_agree_few_disagree": 0.0,
+                "zero_disagree_few_agree": 0.0,
+                "zero_disagree_few_disagree": 0.0,
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 0.0,
+                    "blackbox_avg_token_length": 0.0,
+                    "agree_avg_combined_length": 0.0,
+                    "disagree_avg_combined_length": 0.0
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 0.0,
+                    "blackbox_avg_token_length": 0.0,
+                    "agree_avg_combined_length": 0.0,
+                    "disagree_avg_combined_length": 0.0
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.0,
+                "zero_agree_few_disagree_cosine_distance": 0.0,
+                "zero_disagree_few_agree_cosine_distance": 0.0,
+                "zero_disagree_few_disagree_cosine_distance": 0.0,
+            }
+        }
+    
+    # Calculate percentages and averages
+    results = {
+        "agreement_transitions": {
+            "zero_agree_few_agree": round(zero_agree_few_agree / total_valid, 2),
+            "zero_agree_few_disagree": round(zero_agree_few_disagree / total_valid, 2),
+            "zero_disagree_few_agree": round(zero_disagree_few_agree / total_valid, 2),
+            "zero_disagree_few_disagree": round(zero_disagree_few_disagree / total_valid, 2),
+        },
+        "response_length_metrics": {
+            "zero_shot": {
+                "surrogate_avg_token_length": round(np.mean(zero_surrogate_lengths), 1) if zero_surrogate_lengths else 0.0,
+                "blackbox_avg_token_length": round(np.mean(zero_blackbox_lengths), 1) if zero_blackbox_lengths else 0.0,
+                "agree_avg_combined_length": round(np.mean(zero_agree_combined_lengths), 1) if zero_agree_combined_lengths else 0.0,
+                "disagree_avg_combined_length": round(np.mean(zero_disagree_combined_lengths), 1) if zero_disagree_combined_lengths else 0.0
+            },
+            "few_shot": {
+                "surrogate_avg_token_length": round(np.mean(few_surrogate_lengths), 1) if few_surrogate_lengths else 0.0,
+                "blackbox_avg_token_length": round(np.mean(few_blackbox_lengths), 1) if few_blackbox_lengths else 0.0,
+                "agree_avg_combined_length": round(np.mean(few_agree_combined_lengths), 1) if few_agree_combined_lengths else 0.0,
+                "disagree_avg_combined_length": round(np.mean(few_disagree_combined_lengths), 1) if few_disagree_combined_lengths else 0.0
+            }
+        },
+        "symantic_similarity": {
+            "zero_agree_few_agree_cosine_distance": float(np.mean(zero_agree_few_agree_similarities)) if zero_agree_few_agree_similarities else 0.5,
+            "zero_agree_few_disagree_cosine_distance": float(np.mean(zero_agree_few_disagree_similarities)) if zero_agree_few_disagree_similarities else 0.5,
+            "zero_disagree_few_agree_cosine_distance": float(np.mean(zero_disagree_few_agree_similarities)) if zero_disagree_few_agree_similarities else 0.5,
+            "zero_disagree_few_disagree_cosine_distance": float(np.mean(zero_disagree_few_disagree_similarities)) if zero_disagree_few_disagree_similarities else 0.5,
+        }
+    }
+    
+    return results
+
+def compute_agreement_transitions_from_csv(csv_wo_prior, csv_w_prior):
+    """
+    Compute agreement transition metrics from two CSV files:
+    - One containing model outputs without the mind model (zero-shot)
+    - One containing model outputs with the mind model (few-shot)
+    
+    Args:
+        csv_wo_prior: Path to CSV file with model outputs without mind model
+        csv_w_prior: Path to CSV file with model outputs with mind model
+        
+    Returns:
+        Dictionary with transition metrics
+    """
+    try:
+        # Load both CSV files
+        df_wo_prior = pd.read_csv(csv_wo_prior)
+        df_w_prior = pd.read_csv(csv_w_prior)
+        
+        # Validate that the files contain the necessary columns
+        required_columns = ['model_output', 'blackbox_output', 'ground_truth', 'options']
+        for col in required_columns:
+            if col not in df_wo_prior.columns or col not in df_w_prior.columns:
+                print(f"Missing required column: {col}")
+                return None
+                
+        # Validate that the files have the same questions
+        if len(df_wo_prior) != len(df_w_prior):
+            print("CSV files have different numbers of entries")
+            return None
+            
+        # Extract data from DataFrames
+        surrogate_wo_prior = df_wo_prior['model_output'].fillna('').tolist()
+        surrogate_w_prior = df_w_prior['model_output'].fillna('').tolist()
+        blackbox_outputs = df_wo_prior['blackbox_output'].fillna('').tolist()  # Can use either file
+        ground_truths = df_wo_prior['ground_truth'].fillna('').tolist()  # Can use either file
+        options = df_wo_prior['options'].tolist()  # Can use either file
+        
+        # Compute the transition metrics
+        return compute_agreement_transitions(
+            surrogate_wo_prior,
+            surrogate_w_prior,
+            blackbox_outputs,
+            ground_truths,
+            options
+        )
+        
+    except Exception as e:
+        print(f"Error computing agreement transitions from CSV: {e}")
+        return None
 

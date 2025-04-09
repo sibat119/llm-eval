@@ -63,8 +63,8 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
             response_dict = {
                 'question': batch['question'][idx],
                 'options': batch['options'][idx],
-                'blackbox_output': batch['model_output'][idx],
-                'surrogate_output': batch_answers[idx].replace('<|start_header_id|>assistant<|end_header_id|>\n\n', ''),
+                'blackbox_output': batch['model_output'][idx].replace('<|start_header_id|>assistant\n\n', ''),
+                'surrogate_output': batch_answers[idx].replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '').replace('<|start_header_id|>assistant\n\n', ''),
                 'ground_truth': batch['ground_truth'][idx],
                 'prompt': batch_prompts[idx]
             }
@@ -77,25 +77,28 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
     return response_list
 
 
-def compute_dual_metrics_from_csv(csv_filename):
+def compute_dual_metrics_from_csv(csv_filename, surrogate_wo_prior_ds_path):
     """
     Reads the CSV file and computes all metrics with error handling
     """
     try:
         results = {}
         df = pd.read_csv(csv_filename)
+        surrogate_df_wo_prior = pd.read_csv(surrogate_wo_prior_ds_path)
         
         # Handle missing values
         df['blackbox_output'] = df['blackbox_output'].fillna('')
         df['ground_truth'] = df['ground_truth'].fillna('')
         df['surrogate_output'] = df['surrogate_output'].fillna('')
+        df['surrogate_output_wo_prior'] = surrogate_df_wo_prior['model_output'].fillna('').apply(lambda x: x.replace('<|start_header_id|>assistant\n\n', ''))
         
         predictions = df['surrogate_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
         options = df['options'].tolist()
         blackbox_output = df['blackbox_output'].tolist()
+        surrogate_output_wo_prior = df['surrogate_output_wo_prior'].tolist()
         
-        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options, blackbox_output)
+        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options, blackbox_output, surrogate_output_wo_prior)
         
         results['wrt_blackbox'] = metrics.compute_all_metrics_wo_rank(predictions, blackbox_output)
         
@@ -139,9 +142,11 @@ if __name__ == "__main__":
     candidate_llm  = args.candidate
     surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, f"{args.shot}-shot")
     os.makedirs(surrogate_dir, exist_ok=True)
+    print(surrogate_dir)
     ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
     data_folder = f"{config['data_path']}/{args.sub_field}/0"
     candidate_model_data_path = f"{data_folder}/custom_{candidate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
+    surrogate_wo_prior_ds_path = f"{data_folder}/custom_{surrogate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
     if not args.eval:
         get_few_shot_surrogate(
             model_name=surrogate_llm, 
@@ -151,6 +156,6 @@ if __name__ == "__main__":
             batch_size=args.batch_size,
             cfg=config
             )
-    results = compute_dual_metrics_from_csv(ds_file_name)
+    results = compute_dual_metrics_from_csv(ds_file_name, surrogate_wo_prior_ds_path)
     with open(f"{surrogate_dir}/candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
         json.dump(results, f, indent=4)

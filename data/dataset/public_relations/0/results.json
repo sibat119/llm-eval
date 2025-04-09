@@ -1,0 +1,29 @@
+{
+    "Qwen/Qwen2.5-7B-Instruct": {
+        "exact_match": 0.6636363636363637, 
+        "f1_score_token_agreement": 0.7313771353552799, 
+        "f1_score_ranking": 0.7023360423360423, 
+        "accuracy_ranking": 0.7090909090909091, 
+        "rouge_scores": 
+            {
+                "rouge1": 0.7505919728054117, 
+                "rouge2": 0.461314443132625, 
+                "rougeL": 0.7505919728054117
+            }, 
+        "bleu_score": 0.32555877827630464, 
+        "sbert_similarity": 0.8369957370514219
+    },
+    "meta-llama/Llama-3.1-8B-Instruct": {
+        "exact_match": 0.03636363636363636, 
+        "f1_score_token_agreement": 0.27872002892084513, 
+        "f1_score_ranking": 0.5499484378580705, 
+        "accuracy_ranking": 0.5636363636363636, 
+        "rouge_scores": {
+            "rouge1": 0.38291821584780794, 
+            "rouge2": 0.22321198996630529, 
+            "rougeL": 0.38291821584780794
+        }, 
+        "bleu_score": 0.15072396514017689, 
+        "sbert_similarity": 0.45548012477599764
+    }
+}

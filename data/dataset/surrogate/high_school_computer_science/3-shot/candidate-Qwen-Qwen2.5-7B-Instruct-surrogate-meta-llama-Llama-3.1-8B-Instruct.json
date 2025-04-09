@@ -10,135 +10,295 @@
             "rougeL": 0.3174711779428663
         },
         "bleu_score": 0.04402807368533138,
-        "sbert_similarity": 0.5281259977817535,
-        "agreement_score": 0.5,
-        "model_ground_truth_match": 0.48,
-        "blackbox_ground_truth_match": 0.84,
-        "both_ground_truth_match": 0.42,
-        "agreement_samples": [
-            {
-                "model_output": "num1 <= value2 and num1 <= value3",
-                "blackbox_output": "num1 < num2 && num1 < num3",
-                "ground_truth": "num1 < num2 && num1 < num3",
-                "options": "['num1 < num2', 'num1 < num3', 'num1 > num2 && num1 > num3', 'num1 < num2 && num1 < num3']"
+        "sbert_similarity": 0.5281259916350245,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.71,
+            "model_ground_truth_match": 0.7,
+            "blackbox_ground_truth_match": 0.84,
+            "both_ground_truth_match": 0.64,
+            "agreement_samples": [
+                {
+                    "model_output": "Yes.",
+                    "blackbox_output": "Yes",
+                    "ground_truth": "Yes",
+                    "options": "['Yes', 'No', \"It's machine-dependent\", 'None of the above']"
+                },
+                {
+                    "model_output": "8",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
+                },
+                {
+                    "model_output": "Both algorithms work correctly on all input values.",
+                    "blackbox_output": "Both algorithms work correctly on all input values.",
+                    "ground_truth": "Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.",
+                    "options": "['Both algorithms work correctly on all input values.', 'Algorithm I always works correctly, but Algorithm II only works correctly when the maximum value is not the first value in the list.', 'Algorithm II always works correctly, but Algorithm I only works correctly when the maximum value is greater than or equal to -l.', 'Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.']"
+                },
+                {
+                    "model_output": "255.",
+                    "blackbox_output": "255",
+                    "ground_truth": "255",
+                    "options": "['32', '225', '255', '256']"
+                },
+                {
+                    "model_output": "seed([x])",
+                    "blackbox_output": "seed([x])",
+                    "ground_truth": "seed([x])",
+                    "options": "['choice(seq)', 'randrange ([start,] stop [,step])', 'random()', 'seed([x])']"
+                },
+                {
+                    "model_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "blackbox_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "ground_truth": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "options": "['A school allows students to bring a graphing calculator from home to complete in-class mathematics assignments.', 'A school allows students to bring a tablet computer to class every day to participate in graded quizzes.', 'A school provides a laptop or tablet computer to all students enrolled at the school.', 'A school recommends that all students purchase a computer with as much processing speed as possible so that projects run faster.']"
+                },
+                {
+                    "model_output": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "blackbox_output": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "ground_truth": "Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.",
+                    "options": "['Express the simulation software using both recursive and iterative algorithms. Compare the results of the recursive algorithm to those of the iterative algorithm.', \"Perform real-world experiments on the plant species' growth in different environments. Compare the experimental results to the results provided by the simulation.\", 'Remove any unnecessary details from the model. Compare the running times of the original simulation and the simplified simulation.', 'Run the simulation software on multiple devices. Compare the results obtained from each of the devices.']"
+                },
+                {
+                    "model_output": "24.",
+                    "blackbox_output": "24",
+                    "ground_truth": "24",
+                    "options": "['8', '16', '24', '32']"
+                },
+                {
+                    "model_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "blackbox_output": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code.",
+                    "ground_truth": "Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code",
+                    "options": "['Managing specification files created as part of the development process', 'Running and testing the executable created by the programmer', 'Tracking older versions of the software in case an error is found and the software needs to be reverted to an earlier form', 'Translating a program written in an abstract, high-level language into a program with the same behavior expressed in machine code']"
+                },
+                {
+                    "model_output": "isupper()",
+                    "blackbox_output": "isupper()",
+                    "ground_truth": "isupper()",
+                    "options": "['isupper()', 'join(seq)', 'len(string)', 'ljust(width[, fillchar])']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "abcd",
+                    "blackbox_output": "Error",
+                    "ground_truth": "abcd",
+                    "options": "[\"( 'abcd', 786 , 2.23, 'john', 70.2 )\", 'abcd', 'Error', 'None of the above.']"
+                },
+                {
+                    "model_output": "Changing line 7 to a \u2190 b + 10. \n\nThis is because the condition in the IF statement is a = 0, and changing line 7 to a \u2190 b + 10 does not affect the value of 'a' when the condition is true or false, it only changes the value of 'a' inside the ELSE block, but the ELSE block is not executed when the condition is true.",
+                    "blackbox_output": "Changing line 3 to b \u2190 10",
+                    "ground_truth": "Changing line 3 to b \u2190 10",
+                    "options": "['Changing line 3 to b \u2190 10', 'Changing line 3 to a \u2190 b + 10', 'Changing line 7 to b \u2190 20', 'Changing line 7 to a \u2190 b + 10']"
+                },
+                {
+                    "model_output": "The method should be written so as to return the index of every occurrence of a larger value. This is because the problem specification does not indicate what should be done if there are multiple values larger than the given item, and returning all indices is a reasonable and useful default behavior.",
+                    "blackbox_output": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
+                },
+                {
+                    "model_output": "A function that averages numeric values in a column or row. This function would allow you to identify values that are significantly higher or lower than the average, indicating potential data entry errors.",
+                    "blackbox_output": "A function that sorts values in a column or row.",
+                    "ground_truth": "A function that sorts values in a column or row",
+                    "options": "['A function that averages numeric values in a column or row', 'A function that counts the values in a column or row', 'A function that rounds a numeric value', 'A function that sorts values in a column or row']"
+                },
+                {
+                    "model_output": "I and III only.",
+                    "blackbox_output": "II and III only",
+                    "ground_truth": "II and III only",
+                    "options": "['II only', 'I and II only', 'I and III only', 'II and III only']"
+                },
+                {
+                    "model_output": "Customers are likely to spend less time listening to information not relevant to their issue.",
+                    "blackbox_output": "The company will be able to provide a human representative for any incoming call.",
+                    "ground_truth": "The company will be able to provide a human representative for any incoming call.",
+                    "options": "['Human representatives will not be needed to respond to some inquiries.', 'The company will be able to provide a human representative for any incoming call.', 'Customers are likely to spend less time listening to information not relevant to their issue.', 'Customers will be unable to mistakenly select the incorrect department for their particular issue.']"
+                },
+                {
+                    "model_output": "The bank can use the simulation to investigate these two options without causing inconvenience for customers.",
+                    "blackbox_output": "The simulation will not produce usable results because actual customer data are not available.",
+                    "ground_truth": "The simulation will not produce usable results because actual customer data are not available.",
+                    "options": "['The bank can incorporate other factors, such as the number of tellers, in the simulation.', 'The bank can use the simulation to investigate these two options without causing inconvenience for customers.', 'The bank may consider new alternatives based on the simulation results.', 'The simulation will not produce usable results because actual customer data are not available.']"
+                },
+                {
+                    "model_output": "The total number of shoes sold in a particular month cannot be determined from the database, as it does not contain any sales data.",
+                    "blackbox_output": "Which items listed in the database are not currently in the store",
+                    "ground_truth": "Which items listed in the database are not currently in the store",
+                    "options": "['Which items listed in the database are not currently in the store', 'Which colors are more popular among men than women', 'Which type of footwear is most popular among adults', 'The total number of shoes sold in a particular month']"
+                },
+                {
+                    "model_output": "250. \n\nIn a binary search, the list is divided in half at each step, so the maximum number of elements examined is the height of a binary tree with 500 elements. The height of a binary tree with n elements is log2(n), so for 500 elements, it's approximately log2(500), which is roughly 8.965. Since we can't examine a fraction of an element, we round up to the nearest whole number, but in this case, we're looking for the closest answer, and 250 is the closest integer to 8.965 * 50 (since each level of the tree is roughly twice the previous one).",
+                    "blackbox_output": "10",
+                    "ground_truth": "10",
+                    "options": "['10', '50', '250', '500']"
+                },
+                {
+                    "model_output": "It supports automatic garbage collection and can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java.",
+                    "blackbox_output": "Both of the above.",
+                    "ground_truth": "Both of the above.",
+                    "options": "['It supports automatic garbage collection.', 'It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java.', 'Both of the above.', 'None of the above.']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.5,
+            "model_ground_truth_match": 0.48,
+            "blackbox_ground_truth_match": 0.84,
+            "both_ground_truth_match": 0.42,
+            "agreement_samples": [
+                {
+                    "model_output": "num1 <= value2 and num1 <= value3",
+                    "blackbox_output": "num1 < num2 && num1 < num3",
+                    "ground_truth": "num1 < num2 && num1 < num3",
+                    "options": "['num1 < num2', 'num1 < num3', 'num1 > num2 && num1 > num3', 'num1 < num2 && num1 < num3']"
+                },
+                {
+                    "model_output": "\"A DDoS attack involves multiple compromised systems, whereas a DoS attack involves a single compromised system.\"",
+                    "blackbox_output": "The number of computers launching the attack",
+                    "ground_truth": "The number of computers launching the attack",
+                    "options": "['The goal of the attack', 'The number of computers being attacked', 'The number of computers launching the attack', 'The time period in which the attack occurs']"
+                },
+                {
+                    "model_output": "10",
+                    "blackbox_output": "10",
+                    "ground_truth": "10",
+                    "options": "['4', '1', '10', '8']"
+                },
+                {
+                    "model_output": "[11, 15, 19]",
+                    "blackbox_output": "[11,15,19]",
+                    "ground_truth": "[11,15,19]",
+                    "options": "['[19,21]', '[11,15]', '[11,15,19]', '[13,17,21]']"
+                },
+                {
+                    "model_output": "** operator",
+                    "blackbox_output": "**",
+                    "ground_truth": "**",
+                    "options": "['**', '//', 'is', 'not in']"
+                },
+                {
+                    "model_output": "0",
+                    "blackbox_output": "0",
+                    "ground_truth": "Chemistry",
+                    "options": "['a', 'Chemistry', '0', '1']"
+                },
+                {
+                    "model_output": "\"1\"",
+                    "blackbox_output": "1",
+                    "ground_truth": "1",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "queue | dictionary/map | stack",
+                    "blackbox_output": "Queue | Dictionary/map | Stack",
+                    "ground_truth": "Queue | Dictionary/map | Stack",
+                    "options": "['Dictionary/map | Queue | Stack', 'Dictionary/map | Stack | Queue', 'Queue | Dictionary/map | Stack', 'Stack | Queue | Dictionary/map']"
+                },
+                {
+                    "model_output": "\"strA comes before strB in alphabetical order, and strB comes before strC in alphabetical order.\"",
+                    "blackbox_output": "strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0",
+                    "ground_truth": "strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0",
+                    "options": "['strA.compareTo(strB) < 0 && strB.compareTo(strC) > 0', 'strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0', 'strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0', '!(strA.compareTo(strB) == 0) && strB.compareTo(strA) < 0']"
+                },
+                {
+                    "model_output": "Binary Search",
+                    "blackbox_output": "8",
+                    "ground_truth": "7",
+                    "options": "['7', '8', '20', '100']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "\"Compression.\"",
+                    "blackbox_output": "The song was saved using fewer bits per second than the original song.",
+                    "ground_truth": "The song was saved using fewer bits per second than the original song.",
+                    "options": "['The song was saved using fewer bits per second than the original song.', 'The song was saved using more bits per second than the original song.', 'The song was saved using a lossless compression technique.', 'Some information is lost every time a file is saved from one location on a computer to another location.']"
+                },
+                {
+                    "model_output": "2",
+                    "blackbox_output": "5",
+                    "ground_truth": "5",
+                    "options": "['1', '6', '4', '5']"
+                },
+                {
+                    "model_output": "\"Memory constraints are the least likely to affect the ability of the program to process larger data sets.\"",
+                    "blackbox_output": "How many programming statements the program contains",
+                    "ground_truth": "How many programming statements the program contains",
+                    "options": "['How long the program takes to run', 'How many programming statements the program contains', 'How much memory the program requires as it runs', 'How much storage space the program requires as it runs']"
+                },
+                {
+                    "model_output": "4**5",
+                    "blackbox_output": "1",
+                    "ground_truth": "4",
+                    "options": "['4', '1', '256', '16']"
+                },
+                {
+                    "model_output": "\"Item identification number, Footwear type, Selling price, Size, Color, and Quantity available\"",
+                    "blackbox_output": "Which items listed in the database are not currently in the store",
+                    "ground_truth": "Which items listed in the database are not currently in the store",
+                    "options": "['Which items listed in the database are not currently in the store', 'Which colors are more popular among men than women', 'Which type of footwear is most popular among adults', 'The total number of shoes sold in a particular month']"
+                },
+                {
+                    "model_output": "\"0, 2, 5, 21\"",
+                    "blackbox_output": "1, 4, 16",
+                    "ground_truth": "\u22121, 0, 1, 2, 3, 5, 16, 20, 22",
+                    "options": "['0, 2, 5, 20', '1, 4, 16', '\u22121, 1, 2, 3, 5, 16, 20', '\u22121, 0, 1, 2, 3, 5, 16, 20, 22']"
+                },
+                {
+                    "model_output": "list[1:3]",
+                    "blackbox_output": "[786, 2.23]",
+                    "ground_truth": "[786, 2.23]",
+                    "options": "[\"[ 'abcd', 786 , 2.23, 'john', 70.2 ]\", 'abcd', '[786, 2.23]', 'None of the above.']"
+                },
+                {
+                    "model_output": "\"Which search term is most likely to be searched by a specific individual.\"",
+                    "blackbox_output": "What is the cost of a certain electronics product?",
+                    "ground_truth": "What is the cost of a certain electronics product?",
+                    "options": "['In what month does a particular sport receive the most searches?', 'In which political candidates are people interested?', 'What is the cost of a certain electronics product?', 'Which region of the country has the greatest number of people searching for opera performances?']"
+                },
+                {
+                    "model_output": "\"The method should return the index of the first such value found in the array.\"",
+                    "blackbox_output": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
+                    "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
+                },
+                {
+                    "model_output": "\"x << 3 is equivalent to x shifted left by 3 bits, which is equivalent to x multiplied by 2^3, or 8.\"",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.44,
+                "zero_agree_few_disagree": 0.27,
+                "zero_disagree_few_agree": 0.06,
+                "zero_disagree_few_disagree": 0.23
             },
-            {
-                "model_output": "\"A DDoS attack involves multiple compromised systems, whereas a DoS attack involves a single compromised system.\"",
-                "blackbox_output": "The number of computers launching the attack",
-                "ground_truth": "The number of computers launching the attack",
-                "options": "['The goal of the attack', 'The number of computers being attacked', 'The number of computers launching the attack', 'The time period in which the attack occurs']"
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 15.4,
+                    "blackbox_avg_token_length": 7.8,
+                    "agree_avg_combined_length": 18.2,
+                    "disagree_avg_combined_length": 35.2
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 8.8,
+                    "blackbox_avg_token_length": 7.8,
+                    "agree_avg_combined_length": 15.8,
+                    "disagree_avg_combined_length": 17.5
+                }
             },
-            {
-                "model_output": "10",
-                "blackbox_output": "10",
-                "ground_truth": "10",
-                "options": "['4', '1', '10', '8']"
-            },
-            {
-                "model_output": "[11, 15, 19]",
-                "blackbox_output": "[11,15,19]",
-                "ground_truth": "[11,15,19]",
-                "options": "['[19,21]', '[11,15]', '[11,15,19]', '[13,17,21]']"
-            },
-            {
-                "model_output": "** operator",
-                "blackbox_output": "**",
-                "ground_truth": "**",
-                "options": "['**', '//', 'is', 'not in']"
-            },
-            {
-                "model_output": "0",
-                "blackbox_output": "0",
-                "ground_truth": "Chemistry",
-                "options": "['a', 'Chemistry', '0', '1']"
-            },
-            {
-                "model_output": "\"1\"",
-                "blackbox_output": "1",
-                "ground_truth": "1",
-                "options": "['1', '2', '3', '4']"
-            },
-            {
-                "model_output": "queue | dictionary/map | stack",
-                "blackbox_output": "Queue | Dictionary/map | Stack",
-                "ground_truth": "Queue | Dictionary/map | Stack",
-                "options": "['Dictionary/map | Queue | Stack', 'Dictionary/map | Stack | Queue', 'Queue | Dictionary/map | Stack', 'Stack | Queue | Dictionary/map']"
-            },
-            {
-                "model_output": "\"strA comes before strB in alphabetical order, and strB comes before strC in alphabetical order.\"",
-                "blackbox_output": "strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0",
-                "ground_truth": "strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0",
-                "options": "['strA.compareTo(strB) < 0 && strB.compareTo(strC) > 0', 'strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0', 'strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0', '!(strA.compareTo(strB) == 0) && strB.compareTo(strA) < 0']"
-            },
-            {
-                "model_output": "Binary Search",
-                "blackbox_output": "8",
-                "ground_truth": "7",
-                "options": "['7', '8', '20', '100']"
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.6942605061287229,
+                "zero_agree_few_disagree_cosine_distance": 0.4008171248974072,
+                "zero_disagree_few_agree_cosine_distance": 0.4698384491105874,
+                "zero_disagree_few_disagree_cosine_distance": 0.4789586779863938
             }
-        ],
-        "disagreement_samples": [
-            {
-                "model_output": "\"Compression.\"",
-                "blackbox_output": "The song was saved using fewer bits per second than the original song.",
-                "ground_truth": "The song was saved using fewer bits per second than the original song.",
-                "options": "['The song was saved using fewer bits per second than the original song.', 'The song was saved using more bits per second than the original song.', 'The song was saved using a lossless compression technique.', 'Some information is lost every time a file is saved from one location on a computer to another location.']"
-            },
-            {
-                "model_output": "2",
-                "blackbox_output": "5",
-                "ground_truth": "5",
-                "options": "['1', '6', '4', '5']"
-            },
-            {
-                "model_output": "\"Memory constraints are the least likely to affect the ability of the program to process larger data sets.\"",
-                "blackbox_output": "How many programming statements the program contains",
-                "ground_truth": "How many programming statements the program contains",
-                "options": "['How long the program takes to run', 'How many programming statements the program contains', 'How much memory the program requires as it runs', 'How much storage space the program requires as it runs']"
-            },
-            {
-                "model_output": "4**5",
-                "blackbox_output": "1",
-                "ground_truth": "4",
-                "options": "['4', '1', '256', '16']"
-            },
-            {
-                "model_output": "\"Item identification number, Footwear type, Selling price, Size, Color, and Quantity available\"",
-                "blackbox_output": "Which items listed in the database are not currently in the store",
-                "ground_truth": "Which items listed in the database are not currently in the store",
-                "options": "['Which items listed in the database are not currently in the store', 'Which colors are more popular among men than women', 'Which type of footwear is most popular among adults', 'The total number of shoes sold in a particular month']"
-            },
-            {
-                "model_output": "\"0, 2, 5, 21\"",
-                "blackbox_output": "1, 4, 16",
-                "ground_truth": "\u22121, 0, 1, 2, 3, 5, 16, 20, 22",
-                "options": "['0, 2, 5, 20', '1, 4, 16', '\u22121, 1, 2, 3, 5, 16, 20', '\u22121, 0, 1, 2, 3, 5, 16, 20, 22']"
-            },
-            {
-                "model_output": "list[1:3]",
-                "blackbox_output": "[786, 2.23]",
-                "ground_truth": "[786, 2.23]",
-                "options": "[\"[ 'abcd', 786 , 2.23, 'john', 70.2 ]\", 'abcd', '[786, 2.23]', 'None of the above.']"
-            },
-            {
-                "model_output": "\"Which search term is most likely to be searched by a specific individual.\"",
-                "blackbox_output": "What is the cost of a certain electronics product?",
-                "ground_truth": "What is the cost of a certain electronics product?",
-                "options": "['In what month does a particular sport receive the most searches?', 'In which political candidates are people interested?', 'What is the cost of a certain electronics product?', 'Which region of the country has the greatest number of people searching for opera performances?']"
-            },
-            {
-                "model_output": "\"The method should return the index of the first such value found in the array.\"",
-                "blackbox_output": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
-                "ground_truth": "The specification should be modified to indicate what should be done if there is more than one index of larger values.",
-                "options": "['The method should be written on the assumption that there is only one value in the array that is larger than the given item.', 'The method should be written so as to return the index of every occurrence of a larger value.', 'The specification should be modified to indicate what should be done if there is more than one index of larger values.', 'The method should be written to output a message if more than one larger value is found.']"
-            },
-            {
-                "model_output": "\"x << 3 is equivalent to x shifted left by 3 bits, which is equivalent to x multiplied by 2^3, or 8.\"",
-                "blackbox_output": "8",
-                "ground_truth": "8",
-                "options": "['1', '3', '8', '16']"
-            }
-        ]
+        }
     },
     "wrt_blackbox": {
         "exact_match": 0.09,
@@ -149,6 +309,6 @@
             "rougeL": 0.314233531133864
         },
         "bleu_score": 0.051061644439134406,
-        "sbert_similarity": 0.5294082370400429
+        "sbert_similarity": 0.5294082370027899
     }
 }

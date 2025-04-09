@@ -10,135 +10,295 @@
             "rougeL": 0.13708232955803068
         },
         "bleu_score": 0.025429337618748205,
-        "sbert_similarity": 0.3158200299546985,
-        "agreement_score": 0.4180064308681672,
-        "model_ground_truth_match": 0.42765273311897106,
-        "blackbox_ground_truth_match": 0.5337620578778135,
-        "both_ground_truth_match": 0.2733118971061093,
-        "agreement_samples": [
-            {
-                "model_output": "<|start_header_id|>assistant\n\ndoubting and questioning everything in search of indubitable truth.",
-                "blackbox_output": "<|start_header_id|>assistant\n\na thing that thinks",
-                "ground_truth": "a thing that thinks",
-                "options": "['a body', 'a dream', 'a thing that thinks', 'a thing that cannot exist']"
+        "sbert_similarity": 0.3158200196487608,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.5916398713826366,
+            "model_ground_truth_match": 0.7202572347266881,
+            "blackbox_ground_truth_match": 0.5337620578778135,
+            "both_ground_truth_match": 0.4758842443729904,
+            "agreement_samples": [
+                {
+                    "model_output": "synthetic and a priori",
+                    "blackbox_output": "synthetic and a priori.",
+                    "ground_truth": "synthetic and a priori.",
+                    "options": "['analytic and a priori.', 'analytic and a posteriori.', 'synthetic and a priori.', 'synthetic and a posteriori.']"
+                },
+                {
+                    "model_output": "contrary to his religion",
+                    "blackbox_output": "<|start_header_id|>assistant\n\ncontrary to his religion",
+                    "ground_truth": "FALSE",
+                    "options": "['contrary to his religion', 'TRUE', 'FALSE', 'beyond question']"
+                },
+                {
+                    "model_output": "enlightened egoism.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nenlightened egoism.",
+                    "ground_truth": "justified constraint.",
+                    "options": "['enlightened egoism.', 'pure altruism.', 'justified constraint.', 'prima facie duties.']"
+                },
+                {
+                    "model_output": "enjoyments",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nenjoyments.",
+                    "ground_truth": "enjoyments",
+                    "options": "['lower pleasures', 'spiritual attainment', 'social achievement', 'enjoyments']"
+                },
+                {
+                    "model_output": "moral virtues and intellectual virtues.",
+                    "blackbox_output": "moral virtues and intellectual virtues.",
+                    "ground_truth": "moral virtues and intellectual virtues.",
+                    "options": "['natural virtues and artificial virtues.', 'moral virtues and intellectual virtues.', 'positive virtues and negative virtues.', 'human virtues and divine virtues.']"
+                },
+                {
+                    "model_output": "Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nBecause without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                    "ground_truth": "Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                    "options": "['Because if someone did not know how to act virtuously, he or she would still be considered virtuous by others who also did not know the principles for good living.', 'Because since Socrates was a philosopher, he of course thought that people who examined their lives philosophically were more virtuous than those who did not.', 'Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.', \"Because a virtuous life would be one in which someone does what the rest of the society says is right, and that means examining views other than one's own.\"]"
+                },
+                {
+                    "model_output": "implausibly places an \"upper bound\" on moral worthiness.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nimplausibly places an \u201cupper bound\u201d on moral worthiness.",
+                    "ground_truth": "implausibly places an \u201cupper bound\u201d on moral worthiness.",
+                    "options": "['yields an unattractive picture of moral sainthood.', 'implausibly places an \u201cupper bound\u201d on moral worthiness.', 'yields a theory that is too demanding.', 'transforms the theory into a form of contractarianism.']"
+                },
+                {
+                    "model_output": "reductio ad absurdum",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nreductio ad absurdum.",
+                    "ground_truth": "reductio ad absurdum",
+                    "options": "['modus tollens', 'modus ponens', 'hypothetical syllogism', 'reductio ad absurdum']"
+                },
+                {
+                    "model_output": "acquired through habit.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nacquired through habit.",
+                    "ground_truth": "acquired through habit.",
+                    "options": "['acquired through habit.', 'acquired through philosophical reflection.', 'a gift from the gods.', 'innate.']"
+                },
+                {
+                    "model_output": "not only is virtue knowledge but also the unexamined life is not worth living.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nThe unexamined life is not worth living.",
+                    "ground_truth": "acting virtuously means acting in way that is informed about what one is doing and why.",
+                    "options": "['acting virtuously means acting in way that is informed about what one is doing and why.', 'someone who does not understand existence philosophically could never do anything right.', 'to have the power or ability to do anything at all requires that we know what we are doing.', 'not only is virtue knowledge but also the unexamined life is not worth living.']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "pleasure or pain inflicted by chance members of the community.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nPleasure or pain inflicted by a judge in accordance with a rule.",
+                    "ground_truth": "pleasure or pain inflicted by chance members of the community.",
+                    "options": "['pleasure or pain inflicted by chance members of the community.', 'pleasure or pain inflicted by a judge in accordance with a rule.', 'pleasure or pain that it is permissible to inflict on someone.', 'none of the above.']"
+                },
+                {
+                    "model_output": "important, but unpleasant.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nnot suitable for the young.",
+                    "ground_truth": "none of the above.",
+                    "options": "['not suitable for the young.', 'not suitable for the old.', 'important, but unpleasant.', 'none of the above.']"
+                },
+                {
+                    "model_output": "only after careful reflection on the consequences of our actions.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nso as to do whatever comes naturally, without much thought.",
+                    "ground_truth": "only after careful reflection on the consequences of our actions.",
+                    "options": "['according to our passions.', 'so as to do whatever comes naturally, without much thought.', 'only after careful reflection on the consequences of our actions.', 'so as to benefit the greatest number.']"
+                },
+                {
+                    "model_output": "satisfy the conceptual constraint against exploitation.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\ninvite the stable compliance of everyone.",
+                    "ground_truth": "satisfy our desire for fairness.",
+                    "options": "['satisfy our desire for fairness.', 'satisfy the conceptual constraint against exploitation.', 'maximize the productivity of society.', 'invite the stable compliance of everyone.']"
+                },
+                {
+                    "model_output": "determine which pleasure most experienced people prefer",
+                    "blackbox_output": "<|start_header_id|>assistant\n\ndetermine which one is objectively most pleasurable.",
+                    "ground_truth": "determine which pleasure most experienced people prefer",
+                    "options": "['determine which one is objectively most pleasurable', 'determine which pleasure most experienced people prefer', 'consult philosophers of the past', 'consult science']"
+                },
+                {
+                    "model_output": "why should we bother? and what are the consequences of our believing one thing over another?",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nwhat do you mean? and how do you know?",
+                    "ground_truth": "what do you mean? and how do you know?",
+                    "options": "['why should we bother? and what are the consequences of our believing one thing over another?', 'what do you mean? and how do you know?', \"who really believes X? and how can we explain differences in people's beliefs?\", 'how do philosophers argue? and are their differences important?']"
+                },
+                {
+                    "model_output": "entirely subjective",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nentirely subjective",
+                    "ground_truth": "entirely subjective",
+                    "options": "['entirely subjective', 'unchangeable', 'entirely objective', 'unknown']"
+                },
+                {
+                    "model_output": "neither a nor b.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nWe are obligated to choose saving the life of X.",
+                    "ground_truth": "neither a nor b.",
+                    "options": "['Y is obligated to choose saving the life of X.', 'we are obligated to choose saving the life of X.', 'both a and b.', 'neither a nor b.']"
+                },
+                {
+                    "model_output": "ignores morality and seemingly replaces it.",
+                    "blackbox_output": "is refuted by moral requirements.",
+                    "ground_truth": "ignores morality and seemingly replaces it.",
+                    "options": "['is refuted by moral requirements.', 'is replaced once we acknowledge moral requirements.', 'refutes morality.', 'ignores morality and seemingly replaces it.']"
+                },
+                {
+                    "model_output": "does not account for the fact that we have stricter obligations to our loved ones than to strangers.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\ndoes not do enough to address suffering in other countries besides our own.",
+                    "ground_truth": "requires too drastic a revision to our moral scheme.",
+                    "options": "['does not do enough to address suffering in other countries besides our own.', 'inappropriately makes proximity morally important.', 'does not account for the fact that we have stricter obligations to our loved ones than to strangers.', 'requires too drastic a revision to our moral scheme.']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.4180064308681672,
+            "model_ground_truth_match": 0.42765273311897106,
+            "blackbox_ground_truth_match": 0.5337620578778135,
+            "both_ground_truth_match": 0.2733118971061093,
+            "agreement_samples": [
+                {
+                    "model_output": "<|start_header_id|>assistant\n\ndoubting and questioning everything in search of indubitable truth.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\na thing that thinks",
+                    "ground_truth": "a thing that thinks",
+                    "options": "['a body', 'a dream', 'a thing that thinks', 'a thing that cannot exist']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\nIt can undermine trust and compromise the validity of the research.",
+                    "blackbox_output": "It can damage the professional reputation of the researcher and their discipline.",
+                    "ground_truth": "It can damage the professional reputation of the researcher and their discipline.",
+                    "options": "['It can damage the professional reputation of the researcher and their discipline.', 'It makes it more difficult to gain access to deviant or hidden populations.', 'It means that records of personal data about the participants cannot be made anonymous.', 'None of the above.']"
+                },
+                {
+                    "model_output": "\"Socrates.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nSocrates.",
+                    "ground_truth": "Socrates",
+                    "options": "['Aristotle', 'John Locke', 'Socrates', 'Plato']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nthe pleasure and pain they produce.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nboth a and b.",
+                    "ground_truth": "their consequences.",
+                    "options": "['the motives behind them.', 'their consequences.', 'both a and b.', 'neither a nor b.']"
+                },
+                {
+                    "model_output": "a parent or guardian.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\na parent.",
+                    "ground_truth": "a parent.",
+                    "options": "['an employer.', 'a parent.', 'a friend.', 'a spouse.']"
+                },
+                {
+                    "model_output": "God",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nGod",
+                    "ground_truth": "God",
+                    "options": "['the universe', 'God', 'nature', 'an infinite series']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\none is a strong version that applies to all beings capable of suffering, while the other is a weaker version that focuses on beings with a certain level of cognitive ability.\"",
+                    "blackbox_output": "he considers the weaker version to be correct.",
+                    "ground_truth": "he considers the stronger version to be correct.",
+                    "options": "['he considers the stronger version to be correct.', 'he considers the weaker version to be correct.', 'he ends up rejecting them both.', 'he claims that they are equivalent.']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\n Formalism.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nFormalism.",
+                    "ground_truth": "formalism",
+                    "options": "['informalism', 'expressionism', 'formalism', 'structuralism']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\nis morally perfect but not necessarily happy.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nNone of the above.",
+                    "ground_truth": "cannot have a sarcastic wit.",
+                    "options": "['cannot read Victorian novels.', 'cannot have a sarcastic wit.', 'cannot have an interest in gourmet cooking.', 'all of the above.']"
+                },
+                {
+                    "model_output": "\"arbitrary or morally arbitrary.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\narbitrary.",
+                    "ground_truth": "arbitrary",
+                    "options": "['well supported', 'unclear', 'unknowable', 'arbitrary']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "every man has a right to everything.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\neverything.",
+                    "ground_truth": "everything",
+                    "options": "['some things', 'lawful treatment', 'due process', 'everything']"
+                },
+                {
+                    "model_output": "\"<|start_header_id|>assistant\n\noutcomes beyond our control affect our moral assessment.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nthe self is threatened with dissolution by the absorption of its acts into the class of events.",
+                    "ground_truth": "the self is threatened with dissolution by the absorption of its acts into the class of events.",
+                    "options": "['philosophers try to apply arbitrarily stringent standards to moral responsibility.', 'the self is threatened with dissolution by the absorption of its acts into the class of events.', 'our moral theories are hopelessly off track.', 'our theories of human action are hopelessly off track.']"
+                },
+                {
+                    "model_output": "\"cannot be added up.\"",
+                    "blackbox_output": "can be compared, but only roughly.",
+                    "ground_truth": "can be compared, but only roughly.",
+                    "options": "['can be precisely compared.', 'can be compared, but only roughly.', 'can be compared within individuals, but not between individuals.', 'cannot compared either within individuals or between individuals.']"
+                },
+                {
+                    "model_output": "ethical considerations and the well-being of participants.",
+                    "blackbox_output": "All of the above.",
+                    "ground_truth": "All of the above.",
+                    "options": "['What constitutes a public space', 'Protecting individuals from potential harm', 'Any risk of invasion of privacy', 'All of the above.']"
+                },
+                {
+                    "model_output": "reason is, and ought only to be the slave of the passions.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nThe first spring or impulse to desire.",
+                    "ground_truth": "cool and disengaged.",
+                    "options": "['cool and disengaged.', 'the source of all moral actions.', 'the first spring or impulse to desire.', 'all of the above.']"
+                },
+                {
+                    "model_output": "to a higher form or idea.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nbeyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",
+                    "ground_truth": "beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",
+                    "options": "['to what our senses reveal to us about how things appear to us, not how they  really are.', 'beyond the Forms to images of goodness, beauty, and truth obtained from particular objects.', 'to what we sincerely believe is true about the Forms based on our experiences in the world.', 'beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.']"
+                },
+                {
+                    "model_output": "<|start_header_id|>assistant\n\nare flawed due to their reliance on circular reasoning or false premises.",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nFeinberg claims that most arguments for psychological egoism are nonempirical in character.",
+                    "ground_truth": "are nonempirical in character.",
+                    "options": "['make reference to neuroscience.', 'are based on controlled studies.', 'are based on interviews and surveys.', 'are nonempirical in character.']"
+                },
+                {
+                    "model_output": "\"the greatest happiness for the greatest number.\"",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nusefulness to society.",
+                    "ground_truth": "pleasure and the absence of pain.",
+                    "options": "['usefulness for some craft.', 'usefulness to society.', 'pleasure and the absence of pain.', 'it promotes the interests of all and does not harm anyone.']"
+                },
+                {
+                    "model_output": "good",
+                    "blackbox_output": "<|start_header_id|>assistant\n\nhatred.",
+                    "ground_truth": "good.",
+                    "options": "['hatred.', 'greed.', 'love.', 'good.']"
+                },
+                {
+                    "model_output": "justified",
+                    "blackbox_output": "<|start_header_id|>assistant\n\njust.",
+                    "ground_truth": "just.",
+                    "options": "['to his advantage.', 'harmful to his enemies and advantageous to his friends.', 'pleasing to the gods.', 'just.']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.28,
+                "zero_agree_few_disagree": 0.32,
+                "zero_disagree_few_agree": 0.14,
+                "zero_disagree_few_disagree": 0.27
             },
-            {
-                "model_output": "<|start_header_id|>assistant\n\nIt can undermine trust and compromise the validity of the research.",
-                "blackbox_output": "It can damage the professional reputation of the researcher and their discipline.",
-                "ground_truth": "It can damage the professional reputation of the researcher and their discipline.",
-                "options": "['It can damage the professional reputation of the researcher and their discipline.', 'It makes it more difficult to gain access to deviant or hidden populations.', 'It means that records of personal data about the participants cannot be made anonymous.', 'None of the above.']"
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 6.3,
+                    "blackbox_avg_token_length": 7.7,
+                    "agree_avg_combined_length": 14.7,
+                    "disagree_avg_combined_length": 13.0
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 10.0,
+                    "blackbox_avg_token_length": 7.7,
+                    "agree_avg_combined_length": 16.4,
+                    "disagree_avg_combined_length": 18.7
+                }
             },
-            {
-                "model_output": "\"Socrates.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nSocrates.",
-                "ground_truth": "Socrates",
-                "options": "['Aristotle', 'John Locke', 'Socrates', 'Plato']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nthe pleasure and pain they produce.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nboth a and b.",
-                "ground_truth": "their consequences.",
-                "options": "['the motives behind them.', 'their consequences.', 'both a and b.', 'neither a nor b.']"
-            },
-            {
-                "model_output": "a parent or guardian.",
-                "blackbox_output": "<|start_header_id|>assistant\n\na parent.",
-                "ground_truth": "a parent.",
-                "options": "['an employer.', 'a parent.', 'a friend.', 'a spouse.']"
-            },
-            {
-                "model_output": "God",
-                "blackbox_output": "<|start_header_id|>assistant\n\nGod",
-                "ground_truth": "God",
-                "options": "['the universe', 'God', 'nature', 'an infinite series']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\none is a strong version that applies to all beings capable of suffering, while the other is a weaker version that focuses on beings with a certain level of cognitive ability.\"",
-                "blackbox_output": "he considers the weaker version to be correct.",
-                "ground_truth": "he considers the stronger version to be correct.",
-                "options": "['he considers the stronger version to be correct.', 'he considers the weaker version to be correct.', 'he ends up rejecting them both.', 'he claims that they are equivalent.']"
-            },
-            {
-                "model_output": "<|start_header_id|>assistant\n\n Formalism.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nFormalism.",
-                "ground_truth": "formalism",
-                "options": "['informalism', 'expressionism', 'formalism', 'structuralism']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\nis morally perfect but not necessarily happy.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nNone of the above.",
-                "ground_truth": "cannot have a sarcastic wit.",
-                "options": "['cannot read Victorian novels.', 'cannot have a sarcastic wit.', 'cannot have an interest in gourmet cooking.', 'all of the above.']"
-            },
-            {
-                "model_output": "\"arbitrary or morally arbitrary.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\narbitrary.",
-                "ground_truth": "arbitrary",
-                "options": "['well supported', 'unclear', 'unknowable', 'arbitrary']"
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.4850138339192368,
+                "zero_agree_few_disagree_cosine_distance": 0.23618294786167693,
+                "zero_disagree_few_agree_cosine_distance": 0.2097945140505379,
+                "zero_disagree_few_disagree_cosine_distance": 0.2648760426834405
             }
-        ],
-        "disagreement_samples": [
-            {
-                "model_output": "every man has a right to everything.",
-                "blackbox_output": "<|start_header_id|>assistant\n\neverything.",
-                "ground_truth": "everything",
-                "options": "['some things', 'lawful treatment', 'due process', 'everything']"
-            },
-            {
-                "model_output": "\"<|start_header_id|>assistant\n\noutcomes beyond our control affect our moral assessment.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nthe self is threatened with dissolution by the absorption of its acts into the class of events.",
-                "ground_truth": "the self is threatened with dissolution by the absorption of its acts into the class of events.",
-                "options": "['philosophers try to apply arbitrarily stringent standards to moral responsibility.', 'the self is threatened with dissolution by the absorption of its acts into the class of events.', 'our moral theories are hopelessly off track.', 'our theories of human action are hopelessly off track.']"
-            },
-            {
-                "model_output": "\"cannot be added up.\"",
-                "blackbox_output": "can be compared, but only roughly.",
-                "ground_truth": "can be compared, but only roughly.",
-                "options": "['can be precisely compared.', 'can be compared, but only roughly.', 'can be compared within individuals, but not between individuals.', 'cannot compared either within individuals or between individuals.']"
-            },
-            {
-                "model_output": "ethical considerations and the well-being of participants.",
-                "blackbox_output": "All of the above.",
-                "ground_truth": "All of the above.",
-                "options": "['What constitutes a public space', 'Protecting individuals from potential harm', 'Any risk of invasion of privacy', 'All of the above.']"
-            },
-            {
-                "model_output": "reason is, and ought only to be the slave of the passions.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nThe first spring or impulse to desire.",
-                "ground_truth": "cool and disengaged.",
-                "options": "['cool and disengaged.', 'the source of all moral actions.', 'the first spring or impulse to desire.', 'all of the above.']"
-            },
-            {
-                "model_output": "to a higher form or idea.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nbeyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",
-                "ground_truth": "beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.",
-                "options": "['to what our senses reveal to us about how things appear to us, not how they  really are.', 'beyond the Forms to images of goodness, beauty, and truth obtained from particular objects.', 'to what we sincerely believe is true about the Forms based on our experiences in the world.', 'beyond sense experience to unchanging ideas (Forms) that are perceived as rationally ordered.']"
-            },
-            {
-                "model_output": "<|start_header_id|>assistant\n\nare flawed due to their reliance on circular reasoning or false premises.",
-                "blackbox_output": "<|start_header_id|>assistant\n\nFeinberg claims that most arguments for psychological egoism are nonempirical in character.",
-                "ground_truth": "are nonempirical in character.",
-                "options": "['make reference to neuroscience.', 'are based on controlled studies.', 'are based on interviews and surveys.', 'are nonempirical in character.']"
-            },
-            {
-                "model_output": "\"the greatest happiness for the greatest number.\"",
-                "blackbox_output": "<|start_header_id|>assistant\n\nusefulness to society.",
-                "ground_truth": "pleasure and the absence of pain.",
-                "options": "['usefulness for some craft.', 'usefulness to society.', 'pleasure and the absence of pain.', 'it promotes the interests of all and does not harm anyone.']"
-            },
-            {
-                "model_output": "good",
-                "blackbox_output": "<|start_header_id|>assistant\n\nhatred.",
-                "ground_truth": "good.",
-                "options": "['hatred.', 'greed.', 'love.', 'good.']"
-            },
-            {
-                "model_output": "justified",
-                "blackbox_output": "<|start_header_id|>assistant\n\njust.",
-                "ground_truth": "just.",
-                "options": "['to his advantage.', 'harmful to his enemies and advantageous to his friends.', 'pleasing to the gods.', 'just.']"
-            }
-        ]
+        }
     },
     "wrt_blackbox": {
         "exact_match": 0.00964630225080386,
@@ -149,6 +309,6 @@
             "rougeL": 0.2942708492532239
         },
         "bleu_score": 0.02747772754017382,
-        "sbert_similarity": 0.46265786577171836
+        "sbert_similarity": 0.4626578535731894
     }
 }
