@@ -39,7 +39,7 @@ for sub_field in "${sub_fields[@]}"; do
                 --surrogate "$llama" \
                 --candidate "$qwen" \
                 --selection_strategy "$selection_strategy" \
-                --prompt_strategy "$prompt_strategy"
+                --prompt_variation "$prompt_strategy"
 
             # Second configuration: Qwen as surrogate, Llama as candidate
             python -m src.surrogates.few_shot.few_shot \
@@ -49,7 +49,7 @@ for sub_field in "${sub_fields[@]}"; do
                 --surrogate "$qwen" \
                 --candidate "$llama" \
                 --selection_strategy "$selection_strategy" \
-                --prompt_strategy "$prompt_strategy"
+                --prompt_variation "$prompt_strategy"
         done
     done
 done
