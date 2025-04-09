@@ -20,13 +20,13 @@ def load_zero_shot_results(base_path):
     
     return results
 
-def load_surrogate_results(base_path, shot=5):
+def load_surrogate_results(base_path, shot=5, selection_strategy="random"):
     """Load surrogate results for all domains."""
     domains = ['high_school_computer_science', 'philosophy', 'public_relations']
     results = {}
     
     for domain in domains:
-        domain_path = os.path.join(base_path, 'surrogate', domain, f'{shot}-shot')
+        domain_path = os.path.join(base_path, 'surrogate', domain, f'{shot}-shot-{selection_strategy}-selection')
         results[domain] = {}
         
         # Look for surrogate result files
@@ -67,7 +67,7 @@ def load_surrogate_results(base_path, shot=5):
     
     return results
 
-def create_metric_dashboard(zero_shot_results, surrogate_results):
+def create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="random"):
     """Create standardized metric dashboard for each domain."""
     domains = list(zero_shot_results.keys())
     metrics = ['accuracy_ranking', 'f1_score_token_agreement', 'f1_score_ranking', 'sbert_similarity', 'agreement_score', 'both_ground_truth_match']
@@ -158,11 +158,13 @@ def create_metric_dashboard(zero_shot_results, surrogate_results):
         
         plt.suptitle(f"{domain.replace('_', ' ').title()} - Metric Dashboard", fontsize=16)
         plt.tight_layout(rect=[0, 0, 1, 0.95])
-        plt.savefig(f'data/results/{domain}_metric_dashboard.png', dpi=300)
+        directory = f"data/results/{domain}"
+        os.makedirs(directory, exist_ok=True)
+        plt.savefig(f'{directory}/{selection_strategy}_metric_dashboard.png', dpi=300)
         plt.close()
         
 
-def create_agreement_analysis_plots(surrogate_results):
+def create_agreement_analysis_plots(surrogate_results, selection_strategy="random"):
     """
     Create a figure with four subplots for agreement analysis based on our metrics.py implementation
     
@@ -209,7 +211,9 @@ def create_agreement_analysis_plots(surrogate_results):
         
         plt.tight_layout()
         plt.subplots_adjust(top=0.92)
-        plt.savefig(f'data/results/{domain}_agreement_analysis.png', dpi=300)
+        directory = f"data/results/{domain}"
+        os.makedirs(directory, exist_ok=True)
+        plt.savefig(f'{directory}/{selection_strategy}_agreement_analysis.png', dpi=300)
         plt.close()
 
 def create_transition_matrix_plot(data, model_combinations):
@@ -490,13 +494,13 @@ def main():
     
     # Load results
     zero_shot_results = load_zero_shot_results(base_path)
-    surrogate_results = load_surrogate_results(base_path)
+    surrogate_results = load_surrogate_results(base_path, selection_strategy="similarity")
     
     # Create visualizations
-    create_metric_dashboard(zero_shot_results, surrogate_results)
+    create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="similarity")
     
     # Create agreement analysis plots
-    create_agreement_analysis_plots(surrogate_results)
+    create_agreement_analysis_plots(surrogate_results, selection_strategy="similarity")
     
     print("Visualizations generated successfully!")
 

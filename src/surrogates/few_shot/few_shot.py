@@ -8,33 +8,158 @@ from tqdm import tqdm
 import random
 import pandas as pd
 from src.inference import selector
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+from typing import List, Dict, Optional
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+import torch
 
-def get_few_shot_prompt(shot, ds, question):
-    prompt = """You are a mind reader tasked with predicting how someone will answer a given question. To simplify this process, here are some examples of how the person previously responded to questions on similar topics:
-"""
-    # Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses:
+def generate_and_select_paraphrase(question: str, 
+                                 paraphrase_model: T5ForConditionalGeneration,
+                                 paraphrase_tokenizer: T5Tokenizer,
+                                 sbert_model: SentenceTransformer,
+                                 device: torch.device,
+                                 num_paraphrases: int = 5,
+                                 similarity_threshold: float = 0.8) -> Optional[str]:
+    """
+    Generate multiple paraphrases and select the most similar one above a threshold.
     
-    # Add examples based on the shot parameter
-    # Skip examples that match the target question
-    examples_added = 0
-    i = 0
+    Args:
+        question: Original question to paraphrase
+        paraphrase_model: T5 model for paraphrasing
+        paraphrase_tokenizer: T5 tokenizer
+        sbert_model: SentenceTransformer model for similarity calculation
+        device: Device to run models on
+        num_paraphrases: Number of paraphrases to generate
+        similarity_threshold: Minimum similarity score required
+        
+    Returns:
+        str or None: Selected paraphrase if similarity threshold is met, None otherwise
+    """
+    # Prepare input for T5
+    input_text = f"paraphrase: {question}"
+    input_ids = paraphrase_tokenizer(input_text, return_tensors="pt", max_length=128, truncation=True).input_ids.to(device)
+    
+    # Generate multiple paraphrases
+    outputs = paraphrase_model.generate(
+        input_ids,
+        max_length=128,
+        num_beams=4,
+        num_return_sequences=num_paraphrases,
+        temperature=0.7,
+        do_sample=True,
+        no_repeat_ngram_size=2
+    )
+    
+    # Decode all paraphrases
+    paraphrases = [paraphrase_tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
+    
+    # Calculate similarities using SBERT
+    question_embedding = sbert_model.encode([question], convert_to_numpy=True)
+    paraphrase_embeddings = sbert_model.encode(paraphrases, convert_to_numpy=True)
+    similarities = cosine_similarity(question_embedding, paraphrase_embeddings)[0]
+    
+    # Find the best paraphrase above threshold
+    best_idx = np.argmax(similarities)
+    if similarities[best_idx] >= similarity_threshold:
+        return paraphrases[best_idx]
+    return None
+
+def select_few_shot_examples(ds, shot: int, question: str, selection_strategy: str = "random") -> List[Dict]:
+    """
+    Select example questions for few-shot prompting using different strategies.
+    
+    Args:
+        ds (Dataset): The dataset containing questions and responses
+        shot (int): Number of examples to select
+        question (str): The target question to exclude from selection
+        selection_strategy (str): Strategy to select examples. Options:
+            - "random": Random sampling
+            - "similarity": Select based on semantic similarity
+            - "similarity_with_paraphrase": Select based on similarity and paraphrase
+            
+    Returns:
+        list: List of dictionaries containing selected example questions and their responses
+    """
     # Create list of valid example indices (excluding target question)
     valid_indices = [i for i in range(len(ds)) if ds[i]['question'] != question]
     
-    # Randomly sample shot number of examples
-    selected_indices = random.sample(valid_indices, min(shot, len(valid_indices)))
+    if selection_strategy == "random":
+        # Random sampling strategy
+        selected_indices = random.sample(valid_indices, min(shot, len(valid_indices)))
+        selected_examples = [ds[idx] for idx in selected_indices]
+        
+    elif selection_strategy in ["similarity", "similarity_with_paraphrase"]:
+        # Load SBERT model for similarity calculation
+        sbert_model = SentenceTransformer('all-mpnet-base-v2')
+            
+        # Get embeddings for target question and all valid questions
+        target_embedding = sbert_model.encode([question], convert_to_numpy=True)
+        valid_questions = [ds[i]['question'] for i in valid_indices]
+        valid_embeddings = sbert_model.encode(valid_questions, convert_to_numpy=True)
+        
+        # Calculate similarities
+        similarities = cosine_similarity(target_embedding, valid_embeddings)[0]
+        
+        # Get indices of top K most similar questions
+        top_k_indices = np.argsort(similarities)[-shot:][::-1]
+        selected_indices = [valid_indices[i] for i in top_k_indices]
+        selected_examples = [ds[idx] for idx in selected_indices]
+        
+        if selection_strategy == "similarity_with_paraphrase":
+            # Load T5 model for paraphrasing
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            model_name = 't5-base'  # Can be changed to larger models for better quality
+            paraphrase_model = T5ForConditionalGeneration.from_pretrained(model_name).to(device)
+            paraphrase_tokenizer = T5Tokenizer.from_pretrained(model_name)
+            
+            paraphrased_examples = []
+            for example in selected_examples:
+                # Generate and select best paraphrase
+                best_paraphrase = generate_and_select_paraphrase(
+                    question=example['question'],
+                    paraphrase_model=paraphrase_model,
+                    paraphrase_tokenizer=paraphrase_tokenizer,
+                    sbert_model=sbert_model,
+                    device=device
+                )
+                
+                # If a good paraphrase was found, use it; otherwise keep original
+                if best_paraphrase is not None:
+                    paraphrased_examples.append({
+                        'question': best_paraphrase,
+                        'model_output': example['model_output']
+                    })
+                else:
+                    paraphrased_examples.append(example)
+            
+            selected_examples = paraphrased_examples
+            
+    else:
+        raise ValueError(f"Unknown selection strategy: {selection_strategy}")
     
-    for i, idx in enumerate(selected_indices):
-        example = ds[idx]
+    return selected_examples
+
+def get_few_shot_prompt(shot, ds, question, selection_strategy="random"):
+    prompt = """You are an AI trained to predict responses based on past examples. Your goal is to identify patterns in how questions are answered and then accurately predict new responses. Study these examples carefully:\n\n"""
+    
+    # You are a mind reader tasked with predicting how someone will answer a given question. To simplify this process, here are some examples of how the person previously responded to questions on similar topics:
+    # Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses:
+    
+    # Get selected examples using the new function
+    selected_examples = select_few_shot_examples(ds, shot, question, selection_strategy)
+    
+    # Format the examples in the prompt
+    for i, example in enumerate(selected_examples):
         prompt += f"Example {i+1}:\n"
         prompt += f"Question: \"{example['question']}\"\n" 
-        prompt += f"Person's response:: \"{example['model_output']}\"\n\n"
-        examples_added += 1
+        prompt += f"Response: \"{example['model_output']}\"\n\n"
     
     # Add the target question
-    prompt += "Now predict how the person will respond to this question. Your response should only be the persons predicted response.\n\n"
-    prompt += f"Question: \"{question}\"\n"
-    prompt += "Person's response:"
+    prompt += "Based solely on these examples, predict the most likely response to this new question. Focus on identifying common patterns in how questions are analyzed and answered. Your prediction should match both the content style and format of the previous responses.\n\n"
+    prompt += f"New Question: \"{question}\"\n"
+    prompt += "Predicted Response:"
     
     return prompt
 
@@ -43,7 +168,8 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
     # batch_size = 2  # Adjust batch size as needed
     ds = Dataset.from_csv(dataset_path)
     # ds = ds.select(range(batch_size))
-    session = selector.select_chat_model(model_name=model_name, cfg=cfg)
+    # session = selector.select_chat_model(model_name=model_name, cfg=cfg)
+    session = None
     
     response_list = []
     # Process examples in batches
@@ -123,6 +249,8 @@ if __name__ == "__main__":
                             help="Candidate model name")
         parser.add_argument("--surrogate",type=str, default="meta-llama/Llama-3.1-8B-Instruct",
                             help="Surrogate model name")
+        parser.add_argument("--selection_strategy",type=str, default="random",
+                            help="prompt examples selection strategy")
         parser.add_argument("--shot", type=int, default=3,
                             help="prompt shot count")
         parser.add_argument("--batch_size",type=int, default=16,
@@ -140,7 +268,7 @@ if __name__ == "__main__":
 
     surrogate_llm = args.surrogate
     candidate_llm  = args.candidate
-    surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, f"{args.shot}-shot")
+    surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, f"{args.shot}-shot-{args.selection_strategy}-selection")
     os.makedirs(surrogate_dir, exist_ok=True)
     print(surrogate_dir)
     ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
