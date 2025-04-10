@@ -9,8 +9,8 @@ black_box: |
     Do not include option labels (A, B, C, D); respond only with natural answer text. 
     Provide only the answer text in your response.
 
-    Question: {question_text}
-    Options: {option_texts}
+    Question: <question_text>
+    Options: <option_texts>
     """
 
   Examples of the Black-Box LLM in Action:
@@ -57,8 +57,8 @@ pattern_recognition: |
     Do not include option labels (A, B, C, D); respond only with natural answer text. 
     Provide only the answer text in your response.
 
-    Question: {question_text}
-    Options: {option_texts}
+    Question: <question_text>
+    Options: <option_texts>
     """
   
 
