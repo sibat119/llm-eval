@@ -1,16 +1,16 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.030675871402647256,
-        "f1_score_ranking": 0.4715283792562118,
-        "accuracy_ranking": 0.4818181818181818,
+        "exact_match": 0.21818181818181817,
+        "f1_score_token_agreement": 0.4050995631812496,
+        "f1_score_ranking": 0.7090809549224422,
+        "accuracy_ranking": 0.7090909090909091,
         "rouge_scores": {
-            "rouge1": 0.133793871513924,
-            "rouge2": 0.034837870517712415,
-            "rougeL": 0.1293988418830978
+            "rouge1": 0.5934685299315166,
+            "rouge2": 0.3904599469101736,
+            "rougeL": 0.5932354296984164
         },
-        "bleu_score": 0.003964617033948442,
-        "sbert_similarity": 0.3613639865747907,
+        "bleu_score": 0.20919819788959576,
+        "sbert_similarity": 0.7079473399303177,
         "agreement_without_mind_model": {
             "agreement_score": 0.6272727272727273,
             "model_ground_truth_match": 0.7090909090909091,
@@ -142,141 +142,141 @@
             ]
         },
         "agreement_after_mind_model": {
-            "agreement_score": 0.509090909090909,
-            "model_ground_truth_match": 0.4818181818181818,
+            "agreement_score": 0.6363636363636364,
+            "model_ground_truth_match": 0.7090909090909091,
             "blackbox_ground_truth_match": 0.5636363636363636,
-            "both_ground_truth_match": 0.35454545454545455,
+            "both_ground_truth_match": 0.4909090909090909,
             "agreement_samples": [
                 {
-                    "model_output": "\"Public relations event or press trip.\"",
+                    "model_output": "Viral campaigns.",
+                    "blackbox_output": "Viral campaigns.",
+                    "ground_truth": "Viral campaigns",
+                    "options": "['Fan pages', 'Street activities', 'Grassroots marketing', 'Viral campaigns']"
+                },
+                {
+                    "model_output": "Media tour.",
                     "blackbox_output": "Media tour.",
                     "ground_truth": "Media tour",
                     "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
                 },
                 {
-                    "model_output": "\"None of the options provided in the question are listed as one of the four categories of persuasive crisis communication strategies identified by W. Timothy Coombs. The four categories typically include: fear appeals, rational appeals, ethical appeals, and social proof appeals. If the options do not match these categories, then the correct answer would be 'None of the above.' However, if specific options are provided, they should be evaluated against these four categories.\"",
-                    "blackbox_output": "Downplaying.",
-                    "ground_truth": "downplaying",
-                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
+                    "model_output": "The predicted response, based on the pattern observed in the previous examples, would be:\n\n\"Assistant\n\nThe greatest good for the greatest number.\"",
+                    "blackbox_output": "The greatest good for the greatest number.",
+                    "ground_truth": "The greatest good for the greatest number.",
+                    "options": "['What is right and what is wrong are predetermined.', 'People should be treated as an end, not a means to an end.', 'The greatest good for the greatest number.', 'Those better off should give to people who are not as well off.']"
                 },
                 {
-                    "model_output": "\"Tailoring the news releases to fit the local context and audience would most improve your chances of success with these materials.\"",
-                    "blackbox_output": "Localize the news releases for audiences in your geography.",
-                    "ground_truth": "Localize the news releases for audiences in your geography.",
-                    "options": "['Use your relationships with local donors to gain coverage.', 'Localize the news releases for audiences in your geography.', \"Pitch the news releases as written, but include a quote from your chapter's executive director.\", 'Remind editors that your organization is a national, prominent non-profit to which their publisher donates.']"
+                    "model_output": "When people hide their opinions if they do not agree with the majority.",
+                    "blackbox_output": "When people hide their opinions if they do not agree with the majority.",
+                    "ground_truth": "When victims of abuse remain silent about the abuse",
+                    "options": "['When victims of abuse remain silent about the abuse', 'When people hide their opinions if they do not agree with the majority', 'When people hide their opinions if they are in disagreement with their close peers or family members', 'When public relations uses opinion poll results to generate support for a particular issue']"
                 },
                 {
-                    "model_output": "\"Public relations planning.\"",
-                    "blackbox_output": "Stakeholder analysis.",
-                    "ground_truth": "stakeholder analysis",
-                    "options": "['exploratory survey', 'situation interview', 'communication audit', 'stakeholder analysis']"
+                    "model_output": "When an organization's trading is interrupted.",
+                    "blackbox_output": "When an organization's trading is interrupted.",
+                    "ground_truth": "It happens suddenly.",
+                    "options": "['A gap between corporate and stakeholder expectations.', \"When an organization's trading is interrupted.\", 'Can be avoided with constant monitoring and relationship building.', 'It happens suddenly.']"
                 },
                 {
-                    "model_output": "\"open-ended question.\"",
-                    "blackbox_output": "Open-ended.",
-                    "ground_truth": "Open-ended",
-                    "options": "['Likert scale', 'Multiple choice', 'Open-ended', 'Yes/No']"
+                    "model_output": "Staying abreast of changing technology.",
+                    "blackbox_output": "Staying abreast of changing technology.",
+                    "ground_truth": "Staying abreast of changing technology",
+                    "options": "['Representing clients using new social media environments', 'Finding stable, cost-effective Internet providers', 'Training staff to use social media', 'Staying abreast of changing technology']"
                 },
                 {
-                    "model_output": "\"Given the context of the question, the response would likely focus on identifying the specific fashion house and the nature of the lawsuit. However, since the exact name and details are not provided in the examples, a general pattern can be inferred. The response might include the name of the fashion house, the accusation, and the legal action taken. For example:\n\nChanel sued for damages to its reputation after being accused of stealing a design from a smaller fashion brand.\"",
-                    "blackbox_output": "Givenchy",
-                    "ground_truth": "Chanel",
-                    "options": "['Dior', 'Givenchy', 'Chanel', 'Lacroix']"
+                    "model_output": "Active receivers are not uniformly affected by mass communication messages.",
+                    "blackbox_output": "Active receivers are not uniformly affected by mass communication messages.",
+                    "ground_truth": "Active receivers are not uniformly affected by mass communication messages.",
+                    "options": "['Audiences are more vulnerable and passive than ever before.', 'Television viewing, in particular, creates increased activity in the right hemisphere of the brain.', 'Active receivers are not uniformly affected by mass communication messages.', 'Technology has led to increasingly passive recipients at the ends of message transmission systems.']"
                 },
                 {
-                    "model_output": "\"Psychographics refers to the study of consumer behavior based on attitudes, interests, opinions, values, and lifestyles rather than just demographic factors.\"",
-                    "blackbox_output": "individual values, lifestyles and characteristics.",
-                    "ground_truth": "individual values, lifestyles and characteristics",
-                    "options": "['individual values, lifestyles and characteristics', 'individual sex, age, race and income statistics', 'potential influence', 'all of the above']"
+                    "model_output": "The Creel Committee.\n\nThis response follows the pattern observed in the previous examples where the black-box LLM selects the correct answer from the given options and provides a brief explanation when necessary. The context and content of the question align well with the historical knowledge required to identify the correct organization among the provided options.",
+                    "blackbox_output": "The Creel Committee.",
+                    "ground_truth": "The Creel Committee",
+                    "options": "['The Creel Committee', 'The Red Cross', 'The Council on Public Relations', 'The Office of War Information']"
                 },
                 {
-                    "model_output": "\"Endorsement campaigning.\"",
-                    "blackbox_output": "Person-oriented advertising.",
-                    "ground_truth": "Person-oriented advertising",
-                    "options": "['Product-oriented advertising', 'Idea-oriented advertising', 'Person-oriented advertising', 'Platform-oriented advertising']"
+                    "model_output": "workplace violence.",
+                    "blackbox_output": "Workplace violence.",
+                    "ground_truth": "workplace violence",
+                    "options": "['workplace violence', 'organizational misdeeds', 'megadamage', 'crisis management']"
                 },
                 {
-                    "model_output": "\"Emma can't help having the impression that all public relations are spin and occur only after something negative has occurred.\"",
-                    "blackbox_output": "The publicist's statement seems manipulative, as it appears to be an attempt to downplay the situation and shift blame rather than addressing the issue directly.",
-                    "ground_truth": "reactive",
-                    "options": "['proactive', 'reactive', 'manipulative', 'manipulative']"
-                },
-                {
-                    "model_output": "\"A book launch would be a common tactic in marketing communications.\n\nBook launches are often used to generate buzz, promote a new book, and connect authors with readers. This tactic is particularly effective in marketing communications as it combines elements of publicity, direct marketing, and social media engagement to reach a wide audience and create a sense of excitement around the release of the book.\"",
-                    "blackbox_output": "Event.",
-                    "ground_truth": "Event",
-                    "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
+                    "model_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
                 }
             ],
             "disagreement_samples": [
                 {
-                    "model_output": "\"Edward Bernays is credited with being the first public relations pioneer to insist on 'a place at the management table.' He believed in the strategic use of public relations to influence public opinion and behavior, and he advocated for PR professionals to be integral members of management teams.\"",
+                    "model_output": "Impact",
+                    "blackbox_output": "Timeliness.",
+                    "ground_truth": "Impact",
+                    "options": "['Proximity', 'Timeliness', 'Prominence', 'Impact']"
+                },
+                {
+                    "model_output": "\"Solve their problems.\"",
+                    "blackbox_output": "Kill them with kindness.",
+                    "ground_truth": "Solve their problems",
+                    "options": "['Solve their problems', 'Kill them with kindness', 'Expose them to ridicule', 'Overwhelm them with facts']"
+                },
+                {
+                    "model_output": "Arthur Page.",
                     "blackbox_output": "Doris Fleischman.",
                     "ground_truth": "Arthur Page",
                     "options": "['Carl Byoir', 'Edward Bernays', 'Doris Fleischman', 'Arthur Page']"
                 },
                 {
-                    "model_output": "\"The number of practitioners working in consultancies in the UK has grown significantly since 25 years ago, though the exact figure would require specific data from industry reports or surveys.\"",
-                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
-                    "ground_truth": "Tripled",
-                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                    "model_output": "A house of worship.",
+                    "blackbox_output": "A publicly-traded company.",
+                    "ground_truth": "A government institution",
+                    "options": "['A politician', 'A house of worship', 'A government institution', 'A publicly-traded company']"
                 },
                 {
-                    "model_output": "\"They provide consistent messaging and branding, which helps in building and maintaining a strong corporate image.\"",
-                    "blackbox_output": "Their ability to deliver specific, detailed information to narrowly defined target publics.",
-                    "ground_truth": "Their ability to deliver specific, detailed information to narrowly defined target publics",
-                    "options": "['Their ability to provide a revenue source for sponsoring organizations', 'Their ability to deliver specific, detailed information to narrowly defined target publics', 'Their ability to avoid the problems typically associated with two-way media', 'Their ability to give sponsoring organizations a means of uncontrolled communications']"
-                },
-                {
-                    "model_output": "\"strategic communication\"",
-                    "blackbox_output": "Corporate.",
-                    "ground_truth": "Corporate",
-                    "options": "['Corporate', 'Internal communications', 'Financial relations', 'Business to business']"
-                },
-                {
-                    "model_output": "\"a method of collecting qualitative data from a small, targeted group of people.\"",
-                    "blackbox_output": "It is an example of a formal research tool for practitioners.",
-                    "ground_truth": "The findings generate qualitative data that can be used to develop surveys.",
-                    "options": "['The participants should be selected at random.', 'It is an example of a formal research tool for practitioners.', 'The information can be generalized to describe a larger population.', 'The findings generate qualitative data that can be used to develop surveys.']"
-                },
-                {
-                    "model_output": "\"Act according to the maxim which can at the same time make itself a universal law.\"",
-                    "blackbox_output": "People should be treated as an end, not a means to an end.",
-                    "ground_truth": "People should be treated as an end, not a means to an end.",
-                    "options": "['What is right and what is wrong are predetermined.', 'People should be treated as an end, not a means to an end.', 'The greatest good for the greatest number.', 'Those better off should give to people who are not as well off.']"
-                },
-                {
-                    "model_output": "\"to ensure alignment with organizational goals and adapt strategies accordingly.\"",
-                    "blackbox_output": "to interpret trends for management",
-                    "ground_truth": "to interpret trends for management",
-                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
-                },
-                {
-                    "model_output": "\"awareness\"",
-                    "blackbox_output": "penetration",
-                    "ground_truth": "penetration",
-                    "options": "['participation', 'penetration', 'distribution', 'identification']"
-                },
-                {
-                    "model_output": "\"Processing.\"",
+                    "model_output": "According to \"working theory,\" the step that occurs between an individual gaining information and changing behavior is opinion change.",
                     "blackbox_output": "coorientation",
                     "ground_truth": "opinion change",
                     "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
                 },
                 {
-                    "model_output": "\"Transactional.\"\n\nThis prediction is based on the pattern observed in the examples where specific categories or types are identified in response to the question. The term \"transactional\" fits as a category for newsletters, similar to how other specific categories were used in the examples provided.",
-                    "blackbox_output": "Media writing.",
-                    "ground_truth": "Promotional writing",
-                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                    "model_output": "\"Quadrupled.\"",
+                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
+                    "ground_truth": "Tripled",
+                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                },
+                {
+                    "model_output": "The Audit Bureau of Circulation does not provide information about traffic.\n\nThis response follows the pattern observed in the previous examples, directly addressing the question and providing the answer in natural language without additional commentary or formatting.",
+                    "blackbox_output": "Readership.",
+                    "ground_truth": "Readership",
+                    "options": "['Circulation', 'Distribution', 'Traffic', 'Readership']"
+                },
+                {
+                    "model_output": "Idea-oriented",
+                    "blackbox_output": "Message-oriented advertising campaigns are focused on gathering support for a particular message or cause.",
+                    "ground_truth": "Idea-oriented",
+                    "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Message-oriented']"
+                },
+                {
+                    "model_output": "In the public relations field, the most common threat to a client-firm relationship is resistance to outside advice.",
+                    "blackbox_output": "Resistance to outside advice.",
+                    "ground_truth": "Clients' questions about costs",
+                    "options": "[\"Clients' questions about costs\", 'Resistance to outside advice', \"Superficial grasp of the client's unique problems\", 'Personality conflicts']"
+                },
+                {
+                    "model_output": "There are 2,800 regional newspapers in the UK.",
+                    "blackbox_output": "There are approximately 600 regional newspapers in the UK.",
+                    "ground_truth": "2,800",
+                    "options": "['270', '600', '2,800', '5,200']"
                 }
             ]
         },
         "transition_metrics": {
             "agreement_transitions": {
-                "zero_agree_few_agree": 0.35,
-                "zero_agree_few_disagree": 0.27,
-                "zero_disagree_few_agree": 0.15,
-                "zero_disagree_few_disagree": 0.22
+                "zero_agree_few_agree": 0.56,
+                "zero_agree_few_disagree": 0.06,
+                "zero_disagree_few_agree": 0.07,
+                "zero_disagree_few_disagree": 0.3
             },
             "response_length_metrics": {
                 "zero_shot": {
@@ -286,29 +286,29 @@
                     "disagree_avg_combined_length": 6.4
                 },
                 "few_shot": {
-                    "surrogate_avg_token_length": 18.7,
+                    "surrogate_avg_token_length": 10.1,
                     "blackbox_avg_token_length": 7.5,
-                    "agree_avg_combined_length": 24.1,
-                    "disagree_avg_combined_length": 28.4
+                    "agree_avg_combined_length": 17.8,
+                    "disagree_avg_combined_length": 17.2
                 }
             },
             "symantic_similarity": {
-                "zero_agree_few_agree_cosine_distance": 0.5260009345335838,
-                "zero_agree_few_disagree_cosine_distance": 0.31721348787347475,
-                "zero_disagree_few_agree_cosine_distance": 0.17779801216195612,
-                "zero_disagree_few_disagree_cosine_distance": 0.276228167116642
+                "zero_agree_few_agree_cosine_distance": 0.8784859766883235,
+                "zero_agree_few_disagree_cosine_distance": 0.3969821610621044,
+                "zero_disagree_few_agree_cosine_distance": 0.4449134934693575,
+                "zero_disagree_few_disagree_cosine_distance": 0.7361267859285529
             }
         }
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.04642540139714473,
+        "exact_match": 0.2545454545454545,
+        "f1_score_token_agreement": 0.39861343357884155,
         "rouge_scores": {
-            "rouge1": 0.16600702934158387,
-            "rouge2": 0.042018748455402224,
-            "rougeL": 0.15256027342238648
+            "rouge1": 0.5174836238309494,
+            "rouge2": 0.36007521669186393,
+            "rougeL": 0.5156515849021363
         },
-        "bleu_score": 0.007993158499724904,
-        "sbert_similarity": 0.40938900251957505
+        "bleu_score": 0.20586073938041902,
+        "sbert_similarity": 0.6718200950629332
     }
 }

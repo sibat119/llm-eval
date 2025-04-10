@@ -1,16 +1,16 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.02714431166656516,
-        "f1_score_ranking": 0.4675049380931734,
-        "accuracy_ranking": 0.4727272727272727,
+        "exact_match": 0.24545454545454545,
+        "f1_score_token_agreement": 0.390707065266341,
+        "f1_score_ranking": 0.6192462439521264,
+        "accuracy_ranking": 0.6272727272727273,
         "rouge_scores": {
-            "rouge1": 0.14846560778423648,
-            "rouge2": 0.029878948223114182,
-            "rougeL": 0.1452013150044631
+            "rouge1": 0.5631134804339578,
+            "rouge2": 0.34051304529612786,
+            "rougeL": 0.5631134804339578
         },
-        "bleu_score": 0.003584229147879557,
-        "sbert_similarity": 0.37936302433637054,
+        "bleu_score": 0.18995022303593423,
+        "sbert_similarity": 0.7067168923941526,
         "agreement_without_mind_model": {
             "agreement_score": 0.6272727272727273,
             "model_ground_truth_match": 0.7090909090909091,
@@ -142,141 +142,141 @@
             ]
         },
         "agreement_after_mind_model": {
-            "agreement_score": 0.44545454545454544,
-            "model_ground_truth_match": 0.4727272727272727,
+            "agreement_score": 0.6181818181818182,
+            "model_ground_truth_match": 0.6272727272727273,
             "blackbox_ground_truth_match": 0.5636363636363636,
-            "both_ground_truth_match": 0.32727272727272727,
+            "both_ground_truth_match": 0.4636363636363636,
             "agreement_samples": [
                 {
-                    "model_output": "\"Crisis Management\"",
-                    "blackbox_output": "Crisis management.",
-                    "ground_truth": "crisis management",
-                    "options": "['public issues', 'crisis management', 'consumer relations', 'community relations']"
+                    "model_output": "In recent research, the 14,000 stories that could be accessed on Google News' front page in a day pertain to 9,574 actual news events.",
+                    "blackbox_output": "9,574.",
+                    "ground_truth": "24",
+                    "options": "['18', '24', '326', '9,574']"
                 },
                 {
-                    "model_output": "\"According to Russian philosopher Mikhail Bakhtin, in order to create a well-informed public, or a well-rounded understanding of an issue, all communication about an issue must be dialogic, or take the form of a dialogue.\"",
-                    "blackbox_output": "democracy, dialogic",
-                    "ground_truth": "democracy, dialogic",
-                    "options": "['intelligentsia, democratic', 'democracy, dialogic', 'democracy, logical', 'democracy, bipartisan']"
+                    "model_output": "Event.",
+                    "blackbox_output": "Event.",
+                    "ground_truth": "Event",
+                    "options": "['Competition', 'Event', 'Award', 'Sponsorship']"
                 },
                 {
-                    "model_output": "\"Examples include changes in behavior and shifts in knowledge or understanding.\"",
-                    "blackbox_output": "Change in attitude and Placement of message.",
-                    "ground_truth": "Change in attitude",
-                    "options": "['Change in attitude', 'Placement of message', 'Distribution of message', 'Size of attentive audience']"
+                    "model_output": "to interpret trends for management",
+                    "blackbox_output": "to interpret trends for management",
+                    "ground_truth": "to interpret trends for management",
+                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
                 },
                 {
-                    "model_output": "\"Summative evaluation.\"",
-                    "blackbox_output": "the number who change attitudes and opinions",
-                    "ground_truth": "the number who change attitudes and opinions",
-                    "options": "['the quality of the messages and activities', 'the number who change attitudes and opinions', 'the number who responded to communications', 'the number of messages and activities implemented']"
+                    "model_output": "Functional publics.",
+                    "blackbox_output": "Functional.",
+                    "ground_truth": "Normative",
+                    "options": "['Enabling', 'Functional', 'Normative', 'Diffused']"
                 },
                 {
-                    "model_output": "\"Symbolic representation.\"",
-                    "blackbox_output": "The American flag is an example of a symbol.",
-                    "ground_truth": "symbol",
-                    "options": "['stereotype', 'semantic device', 'symbol', 'message']"
-                },
-                {
-                    "model_output": "\"Implementation.\"",
-                    "blackbox_output": "Implementation",
-                    "ground_truth": "implementation",
-                    "options": "['planning', 'implementation', 'evaluation', 'tactical']"
-                },
-                {
-                    "model_output": "\"Circulation data.\"\n\nThis prediction follows the pattern observed in the previous examples, where the response directly addresses the question in the format specified. The Audit Bureau of Circulation (ABC) is known for providing verified circulation data to publishers, so it makes sense that they do not provide other types of information like editorial content or specific article details.",
-                    "blackbox_output": "Readership.",
-                    "ground_truth": "Readership",
-                    "options": "['Circulation', 'Distribution', 'Traffic', 'Readership']"
-                },
-                {
-                    "model_output": "\"The first British newspaper, 'The Weekly News-Letter,' was printed in London in 1621.\"",
-                    "blackbox_output": "London.",
-                    "ground_truth": "Oxford",
-                    "options": "['London', 'Oxford', 'Manchester', 'Edinburgh']"
-                },
-                {
-                    "model_output": "\"In the late 19th and early 20th centuries, muckraking journalism led to the widespread introduction of public relations in business.\"",
-                    "blackbox_output": "The Booming Twenties Era, 1919 - 1929.",
-                    "ground_truth": "Seedbed Era, 1900 ' 1917",
-                    "options": "['Postwar Era, 1945 - 1965', 'Roosevelt Era, 1930 - 1945', 'Booming Twenties Era, 1919 - 1929', \"Seedbed Era, 1900 ' 1917\"]"
-                },
-                {
-                    "model_output": "\"To ensure effective communication and alignment with organizational goals.\"",
+                    "model_output": "to help the department stay focused on its strategic plan",
                     "blackbox_output": "to help the department stay focused on its strategic plan.",
                     "ground_truth": "to help the department stay focused on its strategic plan",
                     "options": "['to help the department stay focused on its strategic plan', 'to ensure that projects that are important to the CEO always have first priority', \"to ensure that the department's events and public relations activities are not neglected\", 'to make it easier for other departments to understand the responsibilities of the public relations department']"
-                }
-            ],
-            "disagreement_samples": [
-                {
-                    "model_output": "\"An open systems model of public relations in an organization involves considering all external and internal publics as part of the organization's environment, emphasizing two-way symmetric communication.\"",
-                    "blackbox_output": "It adapts to changing organizational environments.",
-                    "ground_truth": "It adapts to changing organizational environments.",
-                    "options": "['It adapts to changing organizational environments.', 'It adopts the policy of transparency to build public trust.', 'It focuses on removing communication barriers between its business divisions.', 'It communicates with its publics frequently to effect change outside the organization.']"
                 },
                 {
-                    "model_output": "\"A phenomenon where individuals refrain from expressing opinions on controversial issues due to perceived lack of support for their views in their social environment.\"",
+                    "model_output": "Outcomes.",
+                    "blackbox_output": "Outcomes.",
+                    "ground_truth": "Outputs",
+                    "options": "['Inputs', 'Outputs', 'Outtakes', 'Outcomes']"
+                },
+                {
+                    "model_output": "Planning",
+                    "blackbox_output": "planning.",
+                    "ground_truth": "planning",
+                    "options": "['identification', 'evaluation', 'implementation', 'planning']"
+                },
+                {
+                    "model_output": "\"When people hide their opinions if they do not agree with the majority\"",
                     "blackbox_output": "When people hide their opinions if they do not agree with the majority.",
                     "ground_truth": "When victims of abuse remain silent about the abuse",
                     "options": "['When victims of abuse remain silent about the abuse', 'When people hide their opinions if they do not agree with the majority', 'When people hide their opinions if they are in disagreement with their close peers or family members', 'When public relations uses opinion poll results to generate support for a particular issue']"
                 },
                 {
-                    "model_output": "\"awareness\"",
-                    "blackbox_output": "penetration",
-                    "ground_truth": "penetration",
-                    "options": "['participation', 'penetration', 'distribution', 'identification']"
+                    "model_output": "The number who change attitudes and opinions.",
+                    "blackbox_output": "the number who change attitudes and opinions",
+                    "ground_truth": "the number who change attitudes and opinions",
+                    "options": "['the quality of the messages and activities', 'the number who change attitudes and opinions', 'the number who responded to communications', 'the number of messages and activities implemented']"
                 },
                 {
-                    "model_output": "\"Approximately 50%.\"",
-                    "blackbox_output": "One-quarter.",
-                    "ground_truth": "Two thirds",
-                    "options": "['One-quarter', 'One-half', 'Two thirds', 'Almost all']"
+                    "model_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach ensures transparency and credibility, leveraging the utility's expertise and the overwhelming evidence of the health benefits of fluoridated water. By presenting the information in a clear and factual manner, the blog can effectively counter the activists' claims and provide the community with accurate information. This method also builds trust with the public by directly addressing their concerns and providing them with reliable sources of information.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Quadrupled.|%|",
+                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
+                    "ground_truth": "Tripled",
+                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
                 },
                 {
-                    "model_output": "\"Individuals\"",
+                    "model_output": "Strategy and implementation.",
+                    "blackbox_output": "Strategy and evaluation.",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "Based on the pattern observed in the previous responses, the black-box LLM tends to provide a direct numerical answer that matches one of the options given. The answers are straightforward and do not include additional context or explanations beyond the requested numerical value.\n\nPredicted Response: 2,800.",
+                    "blackbox_output": "There are approximately 600 regional newspapers in the UK.",
+                    "ground_truth": "2,800",
+                    "options": "['270', '600', '2,800', '5,200']"
+                },
+                {
+                    "model_output": "A house of worship.",
                     "blackbox_output": "A publicly-traded company.",
                     "ground_truth": "A government institution",
                     "options": "['A politician', 'A house of worship', 'A government institution', 'A publicly-traded company']"
                 },
                 {
-                    "model_output": "\"Specific.\"",
-                    "blackbox_output": "Measurable. An objective should be specific, achievable, relevant, and time-bound, but not necessarily measurable.",
-                    "ground_truth": "Broad",
-                    "options": "['Broad', 'Achievable', 'Measurable', 'Time-bound']"
+                    "model_output": "Watson and Noble (2005) lay out a five-step model for circular evaluation. Pre-testing of strategy and tactics should be carried out at step 2.",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
                 },
                 {
-                    "model_output": "\"Cause-oriented advertising.\"",
-                    "blackbox_output": "Message-oriented advertising campaigns are focused on gathering support for a particular message or cause.",
-                    "ground_truth": "Idea-oriented",
-                    "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Message-oriented']"
+                    "model_output": "Personal.",
+                    "blackbox_output": "Abstract.",
+                    "ground_truth": "Personal",
+                    "options": "['Formal', 'Abstract', 'Personal', 'Objective']"
                 },
                 {
-                    "model_output": "\"Approximately 67%.\"",
-                    "blackbox_output": "80%",
-                    "ground_truth": "80%",
-                    "options": "['50%', '60%', '70%', '80%']"
+                    "model_output": "Distribution.</assistant>",
+                    "blackbox_output": "Readership.",
+                    "ground_truth": "Readership",
+                    "options": "['Circulation', 'Distribution', 'Traffic', 'Readership']"
                 },
                 {
-                    "model_output": "\"The major advantage of organizational publications is that they provide a platform for internal communication, keeping employees informed about company news, achievements, and policies, which can enhance engagement and morale.\"",
-                    "blackbox_output": "Their ability to deliver specific, detailed information to narrowly defined target publics.",
-                    "ground_truth": "Their ability to deliver specific, detailed information to narrowly defined target publics",
-                    "options": "['Their ability to provide a revenue source for sponsoring organizations', 'Their ability to deliver specific, detailed information to narrowly defined target publics', 'Their ability to avoid the problems typically associated with two-way media', 'Their ability to give sponsoring organizations a means of uncontrolled communications']"
+                    "model_output": "Video will be the main driver of this growth in internet traffic. As more people around the world adopt high-speed internet connections and streaming services become increasingly popular, the demand for video content is expected to skyrocket, significantly contributing to the overall increase in internet traffic.",
+                    "blackbox_output": "Video.",
+                    "ground_truth": "Video",
+                    "options": "['Online consumer goods purchases', 'Video', 'Music', 'Online auctions']"
                 },
                 {
-                    "model_output": "\"Jackie Berens emphasized strategy as achieving competitive advantage for an organization.\"",
-                    "blackbox_output": "Steyn (2003)",
-                    "ground_truth": "Henry (2006)",
-                    "options": "['Steyn (2003)', 'Gregory (2006)', 'Cutlip et al (2006)', 'Henry (2006)']"
+                    "model_output": "Opinion change. According to \"working theory,\" the step that occurs between an individual gaining information and changing behavior is opinion change. This involves the individual processing and integrating the new information, leading to a shift in their attitudes or beliefs, which ultimately influences their behavior.",
+                    "blackbox_output": "coorientation",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
+                },
+                {
+                    "model_output": "Nonexistence.",
+                    "blackbox_output": "Downplaying.",
+                    "ground_truth": "downplaying",
+                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
                 }
             ]
         },
         "transition_metrics": {
             "agreement_transitions": {
-                "zero_agree_few_agree": 0.34,
-                "zero_agree_few_disagree": 0.29,
-                "zero_disagree_few_agree": 0.11,
-                "zero_disagree_few_disagree": 0.26
+                "zero_agree_few_agree": 0.55,
+                "zero_agree_few_disagree": 0.07,
+                "zero_disagree_few_agree": 0.06,
+                "zero_disagree_few_disagree": 0.31
             },
             "response_length_metrics": {
                 "zero_shot": {
@@ -286,29 +286,29 @@
                     "disagree_avg_combined_length": 6.4
                 },
                 "few_shot": {
-                    "surrogate_avg_token_length": 18.2,
+                    "surrogate_avg_token_length": 10.2,
                     "blackbox_avg_token_length": 7.5,
-                    "agree_avg_combined_length": 20.3,
-                    "disagree_avg_combined_length": 30.1
+                    "agree_avg_combined_length": 19.1,
+                    "disagree_avg_combined_length": 15.6
                 }
             },
             "symantic_similarity": {
-                "zero_agree_few_agree_cosine_distance": 0.5228234529495239,
-                "zero_agree_few_disagree_cosine_distance": 0.3327013140078634,
-                "zero_disagree_few_agree_cosine_distance": 0.24835052403310934,
-                "zero_disagree_few_disagree_cosine_distance": 0.323330650812593
+                "zero_agree_few_agree_cosine_distance": 0.8899846848894338,
+                "zero_agree_few_disagree_cosine_distance": 0.364640437066555,
+                "zero_disagree_few_agree_cosine_distance": 0.3722810468503407,
+                "zero_disagree_few_disagree_cosine_distance": 0.7339994136024924
             }
         }
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.032016137346413585,
+        "exact_match": 0.3,
+        "f1_score_token_agreement": 0.44033907580819687,
         "rouge_scores": {
-            "rouge1": 0.16434720901738903,
-            "rouge2": 0.03875956359390983,
-            "rougeL": 0.15773257048203965
+            "rouge1": 0.5342066943813204,
+            "rouge2": 0.3504666433593989,
+            "rougeL": 0.5327307252886365
         },
-        "bleu_score": 0.00591540939954911,
-        "sbert_similarity": 0.4117272578857162
+        "bleu_score": 0.22512481832092404,
+        "sbert_similarity": 0.6870167967609384
     }
 }

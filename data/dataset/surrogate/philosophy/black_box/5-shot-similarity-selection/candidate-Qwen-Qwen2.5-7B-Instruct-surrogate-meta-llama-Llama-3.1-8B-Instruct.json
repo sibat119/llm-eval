@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.4919614147909968,
+        "f1_score_token_agreement": 0.596739766095526,
+        "f1_score_ranking": 0.5987972993403935,
+        "accuracy_ranking": 0.6109324758842444,
+        "rouge_scores": {
+            "rouge1": 0.6217427805106636,
+            "rouge2": 0.525127784645342,
+            "rougeL": 0.615476247234484
+        },
+        "bleu_score": 0.4288369431605965,
+        "sbert_similarity": 0.7041246473274143,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.6302250803858521,
+            "model_ground_truth_match": 0.572347266881029,
+            "blackbox_ground_truth_match": 0.7202572347266881,
+            "both_ground_truth_match": 0.5080385852090032,
+            "agreement_samples": [
+                {
+                    "model_output": "war of every man against every man.",
+                    "blackbox_output": "war of every man against every man..",
+                    "ground_truth": "war of every man against every man.",
+                    "options": "['peace and harmony.', 'mutual indifference.', 'cautious mistrust.', 'war of every man against every man.']"
+                },
+                {
+                    "model_output": "the majority",
+                    "blackbox_output": "the majority",
+                    "ground_truth": "the majority",
+                    "options": "['the majority', 'the king', 'the judges', 'his own will']"
+                },
+                {
+                    "model_output": "impressions and ideas.",
+                    "blackbox_output": "impressions and ideas.",
+                    "ground_truth": "impressions and ideas.",
+                    "options": "['sensations and emotions.', 'impressions and ideas.', 'static and dynamic.', 'simple and complex.']"
+                },
+                {
+                    "model_output": "is false, and would not support psychological egoism even if it were true.",
+                    "blackbox_output": "is false, and would not support psychological egoism even if it were true.",
+                    "ground_truth": "is false, and would not support psychological egoism even if it were true.",
+                    "options": "['is true, and supports psychological egoism.', 'is true, but does not support psychological egoism.', 'is false, and would not support psychological egoism even if it were true.', 'is false, but would support psychological egoism if it were true.']"
+                },
+                {
+                    "model_output": "desires for external goods.",
+                    "blackbox_output": "desires for external goods.",
+                    "ground_truth": "desires for external goods.",
+                    "options": "['desires for external goods.', 'love of injustice.', 'ill-will toward others.', 'self-hatred.']"
+                },
+                {
+                    "model_output": "representational.",
+                    "blackbox_output": "representational",
+                    "ground_truth": "representational",
+                    "options": "['representational', 'abstract', 'obscure', 'nonrepresentational']"
+                },
+                {
+                    "model_output": "they have extension.",
+                    "blackbox_output": "they have extension",
+                    "ground_truth": "they have extension",
+                    "options": "['they cannot be measured', 'science can study them', 'they do not have extension', 'they have extension']"
+                },
+                {
+                    "model_output": "Disagreement in belief.",
+                    "blackbox_output": "disagreement in belief.",
+                    "ground_truth": "disagreement in interest.",
+                    "options": "['disagreement in interest.', 'disagreement in belief.', 'disagreement in theory.', 'disagreement in practice.']"
+                },
+                {
+                    "model_output": "Myth and reason are the same: \"myth\" defines \"reason,\" and \"reason\" defines \"myth.\"",
+                    "blackbox_output": "myth and reason are the same: \"myth\" defines \"reason,\" and \"reason\" defines \"myth.\"",
+                    "ground_truth": "myth does not \"explain\" how things are related as much as it simply reveals them as related.",
+                    "options": "['mythos is ultimately based on logos, just as myth is ultimately based on reasoning or thinking.', 'myth does not \"explain\" how things are related as much as it simply reveals them as related.', 'metaphysicians are justified in reasoning as they do because there is only one true answer about being.', 'myth and reason are the same: \"myth\" defines \"reason,\" and \"reason\" defines \"myth.\"']"
+                },
+                {
+                    "model_output": "by seeing the prima facie rightness of particular acts, and then apprehending general principles.",
+                    "blackbox_output": "by seeing the prima facie rightness of particular acts, and then apprehending general principles.",
+                    "ground_truth": "by seeing the prima facie rightness of particular acts, and then apprehending general principles.",
+                    "options": "['by seeing the prima facie rightness of particular acts, and then apprehending general principles.', 'by apprehending general principles, and then inferring the prima facie rightness of particular acts.', 'by proving them philosophically.', 'from the explicit moral instruction we receive as children.']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "not suitable for the young.",
+                    "blackbox_output": "important, but unpleasant.",
+                    "ground_truth": "none of the above.",
+                    "options": "['not suitable for the young.', 'not suitable for the old.', 'important, but unpleasant.', 'none of the above.']"
+                },
+                {
+                    "model_output": "It is morally wrong to try to control the lives of (adult) others.",
+                    "blackbox_output": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                    "ground_truth": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                    "options": "['it is morally wrong to ever lose control of oneself.', 'it is morally wrong to try to control the lives of (adult) others.', 'one cannot be morally assessed for what is due to factors outside one\u2019s control.', 'one cannot be morally blamed for taking control of one\u2019s own life.']"
+                },
+                {
+                    "model_output": "the laws of a nation.",
+                    "blackbox_output": "the commands of a dictator.",
+                    "ground_truth": "natural laws.",
+                    "options": "['natural laws.', 'the laws of a nation.', 'the commands of a dictator.', 'our emotions.']"
+                },
+                {
+                    "model_output": "we can refer only to how people characterize actions without knowing why such actions should be characterized that way.",
+                    "blackbox_output": "there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).",
+                    "ground_truth": "we can refer only to how people characterize actions without knowing why such actions should be characterized that way.",
+                    "options": "['no one in society will ever do any action that really is merciful or just, only those actions that they think are merciful or just.', 'the primary purpose of human existence--which is to think and to know--is replaced by a focus on morality (acting and doing).', 'we can refer only to how people characterize actions without knowing why such actions should be characterized that way.', 'there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).']"
+                },
+                {
+                    "model_output": "We should always calculate the expected consequences of our action.",
+                    "blackbox_output": "we should depend on rules of thumb derived from the principle of utility.",
+                    "ground_truth": "we should depend on rules of thumb derived from the principle of utility.",
+                    "options": "['we should always calculate the expected consequences of our action.', 'we should depend on rules of thumb derived from the principle of utility.', 'we should consult tradition.', 'we should consult scripture.']"
+                },
+                {
+                    "model_output": "determine which one is objectively most pleasurable.",
+                    "blackbox_output": "determine which pleasure most experienced people prefer",
+                    "ground_truth": "determine which pleasure most experienced people prefer",
+                    "options": "['determine which one is objectively most pleasurable', 'determine which pleasure most experienced people prefer', 'consult philosophers of the past', 'consult science']"
+                },
+                {
+                    "model_output": "The causes of good and evil.",
+                    "blackbox_output": "both a and b",
+                    "ground_truth": "the causes of good and evil.",
+                    "options": "['the causes of natural occurrences.', 'the causes of good and evil.', 'both a and b.', 'neither a nor b.']"
+                },
+                {
+                    "model_output": "The first spring or impulse to desire.",
+                    "blackbox_output": "all of the above",
+                    "ground_truth": "cool and disengaged.",
+                    "options": "['cool and disengaged.', 'the source of all moral actions.', 'the first spring or impulse to desire.', 'all of the above.']"
+                },
+                {
+                    "model_output": "would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.",
+                    "blackbox_output": "would likewise be destroyed.",
+                    "ground_truth": "would likewise be destroyed.",
+                    "options": "['would likewise be destroyed.', 'would be destroyed only if there were no one around to remember the species.', \"would continue existing (as with Plato's Forms) in some other realm of being.\", 'would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.']"
+                },
+                {
+                    "model_output": "he considers the weaker version to be correct.",
+                    "blackbox_output": "he considers the stronger version to be correct.",
+                    "ground_truth": "he considers the stronger version to be correct.",
+                    "options": "['he considers the stronger version to be correct.', 'he considers the weaker version to be correct.', 'he ends up rejecting them both.', 'he claims that they are equivalent.']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.5819935691318328,
+            "model_ground_truth_match": 0.6109324758842444,
+            "blackbox_ground_truth_match": 0.7202572347266881,
+            "both_ground_truth_match": 0.49517684887459806,
+            "agreement_samples": [
+                {
+                    "model_output": "Based on the given examples, the black-box model tends to select answers that align with Aquinas's philosophical views on ethics and metaphysics. \n\nIn the examples, the correct answers are often related to the concept of \"good\" or \"perfection\" in the context of human actions and operations. \n\nGiven the new question, I predict the most likely response from the black-box model to be:\n\n\"happiness or beatitude.\"",
+                    "blackbox_output": "happiness or beatitude.",
+                    "ground_truth": "happiness or beatitude.",
+                    "options": "['pleasure.', 'happiness or beatitude.', 'the satisfaction of desire.', 'freedom from anxiety.']"
+                },
+                {
+                    "model_output": "arbitrary",
+                    "blackbox_output": "arbitrary",
+                    "ground_truth": "arbitrary",
+                    "options": "['well supported', 'unclear', 'unknowable', 'arbitrary']"
+                },
+                {
+                    "model_output": "Covert observation.",
+                    "blackbox_output": "Covert observation",
+                    "ground_truth": "Covert observation",
+                    "options": "['Qualitative content analysis', 'In-depth interviewing', 'Covert observation', 'Structured interviewing']"
+                },
+                {
+                    "model_output": "Based on the given examples, I predict the most likely response from the black-box model to the new question is:\n\n\"common\"",
+                    "blackbox_output": "common",
+                    "ground_truth": "common",
+                    "options": "['uncommon', 'common', 'vacuous', 'never serious']"
+                },
+                {
+                    "model_output": "both a and b.",
+                    "blackbox_output": "both a and b.",
+                    "ground_truth": "to eat food.",
+                    "options": "['to eat food.', 'pleasant gustatory sensations.', 'both a and b.', 'neither a nor b.']"
+                },
+                {
+                    "model_output": "relativism.",
+                    "blackbox_output": "relativism.",
+                    "ground_truth": "relativism.",
+                    "options": "['rationalism.', 'empiricism.', 'relativism.', 'absolutism.']"
+                },
+                {
+                    "model_output": "universalizability and prescriptivity.",
+                    "blackbox_output": "universalizability and prescriptivity.",
+                    "ground_truth": "universalizability and prescriptivity.",
+                    "options": "['consequentialism and hedonism.', 'universalizability and prescriptivity.', 'contractualism and rule-following.', 'consistency and coherence.']"
+                },
+                {
+                    "model_output": "a different beauty",
+                    "blackbox_output": "a different beauty",
+                    "ground_truth": "a different beauty",
+                    "options": "['the same beauty', 'a different beauty', 'a warped sense of beauty', 'objective beauty']"
+                },
+                {
+                    "model_output": "activity of the soul in accordance with virtue.",
+                    "blackbox_output": "activity of the soul in accordance with virtue.",
+                    "ground_truth": "activity of the soul in accordance with virtue.",
+                    "options": "['a state of mind.', 'a feeling or sensation.', 'a craft.', 'activity of the soul in accordance with virtue.']"
+                },
+                {
+                    "model_output": "cannot coherently invoke morality to protect one\u2019s own interests.",
+                    "blackbox_output": "cannot coherently invoke morality to protect one\u2019s own interests.",
+                    "ground_truth": "cannot coherently invoke morality to protect one\u2019s own interests.",
+                    "options": "['is irrational.', 'is immoral.', 'cannot coherently invoke morality to protect one\u2019s own interests.', 'couldn\u2019t possibly exist.']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "part of the mores of the group.",
+                    "blackbox_output": "all of the above",
+                    "ground_truth": "all of the above.",
+                    "options": "['part of the mores of the group.', 'universally teachable.', 'not merely a taboo.', 'all of the above.']"
+                },
+                {
+                    "model_output": "one cannot be morally blamed for taking control of one\u2019s own life.",
+                    "blackbox_output": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                    "ground_truth": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                    "options": "['it is morally wrong to ever lose control of oneself.', 'it is morally wrong to try to control the lives of (adult) others.', 'one cannot be morally assessed for what is due to factors outside one\u2019s control.', 'one cannot be morally blamed for taking control of one\u2019s own life.']"
+                },
+                {
+                    "model_output": "legislating for oneself.",
+                    "blackbox_output": "the thing in itself.",
+                    "ground_truth": "legislating for oneself.",
+                    "options": "['the thing in itself.', 'the categorical imperative.', 'the phenomenal self.', 'legislating for oneself.']"
+                },
+                {
+                    "model_output": "grounding experiences.",
+                    "blackbox_output": "a thick description of the virtue.",
+                    "ground_truth": "grounding experiences.",
+                    "options": "['conventional use.', 'grounding experiences.', 'a thick description of the virtue.', 'tradition.']"
+                },
+                {
+                    "model_output": "not suitable for the young.",
+                    "blackbox_output": "important, but unpleasant.",
+                    "ground_truth": "none of the above.",
+                    "options": "['not suitable for the young.', 'not suitable for the old.', 'important, but unpleasant.', 'none of the above.']"
+                },
+                {
+                    "model_output": "Based on the given examples, I predict the black-box model's response to the new question will be:\n\n\"temperance.\"",
+                    "blackbox_output": "prudence.",
+                    "ground_truth": "prudence.",
+                    "options": "['prudence.', 'temperance.', 'justice.', 'courage.']"
+                },
+                {
+                    "model_output": "\"pleasure is desired.\"",
+                    "blackbox_output": "\"pleasure is pleasant.\"",
+                    "ground_truth": "none of the above.",
+                    "options": "['\u201cpleasure is desired.\u201d', '\u201cpleasure is pleasant.\u201d', '\u201cwe desire to desire pleasure.\u201d', 'none of the above.']"
+                },
+                {
+                    "model_output": "It is not practicable to present every participant with all the information about the study.",
+                    "blackbox_output": "All of the above",
+                    "ground_truth": "All of the above.",
+                    "options": "['It is not practicable to present every participant with all the information about the study.', 'Sometimes it is desirable to withhold certain pieces of information, such as the length of time an interview will take.', 'If the participants knew exactly what the researcher was intending to study, they might change their behavior.', 'All of the above.']"
+                },
+                {
+                    "model_output": "would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.",
+                    "blackbox_output": "would likewise be destroyed.",
+                    "ground_truth": "would likewise be destroyed.",
+                    "options": "['would likewise be destroyed.', 'would be destroyed only if there were no one around to remember the species.', \"would continue existing (as with Plato's Forms) in some other realm of being.\", 'would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.']"
+                },
+                {
+                    "model_output": "is replaced once we acknowledge moral requirements.",
+                    "blackbox_output": "ignores morality and seemingly replaces it.",
+                    "ground_truth": "ignores morality and seemingly replaces it.",
+                    "options": "['is refuted by moral requirements.', 'is replaced once we acknowledge moral requirements.', 'refutes morality.', 'ignores morality and seemingly replaces it.']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.47,
+                "zero_agree_few_disagree": 0.16,
+                "zero_disagree_few_agree": 0.12,
+                "zero_disagree_few_disagree": 0.25
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 6.9,
+                    "blackbox_avg_token_length": 6.3,
+                    "agree_avg_combined_length": 13.8,
+                    "disagree_avg_combined_length": 12.2
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 15.4,
+                    "blackbox_avg_token_length": 6.3,
+                    "agree_avg_combined_length": 20.6,
+                    "disagree_avg_combined_length": 23.1
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.8837696038443467,
+                "zero_agree_few_disagree_cosine_distance": 0.35771442849335133,
+                "zero_disagree_few_agree_cosine_distance": 0.40035823691222405,
+                "zero_disagree_few_disagree_cosine_distance": 0.7709975955607016
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.42765273311897106,
+        "f1_score_token_agreement": 0.5566301261276658,
+        "rouge_scores": {
+            "rouge1": 0.5961276333433556,
+            "rouge2": 0.5022161614883738,
+            "rougeL": 0.5875736916569041
+        },
+        "bleu_score": 0.4011300727732259,
+        "sbert_similarity": 0.6813597929247706
+    }
+}

@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.08181818181818182,
+        "f1_score_token_agreement": 0.12708403956069492,
+        "f1_score_ranking": 0.5255649210903873,
+        "accuracy_ranking": 0.5363636363636364,
+        "rouge_scores": {
+            "rouge1": 0.14550389654753748,
+            "rouge2": 0.1208922215517846,
+            "rougeL": 0.14466751134507574
+        },
+        "bleu_score": 0.09108836840130932,
+        "sbert_similarity": 0.4576388924636624,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.6272727272727273,
+            "model_ground_truth_match": 0.5636363636363636,
+            "blackbox_ground_truth_match": 0.7090909090909091,
+            "both_ground_truth_match": 0.4818181818181818,
+            "agreement_samples": [
+                {
+                    "model_output": "Open-ended.",
+                    "blackbox_output": "Open-ended",
+                    "ground_truth": "Open-ended",
+                    "options": "['Likert scale', 'Multiple choice', 'Open-ended', 'Yes/No']"
+                },
+                {
+                    "model_output": "Media tour.",
+                    "blackbox_output": "Media tour",
+                    "ground_truth": "Media tour",
+                    "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
+                },
+                {
+                    "model_output": "Conducting a pre and post analysis of constituents' opinions.",
+                    "blackbox_output": "conducting a pre and post analysis of constituents' opinions.",
+                    "ground_truth": "conducting a pre and post analysis of constituents' opinions",
+                    "options": "['preparing a content analysis of media coverage', 'studying the content of blog postings about your issue', 'analyzing pre and post sales reports for changes in sales', \"conducting a pre and post analysis of constituents' opinions\"]"
+                },
+                {
+                    "model_output": "to interpret trends for management",
+                    "blackbox_output": "to interpret trends for management",
+                    "ground_truth": "to interpret trends for management",
+                    "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
+                },
+                {
+                    "model_output": "Step 1.",
+                    "blackbox_output": "2",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "Viral campaigns.",
+                    "blackbox_output": "Viral campaigns",
+                    "ground_truth": "Viral campaigns",
+                    "options": "['Fan pages', 'Street activities', 'Grassroots marketing', 'Viral campaigns']"
+                },
+                {
+                    "model_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",
+                    "blackbox_output": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "ground_truth": "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",
+                    "options": "['Use utility employees to write the blog, posing as dentists and physicians.', 'Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.', 'Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.', 'Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.']"
+                },
+                {
+                    "model_output": "Impact.",
+                    "blackbox_output": "Impact",
+                    "ground_truth": "Impact",
+                    "options": "['Implementation', 'Impact', 'Attitude change', 'Preparation']"
+                },
+                {
+                    "model_output": "Grunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.",
+                    "blackbox_output": "Grunig and Hunt (1984)",
+                    "ground_truth": "Grunig and Hunt (1984)",
+                    "options": "['Cutlip (2006)', 'Leitch and Neilson (2001)', 'Amaral and Phillips (2010)', 'Grunig and Hunt (1984)']"
+                },
+                {
+                    "model_output": "Analysis.",
+                    "blackbox_output": "Analysis",
+                    "ground_truth": "Analysis",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Doris Fleischman.",
+                    "blackbox_output": "Arthur Page",
+                    "ground_truth": "Arthur Page",
+                    "options": "['Carl Byoir', 'Edward Bernays', 'Doris Fleischman', 'Arthur Page']"
+                },
+                {
+                    "model_output": "Abstract.",
+                    "blackbox_output": "Personal",
+                    "ground_truth": "Personal",
+                    "options": "['Formal', 'Abstract', 'Personal', 'Objective']"
+                },
+                {
+                    "model_output": "coorientation",
+                    "blackbox_output": "opinion change",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
+                },
+                {
+                    "model_output": "There are approximately 600 regional newspapers in the UK.",
+                    "blackbox_output": "2,800",
+                    "ground_truth": "2,800",
+                    "options": "['270', '600', '2,800', '5,200']"
+                },
+                {
+                    "model_output": "Politics.",
+                    "blackbox_output": "Nonprofits",
+                    "ground_truth": "Politics",
+                    "options": "['Politics', 'Retail business', 'Automotive sales', 'Nonprofits']"
+                },
+                {
+                    "model_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
+                    "blackbox_output": "Quadrupled",
+                    "ground_truth": "Tripled",
+                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                },
+                {
+                    "model_output": "reliability",
+                    "blackbox_output": "legitimacy",
+                    "ground_truth": "legitimacy",
+                    "options": "['legitimacy', 'identity', 'reliability', 'agency']"
+                },
+                {
+                    "model_output": "Strategy and evaluation.",
+                    "blackbox_output": "Strategy and implementation",
+                    "ground_truth": "Research and evaluation",
+                    "options": "['Research and evaluation', 'Strategy and evaluation', 'Strategy and implementation', 'Objectives and implementation']"
+                },
+                {
+                    "model_output": "Givenchy",
+                    "blackbox_output": "Chanel",
+                    "ground_truth": "Chanel",
+                    "options": "['Dior', 'Givenchy', 'Chanel', 'Lacroix']"
+                },
+                {
+                    "model_output": "Media writing.",
+                    "blackbox_output": "Business writing",
+                    "ground_truth": "Promotional writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.5909090909090909,
+            "model_ground_truth_match": 0.5363636363636364,
+            "blackbox_ground_truth_match": 0.7090909090909091,
+            "both_ground_truth_match": 0.4636363636363636,
+            "agreement_samples": [
+                {
+                    "model_output": "Based on the previous examples, it appears that the person tends to select multiple correct options when given a question with multiple possible answers. They often choose options that are directly related to the topic and seem to be the most relevant or accurate.\n\nGiven this pattern, I would predict that the person will select both \"a communication audit\" and \"strategy suggestions\" as the most likely internal factors included in a firm's public relations situation analysis.",
+                    "blackbox_output": "a communication audit",
+                    "ground_truth": "a communication audit",
+                    "options": "['a communication audit', 'strategy suggestions', 'community focus groups', 'a listing of media contacts']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable in the field of public relations and communication. They seem to be familiar with various models and theories, such as the Chase Jones model of issues management and the PR process.\n\nGiven the new question, I predict that the person will choose an option related to the process of attitude change or persuasion. In the previous examples, the person demonstrated an understanding of how attitudes are formed and changed, particularly in Example 5, where they stated that when an attitude is communicated, it becomes an opinion.\n\nConsidering the options provided for the new question, I predict that the person will choose \"coorientation.\" Coorientation is a step in the working theory of communication that occurs between an individual gaining information and changing behavior. It involves the process of understanding and interpreting the information, which is a crucial step in attitude change.\n\nTherefore, the predicted response is: \"coorientation\"",
+                    "blackbox_output": "opinion change",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
+                },
+                {
+                    "model_output": "Media tour.",
+                    "blackbox_output": "Media tour",
+                    "ground_truth": "Media tour",
+                    "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the word that is most closely related to the concept being described. In the case of the new question, the concept being described is a campaign becoming noticed and unavoidable.\n\nIn Example 1, the person chose \"legitimacy\" which is related to becoming known as trustworthy and believable. In Example 2, the person chose \"public issues\" which is related to a situation where people have strong convictions about a decision. In Example 3, the person chose \"Person-oriented advertising\" which is related to raising awareness about a particular person. In Example 4, the person chose \"advertising\" which is a paid form of communication. In Example 5, the person chose \"Outputs\" which is a stage in Macnamara's pyramid of evaluation.\n\nConsidering these patterns, the word that is most closely related to a campaign becoming noticed and unavoidable is \"penetration\". Penetration is a term often used in marketing and advertising to describe the extent to which a product or message has reached and affected a target audience.\n\nTherefore, the predicted response is: penetration",
+                    "blackbox_output": "penetration",
+                    "ground_truth": "penetration",
+                    "options": "['participation', 'penetration', 'distribution', 'identification']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the option that accurately describes a concept related to communication, social dynamics, or public opinion. \n\nIn the given options, option 2 \"When people hide their opinions if they do not agree with the majority\" seems to be the most fitting description of the 'spiral of silence', which is a concept that refers to the phenomenon where individuals refrain from expressing their opinions if they think they are in the minority or disagree with the majority.",
+                    "blackbox_output": "When people hide their opinions if they do not agree with the majority",
+                    "ground_truth": "When victims of abuse remain silent about the abuse",
+                    "options": "['When victims of abuse remain silent about the abuse', 'When people hide their opinions if they do not agree with the majority', 'When people hide their opinions if they are in disagreement with their close peers or family members', 'When public relations uses opinion poll results to generate support for a particular issue']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person tends to choose answers that are related to the core functions of public relations, particularly those that involve understanding and analyzing the audience or publics. \n\nGiven this pattern, I would predict that the person would choose the option that is most closely related to understanding and analyzing the audience or publics. \n\nIn this case, the options are related to different public relations specializations. Marketing communications is the most closely related to understanding and analyzing the audience or publics, as it involves tailoring messages and strategies to specific segments of the population.\n\nTherefore, the predicted response is: Marketing communications.",
+                    "blackbox_output": "Marketing communications",
+                    "ground_truth": "Marketing communications",
+                    "options": "['Issues management', 'Investor relations', 'Public affairs', 'Marketing communications']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable about the Chase Jones model of issues management. In Example 1, they correctly identified the step where the organization's ability to lead the issue should be assessed as \"Strategy\".\n\nGiven this information, I predict that the person will follow a similar pattern and choose the step in the Chase Jones model where the strengths and weaknesses of the organization should be reviewed. In the Chase Jones model, the Analysis step typically involves analyzing the issue, its causes, and the organization's strengths and weaknesses related to the issue.\n\nTherefore, the predicted response is: Analysis",
+                    "blackbox_output": "Analysis",
+                    "ground_truth": "Analysis",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person tends to choose the option that is most directly related to the topic or the most specific answer. In the previous examples, the correct answers were often the options that were most closely related to the question or the most specific in their description.\n\nIn the case of the new question, the option that stands out as the most specific and directly related to the topic is \"A house of worship.\" This option is the only one that is not a general category of entity (politician, government institution, publicly-traded company), but rather a specific type of organization.\n\nTherefore, the predicted response is: \"A house of worship.\"",
+                    "blackbox_output": "A house of worship",
+                    "ground_truth": "A government institution",
+                    "options": "['A politician', 'A house of worship', 'A government institution', 'A publicly-traded company']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the option that is most directly related to the concept described in the question. In this case, the question is asking about a tactic that can provide a 'halo effect'. \n\nThe 'halo effect' is a phenomenon where a positive association with one entity or person can positively impact the perception of another entity or person. Sponsorship is a common public relations tactic that can create a positive association between a brand and a popular event, celebrity, or cause, thereby providing a 'halo effect' for the brand.\n\nTherefore, the most likely response from the person would be: \"Sponsorship\"",
+                    "blackbox_output": "Sponsorship",
+                    "ground_truth": "Sponsorship",
+                    "options": "['Placement on TV or radio', 'Stunts', 'Third parties', 'Sponsorship']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable in the field of communication and tends to provide accurate and relevant answers. Given the options provided for the new question, I predict that the person will choose the Shannon and Weaver model, as it is a well-known communication model that describes the encoding and decoding of messages.",
+                    "blackbox_output": "Shannon and Weaver model",
+                    "ground_truth": "Osgood and Schramm model",
+                    "options": "['Shannon and Weaver model', 'Osgood and Schramm model', 'Westley and MacLean model', 'Maletzke model']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable about the Chase Jones model of issues management and other related topics. Given the specific instruction to review previous responses, I will analyze the patterns.\n\nIn the previous examples, the person correctly identified the step in the Chase Jones model where strengths and weaknesses of the organization should be reviewed as \"Analysis\" (Example 1). \n\nConsidering the new question, the person is likely to follow a similar pattern. The question asks about assessing the organization's ability to lead the issue, which seems to be related to the strategic aspect of issues management. \n\nTherefore, the most likely response from the person would be \"Strategy\".",
+                    "blackbox_output": "Strategy",
+                    "ground_truth": "Strategy",
+                    "options": "['Identification', 'Analysis', 'Strategy', 'Evaluation']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the option that is most specific and accurate in describing the concept or technique being asked about. In this case, the question is asking about the type of survey question that seeks qualitative information.\n\nThe options provided are:\n\n- Likert scale: This is a type of scale used to measure attitudes or opinions, but it is quantitative in nature.\n- Multiple choice: This is a type of survey question that asks respondents to choose from a list of options, but it is also quantitative.\n- Open-ended: This type of survey question asks respondents to provide a written response, which is typically qualitative in nature.\n- Yes/No: This is a type of survey question that asks respondents to answer with a simple \"yes\" or \"no\", which is also quantitative.\n\nBased on the person's previous responses, the most likely answer is the one that accurately describes the type of survey question that seeks qualitative information.\n\nOpen-ended.",
+                    "blackbox_output": "Open-ended",
+                    "ground_truth": "Open-ended",
+                    "options": "['Likert scale', 'Multiple choice', 'Open-ended', 'Yes/No']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable in the field of public relations and tends to choose answers that are accurate and relevant to the topic. \n\nIn the previous examples, the person correctly identified specific individuals, concepts, and theories related to public relations. They also demonstrated an understanding of the subject matter by selecting the most appropriate answer from the given options.\n\nGiven the new question, I predict that the person will choose an answer that is relevant to the topic of competitive advantage in public relations. \n\nThe most likely response from the person is: \"Cutlip et al (2006)\"",
+                    "blackbox_output": "Henry (2006)",
+                    "ground_truth": "Henry (2006)",
+                    "options": "['Steyn (2003)', 'Gregory (2006)', 'Cutlip et al (2006)', 'Henry (2006)']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose answers that are directly related to the core concepts and principles of public relations. They often select options that describe the function, process, or goal of public relations in an organization.\n\nIn the new question, the option that best fits this pattern is:\n\n\"It adapts to changing organizational environments.\"\n\nThis option describes a key characteristic of an open systems model of public relations, which is its ability to be flexible and responsive to changing internal and external environments. This aligns with the person's previous responses, which often highlighted the importance of adaptability and responsiveness in public relations.",
+                    "blackbox_output": "It adapts to changing organizational environments.",
+                    "ground_truth": "It adapts to changing organizational environments.",
+                    "options": "['It adapts to changing organizational environments.', 'It adopts the policy of transparency to build public trust.', 'It focuses on removing communication barriers between its business divisions.', 'It communicates with its publics frequently to effect change outside the organization.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the option that is most directly related to the topic or the most obvious choice. In example 1, they chose \"Personal\" because it's the only option that doesn't describe business writing. In example 2, they chose \"Business writing\" because it's the most common category for newsletters. In example 3, they chose \"Shannon and Weaver model\" because it's the most well-known communication model related to encoding and decoding. In example 4, they chose \"symbol\" because the American flag is a widely recognized symbol. In example 5, they chose the option that highlights the advantage of organizational publications, which is a key aspect of business writing.\n\nConsidering these patterns, the most likely response to the new question would be the option that is most closely associated with the pyramid structure, which is a common structure used in business writing. Therefore, the predicted response is:\n\nBusiness writing",
+                    "blackbox_output": "Media writing",
+                    "ground_truth": "Media writing",
+                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable in the field of public relations and advertising. They have consistently chosen the option that is NOT one of the correct categories or types.\n\nIn the new question, the options are categories of persuasive crisis communication strategies identified by W. Timothy Coombs. The person is likely to choose the option that is NOT one of these categories.\n\nThe options are: - ingratiation, - downplaying, - distancing, - nonexistence.\n\nIngratiation, downplaying, and distancing are all recognized strategies in crisis communication. Nonexistence, on the other hand, is not a recognized category of persuasive crisis communication strategies.\n\nTherefore, the predicted response is: \"nonexistence\"",
+                    "blackbox_output": "nonexistence",
+                    "ground_truth": "downplaying",
+                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to identify the option that is not one of the categories or strategies mentioned in the context. In this case, the question asks for the type of persuasive advertising campaign that is NOT one of the three basic types.\n\nThe options provided are Product-oriented, Person-oriented, and Idea-oriented, which are all mentioned in the previous examples as types of advertising campaigns. The option that stands out as not being one of the basic types is Result-oriented.\n\nTherefore, the predicted response is: Result-oriented",
+                    "blackbox_output": "Result-oriented",
+                    "ground_truth": "Result-oriented",
+                    "options": "['Product-oriented', 'Person-oriented', 'Idea-oriented', 'Result-oriented']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable about public relations and evaluation models. The correct answer to the new question can be inferred from the pattern of responses.\n\nIn the previous examples, the person correctly identified stages in the evaluation process, such as \"Inputs\" and \"Outtakes\" in Macnamara's pyramid of evaluation. They also correctly identified the implementation phase in the PR process.\n\nGiven the new question, Watson and Noble's (2005) five-step model for circular evaluation is likely to be similar to other evaluation models. The implementation phase is often associated with the execution of strategies and tactics, which is a common step in many evaluation models.\n\nTherefore, the most likely response from the person is:\n\n\"3\"\n\nThis is because the implementation phase is often the third step in many evaluation models, and pre-testing of strategy and tactics is typically carried out before implementation.",
+                    "blackbox_output": "2",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the option that is most directly related to the question and is a specific area of public relations. In this case, the question is asking about emerging issues and their potential impact on an organization.\n\nThe options provided are:\n\n- Public opinion: This is a general area of public relations, but it's not specifically focused on emerging issues.\n- Issues management: This option directly addresses the concept of emerging issues and their potential impact on an organization.\n- Public affairs: This option is related to public relations, but it's more focused on the organization's interactions with the public and government, rather than emerging issues specifically.\n- Lobbying: This option is related to influencing government policies, but it's not directly focused on emerging issues and their impact on an organization.\n\nGiven the person's previous responses, the most likely answer is:\n\nIssues management",
+                    "blackbox_output": "Issues management",
+                    "ground_truth": "Issues management",
+                    "options": "['Public opinion', 'Issues management', 'Public affairs', 'Lobbying']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person tends to choose the most direct and straightforward answer that accurately describes the concept or phenomenon being asked about. They also seem to focus on the most relevant and specific term that matches the description.\n\nIn the case of the new question, the description \"The American flag is an example of a\" suggests that the answer should be a term that describes a concept or object that the flag represents or embodies.\n\nGiven this, I predict that the person will choose the answer that is most closely related to the concept of a symbol, which is a representation or object that carries a particular meaning or significance.\n\nTherefore, the predicted response is: \"symbol\"",
+                    "blackbox_output": "symbol",
+                    "ground_truth": "symbol",
+                    "options": "['stereotype', 'semantic device', 'symbol', 'message']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.45,
+                "zero_agree_few_disagree": 0.17,
+                "zero_disagree_few_agree": 0.14,
+                "zero_disagree_few_disagree": 0.24
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 7.5,
+                    "blackbox_avg_token_length": 3.6,
+                    "agree_avg_combined_length": 14.0,
+                    "disagree_avg_combined_length": 6.4
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 103.5,
+                    "blackbox_avg_token_length": 3.6,
+                    "agree_avg_combined_length": 89.3,
+                    "disagree_avg_combined_length": 132.8
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.6066948142647743,
+                "zero_agree_few_disagree_cosine_distance": 0.4214744034566377,
+                "zero_disagree_few_agree_cosine_distance": 0.3505111773808797,
+                "zero_disagree_few_disagree_cosine_distance": 0.4523579820704002
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.09090909090909091,
+        "f1_score_token_agreement": 0.14043700111865584,
+        "rouge_scores": {
+            "rouge1": 0.1623980021013313,
+            "rouge2": 0.13050033770663322,
+            "rougeL": 0.16154251835035927
+        },
+        "bleu_score": 0.0932153158021311,
+        "sbert_similarity": 0.4766574786467986
+    }
+}

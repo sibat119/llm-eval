@@ -1,0 +1,314 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.09967845659163987,
+        "f1_score_token_agreement": 0.17371419788649173,
+        "f1_score_ranking": 0.5849616158934536,
+        "accuracy_ranking": 0.6012861736334405,
+        "rouge_scores": {
+            "rouge1": 0.18416922492701604,
+            "rouge2": 0.15101594542459656,
+            "rougeL": 0.1817210049727203
+        },
+        "bleu_score": 0.11199031670192668,
+        "sbert_similarity": 0.48658662213318027,
+        "agreement_without_mind_model": {
+            "agreement_score": 0.6302250803858521,
+            "model_ground_truth_match": 0.572347266881029,
+            "blackbox_ground_truth_match": 0.7202572347266881,
+            "both_ground_truth_match": 0.5080385852090032,
+            "agreement_samples": [
+                {
+                    "model_output": "war of every man against every man.",
+                    "blackbox_output": "war of every man against every man..",
+                    "ground_truth": "war of every man against every man.",
+                    "options": "['peace and harmony.', 'mutual indifference.', 'cautious mistrust.', 'war of every man against every man.']"
+                },
+                {
+                    "model_output": "the majority",
+                    "blackbox_output": "the majority",
+                    "ground_truth": "the majority",
+                    "options": "['the majority', 'the king', 'the judges', 'his own will']"
+                },
+                {
+                    "model_output": "impressions and ideas.",
+                    "blackbox_output": "impressions and ideas.",
+                    "ground_truth": "impressions and ideas.",
+                    "options": "['sensations and emotions.', 'impressions and ideas.', 'static and dynamic.', 'simple and complex.']"
+                },
+                {
+                    "model_output": "is false, and would not support psychological egoism even if it were true.",
+                    "blackbox_output": "is false, and would not support psychological egoism even if it were true.",
+                    "ground_truth": "is false, and would not support psychological egoism even if it were true.",
+                    "options": "['is true, and supports psychological egoism.', 'is true, but does not support psychological egoism.', 'is false, and would not support psychological egoism even if it were true.', 'is false, but would support psychological egoism if it were true.']"
+                },
+                {
+                    "model_output": "desires for external goods.",
+                    "blackbox_output": "desires for external goods.",
+                    "ground_truth": "desires for external goods.",
+                    "options": "['desires for external goods.', 'love of injustice.', 'ill-will toward others.', 'self-hatred.']"
+                },
+                {
+                    "model_output": "representational.",
+                    "blackbox_output": "representational",
+                    "ground_truth": "representational",
+                    "options": "['representational', 'abstract', 'obscure', 'nonrepresentational']"
+                },
+                {
+                    "model_output": "they have extension.",
+                    "blackbox_output": "they have extension",
+                    "ground_truth": "they have extension",
+                    "options": "['they cannot be measured', 'science can study them', 'they do not have extension', 'they have extension']"
+                },
+                {
+                    "model_output": "Disagreement in belief.",
+                    "blackbox_output": "disagreement in belief.",
+                    "ground_truth": "disagreement in interest.",
+                    "options": "['disagreement in interest.', 'disagreement in belief.', 'disagreement in theory.', 'disagreement in practice.']"
+                },
+                {
+                    "model_output": "Myth and reason are the same: \"myth\" defines \"reason,\" and \"reason\" defines \"myth.\"",
+                    "blackbox_output": "myth and reason are the same: \"myth\" defines \"reason,\" and \"reason\" defines \"myth.\"",
+                    "ground_truth": "myth does not \"explain\" how things are related as much as it simply reveals them as related.",
+                    "options": "['mythos is ultimately based on logos, just as myth is ultimately based on reasoning or thinking.', 'myth does not \"explain\" how things are related as much as it simply reveals them as related.', 'metaphysicians are justified in reasoning as they do because there is only one true answer about being.', 'myth and reason are the same: \"myth\" defines \"reason,\" and \"reason\" defines \"myth.\"']"
+                },
+                {
+                    "model_output": "by seeing the prima facie rightness of particular acts, and then apprehending general principles.",
+                    "blackbox_output": "by seeing the prima facie rightness of particular acts, and then apprehending general principles.",
+                    "ground_truth": "by seeing the prima facie rightness of particular acts, and then apprehending general principles.",
+                    "options": "['by seeing the prima facie rightness of particular acts, and then apprehending general principles.', 'by apprehending general principles, and then inferring the prima facie rightness of particular acts.', 'by proving them philosophically.', 'from the explicit moral instruction we receive as children.']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "not suitable for the young.",
+                    "blackbox_output": "important, but unpleasant.",
+                    "ground_truth": "none of the above.",
+                    "options": "['not suitable for the young.', 'not suitable for the old.', 'important, but unpleasant.', 'none of the above.']"
+                },
+                {
+                    "model_output": "It is morally wrong to try to control the lives of (adult) others.",
+                    "blackbox_output": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                    "ground_truth": "one cannot be morally assessed for what is due to factors outside one\u2019s control.",
+                    "options": "['it is morally wrong to ever lose control of oneself.', 'it is morally wrong to try to control the lives of (adult) others.', 'one cannot be morally assessed for what is due to factors outside one\u2019s control.', 'one cannot be morally blamed for taking control of one\u2019s own life.']"
+                },
+                {
+                    "model_output": "the laws of a nation.",
+                    "blackbox_output": "the commands of a dictator.",
+                    "ground_truth": "natural laws.",
+                    "options": "['natural laws.', 'the laws of a nation.', 'the commands of a dictator.', 'our emotions.']"
+                },
+                {
+                    "model_output": "we can refer only to how people characterize actions without knowing why such actions should be characterized that way.",
+                    "blackbox_output": "there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).",
+                    "ground_truth": "we can refer only to how people characterize actions without knowing why such actions should be characterized that way.",
+                    "options": "['no one in society will ever do any action that really is merciful or just, only those actions that they think are merciful or just.', 'the primary purpose of human existence--which is to think and to know--is replaced by a focus on morality (acting and doing).', 'we can refer only to how people characterize actions without knowing why such actions should be characterized that way.', 'there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).']"
+                },
+                {
+                    "model_output": "We should always calculate the expected consequences of our action.",
+                    "blackbox_output": "we should depend on rules of thumb derived from the principle of utility.",
+                    "ground_truth": "we should depend on rules of thumb derived from the principle of utility.",
+                    "options": "['we should always calculate the expected consequences of our action.', 'we should depend on rules of thumb derived from the principle of utility.', 'we should consult tradition.', 'we should consult scripture.']"
+                },
+                {
+                    "model_output": "determine which one is objectively most pleasurable.",
+                    "blackbox_output": "determine which pleasure most experienced people prefer",
+                    "ground_truth": "determine which pleasure most experienced people prefer",
+                    "options": "['determine which one is objectively most pleasurable', 'determine which pleasure most experienced people prefer', 'consult philosophers of the past', 'consult science']"
+                },
+                {
+                    "model_output": "The causes of good and evil.",
+                    "blackbox_output": "both a and b",
+                    "ground_truth": "the causes of good and evil.",
+                    "options": "['the causes of natural occurrences.', 'the causes of good and evil.', 'both a and b.', 'neither a nor b.']"
+                },
+                {
+                    "model_output": "The first spring or impulse to desire.",
+                    "blackbox_output": "all of the above",
+                    "ground_truth": "cool and disengaged.",
+                    "options": "['cool and disengaged.', 'the source of all moral actions.', 'the first spring or impulse to desire.', 'all of the above.']"
+                },
+                {
+                    "model_output": "would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.",
+                    "blackbox_output": "would likewise be destroyed.",
+                    "ground_truth": "would likewise be destroyed.",
+                    "options": "['would likewise be destroyed.', 'would be destroyed only if there were no one around to remember the species.', \"would continue existing (as with Plato's Forms) in some other realm of being.\", 'would not be destroyed because there was no essence or form originally to be destroyed; there are only individuals, not universal essences or natures of things.']"
+                },
+                {
+                    "model_output": "he considers the weaker version to be correct.",
+                    "blackbox_output": "he considers the stronger version to be correct.",
+                    "ground_truth": "he considers the stronger version to be correct.",
+                    "options": "['he considers the stronger version to be correct.', 'he considers the weaker version to be correct.', 'he ends up rejecting them both.', 'he claims that they are equivalent.']"
+                }
+            ]
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 0.5852090032154341,
+            "model_ground_truth_match": 0.6012861736334405,
+            "blackbox_ground_truth_match": 0.7202572347266881,
+            "both_ground_truth_match": 0.4983922829581994,
+            "agreement_samples": [
+                {
+                    "model_output": "Based on the previous examples, the person tends to provide answers that reflect Mill's utilitarian views. In the examples, the person correctly identified Mill's responses to various questions about his utilitarian theory.\n\nIn the new question, the correct answer should align with Mill's views on pleasure and its valuation. According to Mill, the quality of pleasure is a key factor in determining its value. Therefore, the most likely response from the person would be:\n\ndetermine which one is more desirable or of higher quality.",
+                    "blackbox_output": "determine which pleasure most experienced people prefer",
+                    "ground_truth": "determine which pleasure most experienced people prefer",
+                    "options": "['determine which one is objectively most pleasurable', 'determine which pleasure most experienced people prefer', 'consult philosophers of the past', 'consult science']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to provide accurate and relevant information related to philosophical concepts and theories. Given the new question, I predict the person will choose an answer that reflects a common criticism of the divine command theory.\n\nThe divine command theory is a moral theory that suggests that an action is right if it is commanded by God and wrong if it is not. Critics of this theory often argue that it implies that God's commands are arbitrary, as they are not based on any objective moral principles or reasons.\n\nTherefore, I predict the person will respond:\n\narbitrary",
+                    "blackbox_output": "arbitrary",
+                    "ground_truth": "arbitrary",
+                    "options": "['well supported', 'unclear', 'unknowable', 'arbitrary']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with the philosophical ideas of G.E.M. Anscombe and is able to identify her criticisms and claims. \n\nIn the previous examples, Anscombe's criticisms and claims were related to the topics of ethics, moral psychology, and the nature of moral obligation. \n\nGiven the new question, it seems that the person is likely to choose an option that is related to Anscombe's views on Sidgwick's utilitarianism. \n\nThe correct answer is likely to be related to the concept of consequences, as Anscombe's criticisms of Sidgwick often focus on the implications of his utilitarian views. \n\nTherefore, the predicted response is: \"its actual consequences.\"",
+                    "blackbox_output": "its expected consequences.",
+                    "ground_truth": "its expected consequences.",
+                    "options": "['its actual consequences.', 'its expected consequences.', 'whether it violates any duties.', 'whether it violates divine law.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with various moral philosophers and their theories, particularly Brandt and Kant. \n\nGiven the context of the Ideal Moral Code theory, which is associated with Richard Brandt, I would predict that the person would choose the option that aligns with Brandt's theory. \n\nThe correct answer is: in an ideal institutional setting.",
+                    "blackbox_output": "in an ideal institutional setting.",
+                    "ground_truth": "in one\u2019s actual institutional setting.",
+                    "options": "['in one\u2019s actual institutional setting.', 'in an ideal institutional setting.', 'in a setting devoid of institutions.', 'in a world in which everyone complied with those rules perfectly.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with the philosophical ideas of Thomas Hobbes. In the examples provided, the person consistently identifies Hobbes' views on laws of nature, rights, and injustice.\n\nGiven the new question, the most likely response from the person would be:\n\nthe liberty to use one\u2019s powers to preserve one\u2019s life.",
+                    "blackbox_output": "the liberty to use one\u2019s powers to preserve one\u2019s life.",
+                    "ground_truth": "the liberty to use one\u2019s powers to preserve one\u2019s life.",
+                    "options": "['an entitlement to the fruits of one\u2019s labors.', 'a claim not to be harmed by others.', 'the right of the king to rule his subjects.', 'the liberty to use one\u2019s powers to preserve one\u2019s life.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose answers that align with the philosophical ideas of Socrates, emphasizing the importance of self-reflection, understanding, and knowledge in living a virtuous life. \n\nGiven the new question, the most likely response from the person would be:\n\n\"Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.\"",
+                    "blackbox_output": "Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                    "ground_truth": "Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.",
+                    "options": "['Because if someone did not know how to act virtuously, he or she would still be considered virtuous by others who also did not know the principles for good living.', 'Because since Socrates was a philosopher, he of course thought that people who examined their lives philosophically were more virtuous than those who did not.', 'Because without knowing the rationale for why one should act in a particular way, one does not know whether actions are justified and ought to be repeated.', \"Because a virtuous life would be one in which someone does what the rest of the society says is right, and that means examining views other than one's own.\"]"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is likely to choose the option that aligns with the philosophical concept being discussed. In this case, the concept is soft determinism.\n\nIn soft determinism, the idea is that while our choices may be influenced by factors outside of our control, we still have some degree of control over our desires and decisions. The correct answer would be related to the idea that our desires play a role in our decisions.\n\nGiven the options, the most likely response from the person would be:\n\nyour desires had been different.",
+                    "blackbox_output": "your desires had been different",
+                    "ground_truth": "your desires had been different",
+                    "options": "['your desires were always the same', 'your desires were completely under your control', 'your desires had been different', 'your desires played no role in your decisions']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with the philosophical ideas of David Hume and is able to identify his views on various topics. \n\nIn the previous examples, the person consistently chose answers that align with Hume's empiricist and skeptical philosophical stance. \n\nGiven this context, the most likely response to the new question would be:\n\na different beauty\n\nThis answer aligns with Hume's empiricist view that our perceptions and experiences are subjective and individual, and that beauty is a matter of personal taste.",
+                    "blackbox_output": "a different beauty",
+                    "ground_truth": "a different beauty",
+                    "options": "['the same beauty', 'a different beauty', 'a warped sense of beauty', 'objective beauty']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to choose the option that aligns with Mill's emphasis on the importance of pleasure and happiness. In example 2, the person chose \"quality\" as the key factor in distinguishing between pleasures, suggesting that Mill values the quality of pleasure over other factors.\n\nIn example 5, the person chose \"both a and b\" as the characteristics of a happy life, indicating that Mill values both tranquility and excitement.\n\nGiven these patterns, the most likely response to the new question would be the option that emphasizes the richness of pleasure, which is \"enjoyments.\" This option aligns with Mill's focus on the quality and richness of pleasure, as well as his emphasis on the importance of happiness.\n\nPredicted Response: enjoyments",
+                    "blackbox_output": "enjoyments",
+                    "ground_truth": "enjoyments",
+                    "options": "['lower pleasures', 'spiritual attainment', 'social achievement', 'enjoyments']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person tends to choose the option that aligns with Baier's theory of morality as a deliberative process. In Example 4, the person chose the option that involves deliberation (\"whether one can approve of it\"). \n\nGiven this pattern, the most likely response to the new question would be:\n\ndeliberate with us.",
+                    "blackbox_output": "deliberate with us.",
+                    "ground_truth": "deliberate with us.",
+                    "options": "['issue commands.', 'inform us of their preferences.', 'deliberate with us.', 'empathize with us.']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with the work of Baier and has a good understanding of his theory. \n\nIn the previous examples, the person consistently chose answers that align with Baier's views on morality, such as the importance of genuine moral rules, their universality, and their relation to the good of human beings.\n\nGiven this pattern, I predict that the person will choose the answer that aligns with Baier's theory on assessing moral permissibility. \n\nThe correct answer is: \"whether the moral rule forbidding it is a genuine moral rule.\"",
+                    "blackbox_output": "whether one can approve of it.",
+                    "ground_truth": "whether the moral rule forbidding it is a genuine moral rule.",
+                    "options": "['whether it is forbidden by a moral rule of one\u2019s group.', 'whether the moral rule forbidding it is a genuine moral rule.', 'whether it is forbidden by a law.', 'whether one can approve of it.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person tends to focus on internal or philosophical perspectives when discussing the meaning of life. They also seem to favor more pessimistic or neutral views, as seen in their responses to questions about Clarence Darrow and Schopenhauer.\n\nGiven this pattern, I predict that the person will choose the option that presents a philosophical or internal perspective on the meaning of life, and one that is more pessimistic or neutral.\n\nThe most likely response is: \"the pessimist's view and the optimist's view\"",
+                    "blackbox_output": "the external view and the internal view",
+                    "ground_truth": "the pessimist'sview and the optimist'sview",
+                    "options": "['the external view and the internal view', \"the pessimist'sview and the optimist'sview\", 'the religious view and the liberal view', 'the theistic view and the agnostics view']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable about various philosophers and their theories, particularly in the realm of ethics and moral philosophy. \n\nGiven the options, I predict the person will choose the answer that aligns with Ross's theory of prima facie duties, which emphasizes the importance of keeping promises and fulfilling obligations. \n\nThe most likely response from the person would be: \"when contracts and promises are adhered to.\"",
+                    "blackbox_output": "when the distribution of happiness is in accordance with merit.",
+                    "ground_truth": "when the distribution of happiness is in accordance with merit.",
+                    "options": "['when all laws are followed.', 'when contracts and promises are adhered to.', 'when the distribution of happiness is in accordance with merit.', 'when the guilty are punished for their crimes.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, the person tends to provide answers that are accurate and relevant to the topic. In the new question, the correct answer is \"epiphenomenalism\". Epiphenomenalism is a philosophical theory that suggests mental states are byproducts of brain states, but do not have any causal influence on behavior. This aligns with the person's previous responses, which demonstrate an understanding of various philosophical concepts.\n\nTherefore, the predicted response is: \"epiphenomenalism\"",
+                    "blackbox_output": "identity theory",
+                    "ground_truth": "identity theory",
+                    "options": "['brain theory', 'epiphenominalism', 'identity theory', 'logical behaviorism']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable about the philosophical ideas of Aquinas. In the previous responses, the person consistently chose answers that align with Aquinas' views on ethics and metaphysics.\n\nIn Example 1, the person chose \"happiness or beatitude\" as the last end of man, which is a central concept in Aquinas' ethics.\n\nIn Example 2, the person chose \"Godliness\" as the ultimate perfection of operation, which suggests that the person is familiar with Aquinas' emphasis on the importance of spiritual perfection.\n\nIn Example 3, the person chose \"pleasure exists for the sake of operation,\" which aligns with Aquinas' view that pleasure is a byproduct of virtuous action.\n\nIn Example 4, the person chose \"those who contemplate the truth,\" which suggests that the person is familiar with Aquinas' emphasis on the importance of intellectual virtues.\n\nIn Example 5, the person chose \"God\" as the first efficient cause of everything, which is a central tenet of Aquinas' metaphysics.\n\nBased on these patterns, it appears that the person is likely to choose an answer that aligns with Aquinas' views on ethics and metaphysics. In this case, the most likely response to the new question is:\n\nsome good.",
+                    "blackbox_output": "some good.",
+                    "ground_truth": "some good.",
+                    "options": "['some desire.', 'some pleasure.', 'some good.', 'some emotional state.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is knowledgeable about the philosophers mentioned and their views. Given the options, I predict the person will choose the answer that aligns with Epicurus' philosophy of natural law and the concept of justice.\n\nThe person's previous responses suggest that they understand Epicurus' views on the importance of natural law and the idea that justice is not about pleasing the gods or following societal norms, but rather about living in accordance with nature.\n\nTherefore, I predict the person will choose the answer: \"it is not in accordance with natural law.\"",
+                    "blackbox_output": "it is not beneficial to those it affects.",
+                    "ground_truth": "it is not beneficial to those it affects.",
+                    "options": "['it is not in accordance with natural law.', 'it is not in accordance with the traditions of society.', 'it is offensive to the gods.', 'it is not beneficial to those it affects.']"
+                },
+                {
+                    "model_output": "this would make them vicious, and they would then harm him.",
+                    "blackbox_output": "it is his duty not to do so.",
+                    "ground_truth": "this would make them vicious, and they would then harm him.",
+                    "options": "['it is his duty not to do so.', 'this would make them vicious, and they would then harm him.', 'he would be likely to get caught if he did so.', 'he would not know how.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with John Stuart Mill's utilitarianism and has a good understanding of his philosophical ideas. \n\nIn the previous examples, the person consistently chose answers that reflect Mill's views on utilitarianism. \n\nGiven the new question, I predict the person will choose the answer that aligns with Mill's philosophical stance on the principle of utility. \n\nThe correct answer is: - cannot be proven, but this is common to all first principles.",
+                    "blackbox_output": "cannot be proven, but this is common to all first principles.",
+                    "ground_truth": "cannot be proven, but this is common to all first principles.",
+                    "options": "['can be proven from self-evident principles.', 'can be proven from principles that are known empirically.', 'cannot be proven, and this is a unique problem for the theory.', 'cannot be proven, but this is common to all first principles.']"
+                },
+                {
+                    "model_output": "Based on the previous examples, it appears that the person is familiar with the work of Baier and has a good understanding of his moral theory. \n\nIn the previous examples, the person consistently chose answers that reflect Baier's emphasis on the importance of moral rules being universal, teachable, and beneficial to all. \n\nGiven this pattern, I predict that the person will choose an answer that aligns with Baier's emphasis on the universal and beneficial nature of moral rules.\n\nThe most likely response from the person to this new question is: \"must be for the good of human beings.\"",
+                    "blackbox_output": "must be for the good of human beings.",
+                    "ground_truth": "must be for the good of human beings.",
+                    "options": "['must be for the good of human beings.', 'make take into account the interests of all sentient beings.', 'must take into account the interests of all living beings.', 'are primarily directed toward promoting self-interest.']"
+                },
+                {
+                    "model_output": "someone who does not understand existence philosophically could never do anything right.",
+                    "blackbox_output": "not only is virtue knowledge but also the unexamined life is not worth living.",
+                    "ground_truth": "acting virtuously means acting in way that is informed about what one is doing and why.",
+                    "options": "['acting virtuously means acting in way that is informed about what one is doing and why.', 'someone who does not understand existence philosophically could never do anything right.', 'to have the power or ability to do anything at all requires that we know what we are doing.', 'not only is virtue knowledge but also the unexamined life is not worth living.']"
+                }
+            ]
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 0.43,
+                "zero_agree_few_disagree": 0.2,
+                "zero_disagree_few_agree": 0.15,
+                "zero_disagree_few_disagree": 0.22
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 6.9,
+                    "blackbox_avg_token_length": 6.3,
+                    "agree_avg_combined_length": 13.8,
+                    "disagree_avg_combined_length": 12.2
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 104.9,
+                    "blackbox_avg_token_length": 6.3,
+                    "agree_avg_combined_length": 100.3,
+                    "disagree_avg_combined_length": 126.5
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.6246831999884711,
+                "zero_agree_few_disagree_cosine_distance": 0.33003641159624836,
+                "zero_disagree_few_agree_cosine_distance": 0.3502482965271524,
+                "zero_disagree_few_disagree_cosine_distance": 0.46790323373587694
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.09003215434083602,
+        "f1_score_token_agreement": 0.1685096686486691,
+        "rouge_scores": {
+            "rouge1": 0.1801529229888901,
+            "rouge2": 0.14550659669291788,
+            "rougeL": 0.17685138500299072
+        },
+        "bleu_score": 0.10598904761417274,
+        "sbert_similarity": 0.4755836659084131
+    }
+}

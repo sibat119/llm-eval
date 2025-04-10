@@ -1,16 +1,16 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.03443365960999941,
-        "f1_score_ranking": 0.44615079365079363,
-        "accuracy_ranking": 0.45454545454545453,
+        "exact_match": 0.2727272727272727,
+        "f1_score_token_agreement": 0.44733690654776215,
+        "f1_score_ranking": 0.6613727329580987,
+        "accuracy_ranking": 0.6636363636363637,
         "rouge_scores": {
-            "rouge1": 0.06442734376337206,
-            "rouge2": 0.011802727872652364,
-            "rougeL": 0.06050885243742257
+            "rouge1": 0.6709839126095684,
+            "rouge2": 0.4213988843830741,
+            "rougeL": 0.6709839126095684
         },
-        "bleu_score": 0.0028090456765596274,
-        "sbert_similarity": 0.3496970770372586,
+        "bleu_score": 0.23311922119718279,
+        "sbert_similarity": 0.7295237332921136,
         "agreement_without_mind_model": {
             "agreement_score": 0.6272727272727273,
             "model_ground_truth_match": 0.7090909090909091,
@@ -142,139 +142,139 @@
             ]
         },
         "agreement_after_mind_model": {
-            "agreement_score": 0.4909090909090909,
-            "model_ground_truth_match": 0.45454545454545453,
+            "agreement_score": 0.7090909090909091,
+            "model_ground_truth_match": 0.6636363636363637,
             "blackbox_ground_truth_match": 0.5636363636363636,
-            "both_ground_truth_match": 0.32727272727272727,
+            "both_ground_truth_match": 0.4909090909090909,
             "agreement_samples": [
                 {
-                    "model_output": "Predicted Response: \"Symbolic action.\"",
-                    "blackbox_output": "participation.",
-                    "ground_truth": "participation",
-                    "options": "['identification', 'legitimacy', 'penetration', 'participation']"
+                    "model_output": "Timing, content, quality of source, relevance.",
+                    "blackbox_output": "Content, quality of source, relevance.",
+                    "ground_truth": "Timing, content, media liaison",
+                    "options": "['Content, quality of source, relevance', 'Timing, content, media liaison', 'Content, quality of source, human interest angle', 'Timing, relevance, political slant']"
                 },
                 {
-                    "model_output": "Based on the pattern in the previous responses, the predicted response would likely be concise and direct, possibly listing two examples. Therefore, the predicted response could be:\n\n\"Outcome evaluation might include measuring changes in behavior and assessing long-term impacts.\"",
-                    "blackbox_output": "Change in attitude and Placement of message.",
-                    "ground_truth": "Change in attitude",
-                    "options": "['Change in attitude', 'Placement of message', 'Distribution of message', 'Size of attentive audience']"
+                    "model_output": "Media tour.",
+                    "blackbox_output": "Media tour.",
+                    "ground_truth": "Media tour",
+                    "options": "['Media release', 'Media tour', 'Press room', 'Promotional days/weeks']"
                 },
                 {
-                    "model_output": "Segmentation of the population into psychographics, demographics, and geodemographics is especially important in market research and consumer behavior analysis within public relations.",
-                    "blackbox_output": "Marketing communications.",
-                    "ground_truth": "Marketing communications",
-                    "options": "['Issues management', 'Investor relations', 'Public affairs', 'Marketing communications']"
+                    "model_output": "to help the department stay focused on its strategic plan.",
+                    "blackbox_output": "to help the department stay focused on its strategic plan.",
+                    "ground_truth": "to help the department stay focused on its strategic plan",
+                    "options": "['to help the department stay focused on its strategic plan', 'to ensure that projects that are important to the CEO always have first priority', \"to ensure that the department's events and public relations activities are not neglected\", 'to make it easier for other departments to understand the responsibilities of the public relations department']"
                 },
                 {
-                    "model_output": "The crisis management part of a PR campaign includes proactively planning a response strategy, implementing that strategy in the event of a crisis, evaluating the crisis response, and revising the initial response strategy in an effort to improve for future crises.",
-                    "blackbox_output": "Crisis management.",
-                    "ground_truth": "crisis management",
-                    "options": "['public issues', 'crisis management', 'consumer relations', 'community relations']"
+                    "model_output": "According to Esman (1972), functional publics are related to the organisation through shared industrial interests.",
+                    "blackbox_output": "Functional.",
+                    "ground_truth": "Normative",
+                    "options": "['Enabling', 'Functional', 'Normative', 'Diffused']"
                 },
                 {
-                    "model_output": "Based on the pattern of responses provided, the predicted response would likely be:\n\nEffective communication with stakeholders.\n\nThis prediction is made by considering the context of organizational publications, which typically aim to communicate information effectively to various stakeholders within and outside the organization.",
-                    "blackbox_output": "Their ability to deliver specific, detailed information to narrowly defined target publics.",
-                    "ground_truth": "Their ability to deliver specific, detailed information to narrowly defined target publics",
-                    "options": "['Their ability to provide a revenue source for sponsoring organizations', 'Their ability to deliver specific, detailed information to narrowly defined target publics', 'Their ability to avoid the problems typically associated with two-way media', 'Their ability to give sponsoring organizations a means of uncontrolled communications']"
+                    "model_output": "1922",
+                    "blackbox_output": "1922.",
+                    "ground_truth": "1922",
+                    "options": "['1917', '1922', '1925', '1927']"
                 },
                 {
-                    "model_output": "To predict the response based on the given examples, we need to identify a pattern or a type of answer that fits the format of the previous responses. However, the new question is quite specific and quantitative, which doesn't align directly with the previous examples that were more conceptual or related to definitions and categories.\n\nGiven the format of the previous responses, a possible predicted response could be structured as follows:\n\n\"According to recent industry reports, the number of practitioners working in consultancies in the UK has grown by approximately [X]% since 25 years ago.\"\n\nSince the exact growth percentage isn't provided and isn't part of the examples, I'll leave it as a placeholder [X]%. If you have a specific growth percentage in mind, you can replace [X] with that number.",
-                    "blackbox_output": "I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.",
-                    "ground_truth": "Tripled",
-                    "options": "[\"It hasn't\", 'Doubled', 'Tripled', 'Quadrupled']"
+                    "model_output": "Sponsorship.",
+                    "blackbox_output": "Sponsorship.",
+                    "ground_truth": "Sponsorship",
+                    "options": "['Placement on TV or radio', 'Stunts', 'Third parties', 'Sponsorship']"
                 },
                 {
-                    "model_output": "Budget constraints.\"\n\nGiven the previous responses, it seems the individual is familiar with public relations concepts and terminology. The term \"opinion leader\" in public relations typically refers to individuals who influence others' opinions or behaviors. When selecting an opinion leader, factors such as relevance, credibility, and reach are commonly considered. \"Budget constraints\" does not directly relate to the selection criteria for opinion leaders, making it the least likely to be a factor in their selection according to typical public relations practices.",
-                    "blackbox_output": "Ability to reach people.",
-                    "ground_truth": "Familiarity with subject or issue",
-                    "options": "['Reputation', 'Impact', 'Familiarity with subject or issue', 'Ability to reach people']"
+                    "model_output": "symbol",
+                    "blackbox_output": "The American flag is an example of a symbol.",
+                    "ground_truth": "symbol",
+                    "options": "['stereotype', 'semantic device', 'symbol', 'message']"
                 },
                 {
-                    "model_output": "Based on the pattern of responses provided in the examples, the predicted response would likely be structured in a way that directly addresses the question and provides a specific piece of information that is not covered by the Audit Bureau of Circulation. Given the format of the previous answers, a possible response could be:\n\n\"The Audit Bureau of Circulation does not provide information about the content quality or editorial standards of publications.\"",
-                    "blackbox_output": "Readership.",
-                    "ground_truth": "Readership",
-                    "options": "['Circulation', 'Distribution', 'Traffic', 'Readership']"
-                },
-                {
-                    "model_output": "\"A situation where people refrain from expressing opinions on a controversial issue because they perceive that their views are in the minority and might be unpopular.\"",
-                    "blackbox_output": "When people hide their opinions if they do not agree with the majority.",
-                    "ground_truth": "When victims of abuse remain silent about the abuse",
-                    "options": "['When victims of abuse remain silent about the abuse', 'When people hide their opinions if they do not agree with the majority', 'When people hide their opinions if they are in disagreement with their close peers or family members', 'When public relations uses opinion poll results to generate support for a particular issue']"
-                },
-                {
-                    "model_output": "Based on the pattern of responses provided, the predicted response would be structured similarly to the previous answers. However, since the specific content of the new question is about a factual statistic, the response might not include the `<|start_header_id|>` tag as it was used in the examples for structuring answers. Here is the predicted response:\n\n\"Around 70% of the world's largest companies are reporting their corporate responsibility according to a 2008 survey.\"",
-                    "blackbox_output": "80%",
-                    "ground_truth": "80%",
-                    "options": "['50%', '60%', '70%', '80%']"
-                }
-            ],
-            "disagreement_samples": [
-                {
-                    "model_output": "An open systems model of public relations in an organization recognizes the interdependence between the organization and its external environment, and it involves continuous two-way communication to understand and influence the environment. This model sees the organization as part of a larger system and emphasizes the importance of feedback loops and adaptability.",
-                    "blackbox_output": "It adapts to changing organizational environments.",
-                    "ground_truth": "It adapts to changing organizational environments.",
-                    "options": "['It adapts to changing organizational environments.', 'It adopts the policy of transparency to build public trust.', 'It focuses on removing communication barriers between its business divisions.', 'It communicates with its publics frequently to effect change outside the organization.']"
-                },
-                {
-                    "model_output": "To predict the most likely response based on the provided examples, we need to consider the format and nature of the previous answers. The responses are either direct statements or follow a specific template starting with \"<|start_header_id|>assistant\". Given the new question, it seems to be asking for a factual proportion or percentage, which might not fit neatly into the template used in the examples.\n\nHowever, if we assume the pattern continues and the response should fit the template, the predicted response would be:\n\n\"Approximately 60-70%. This proportion can vary based on different studies and contexts, but a common estimate suggests a significant portion of nonprofit sector practitioners conduct audience research.\" \n\nThis response follows the template and provides a plausible estimate based on general knowledge about nonprofit practices.",
-                    "blackbox_output": "One-quarter.",
-                    "ground_truth": "Two thirds",
-                    "options": "['One-quarter', 'One-half', 'Two thirds', 'Almost all']"
-                },
-                {
-                    "model_output": "\"Liaison management.\"",
-                    "blackbox_output": "Downplaying.",
-                    "ground_truth": "downplaying",
-                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
-                },
-                {
-                    "model_output": "Press release.| \n\nThe pyramid structure is commonly used in press releases to prioritize information, starting with the most important details at the top and providing more context as needed. This format helps ensure that even if the full text is not read, the key points are still conveyed effectively.",
-                    "blackbox_output": "Business writing.",
-                    "ground_truth": "Media writing",
-                    "options": "['Media writing', 'Personal writing', 'Business writing', 'Promotional writing']"
-                },
-                {
-                    "model_output": "\"Tactics related to the promotion of the overall organization fall under the area of Public Relations Communications. This involves activities such as media relations, advertising, and marketing communications aimed at shaping the organization's image and building positive relationships with various stakeholders.\"",
-                    "blackbox_output": "Corporate.",
-                    "ground_truth": "Corporate",
-                    "options": "['Corporate', 'Internal communications', 'Financial relations', 'Business to business']"
-                },
-                {
-                    "model_output": "To continually adapt and effectively serve the organization, a successful public relations counselor should continually review present and future realities. This ensures that the PR strategies remain relevant and effective in an ever-changing environment.",
+                    "model_output": "to interpret trends for management",
                     "blackbox_output": "to interpret trends for management",
                     "ground_truth": "to interpret trends for management",
                     "options": "['to develop a vision statement', 'to interpret trends for management', \"to interpret the organization's business plan\", 'to consider the role public relations might play']"
                 },
                 {
-                    "model_output": "Predicted Response: <advertising>\n\nGiven the context of the question and the examples provided, it seems that the term being sought is related to a phase or stage within an advertising campaign. The examples consistently use the term \"advertising\" in a way that fits this context, such as in the example where a definition for \"advertising\" was provided directly. Therefore, based on the pattern, the predicted response would be \"advertising.\"",
-                    "blackbox_output": "The correct answer is penetration. \n\nPenetration refers to the extent to which a product or service has reached and is being used by a target market. In this case, No-Wait Weight Loss has failed to penetrate the market effectively, as many people who have used the product have not experienced the promised results, leading to a lack of customer loyalty and a negative reputation.",
-                    "ground_truth": "distribution",
-                    "options": "['distribution', 'penetration', 'participation', 'identification']"
+                    "model_output": "To regulate access to posts in the field",
+                    "blackbox_output": "To regulate access to posts in the field.",
+                    "ground_truth": "To preserve the well-being of society",
+                    "options": "['To regulate access to posts in the field', 'To create an elite of public relations practitioners', 'To preserve the well-being of society', 'To achieve better wages for licensed practitioners']"
                 },
                 {
-                    "model_output": "\"Focus group research involves gathering qualitative data through group discussions facilitated by a moderator. Participants are typically brought together to discuss a particular topic or product, and the insights gained can provide valuable information about attitudes, opinions, and perceptions. Focus groups are often used in market research and public relations to understand target audiences better.\"",
+                    "model_output": "Corporate",
+                    "blackbox_output": "Corporate.",
+                    "ground_truth": "Corporate",
+                    "options": "['Corporate', 'Internal communications', 'Financial relations', 'Business to business']"
+                }
+            ],
+            "disagreement_samples": [
+                {
+                    "model_output": "Edward Bernays is credited with being the first public relations pioneer to insist on \"a place at the management table.\"",
+                    "blackbox_output": "Doris Fleischman.",
+                    "ground_truth": "Arthur Page",
+                    "options": "['Carl Byoir', 'Edward Bernays', 'Doris Fleischman', 'Arthur Page']"
+                },
+                {
+                    "model_output": "legitimacy",
+                    "blackbox_output": "reliability",
+                    "ground_truth": "legitimacy",
+                    "options": "['legitimacy', 'identity', 'reliability', 'agency']"
+                },
+                {
+                    "model_output": "A public issues campaign occurs when people from two or more opposing sides of an argument have emotional convictions about a decision that has the power to impact their lives.",
+                    "blackbox_output": "Public relations.",
+                    "ground_truth": "public issues",
+                    "options": "['public relations', 'public issues', 'crisis management', 'consumer relations']"
+                },
+                {
+                    "model_output": "Predicted Response:\nnonexistence.\n\nGiven the pattern in the previous responses, the person tends to select the option that stands out as different or less commonly associated with the topic. In this case, \"nonexistence\" is the least likely to be a recognized category of persuasive crisis communication strategies compared to the others.",
+                    "blackbox_output": "Downplaying.",
+                    "ground_truth": "downplaying",
+                    "options": "['ingratiation', 'downplaying', 'distancing', 'nonexistence']"
+                },
+                {
+                    "model_output": "\"3.\"",
+                    "blackbox_output": "Step 1.",
+                    "ground_truth": "3",
+                    "options": "['1', '2', '3', '4']"
+                },
+                {
+                    "model_output": "Impact",
+                    "blackbox_output": "Timeliness.",
+                    "ground_truth": "Impact",
+                    "options": "['Proximity', 'Timeliness', 'Prominence', 'Impact']"
+                },
+                {
+                    "model_output": "Chanel.",
+                    "blackbox_output": "Givenchy",
+                    "ground_truth": "Chanel",
+                    "options": "['Dior', 'Givenchy', 'Chanel', 'Lacroix']"
+                },
+                {
+                    "model_output": "The findings generate qualitative data that can be used to develop surveys.",
                     "blackbox_output": "It is an example of a formal research tool for practitioners.",
                     "ground_truth": "The findings generate qualitative data that can be used to develop surveys.",
                     "options": "['The participants should be selected at random.', 'It is an example of a formal research tool for practitioners.', 'The information can be generalized to describe a larger population.', 'The findings generate qualitative data that can be used to develop surveys.']"
                 },
                 {
-                    "model_output": "\"Michael Porter.\"",
-                    "blackbox_output": "Steyn (2003)",
-                    "ground_truth": "Henry (2006)",
-                    "options": "['Steyn (2003)', 'Gregory (2006)', 'Cutlip et al (2006)', 'Henry (2006)']"
+                    "model_output": "Broad",
+                    "blackbox_output": "Measurable. An objective should be specific, achievable, relevant, and time-bound, but not necessarily measurable.",
+                    "ground_truth": "Broad",
+                    "options": "['Broad', 'Achievable', 'Measurable', 'Time-bound']"
                 },
                 {
-                    "model_output": "Louis is using the **Denial** image restoration strategy. This involves publicly claiming to have had no knowledge of the issue, shifting the blame to someone else (the company's general manager), and taking action against them (firing the general manager).",
-                    "blackbox_output": "Denial.",
-                    "ground_truth": "denial",
-                    "options": "['denial', 'evasion of responsibility', 'reducing the offensiveness', 'corrective action']"
+                    "model_output": "opinion change.",
+                    "blackbox_output": "coorientation",
+                    "ground_truth": "opinion change",
+                    "options": "['coorientation', 'opinion change', 'reaction formation', 'semantic encoding']"
                 }
             ]
         },
         "transition_metrics": {
             "agreement_transitions": {
-                "zero_agree_few_agree": 0.36,
-                "zero_agree_few_disagree": 0.26,
+                "zero_agree_few_agree": 0.58,
+                "zero_agree_few_disagree": 0.05,
                 "zero_disagree_few_agree": 0.13,
                 "zero_disagree_few_disagree": 0.25
             },
@@ -286,29 +286,29 @@
                     "disagree_avg_combined_length": 6.4
                 },
                 "few_shot": {
-                    "surrogate_avg_token_length": 47.4,
+                    "surrogate_avg_token_length": 6.6,
                     "blackbox_avg_token_length": 7.5,
-                    "agree_avg_combined_length": 56.7,
-                    "disagree_avg_combined_length": 53.2
+                    "agree_avg_combined_length": 15.5,
+                    "disagree_avg_combined_length": 11.0
                 }
             },
             "symantic_similarity": {
-                "zero_agree_few_agree_cosine_distance": 0.4877091344445944,
-                "zero_agree_few_disagree_cosine_distance": 0.3044426599196319,
-                "zero_disagree_few_agree_cosine_distance": 0.19494493505252258,
-                "zero_disagree_few_disagree_cosine_distance": 0.291936735312144
+                "zero_agree_few_agree_cosine_distance": 0.918987201526761,
+                "zero_agree_few_disagree_cosine_distance": 0.5321754217147827,
+                "zero_disagree_few_agree_cosine_distance": 0.4035876968077251,
+                "zero_disagree_few_disagree_cosine_distance": 0.7720960373127902
             }
         }
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.053412196507167255,
+        "exact_match": 0.34545454545454546,
+        "f1_score_token_agreement": 0.4617205190616312,
         "rouge_scores": {
-            "rouge1": 0.0918387728229225,
-            "rouge2": 0.024786700450562988,
-            "rougeL": 0.08157283042257624
+            "rouge1": 0.6262179011711284,
+            "rouge2": 0.428522897508077,
+            "rougeL": 0.6237048207263932
         },
-        "bleu_score": 0.007127093651686728,
-        "sbert_similarity": 0.3960858764634891
+        "bleu_score": 0.2603517350907076,
+        "sbert_similarity": 0.7288508134132082
     }
 }

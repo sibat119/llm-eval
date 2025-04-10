@@ -1,16 +1,16 @@
 {
     "wrt_gt": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.0948193393668772,
-        "f1_score_ranking": 0.512260101010101,
-        "accuracy_ranking": 0.51,
+        "exact_match": 0.4,
+        "f1_score_token_agreement": 0.5199644187338236,
+        "f1_score_ranking": 0.7236254643701452,
+        "accuracy_ranking": 0.73,
         "rouge_scores": {
-            "rouge1": 0.25856143050138003,
-            "rouge2": 0.07029247272137558,
-            "rougeL": 0.23824425303000235
+            "rouge1": 0.6083771102517358,
+            "rouge2": 0.4474045713554716,
+            "rougeL": 0.6070600534535671
         },
-        "bleu_score": 0.01281101142300249,
-        "sbert_similarity": 0.5065048114210368,
+        "bleu_score": 0.3467569063704276,
+        "sbert_similarity": 0.7522868965566158,
         "agreement_without_mind_model": {
             "agreement_score": 0.71,
             "model_ground_truth_match": 0.84,
@@ -142,141 +142,141 @@
             ]
         },
         "agreement_after_mind_model": {
-            "agreement_score": 0.52,
-            "model_ground_truth_match": 0.51,
+            "agreement_score": 0.66,
+            "model_ground_truth_match": 0.73,
             "blackbox_ground_truth_match": 0.7,
-            "both_ground_truth_match": 0.41,
+            "both_ground_truth_match": 0.58,
             "agreement_samples": [
                 {
-                    "model_output": "\"**\"",
-                    "blackbox_output": "**",
-                    "ground_truth": "**",
-                    "options": "['**', '//', 'is', 'not in']"
+                    "model_output": "Chemistry",
+                    "blackbox_output": "Chemistry",
+                    "ground_truth": "Chemistry",
+                    "options": "['a', 'Chemistry', '0', '1']"
                 },
                 {
-                    "model_output": "\"nextAvailableID should be static. This ensures that the value of nextAvailableID is shared among all instances of the Insect class and is incremented correctly each time a new Insect is constructed, ensuring that each insect has a unique ID number. If nextAvailableID were not static, each instance of the Insect class would have its own copy of nextAvailableID, leading to potential issues with ID assignment.\"",
-                    "blackbox_output": "nextAvailableID should be static. This is because it needs to keep track of the next available ID across all instances of the Insect class, so it should be shared by all instances.",
-                    "ground_truth": "nextAvailableID",
-                    "options": "['age', 'nextAvailableID', 'idNum', 'position']"
+                    "model_output": "\"1 2\n\nThis is because the code segment first assigns the value 1 to r, 2 to s, and 3 to t. Then, it assigns the value of s (which is 2) to r, and the value of t (which is 3) to s. Therefore, when DISPLAY (r) is executed, it shows the value of r, which is now 2, and when DISPLAY (s) is executed, it shows the value of s, which is now 3.\"",
+                    "blackbox_output": "1 2. \n\nThe code starts with r = 1, s = 2, and t = 3. The line r \u2190 s assigns the value of s (which is 2) to r, changing r to 2. The line s \u2190 t assigns the value of t (which is 3) to s, changing s to 3. Finally, the DISPLAY statements print the values of r and s, which are 2 and 3 respectively.",
+                    "ground_truth": "2 3",
+                    "options": "['1 1', '1 2', '2 3', '3 2']"
                 },
                 {
-                    "model_output": "\"When a new device is connected to the Internet, it goes through a series of processes to establish a connection and communicate with other devices. This involves obtaining an IP address, potentially registering with a network, and adhering to Internet protocols to ensure proper communication. The device then becomes part of the network infrastructure and can send and receive data as needed.\"",
-                    "blackbox_output": "An Internet Protocol (IP) address is assigned to the device.",
-                    "ground_truth": "An Internet Protocol (IP) address is assigned to the device.",
-                    "options": "['A device driver is assigned to the device.', 'An Internet Protocol (IP) address is assigned to the device.', 'A packet number is assigned to the device.', 'A Web site is assigned to the device.']"
+                    "model_output": "\"1 << 3 is 8.\"",
+                    "blackbox_output": "8",
+                    "ground_truth": "8",
+                    "options": "['1', '3', '8', '16']"
                 },
                 {
-                    "model_output": "\"Using 7-bit binary sequences instead of 6-bit sequences will allow the online store to identify four times as many unique items. \n\nIn binary, a 6-bit sequence can represent \\(2^6 = 64\\) unique items, while a 7-bit sequence can represent \\(2^7 = 128\\) unique items. Therefore, using 7-bit sequences will increase the number of unique items that can be identified by \\(128 / 64 = 2\\), or four times the original capacity.\"",
-                    "blackbox_output": "2 times as many items can be uniquely identified.",
-                    "ground_truth": "2 times as many items can be uniquely identified.",
-                    "options": "['2 more items can be uniquely identified.', '10 more items can be uniquely identified.', '2 times as many items can be uniquely identified.', '10 times as many items can be uniquely identified.']"
+                    "model_output": "Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.",
+                    "blackbox_output": "Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.",
+                    "ground_truth": "Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.",
+                    "options": "['Customers\u2019 personal information could be compromised if an unauthorized individual gains access to the call session database.', 'Storing information in the call session database makes it easy for individuals to trick the system using malicious links.', 'The system design increases the chance that customers will unknowingly install malware on their devices that will share their data with unauthorized individuals.', 'The system design makes it easy for unauthorized individuals to acquire customers\u2019 private encryption keys.']"
                 },
                 {
-                    "model_output": "[\"Hi!\"] * 4 results in ['Hi!', 'Hi!', 'Hi!', 'Hi!']",
-                    "blackbox_output": "['Hi!'] * 4",
-                    "ground_truth": "['Hi!', 'Hi!', 'Hi!', 'Hi!']",
-                    "options": "[\"['Hi!', 'Hi!', 'Hi!', 'Hi!']\", \"['Hi!'] * 4\", 'Error', 'None of the above.']"
+                    "model_output": "The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.",
+                    "blackbox_output": "The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.",
+                    "ground_truth": "The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.",
+                    "options": "['The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.', 'The program can also be expressed as binary code, which will reduce the likelihood of errors.', 'The program cannot be expressed as binary code, because binary code can only be used to represent data.', 'Some parts of the program can be expressed as binary code, but operations must be expressed using a higher-level programming language.']"
                 },
                 {
-                    "model_output": "\"'abcd'\"",
-                    "blackbox_output": "abcd",
-                    "ground_truth": "abcd",
-                    "options": "[\"( 'abcd', 786 , 2.23, 'john', 70.2 )\", 'abcd', 'Error', 'None of the above.']"
-                },
-                {
-                    "model_output": "\"Extensive testing without finding any errors suggests that the program is free from the errors that were tested for. However, it does not guarantee that the program is completely free of errors, as there might be other untested scenarios or edge cases that could still cause issues. Therefore, while the program appears robust for the tested conditions, further testing may still be necessary to ensure its reliability under all possible circumstances.\"",
-                    "blackbox_output": "The program may have bugs.",
-                    "ground_truth": "The program may have bugs.",
-                    "options": "['All of the preconditions in the program are correct.', 'All of the postconditions in the program are correct.', 'The program may have bugs.', 'Every method in the program may safely be used in other programs.']"
-                },
-                {
-                    "model_output": "\"Analyzing the metadata would be more appropriate than analyzing the data for determining the date and geographic location where the photo was taken.\"",
+                    "model_output": "Determining the likelihood that the photo was taken at a particular public event",
                     "blackbox_output": "Determining the likelihood that the photo was taken at a particular public event.",
                     "ground_truth": "Determining the likelihood that the photo was taken at a particular public event",
                     "options": "['Determining the likelihood that the photo is a picture of the sky', 'Determining the likelihood that the photo was taken at a particular public event', 'Determining the number of people that appear in the photo', 'Determining the usability of the photo for projection onto a particular color background']"
                 },
                 {
-                    "model_output": "\"255_{10}.\"\n\nExplanation: The pattern in the provided examples involves converting between different number bases and understanding the range of values that can be represented within a given format. In the new question, the focus is on determining the maximum value that can be represented by a two-digit hexadecimal number. The largest digit in hexadecimal is F, which represents 15 in decimal. Therefore, the largest two-digit hexadecimal number is FF, which converts to \\(15 \\times 16 + 15 = 240 + 15 = 255\\) in decimal. Thus, the predicted response follows the format and logic seen in the previous examples.",
-                    "blackbox_output": "255.",
-                    "ground_truth": "255",
-                    "options": "['32', '225', '255', '256']"
+                    "model_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "blackbox_output": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "ground_truth": "A school provides a laptop or tablet computer to all students enrolled at the school.",
+                    "options": "['A school allows students to bring a graphing calculator from home to complete in-class mathematics assignments.', 'A school allows students to bring a tablet computer to class every day to participate in graded quizzes.', 'A school provides a laptop or tablet computer to all students enrolled at the school.', 'A school recommends that all students purchase a computer with as much processing speed as possible so that projects run faster.']"
                 },
                 {
-                    "model_output": "\"4\"",
-                    "blackbox_output": "4",
-                    "ground_truth": "4",
-                    "options": "['1', '2', '3', '4']"
+                    "model_output": "Your Predicted Response: \"(num MOD 2) = 1.\"\n\nThis is because the condition needs to check if the number is odd. In modular arithmetic, when a number is divided by 2, if the remainder is 1, the number is odd. Therefore, the correct condition to check for an odd number is `(num MOD 2) = 1`. The other options do not correctly identify odd numbers: `(num MOD 1) = 0` always evaluates to true for any integer `num`, and `(num MOD 2) = 0` identifies even numbers instead of odd ones.",
+                    "blackbox_output": "(num MOD 2) = 1.",
+                    "ground_truth": "(num MOD 2) = 1",
+                    "options": "['(num MOD 1) = 0', '(num MOD 1) = 1', '(num MOD 2 ) = 0', '(num MOD 2) = 1']"
+                },
+                {
+                    "model_output": "Reserving a hotel room by e-mailing a credit card number to a hotel.",
+                    "blackbox_output": "Reserving a hotel room by emailing a credit card number to a hotel.",
+                    "ground_truth": "Reserving a hotel room by e~mailing a credit card number to a hotel",
+                    "options": "['Making a purchase at an online store that uses public key encryption to transmit credit card information', 'Paying a bill using a secure electronic payment system', 'Reserving a hotel room by e~mailing a credit card number to a hotel', 'Withdrawing money from a bank account using an automated teller machine (ATM)']"
+                },
+                {
+                    "model_output": "Changing line 3 to a \u2190 b + 10\n\nExplanation: The original code segment sets `b` based on the value of `a`. If `a` is 0, `b` is set to `a + 10`, which is 10. If `a` is not 0, `b` is set to `a + 20`. Changing line 3 to `a \u2190 b + 10` would alter the value of `a` instead of setting `b`, which could potentially change the outcome of the condition check on line 1. Changing line 7 to `b \u2190 20` simply changes the value assigned to `b` when `a` is not 0, but it does not affect the condition check. Changing line 7 to `a \u2190 b + 10` would again alter the value of `a`, which could change the outcome of the condition check on line 1. Therefore, the only change that does not affect the results when the code segment is executed is changing line 3 to `b \u2190 10`, as it does not depend on the value of `a` and thus does not change the condition check.",
+                    "blackbox_output": "Changing line 7 to a \u2190 b + 10. \n\nThis is because the condition in the IF statement is a = 0, and changing line 7 to a \u2190 b + 10 does not affect the value of 'a' when the condition is true or false, it only changes the value of 'a' inside the ELSE block, but the ELSE block is not executed when the condition is true.",
+                    "ground_truth": "Changing line 3 to b \u2190 10",
+                    "options": "['Changing line 3 to b \u2190 10', 'Changing line 3 to a \u2190 b + 10', 'Changing line 7 to b \u2190 20', 'Changing line 7 to a \u2190 b + 10']"
                 }
             ],
             "disagreement_samples": [
                 {
-                    "model_output": "\"Both algorithms will correctly identify the maximum value in the list of integers. However, Algorithm II is more efficient because it starts by setting the initial value of `max` to the first data value, thus avoiding an unnecessary comparison with -1 in the first iteration. This means Algorithm II will perform one less comparison in the worst-case scenario compared to Algorithm I, making it slightly more optimal.\"",
-                    "blackbox_output": "Both algorithms work correctly on all input values.",
-                    "ground_truth": "Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.",
-                    "options": "['Both algorithms work correctly on all input values.', 'Algorithm I always works correctly, but Algorithm II only works correctly when the maximum value is not the first value in the list.', 'Algorithm II always works correctly, but Algorithm I only works correctly when the maximum value is greater than or equal to -l.', 'Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.']"
+                    "model_output": "Only elements that appear in both inputList1 and inputList2\n\nExplanation: The code iterates over each item in `inputList1` and checks if that item is present in `inputList2` using the `isFound` procedure. If the item is found in `inputList2`, it is appended to `resultList`. This means that `resultList` will contain only those items from `inputList1` that also appear in `inputList2`, effectively finding the intersection of the two lists.",
+                    "blackbox_output": "Only elements that appear in both inputList1 and inputList2.",
+                    "ground_truth": "Only elements that appear in both inputListl and inputList2",
+                    "options": "['All elements in inputListl followed by all elements in inputList2', 'Only elements that appear in both inputListl and inputList2', 'Only elements that appear in either inputListl or inputList2 but not in both lists', 'Only elements that appear in inputListl but not in inputList2']"
                 },
                 {
-                    "model_output": "\"Sharing sensitive personal information on social media platforms without considering the visibility settings.\"",
-                    "blackbox_output": "The Internet Protocol (IP) address of the user's computer.",
-                    "ground_truth": "A group of cookies stored by the user's Web browser",
-                    "options": "[\"A group of cookies stored by the user's Web browser\", \"The Internet Protocol (IP) address of the user's computer\", \"The user's e-mail address\", \"The user's public key used for encryption\"]"
+                    "model_output": "Creating the negative of an image by creating a new RGB triplet for each pixel in which each value is calculated by subtracting the original value from 255. The negative of an image is reversed from the original; light areas appear dark, and colors are reversed.",
+                    "blackbox_output": "Creating the gray scale of an image by averaging the amounts of red, green, and blue in each pixel and assigning this new value to the corresponding pixel in the new image. The new value of each pixel represents a shade of gray, ranging from white to black.",
+                    "ground_truth": "Creating the negative of an image by creating a new RGB triplet for each pixel in which each value is calculated by subtracting the original value from 255. The negative of an image is reversed from the original; light areas appear dark, and colors are reversed.",
+                    "options": "['Compressing the image in a way that may lose information but will suffer only a small loss of image quality.', 'Creating the gray scale of an image by averaging the amounts of red, green, and blue in each pixel and assigning this new value to the corresponding pixel in the new image. The new value of each pixel represents a shade of gray, ranging from white to black.', 'Creating the negative of an image by creating a new RGB triplet for each pixel in which each value is calculated by subtracting the original value from 255. The negative of an image is reversed from the original; light areas appear dark, and colors are reversed.', 'Modifying part of the image by taking the pixels in one part of the picture and copying them to the pixels in another part of the picture.']"
                 },
                 {
-                    "model_output": "The percentage of male and female students majoring in computer science across different states could be answered by analyzing only information in the data set.",
-                    "blackbox_output": "What percent of students attending college in a certain state are majoring in computer science.",
-                    "ground_truth": "How many states have a higher percentage of female computer science majors than male computer science majors attending college in that state?",
-                    "options": "['Do students majoring in computer science tend to have higher grade point averages than students majoring in other subjects?', 'How many states have a higher percentage of female computer science majors than male computer science majors attending college in that state?', 'What percent of students attending college in a certain state are majoring in computer science?', 'Which college has the highest number of students majoring in computer science?']"
+                    "model_output": "['Hi!', 'Hi!', 'Hi!', 'Hi!']",
+                    "blackbox_output": "['Hi!'] * 4",
+                    "ground_truth": "['Hi!', 'Hi!', 'Hi!', 'Hi!']",
+                    "options": "[\"['Hi!', 'Hi!', 'Hi!', 'Hi!']\", \"['Hi!'] * 4\", 'Error', 'None of the above.']"
                 },
                 {
-                    "model_output": "\"Chemistry\"",
-                    "blackbox_output": "0",
-                    "ground_truth": "Chemistry",
-                    "options": "['a', 'Chemistry', '0', '1']"
+                    "model_output": "When a user enters an incorrect password more than two times in a row, the user is locked out of the account for 24 hours.",
+                    "blackbox_output": "Each employee for a company is issued a USB device that contains a unique token code. To log into a company computer, an employee must insert the USB device into the computer and provide a correct password.",
+                    "ground_truth": "When a user enters an incorrect password more than two times in a row, the user is locked out of the account for 24 hours.",
+                    "options": "['Each employee for a company is issued a USB device that contains a unique token code. To log into a company computer, an employee must insert the USB device into the computer and provide a correct password.', 'After logging into an account from a new device, a user must enter a code that is sent via e-mail to the e-mail address on file with the account.', 'In order to log into an account, a user must provide both a password and a fingerprint that is captured using the user\u2019s device.', 'When a user enters an incorrect password more than two times in a row, the user is locked out of the account for 24 hours.']"
                 },
                 {
-                    "model_output": "\"Generally, the number of data movements required to sort the list increases with the size of the list.\"",
+                    "model_output": "\"8.\n\nIn a binary search, the list is divided in half at each step. The maximum number of elements that must be examined is the height of a binary tree with 120 elements. The height of a binary tree with \\( n \\) elements is \\( \\log_2(n) \\). For 120 elements, the height is approximately \\( \\log_2(120) \\), which is roughly 6.91. Since we can't examine a fraction of an element, we round up to the nearest whole number, which is 7. However, the question asks for the maximum number of elements that must be examined, and since the search is guaranteed to find the target or determine it's not present within the height of the tree, the correct answer is 8.\"",
+                    "blackbox_output": "8",
+                    "ground_truth": "7",
+                    "options": "['7', '8', '20', '100']"
+                },
+                {
+                    "model_output": "The best set of data (weights) to test a program that calculates shipping charges is \"1, 4, 16\".\n\nThis choice aligns with the common pattern in the provided examples where the focus is on selecting test cases that cover different ranges and edge cases defined by the conditions. Here, the weight ranges are clearly defined, and the best test cases would include weights at the boundaries and within each range to ensure the program handles all scenarios correctly. The option \"1, 4, 16\" covers the lower boundary of the first range (1), the upper boundary of the second range (4), and a value well within the third range (16), making it the most comprehensive choice among the given options.",
+                    "blackbox_output": "\u22121, 0, 1, 2, 3, 5, 16, 20.",
+                    "ground_truth": "\u22121, 0, 1, 2, 3, 5, 16, 20, 22",
+                    "options": "['0, 2, 5, 20', '1, 4, 16', '\u22121, 1, 2, 3, 5, 16, 20', '\u22121, 0, 1, 2, 3, 5, 16, 20, 22']"
+                },
+                {
+                    "model_output": "1",
+                    "blackbox_output": "1 + 3 % 3 equals 4.",
+                    "ground_truth": "1",
+                    "options": "['0', '1', '3', '4']"
+                },
+                {
+                    "model_output": "Binary 1100, Decimal 11, Hexadecimal D.\n\nTo arrive at this answer, let's convert all the numbers to the same base for easy comparison. The binary number 1100 is equal to \\(1 \\times 2^3 + 1 \\times 2^2 + 0 \\times 2^1 + 0 \\times 2^0 = 8 + 4 = 12\\) in decimal. The hexadecimal number D is equal to \\(13\\) in decimal. So, we have:\n\n- Binary 1100 = 12 in decimal\n- Decimal 11 = 11 in decimal\n- Hexadecimal D = 13 in decimal\n\nArranging these in ascending order gives us Decimal 11, Binary 1100, Hexadecimal D. However, the options provided list them in reverse order, so the correct answer is Binary 1100, Decimal 11, Hexadecimal D.",
+                    "blackbox_output": "Decimal 11, Hexadecimal D, Binary 1100.",
+                    "ground_truth": "Decimal 11, Binary 1100, Hexadecimal D",
+                    "options": "['Binary 1100, Decimal 11, Hexadecimal D', 'Decimal 11, Binary 1100, Hexadecimal D', 'Decimal 11, Hexadecimal D, Binary 1100', 'Hexadecimal D, Decimal 11, Binary 1100']"
+                },
+                {
+                    "model_output": "The simulation will not produce usable results because actual customer data are not available.",
+                    "blackbox_output": "The bank can use the simulation to investigate these two options without causing inconvenience for customers.",
+                    "ground_truth": "The simulation will not produce usable results because actual customer data are not available.",
+                    "options": "['The bank can incorporate other factors, such as the number of tellers, in the simulation.', 'The bank can use the simulation to investigate these two options without causing inconvenience for customers.', 'The bank may consider new alternatives based on the simulation results.', 'The simulation will not produce usable results because actual customer data are not available.']"
+                },
+                {
+                    "model_output": "The number of data movements in selection sort depends on the initial arrangement of elements.",
                     "blackbox_output": "The number of comparisons for insertion sort is independent of the initial arrangement of elements.",
                     "ground_truth": "The number of comparisons for selection sort is independent of the initial arrangement of elements.",
                     "options": "['If the array is initially sorted in descending order, then insertion sort will be more efficient than selection sort.', 'The number of comparisons for selection sort is independent of the initial arrangement of elements.', 'The number of comparisons for insertion sort is independent of the initial arrangement of elements.', 'The number of data movements in selection sort depends on the initial arrangement of elements.']"
-                },
-                {
-                    "model_output": "\"b > a && c > a.\"\n\nThis predicted response follows the pattern seen in the previous examples where the goal is to analyze logical conditions and simplify or determine the necessary conditions for a given expression to evaluate to true. The response format matches the previous examples by providing a concise answer that directly addresses the question.",
-                    "blackbox_output": "a < c.",
-                    "ground_truth": "a < c",
-                    "options": "['a < c', 'a < b', 'a > b', 'a == b']"
-                },
-                {
-                    "model_output": "\"4\"",
-                    "blackbox_output": "8 >> 1 is 4.",
-                    "ground_truth": "4",
-                    "options": "['3', '4', '2', '8']"
-                },
-                {
-                    "model_output": "\"An error will be detected when the program attempts to divide by zero, which will result in a runtime error or exception. This error will be detected during the execution of the program, specifically when the division operation is performed. To prevent this error, the programmer should add a condition to check if N is zero before performing the division, like so:\n\n```plaintext\nIF N = 0 THEN\n    DISPLAY \"Error: Division by zero\"\nELSE\n    average \u2190 sum / N\nEND IF\n```\n\nIncluding this check will ensure that the program handles the case where N is zero without attempting to perform an invalid operation.\"",
-                    "blackbox_output": "During run time.",
-                    "ground_truth": "During run time",
-                    "options": "['At compile time', 'At edit time', 'As soon as the value of N is entered', 'During run time']"
-                },
-                {
-                    "model_output": "\"ab\" + \"ab\" equals \"abab\"",
-                    "blackbox_output": "aab",
-                    "ground_truth": "aab",
-                    "options": "['Error', 'aab', 'ab', 'a ab']"
-                },
-                {
-                    "model_output": "\"Once the request is sent to the Web server, the server processes the request and sends the requested file back to the user's browser in packets. Each packet contains the file data along with metadata used for routing, ensuring the file is transmitted efficiently and reliably over the Internet.\"",
-                    "blackbox_output": "The file is broken into packets for transmission. The packets must be reassembled upon receipt.",
-                    "ground_truth": "The file is broken into packets for transmission. The packets must be reassembled upon receipt.",
-                    "options": "['The file is broken into packets for transmission. The packets must be reassembled upon receipt.', \"The file is broken into packets for transmission. The user's browser must request each packet in order until all packets are received.\", \"The server attempts to connect directly to the user's computer. If the connection is successful, the entire file is sent. If the connection is unsuccessful, an error message is sent to the user.\", \"The server repeatedly attempts to connect directly to the user's computer until a connection is made. Once the connection is made, the entire file is sent.\"]"
                 }
             ]
         },
         "transition_metrics": {
             "agreement_transitions": {
-                "zero_agree_few_agree": 0.38,
-                "zero_agree_few_disagree": 0.33,
-                "zero_disagree_few_agree": 0.14,
-                "zero_disagree_few_disagree": 0.15
+                "zero_agree_few_agree": 0.57,
+                "zero_agree_few_disagree": 0.14,
+                "zero_disagree_few_agree": 0.09,
+                "zero_disagree_few_disagree": 0.2
             },
             "response_length_metrics": {
                 "zero_shot": {
@@ -286,29 +286,29 @@
                     "disagree_avg_combined_length": 35.2
                 },
                 "few_shot": {
-                    "surrogate_avg_token_length": 47.5,
+                    "surrogate_avg_token_length": 36.0,
                     "blackbox_avg_token_length": 15.4,
-                    "agree_avg_combined_length": 61.2,
-                    "disagree_avg_combined_length": 64.7
+                    "agree_avg_combined_length": 48.9,
+                    "disagree_avg_combined_length": 56.0
                 }
             },
             "symantic_similarity": {
-                "zero_agree_few_agree_cosine_distance": 0.6199502294000826,
-                "zero_agree_few_disagree_cosine_distance": 0.4205425132178899,
-                "zero_disagree_few_agree_cosine_distance": 0.3330215093280588,
-                "zero_disagree_few_disagree_cosine_distance": 0.4430917888879776
+                "zero_agree_few_agree_cosine_distance": 0.8684316857864982,
+                "zero_agree_few_disagree_cosine_distance": 0.38330404300774845,
+                "zero_disagree_few_agree_cosine_distance": 0.4600380559762319,
+                "zero_disagree_few_disagree_cosine_distance": 0.770402217283845
             }
         }
     },
     "wrt_blackbox": {
-        "exact_match": 0.0,
-        "f1_score_token_agreement": 0.13551115467557273,
+        "exact_match": 0.28,
+        "f1_score_token_agreement": 0.44589831893856813,
         "rouge_scores": {
-            "rouge1": 0.2796275241353212,
-            "rouge2": 0.08905208279726926,
-            "rougeL": 0.2420672753848438
+            "rouge1": 0.52806846935741,
+            "rouge2": 0.36643718145265125,
+            "rougeL": 0.5097062221697886
         },
-        "bleu_score": 0.025436387669059167,
-        "sbert_similarity": 0.5438869721442461
+        "bleu_score": 0.2664556081889289,
+        "sbert_similarity": 0.708603594508022
     }
 }
