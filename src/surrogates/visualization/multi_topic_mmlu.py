@@ -497,6 +497,7 @@ def main():
     for prompt_variation in prompt_variations:
         for selection_strategy in selection_strategies:
             # Load results
+            print(f"{prompt_variation}: {selection_strategy}")
             zero_shot_results = load_zero_shot_results(base_path)
             surrogate_results = load_surrogate_results(base_path, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
             

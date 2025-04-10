@@ -141,7 +141,7 @@ def select_few_shot_examples(ds, shot: int, question: str, selection_strategy: s
     
     return selected_examples
 
-def get_few_shot_prompt(shot, ds, question, selection_strategy="random", prompt_id="black_box"):
+def get_few_shot_prompt(shot, ds, question, options, selection_strategy="random", prompt_id="black_box"):
     
     with open('data/config/surrogate_prompts.yaml', "r") as file:
         prompts = yaml.safe_load(file)
@@ -153,15 +153,61 @@ def get_few_shot_prompt(shot, ds, question, selection_strategy="random", prompt_
     # Format the examples in the prompt
     example_str = ""
     for i, example in enumerate(selected_examples):
+        opts = eval(example['options'])
+        option_text = "\n".join([f"- {opt}" for opt in opts])
         example_str += f"Example {i+1}:\n"
         example_str += f"Question: \"{example['question']}\"\n" 
+        example_str += f"Options: \"{option_text}\"\n" 
         example_str += f"Response: \"{example['model_output']}\"\n\n"
     
-    prompt = prompt.format(examples=example_str, question=question)
+    option_text = "\n".join([f"- {opt}" for opt in eval(options)])
+    prompt = prompt.format(examples=example_str, question=question, options=option_text)
     
     return prompt
 
-def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath="", batch_size=4, cfg=None, selection_strategy="random", prompt_variation="black_box"):
+def create_few_shot_prompt(candidate_responses, shot=3, selection_strategy="random", prompt_variation="black_box", prompt_datapath=""):
+    """
+    Create prompts for few-shot learning and save them to a file.
+    
+    Args:
+        candidate_responses (str): Path to CSV file containing candidate model responses
+        shot (int): Number of examples to use in few-shot prompting
+        selection_strategy (str): Strategy for selecting examples ("random", "similarity", etc.)
+        prompt_variation (str): The type of prompt template to use
+        prompt_datapath (str): Path where to save the generated prompts
+    """
+    # Load candidate model responses
+    ds = Dataset.from_csv(candidate_responses)
+    
+    # Create prompts for each question
+    prompt_list = []
+    for idx, item in enumerate(tqdm(ds)):
+        prompt = get_few_shot_prompt(
+            shot=shot, 
+            ds=ds, 
+            question=item['question'],
+            options=item['options'], 
+            selection_strategy=selection_strategy, 
+            prompt_id=prompt_variation
+        )
+        
+        # Create response dict directly from dataset item
+        prompt_dict = {
+            'question': item['question'],
+            'options': item['options'],
+            'model_output': item['model_output'],
+            'ground_truth': item['ground_truth'],
+            'prompt': prompt
+        }
+        prompt_list.append(prompt_dict)
+    
+    # Save prompts to CSV
+    prompt_ds = Dataset.from_list(prompt_list)
+    prompt_ds.to_csv(prompt_datapath)
+    
+    return prompt_list
+
+def get_few_shot_surrogate(model_name, dataset_path, surrogate_datapath="", batch_size=4, cfg=None):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     # batch_size = 2  # Adjust batch size as needed
     ds = Dataset.from_csv(dataset_path)
@@ -175,8 +221,8 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
         batch = ds[i:i + min(batch_size, len(ds) - i)]
         
         # Create all prompts for the batch
-        batch_questions = batch['question']
-        batch_prompts = [get_few_shot_prompt(shot=shot, ds=ds, question=q, selection_strategy=selection_strategy, prompt_id=prompt_variation) for q in batch_questions]
+        # batch_questions = batch['question']
+        batch_prompts = batch['prompt']
         
         batch_answers = session.get_response(user_message=batch_prompts) 
         
@@ -199,7 +245,6 @@ def get_few_shot_surrogate(model_name, dataset_path, shot=3, surrogate_datapath=
     ds.to_csv(surrogate_datapath)
     
     return response_list
-
 
 def compute_dual_metrics_from_csv(csv_filename, surrogate_wo_prior_ds_path):
     """
@@ -257,6 +302,8 @@ if __name__ == "__main__":
                             help="provide batch size")
         parser.add_argument("--eval",action="store_true", default=False,
                             help="run evaluation script")
+        parser.add_argument("--create_prompt",action="store_true", default=False,
+                            help="Create only few shot prompt")
         
         
         
@@ -273,19 +320,34 @@ if __name__ == "__main__":
     print(surrogate_dir)
     ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
     data_folder = f"{config['data_path']}/{args.sub_field}/0"
+    prompt_ds_file_name = f"{data_folder}/candidate-{candidate_llm.replace('/', '_')}-shot-{args.shot}-selection-strategy-{args.selection_strategy}-prompt-variation-{args.prompt_variation}-prompt.csv"
     candidate_model_data_path = f"{data_folder}/custom_{candidate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
     surrogate_wo_prior_ds_path = f"{data_folder}/custom_{surrogate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
     if not args.eval:
-        get_few_shot_surrogate(
-            model_name=surrogate_llm, 
-            dataset_path=candidate_model_data_path, 
-            shot=args.shot, 
-            surrogate_datapath=ds_file_name,
-            batch_size=args.batch_size,
-            selection_strategy=args.selection_strategy,
-            prompt_variation=args.prompt_variation,
-            cfg=config
+        if args.create_prompt:
+            create_few_shot_prompt(
+                candidate_responses=candidate_model_data_path,
+                shot=args.shot,
+                selection_strategy=args.selection_strategy,
+                prompt_variation=args.prompt_variation,
+                prompt_datapath=prompt_ds_file_name,
             )
+        else:
+            if not os.path.exists(prompt_ds_file_name):
+                create_few_shot_prompt(
+                    candidate_responses=candidate_model_data_path,
+                    shot=args.shot,
+                    selection_strategy=args.selection_strategy,
+                    prompt_variation=args.prompt_variation,
+                    prompt_datapath=prompt_ds_file_name,
+                )
+            get_few_shot_surrogate(
+                model_name=surrogate_llm, 
+                dataset_path=prompt_ds_file_name, 
+                surrogate_datapath=ds_file_name,
+                batch_size=args.batch_size,
+                cfg=config
+                )
     results = compute_dual_metrics_from_csv(ds_file_name, surrogate_wo_prior_ds_path)
     with open(f"{surrogate_dir}/candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
         json.dump(results, f, indent=4)

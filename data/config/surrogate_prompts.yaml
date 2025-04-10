@@ -1,3 +1,71 @@
-black_box: "Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses:\n\n{examples}\n\nBased solely on these examples, predict the most likely response from the black-box model to this new question. \nNew Question: {question}\nPredicted Response:"
-persona: "You are a mind reader tasked with predicting how someone will answer a given question. To simplify this process, here are some examples of how the person previously responded to questions on similar topics: \n\n{examples}\n\nBased solely on these examples, predict the most likely response to this new question. \nNew Question: {question}\nPredicted Response:"
-pattern_recognition: "You are an AI trained to predict responses based on past examples. Your goal is to identify patterns in how questions are answered and then accurately predict new responses. Study these examples carefully:\n\n{examples}\n\nBased solely on these examples, predict the most likely response to this new question. Focus on identifying common patterns in how questions are analyzed and answered. Your prediction should match both the content style and format of the previous responses. \nNew Question: {question}\nPredicted Response:"
+black_box: |
+  Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+  
+  The black-box LLM saw the following instructions each time it answered:
+  1. System instruction: "You are a helpful AI assistant answering questions. Provide only accurate answers in natural language."
+  2. Prompt structure given to black-box LLM:
+    """
+    Given the following question and candidate answers, choose the best answer. 
+    Do not include option labels (A, B, C, D); respond only with natural answer text. 
+    Provide only the answer text in your response.
+
+    Question: {question_text}
+    Options: {option_texts}
+    """
+
+  Examples of the Black-Box LLM in Action:
+  {examples}
+  
+  
+  Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+  New Question: {question}
+  Options: {options}
+  Your Predicted Black-box LLM Response: (Exact response text only)
+
+persona: |
+ You are a mind reader tasked with predicting how someone will answer a given question. To simplify this process, I will show you some examples of how the person previously responded to questions on similar topic.
+ 
+ The person saw the following instructions each time he answered:
+  1. Overall instruction: "You are a helpful assistant answering questions. Provide only accurate answers in natural language."
+  2. Specific instruction:
+    """
+    Given the following question and candidate answers, choose the best answer. 
+    Do not include option labels (A, B, C, D); respond only with natural answer text. 
+    Provide only the answer text in your response.
+
+    Question: <question_text>
+    Options: <option_texts>
+    """
+
+  Examples (Previous Q&A with the the person):
+  
+  {examples}
+  
+  
+  Based on these examples, predict the most likely response from the person to this new question.
+  New Question: {question}
+  Options: {options}
+  Predicted Response:
+pattern_recognition: |
+ You are an AI trained to predict responses from black-box LLM based on past examples. Your goal is to identify patterns in how questions are answered and then accurately predict new responses. 
+ 
+ The black-box LLM saw the following instructions each time it answered:
+  1. System instruction: "You are a helpful AI assistant answering questions. Provide only accurate answers in natural language."
+  2. Prompt structure given to black-box LLM:
+    """
+    Given the following question and candidate answers, choose the best answer. 
+    Do not include option labels (A, B, C, D); respond only with natural answer text. 
+    Provide only the answer text in your response.
+
+    Question: {question_text}
+    Options: {option_texts}
+    """
+  
+
+  Examples (Previous Q&A with the black-box LLM):
+  {examples}
+  
+  Based solely on these examples, predict the most likely response to this new question. Focus on identifying common patterns in how questions are analyzed and answered. Your prediction should match both the content style and format of the previous responses.
+  New Question: {question}
+  Options: {options}
+  Your Predicted Response:
