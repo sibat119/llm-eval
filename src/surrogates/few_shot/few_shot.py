@@ -155,10 +155,11 @@ def get_few_shot_prompt(shot, ds, question, options, selection_strategy="random"
     for i, example in enumerate(selected_examples):
         opts = eval(example['options'])
         option_text = "\n".join([f"- {opt}" for opt in opts])
+        response_text = example['model_output'].replace('<|start_header_id|>assistant\n\n', '')
         example_str += f"Example {i+1}:\n"
         example_str += f"Question: \"{example['question']}\"\n" 
         example_str += f"Options: \"{option_text}\"\n" 
-        example_str += f"Response: \"{example['model_output'].replace('<|start_header_id|>assistant\n\n', '')}\"\n\n"
+        example_str += f"Response: \"{response_text}\"\n\n"
     
     option_text = "\n".join([f"- {opt}" for opt in eval(options)])
     prompt = prompt.format(examples=example_str, question=question, options=option_text)
