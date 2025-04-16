@@ -1,0 +1,3435 @@
+zero_shot_response,few_shot_response,black_box_response,prompt,zero_shot_top_index,few_shot_top_index,prompt_pick_cosine_sim_zero,prompt_pick_cosine_sim_few
+knowledge,the lack of wisdom or understanding.,knowledge,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""For Socrates, an unexamined life is a tragedy because it results in grievous harm to _____.""
+Options: ""- the state
+- the justice system
+- the body
+- the soul""
+Response: ""the soul""
+
+Example 2:
+Question: ""According to Socrates, justice is when a soul is ruled by its:""
+Options: ""- respect for the law.
+- rational part.
+- desire for honor.
+- none of the above.""
+Response: ""rational part.""
+
+Example 3:
+Question: ""According to Socrates, the value or quality of one's life depends on understanding the principles of, or basic rationale for human existence.  Without such knowledge (he suggests) life lacks virtue, because:""
+Options: ""- acting virtuously means acting in way that is informed about what one is doing and why.
+- someone who does not understand existence philosophically could never do anything right.
+- to have the power or ability to do anything at all requires that we know what we are doing.
+- not only is virtue knowledge but also the unexamined life is not worth living.""
+Response: ""not only is virtue knowledge but also the unexamined life is not worth living.""
+
+Example 4:
+Question: ""In spite of the fact that Socrates claims to be ignorant of the essence or nature of certain things like justice, he is wise insofar as he recognizes that without such knowledge actions are rationally unjustified.  That is, his wisdom consists in his recognition not only that he is ignorant of such essences but also that:""
+Options: ""- justice, like knowledge, requires that we admit that we know nothing and never will.
+- he knows what he is supposed to be looking for--knowledge of the essences of things.
+- knowledge of the essences of things is impossible, because that would require that we know what we are looking for before we know what it is we are looking for.
+- his method of asking questions about essences is itself unjustified because he does not know why he engages in such a practice.""
+Response: ""he knows what he is supposed to be looking for--knowledge of the essences of things.""
+
+Example 5:
+Question: ""Socrates' claim that ""the unexamined life is not worth living"" is often cited as a central theme in the activities of people.  By it, Socrates is typically understood to mean that:""
+Options: ""- it is sometimes simply not worth all the effort of examining life and its problems in great detail; sometimes it is better simply to ""go with the flow.""
+- while taking a reflective attitude toward life is interesting and even sometimes important, most of what makes life worth living is not worth examining.
+- simply doing whatever everyone else does without thinking about why we should do what we do can hardly be thought of as worthwhile, noble, or admirable.
+- it is a waste of time to sit around thinking about whether life is worth living; we should leave such reflection to talk-show hosts, political figures, and religious leaders.""
+Response: ""simply doing whatever everyone else does without thinking about why we should do what we do can hardly be thought of as worthwhile, noble, or admirable.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: For Socrates, the soul is harmed by lack of _____.
+Options: - knowledge
+- wealth
+- community
+- courage
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.24822229146957397,0.04392505809664726
+Life was hard but worthwhile.,"Based on the given examples, it appears that the black-box model tends to choose the answer that reflects a pessimistic or neutral view of life's meaning. 
+
+In Example 2, the model chose the answer that life is ""bereft of meaning,"" which is a pessimistic view. In Example 4, the model chose the answer that focuses on defining ""good,"" which is a more abstract and less optimistic view of life's meaning.
+
+Given this pattern, I predict that the black-box model will choose the answer that reflects a pessimistic or neutral view of life's meaning. 
+
+New Question: What was Clarence Darrow's belief about life's meaning?
+Options: - Life was not worthwhile.
+- Life was hard but worthwhile.
+- Life was uncertain but ultimately rewarding.
+- Life was meaningful for most people.
+
+Predicted Black-box LLM Response: - Life was not worthwhile.",Life was hard but worthwhile.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""What does the notion of “meaning in life” refer to?""
+Options: ""- external meaning
+- god's plan
+- internalmeaning
+- meaning in an afterlife""
+Response: ""internal meaning""
+
+Example 2:
+Question: ""What was Schopenhauer's attitude toward life?""
+Options: ""- He thought life was uncertain but worthwhile.
+- He thought life was hard but ultimately hopeful.
+- He thought life was bereft of meaning.
+- He believed in an afterlife in which all misery vanishes.""
+Response: ""He thought life was bereft of meaning.""
+
+Example 3:
+Question: ""What are the two principal answers to whether life has any meaning for us?""
+Options: ""- the external view and the internal view
+- the pessimist'sview and the optimist'sview
+- the religious view and the liberal view
+- the theistic view and the agnostics view""
+Response: ""the external view and the internal view""
+
+Example 4:
+Question: ""According to Moore, the most fundamental question in all of ethics is:""
+Options: ""- whether life is worth living.
+- whether God exists.
+- how “good” is to be defined.
+- whether morality is objective.""
+Response: ""how ""good"" is to be defined.""
+
+Example 5:
+Question: ""Rawls claims that a conception of justice should be justified by:""
+Options: ""- deducing it from self-evident premises.
+- direct acquaintance via moral intuition.
+- the mutual support of many considerations, which it fits into one coherent view.
+- none of the above.""
+Response: ""the mutual support of many considerations, which it fits into one coherent view.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: What was Clarence Darrow's belief about life's meaning?
+Options: - Life was not worthwhile.
+- Life was hard but worthwhile.
+- Life was uncertain but ultimately rewarding.
+- Life was meaningful for most people.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,3,0.023871857672929764,0.07440262287855148
+provide an account of what makes right actions right.,make ethical questions clear.,provide an account of what makes right actions right.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Stevenson identifies the meaning of a term with:""
+Options: ""- the empirical observations to which it applies.
+- all the psychological causes and effects that attend its utterance.
+- the psychological causes and effects it has a tendency to be connected with.
+- the set of other words that are synonyms to the original word.""
+Response: ""the psychological causes and effects it has a tendency to be connected with.""
+
+Example 2:
+Question: ""How does Stevenson respond to the objection that his theory does not account for the kind of goodness that is objective and is known a priori?""
+Options: ""- He claims to have proven that such a property does not exist.
+- He claims to have offered an account of just such a property.
+- He claims he does not understand such a property.
+- None of the above.""
+Response: ""He claims to have offered an account of just such a property.""
+
+Example 3:
+Question: ""According to Stevenson, empirical methods:""
+Options: ""- are never useful in resolving ethical disagreement.
+- are sometimes useful in resolving ethical disagreement, but are not always sufficient.
+- are in principle always sufficient for resolving ethical disagreement.
+- provide the only responsible way to engage in moral philosophy.""
+Response: ""are sometimes useful in resolving ethical disagreement, but are not always sufficient.""
+
+Example 4:
+Question: ""Stevenson claims that the primary use of ethical judgments is to:""
+Options: ""- state facts.
+- influence the interests of others.
+- describe one’s own approval of things.
+- none of the above.""
+Response: ""describe one’s own approval of things.""
+
+Example 5:
+Question: ""According to Stevenson, moral disagreements involve:""
+Options: ""- disagreement in interest.
+- disagreement in belief.
+- disagreement in theory.
+- disagreement in practice.""
+Response: ""disagreement in belief.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Stevenson’s primary aim in this paper is to:
+Options: - provide an account of what makes right actions right.
+- establish which things are good in themselves.
+- develop a theory of good moral character.
+- make ethical questions clear.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.19796660542488098,0.3180081844329834
+"Things within our power are free and unhindered, and things not in our power are servile and subject to hindrance.",servile and subject to hindrance; free and unhindered,free and unhindered; servile and subject to hindrance,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Epictetus claims that the only thing one can call one’s own is:""
+Options: ""- the way one deals with one’s impressions.
+- one’s family.
+- one’s friends.
+- one’s body.""
+Response: ""the way one deals with one’s impressions.""
+
+Example 2:
+Question: ""Epictetus recommends that we act:""
+Options: ""- according to our passions.
+- so as to do whatever comes naturally, without much thought.
+- only after careful reflection on the consequences of our actions.
+- so as to benefit the greatest number.""
+Response: ""only after careful reflection on the consequences of our actions.""
+
+Example 3:
+Question: ""Epictetus recommends that we refrain from:""
+Options: ""- laughing without restraint.
+- casually going to lectures.
+- having sex before marriage.
+- all of the above.""
+Response: ""all of the above""
+
+Example 4:
+Question: ""According to Epicurus, the wise man:""
+Options: ""- yearns for the end of life.
+- fears the cessation of life.
+- is unconcerned with death.
+- realizes that death is an illusion.""
+Response: ""is unconcerned with death.""
+
+Example 5:
+Question: ""Epicurus states that of all the things required for a complete life, the greatest is:""
+Options: ""- honor.
+- friendship.
+- luxury.
+- good food.""
+Response: ""friendship.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Epictetus claims that things within our power are __________ and things not in our power are __________.
+Options: - free and unhindered; free and unhindered
+- free and unhindered; servile and subject to hindrance
+- servile and subject to hindrance; free and unhindered
+- servile and subject to hindrance; servile and subject to hindrance
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,2,0.08721783757209778,0.06954368948936462
+expression,"Based on the given examples, I predict the black-box model's response to the new question will be:
+
+""form""",expression,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""The view that art is defined by its form is known as _____.""
+Options: ""- informalism
+- expressionism
+- formalism
+- structuralism""
+Response: ""formalism""
+
+Example 2:
+Question: ""How did Tolstoy's life change after his crisis of meaning?""
+Options: ""- His income increased dramatically.
+- He distrusted everyone.
+- He became religious.
+- He became an agnostic.""
+Response: ""He became religious.""
+
+Example 3:
+Question: ""Disagreements about the aesthetic value or social relevance of a piece of art are _____.""
+Options: ""- uncommon
+- common
+- vacuous
+- never serious""
+Response: ""common""
+
+Example 4:
+Question: ""An important formal characteristic of art is_____.""
+Options: ""- social meaning
+- faithful representation
+- its power to evoke strong emotions
+- coherence""
+Response: ""coherence""
+
+Example 5:
+Question: ""Before his conversion, what was Tolstoy surrounded by?""
+Options: ""- what is considered complete happiness
+- things that no one would want
+- what is considered heavenly bliss
+- what is considered deep insight""
+Response: ""things that no one would want""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Leo Tolstoy says that art is _____.
+Options: - expression
+- form
+- representation
+- abstract
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.0679614394903183,0.18274061381816864
+Prudence.,"Based on the given examples, I predict the black-box model's response to the new question will be:
+
+""temperance.""",prudence.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Epicurus holds that philosophy is:""
+Options: ""- not suitable for the young.
+- not suitable for the old.
+- important, but unpleasant.
+- none of the above.""
+Response: ""important, but unpleasant.""
+
+Example 2:
+Question: ""In Aristotle’s view, the virtues are:""
+Options: ""- acquired through habit.
+- acquired through philosophical reflection.
+- a gift from the gods.
+- innate.""
+Response: ""acquired through habit.""
+
+Example 3:
+Question: ""Epicurus states that of all the things required for a complete life, the greatest is:""
+Options: ""- honor.
+- friendship.
+- luxury.
+- good food.""
+Response: ""friendship.""
+
+Example 4:
+Question: ""Aristotle saw his theory of the virtues as:""
+Options: ""- final and complete.
+- open-ended and revisable.
+- relative to his culture.
+- applicable only to himself.""
+Response: ""open-ended and revisable.""
+
+Example 5:
+Question: ""Aristotle divides the virtues into:""
+Options: ""- natural virtues and artificial virtues.
+- moral virtues and intellectual virtues.
+- positive virtues and negative virtues.
+- human virtues and divine virtues.""
+Response: ""moral virtues and intellectual virtues.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Epicurus claims that all other virtues spring from:
+Options: - prudence.
+- temperance.
+- justice.
+- courage.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.02685645967721939,0.012735608965158463
+implausibly places an “upper bound” on moral worthiness.,yields an unattractive picture of moral sainthood.,"implausibly places an ""upper bound"" on moral worthiness.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Kant says that when trying to decide whether an action is morally permissible, we must ask if we can consistently will that the maxim of our action should become _____.""
+Options: ""- a rule for maximizing happiness
+- a contingent law
+- a universal law
+- a rule of thumb""
+Response: ""a universal law""
+
+Example 2:
+Question: ""According to Kant, morality requires us to:""
+Options: ""- perform the action that leads to the greatest total happiness.
+- act only on maxims that we can will to become universal laws.
+- behave only in such a way as a perfectly virtuous person would behave.
+- place the interests of others above the interests of ourselves.""
+Response: ""act only on maxims that we can will to become universal laws.""
+
+Example 3:
+Question: ""Kant claims that the moral law is given to each person by:""
+Options: ""- society.
+- one’s own will.
+- God.
+- Nature.""
+Response: ""one’s own will.""
+
+Example 4:
+Question: ""Anscombe criticizes as absurd Kant’s idea of:""
+Options: ""- the thing in itself.
+- the categorical imperative.
+- the phenomenal self.
+- legislating for oneself.""
+Response: ""the thing in itself.""
+
+Example 5:
+Question: ""According to Kant, moral laws are:""
+Options: ""- necessary and apply to all rational beings.
+- contingent and apply only to human beings.
+- culturally relative.
+- grounded in God’s commands.""
+Response: ""necessary and apply to all rational beings.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Wolf claims that interpreting Kant’s ethics so that it consists of a finite set of constraints:
+Options: - yields an unattractive picture of moral sainthood.
+- implausibly places an “upper bound” on moral worthiness.
+- yields a theory that is too demanding.
+- transforms the theory into a form of contractarianism.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,0,0.13602255284786224,0.07422901690006256
+We must first know whether something conforms to God’s will before we can know that it is right.,we must first know whether something is right before we can know whether it conforms to God’s will.,we must first know whether something conforms to God’s will before we can know that it is right.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Bentham claims that actions are right or wrong in virtue of:""
+Options: ""- the motives behind them.
+- their consequences.
+- both a and b.
+- neither a nor b.""
+Response: ""their consequences.""
+
+Example 2:
+Question: ""According to Bentham, a moral sanction is:""
+Options: ""- pleasure or pain inflicted by chance members of the community.
+- pleasure or pain inflicted by a judge in accordance with a rule.
+- pleasure or pain that it is permissible to inflict on someone.
+- none of the above.""
+Response: ""pleasure or pain inflicted by chance members of the community.""
+
+Example 3:
+Question: ""Bentham claims that utilitarian calculations:""
+Options: ""- should be performed prior to each action.
+- need not be performed before each action, but should always be kept in mind.
+- are merely a formal device, and do not have practical application.
+- are fundamentally flawed.""
+Response: ""need not be performed before each action, but should always be kept in mind.""
+
+Example 4:
+Question: ""According to Bentham, considerations of pain and pleasure determine:""
+Options: ""- what we ought to do.
+- what we will do.
+- both a and b.
+- neither a nor b.""
+Response: ""what we ought to do.""
+
+Example 5:
+Question: ""Bentham claims that nature has placed mankind under two sovereign masters:""
+Options: ""- pain and pleasure.
+- good and evil.
+- God and the devil.
+- duty and self-interest.""
+Response: ""pain and pleasure.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Concerning the relationship between morality and theology, Bentham claims that:
+Options: - we must first know whether something is right before we can know whether it conforms to God’s will.
+- we must first know whether something conforms to God’s will before we can know that it is right.
+- God exists, but does not concern himself with matters of morality.
+- God does not exist.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,0,0.13833299279212952,0.12826474010944366
+Contemplating God.,acts of the moral virtues.,contemplating God.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Aristotle, happiness is:""
+Options: ""- a state of mind.
+- a feeling or sensation.
+- a craft.
+- activity of the soul in accordance with virtue.""
+Response: ""activity of the soul in accordance with virtue.""
+
+Example 2:
+Question: ""Aquinas holds that the last end of man is:""
+Options: ""- pleasure.
+- happiness or beatitude.
+- the satisfaction of desire.
+- freedom from anxiety.""
+Response: ""happiness or beatitude.""
+
+Example 3:
+Question: ""Aquinas argues that the end of every action is:""
+Options: ""- some desire.
+- some pleasure.
+- some good.
+- some emotional state.""
+Response: ""some good.""
+
+Example 4:
+Question: ""Augustine claims that to be happy, one must know:""
+Options: ""- the causes of natural occurrences.
+- the causes of good and evil.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b""
+
+Example 5:
+Question: ""Aquinas claims that the ultimate perfection of operation is:""
+Options: ""- delight.
+- peace.
+- pleasure.
+- Godliness.""
+Response: ""Godliness.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In Aquinas’s view, man’s ultimate happiness consists in:
+Options: - pleasure
+- acts of the moral virtues.
+- loving God.
+- contemplating God.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,0.11663353443145752,0.02623487077653408
+all of the above.,part of the mores of the group.,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Baier, a rule can be said to be for the good of human beings only if:""
+Options: ""- it is not harmful.
+- it does not impose unnecessary restrictions.
+- it promotes the good of some people.
+- all of the above.""
+Response: ""all of the above""
+
+Example 2:
+Question: ""Baier argues that moral rules:""
+Options: ""- always must be applied to everyone alike.
+- must applied to everyone alike in the absence of morally relevant differences.
+- only apply to some members of a group.
+- are the same in every society.""
+Response: ""must applied to everyone alike in the absence of morally relevant differences.""
+
+Example 3:
+Question: ""Baier argues that genuine moral rules:""
+Options: ""- must be for the good of human beings.
+- make take into account the interests of all sentient beings.
+- must take into account the interests of all living beings.
+- are primarily directed toward promoting self-interest.""
+Response: ""must be for the good of human beings.""
+
+Example 4:
+Question: ""According to Baier’s theory, the second step in assessing whether an action is morally permissible is to find out:""
+Options: ""- whether it is forbidden by a moral rule of one’s group.
+- whether the moral rule forbidding it is a genuine moral rule.
+- whether it is forbidden by a law.
+- whether one can approve of it.""
+Response: ""whether one can approve of it.""
+
+Example 5:
+Question: ""Baier asserts that when we ask for moral advice, we are asking for others to:""
+Options: ""- issue commands.
+- inform us of their preferences.
+- deliberate with us.
+- empathize with us.""
+Response: ""deliberate with us.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Baier claims that for a rule to belong the morality of a group, the rule must be:
+Options: - part of the mores of the group.
+- universally teachable.
+- not merely a taboo.
+- all of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.046143338084220886,0.025140658020973206
+meaning,"Based on the given examples, I predict the most likely response from the black-box model to be:
+
+""meaning""",meaning,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Feinberg takes his remarks about the two different senses of pleasure to refute:""
+Options: ""- psychological egoism.
+- psychological egoistic hedonism.
+- ethical egoism.
+- all of the above.""
+Response: ""all of the above""
+
+Example 2:
+Question: ""Most of those who take the externalist approach to meaning view the matter from a _____ standpoint.""
+Options: ""- secular
+- nonreligious
+- religious
+- pragmatic""
+Response: ""secular""
+
+Example 3:
+Question: ""According to Sartre, what existentialists have in common is that they think that _____.""
+Options: ""- essence precedes existence
+- objectivity must be a starting point
+- existence is a myth
+- existence precedes essence""
+Response: ""existence precedes essence""
+
+Example 4:
+Question: ""Nussbaum claims that in cross-cultural communication, inhabitants of different conceptual schemes tend to view their interaction:""
+Options: ""- in a relativist way.
+- in an absolutist way.
+- in a Kantian way.
+- in an Aristotelian way.""
+Response: ""in a relativist way.""
+
+Example 5:
+Question: ""Singer claims that his argument upsets the traditional distinction between:""
+Options: ""- duty and charity.
+- egoism and altruism.
+- rights and privileges.
+- positive and negative rights.""
+Response: ""duty and charity.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Baggini accuses pessimists of mixing up the two senses of _____.
+Options: - philosophy
+- religion
+- meaning
+- time
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,0,0.04342309758067131,0.2474038153886795
+all of the above.,good,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Moore defines good as:""
+Options: ""- pleasure.
+- that which we desire.
+- that which we desire to desire.
+- none of the above.""
+Response: ""that which we desire to desire.""
+
+Example 2:
+Question: ""According to Moore, the most fundamental question in all of ethics is:""
+Options: ""- whether life is worth living.
+- whether God exists.
+- how “good” is to be defined.
+- whether morality is objective.""
+Response: ""how ""good"" is to be defined.""
+
+Example 3:
+Question: ""Stevenson identifies the meaning of a term with:""
+Options: ""- the empirical observations to which it applies.
+- all the psychological causes and effects that attend its utterance.
+- the psychological causes and effects it has a tendency to be connected with.
+- the set of other words that are synonyms to the original word.""
+Response: ""the psychological causes and effects it has a tendency to be connected with.""
+
+Example 4:
+Question: ""How many categories of ethical principles do Diener and Crandell refer to?""
+Options: ""- Three: harm to students; lack of informed consent; invasion of privacy on social media.
+- Four: harm to participants; lack of informed consent; invasion of privacy; involvement of deception
+- Two: ethical and unethical
+- Two: right and wrong""
+Response: ""Four: harm to participants; lack of informed consent; invasion of privacy; involvement of deception""
+
+Example 5:
+Question: ""When it comes to defining good, Moore claims that many past philosophers are guilty of:""
+Options: ""- begging the question.
+- circular reasoning.
+- the naturalistic fallacy.
+- the ad hominem fallacy.""
+Response: ""begging the question.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which of the following concepts can be defined, according to Moore?
+Options: - good
+- yellow
+- horse
+- all of the above
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.059939153492450714,0.05748096853494644
+It can damage the professional reputation of the researcher and their discipline.,It makes it more difficult to gain access to deviant or hidden populations.,It can damage the professional reputation of the researcher and their discipline.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which of the following is an example of deception in business research?""
+Options: ""- The obtaining of company material without permission.
+- The researcher wearing a disguise during an observation.
+- The researcher representing their research as being about a different topic.
+- The researcher failing to ask permission to interview someone.""
+Response: ""The researcher representing their research as being about a different topic.""
+
+Example 2:
+Question: ""Which of the following is a form of harm that might be suffered by research participants?""
+Options: ""- Physical injury
+- Stress and anxiety
+- Impaired development
+- All of the above""
+Response: ""All of the above.""
+
+Example 3:
+Question: ""To Kant, making a lying promise would be wrong because _____.""
+Options: ""- lying to people can cause them harm
+- lying to people harms society
+- you could not consistently will that everyone should make lying promises
+- most people condemn the practice""
+Response: ""you could not consistently will that everyone should make lying promises""
+
+Example 4:
+Question: ""Why is it important that personal data about research participants are kept within secure, confidential records?""
+Options: ""- So that the participants cannot find out what has been written about them.
+- In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.
+- So that government officials, teachers, and other people in authority can have easy access to the data.
+- To enable the researcher to track down individuals and find out more about their lives.""
+Response: ""In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.""
+
+Example 5:
+Question: ""Why is it ""easier said than done"" to ensure that the principle of informed consent is adhered to?""
+Options: ""- It is not practicable to present every participant with all the information about the study.
+- Sometimes it is desirable to withhold certain pieces of information, such as the length of time an interview will take.
+- If the participants knew exactly what the researcher was intending to study, they might change their behavior.
+- All of the above.""
+Response: ""All of the above""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Apart from the fact that it is ""not a nice thing to do"", what is an important ethical disadvantage of deceiving participants?
+Options: - It can damage the professional reputation of the researcher and their discipline.
+- It makes it more difficult to gain access to deviant or hidden populations.
+- It means that records of personal data about the participants cannot be made anonymous.
+- None of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.10819241404533386,0.09510891884565353
+describe one’s own approval of things.,influence the interests of others.,describe one’s own approval of things.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Stevenson, moral disagreements involve:""
+Options: ""- disagreement in interest.
+- disagreement in belief.
+- disagreement in theory.
+- disagreement in practice.""
+Response: ""disagreement in belief.""
+
+Example 2:
+Question: ""Hare claims that the two essential features of the logic of moral judgments are:""
+Options: ""- consequentialism and hedonism.
+- universalizability and prescriptivity.
+- contractualism and rule-following.
+- consistency and coherence.""
+Response: ""universalizability and prescriptivity.""
+
+Example 3:
+Question: ""Stevenson’s primary aim in this paper is to:""
+Options: ""- provide an account of what makes right actions right.
+- establish which things are good in themselves.
+- develop a theory of good moral character.
+- make ethical questions clear.""
+Response: ""provide an account of what makes right actions right.""
+
+Example 4:
+Question: ""How does Stevenson respond to the objection that his theory does not account for the kind of goodness that is objective and is known a priori?""
+Options: ""- He claims to have proven that such a property does not exist.
+- He claims to have offered an account of just such a property.
+- He claims he does not understand such a property.
+- None of the above.""
+Response: ""He claims to have offered an account of just such a property.""
+
+Example 5:
+Question: ""An important moral criterion of adequacy is known as _____.""
+Options: ""- simplicity
+- consistency with our considered moral judgments
+- fruitfulness
+- fallibility""
+Response: ""consistency with our considered moral judgments""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Stevenson claims that the primary use of ethical judgments is to:
+Options: - state facts.
+- influence the interests of others.
+- describe one’s own approval of things.
+- none of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.12420401722192764,0.12730053067207336
+all of the above.,both involve testing general principles by examining their logical consequences.,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Hare claims that all moral arguments are:""
+Options: ""- useless.
+- valid.
+- ad hominem.
+- sound.""
+Response: ""invalid.""
+
+Example 2:
+Question: ""Of the ways of escaping moral arguments that he discusses, Hare claims:""
+Options: ""- none of them are successful.
+- some, but not all of them are successful.
+- all are entirely successful.
+- all might be successful, but at a price.""
+Response: ""all might be successful, but at a price.""
+
+Example 3:
+Question: ""Hare claims that the two essential features of the logic of moral judgments are:""
+Options: ""- consequentialism and hedonism.
+- universalizability and prescriptivity.
+- contractualism and rule-following.
+- consistency and coherence.""
+Response: ""universalizability and prescriptivity.""
+
+Example 4:
+Question: ""Nussbaum claims that to many current ethical theorists, turning to an ethical approach based on the virtues is connected with a turn toward:""
+Options: ""- rationalism.
+- empiricism.
+- relativism.
+- absolutism.""
+Response: ""relativism.""
+
+Example 5:
+Question: ""Stevenson claims that the primary use of ethical judgments is to:""
+Options: ""- state facts.
+- influence the interests of others.
+- describe one’s own approval of things.
+- none of the above.""
+Response: ""describe one’s own approval of things.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Hare asserts that ethics and science are similar in that:
+Options: - both seek to provide us with true beliefs about the world.
+- both are essential components of a worthwhile life.
+- both involve testing general principles by examining their logical consequences.
+- all of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,2,0.057184264063835144,0.203948974609375
+Gauthier expands the definition of deliberative justification.,Gauthier argues that deliberative justification by definition takes account of all relevant considerations.,Gauthier expands the definition of deliberative justification.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Gauthier, deliberative justification:""
+Options: ""- is refuted by moral requirements.
+- is replaced once we acknowledge moral requirements.
+- refutes morality.
+- ignores morality and seemingly replaces it.""
+Response: ""ignores morality and seemingly replaces it.""
+
+Example 2:
+Question: ""Rawls claims that a conception of justice should be justified by:""
+Options: ""- deducing it from self-evident premises.
+- direct acquaintance via moral intuition.
+- the mutual support of many considerations, which it fits into one coherent view.
+- none of the above.""
+Response: ""the mutual support of many considerations, which it fits into one coherent view.""
+
+Example 3:
+Question: ""Stevenson claims that the primary use of ethical judgments is to:""
+Options: ""- state facts.
+- influence the interests of others.
+- describe one’s own approval of things.
+- none of the above.""
+Response: ""describe one’s own approval of things.""
+
+Example 4:
+Question: ""Hume describes reason as:""
+Options: ""- cool and disengaged.
+- the source of all moral actions.
+- the first spring or impulse to desire.
+- all of the above.""
+Response: ""all of the above""
+
+Example 5:
+Question: ""Gauthier claims that there is nothing for practical rationality to be besides:""
+Options: ""- moral justification.
+- deliberative justification.
+- epistemic justification.
+- an illusion.""
+Response: ""deliberative justification""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In response to the claim that deliberative justification is incomplete:
+Options: - Gauthier expands the definition of deliberative justification.
+- Gauthier argues that deliberative justification by definition takes account of all relevant considerations.
+- Gauthier claims that deliberative justification works.
+- Gauthier argues that all theories of justification are equally incomplete.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.13298989832401276,0.17342403531074524
+is false but cannot be refuted.,"Based on the given examples, it appears that the black-box model is providing answers that reflect Augustine's philosophical views as presented in the options. 
+
+In the examples, the correct answer is often the one that aligns with Augustine's philosophical stance. 
+
+For the new question, considering Augustine's views on knowledge and truth, it seems that he would likely argue against Academic skepticism, which is the idea that knowledge is impossible. 
+
+Given the options, the most likely response from the black-box model would be:
+
+""is false and can be refuted.""",is false but cannot be refuted.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Augustine holds that we can never err:""
+Options: ""- in any circumstances whatsoever.
+- except through ignorance.
+- except through wickedness.
+- except through temptation.""
+Response: ""except through ignorance.""
+
+Example 2:
+Question: ""Augustine claims that to be happy, one must know:""
+Options: ""- the causes of natural occurrences.
+- the causes of good and evil.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b""
+
+Example 3:
+Question: ""Augustine claims that there can be no evil where there is no:""
+Options: ""- hatred.
+- greed.
+- love.
+- good.""
+Response: ""good""
+
+Example 4:
+Question: ""In Augustine’s view, lying is:""
+Options: ""- often permissible if done for the right reasons.
+- not evil in itself, although it can have bad consequences.
+- permissible only in very rare circumstances.
+- never permissible.""
+Response: ""never permissible""
+
+Example 5:
+Question: ""Augustine claims that all created things are:""
+Options: ""- eternally and unchangeably good.
+- good when taken together, but not good separately.
+- good, even taken separately.
+- none of the above.""
+Response: ""good, even taken separately.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Augustine claims that Academic skepticism:
+Options: - is true, and can be proven.
+- is true, but cannot be proven
+- is false but cannot be refuted.
+- is false and can be refuted.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,3,0.05137962847948074,0.0532330684363842
+its chance of being followed by sensations of the same kind.,its chance of occurring.,its chance of being followed by sensations of the same kind.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Bentham, considerations of pain and pleasure determine:""
+Options: ""- what we ought to do.
+- what we will do.
+- both a and b.
+- neither a nor b.""
+Response: ""what we ought to do.""
+
+Example 2:
+Question: ""According to Feinberg, the claim that we always feel pleasure when we get what we want:""
+Options: ""- is true, and supports psychological egoism.
+- is true, but does not support psychological egoism.
+- is false, and would not support psychological egoism even if it were true.
+- is false, but would support psychological egoism if it were true.""
+Response: ""is false, and would not support psychological egoism even if it were true.""
+
+Example 3:
+Question: ""Bentham claims that utilitarian calculations:""
+Options: ""- should be performed prior to each action.
+- need not be performed before each action, but should always be kept in mind.
+- are merely a formal device, and do not have practical application.
+- are fundamentally flawed.""
+Response: ""need not be performed before each action, but should always be kept in mind.""
+
+Example 4:
+Question: ""According to Moore, “pleasure is good” means the same thing as:""
+Options: ""- “pleasure is desired.”
+- “pleasure is pleasant.”
+- “we desire to desire pleasure.”
+- none of the above.""
+Response: """"pleasure is pleasant.""""
+
+Example 5:
+Question: ""Feinberg takes his remarks about the two different senses of pleasure to refute:""
+Options: ""- psychological egoism.
+- psychological egoistic hedonism.
+- ethical egoism.
+- all of the above.""
+Response: ""all of the above""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Bentham defines the fecundity of a pleasure or pain as:
+Options: - its chance of occurring.
+- the degree to which it is felt.
+- its chance of being followed by sensations of the same kind.
+- how long it lasts.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,0,0.07712975144386292,0.05760695040225983
+God,"Based on the given examples, the black-box model tends to provide answers that align with Aquinas' philosophical views. In the examples, Aquinas is described as arguing or claiming certain things, which suggests that the model is drawing from his philosophical ideas.
+
+Given the new question, ""Aquinas says that the first efficient cause of everything is _____."", the most likely response from the black-box model would be:
+
+""God""",God,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Aquinas, an infinite regress of causes is _____.""
+Options: ""- finite
+- possible
+- impossible
+- necessary""
+Response: ""impossible""
+
+Example 2:
+Question: ""Aquinas claims that:""
+Options: ""- pleasure exists for its own sake.
+- pleasure exists for the sake of operation.
+- operation exists for the sake of pleasure.
+- both b and c.""
+Response: ""pleasure exists for the sake of operation.""
+
+Example 3:
+Question: ""Aquinas argues that the end of every action is:""
+Options: ""- some desire.
+- some pleasure.
+- some good.
+- some emotional state.""
+Response: ""some good.""
+
+Example 4:
+Question: ""Aquinas claims that the ultimate perfection of operation is:""
+Options: ""- delight.
+- peace.
+- pleasure.
+- Godliness.""
+Response: ""Godliness.""
+
+Example 5:
+Question: ""Aquinas claim that all human operations appear to serve:""
+Options: ""- those in power.
+- those of high status.
+- those who contemplate the truth.
+- those who act wickedly.""
+Response: ""those who contemplate the truth.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Aquinas says that the first efficient cause of everything is _____.
+Options: - the universe
+- God
+- nature
+- an infinite series
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,0,0.08549344539642334,0.14024074375629425
+"can be compared, but only roughly.",cannot be compared between individuals.,"can be compared, but only roughly.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Parfit claims that:""
+Options: ""- it is possible for an outcome to be worse for a particular person than some alternative.
+- it is possible for an outcome to be worse than some alternative.
+- both a and b.
+- neither a. nor b.""
+Response: ""both a and b.""
+
+Example 2:
+Question: ""According to Parfit, both Taurek and Lewis assume that for there to be a “sum of pain,” it must be:""
+Options: ""- all felt at a single time.
+- all felt by a single person.
+- all be caused by a single source.
+- all of the above.""
+Response: ""all of the above""
+
+Example 3:
+Question: ""Bentham defines the fecundity of a pleasure or pain as:""
+Options: ""- its chance of occurring.
+- the degree to which it is felt.
+- its chance of being followed by sensations of the same kind.
+- how long it lasts.""
+Response: ""its chance of being followed by sensations of the same kind.""
+
+Example 4:
+Question: ""According to Bentham, considerations of pain and pleasure determine:""
+Options: ""- what we ought to do.
+- what we will do.
+- both a and b.
+- neither a nor b.""
+Response: ""what we ought to do.""
+
+Example 5:
+Question: ""According to Parfit, the obligation to give priority to the welfare of one’s children is:""
+Options: ""- agent-relative.
+- agent-neutral.
+- absolute.
+- none of the above.""
+Response: ""agent-relative.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Parfit claims that the magnitude of pains:
+Options: - can be precisely compared.
+- can be compared, but only roughly.
+- can be compared within individuals, but not between individuals.
+- cannot compared either within individuals or between individuals.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,3,0.03668764606118202,0.05850202217698097
+actions that affect only themselves.,what is due to factors beyond their control.,actions that affect only themselves.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Nagel claims that the problem of moral luck is closely connected to the problem of:""
+Options: ""- the existence of God.
+- freedom of the will.
+- psychological egoism.
+- universals.""
+Response: ""freedom of the will.""
+
+Example 2:
+Question: ""According to Nagel, the problem of moral luck arises because:""
+Options: ""- philosophers try to apply arbitrarily stringent standards to moral responsibility.
+- the self is threatened with dissolution by the absorption of its acts into the class of events.
+- our moral theories are hopelessly off track.
+- our theories of human action are hopelessly off track.""
+Response: ""our theories of human action are hopelessly off track.""
+
+Example 3:
+Question: ""Nagel claims that most skeptical arguments:""
+Options: ""- are the result of applying arbitrarily stringent standards.
+- are based on linguistic confusions.
+- are logically self-refuting.
+- grow from the consistent application of ordinary standards.""
+Response: ""are the result of applying arbitrarily stringent standards.""
+
+Example 4:
+Question: ""Anscombe claims that an adequate moral psychology would include:""
+Options: ""- an answer to the mind-body problem.
+- analyses of concepts such as “action” and “intention.”
+- an explanation of how free will is possible.
+- all of the above.""
+Response: ""all of the above""
+
+Example 5:
+Question: ""Hare claims that a person who refuses to make any positive moral judgments:""
+Options: ""- is irrational.
+- is immoral.
+- cannot coherently invoke morality to protect one’s own interests.
+- couldn’t possibly exist.""
+Response: ""cannot coherently invoke morality to protect one’s own interests.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Nagel claims that prior to reflection, it is plausible that people cannot be morally assessed for:
+Options: - actions that affect only themselves.
+- their character.
+- what is due to factors beyond their control.
+- actions that do not violate anyone’s rights.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.041777126491069794,0.12711307406425476
+the norms of a society.,the commands of God,the norms of a society.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Anscombe claims that the notion of moral obligation is derived from the concept of:""
+Options: ""- preference.
+- maximizing utility.
+- positive law.
+- divine law.""
+Response: ""divine law""
+
+Example 2:
+Question: ""According to the Ideal Moral Code theory, one is obligated to do what the ideal moral rules would require:""
+Options: ""- in one’s actual institutional setting.
+- in an ideal institutional setting.
+- in a setting devoid of institutions.
+- in a world in which everyone complied with those rules perfectly.""
+Response: ""in an ideal institutional setting.""
+
+Example 3:
+Question: ""Anscombe claims that an adequate moral psychology would include:""
+Options: ""- an answer to the mind-body problem.
+- analyses of concepts such as “action” and “intention.”
+- an explanation of how free will is possible.
+- all of the above.""
+Response: ""all of the above""
+
+Example 4:
+Question: ""Anscombe claims that it is not profitable to do moral philosophy until we have an adequate philosophy of:""
+Options: ""- religion.
+- physics.
+- psychology.
+- art.""
+Response: ""psychology.""
+
+Example 5:
+Question: ""According to Bentham, a moral sanction is:""
+Options: ""- pleasure or pain inflicted by chance members of the community.
+- pleasure or pain inflicted by a judge in accordance with a rule.
+- pleasure or pain that it is permissible to inflict on someone.
+- none of the above.""
+Response: ""pleasure or pain inflicted by chance members of the community.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Anscombe, “moral obligation” currently signifies:
+Options: - the norms of a society.
+- the feelings of an individual.
+- the commands of God.
+- no real concept at all.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.15394428372383118,0.14273503422737122
+just.,to his advantage.,just..,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""During his trial, Socrates argues that he would never intentionally corrupt others because:""
+Options: ""- it is his duty not to do so.
+- this would make them vicious, and they would then harm him.
+- he would be likely to get caught if he did so.
+- he would not know how.""
+Response: ""it is his duty not to do so.""
+
+Example 2:
+Question: ""To argue that he is obliged to obey the laws of Athens, Socrates compares the city to:""
+Options: ""- an employer.
+- a parent.
+- a friend.
+- a spouse.""
+Response: ""a parent.""
+
+Example 3:
+Question: ""In spite of the fact that Socrates claims to be ignorant of the essence or nature of certain things like justice, he is wise insofar as he recognizes that without such knowledge actions are rationally unjustified.  That is, his wisdom consists in his recognition not only that he is ignorant of such essences but also that:""
+Options: ""- justice, like knowledge, requires that we admit that we know nothing and never will.
+- he knows what he is supposed to be looking for--knowledge of the essences of things.
+- knowledge of the essences of things is impossible, because that would require that we know what we are looking for before we know what it is we are looking for.
+- his method of asking questions about essences is itself unjustified because he does not know why he engages in such a practice.""
+Response: ""he knows what he is supposed to be looking for--knowledge of the essences of things.""
+
+Example 4:
+Question: ""For Socrates, the soul is harmed by lack of _____.""
+Options: ""- knowledge
+- wealth
+- community
+- courage""
+Response: ""knowledge""
+
+Example 5:
+Question: ""Cicero argues that we will never go morally astray if we:""
+Options: ""- follow our conscience.
+- follow the laws.
+- follow religious edicts.
+- follow Nature as our guide.""
+Response: ""follow our conscience.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Socrates tells Crito that he should attempt to break out of prison if and only if doing so would be:
+Options: - to his advantage.
+- harmful to his enemies and advantageous to his friends.
+- pleasing to the gods.
+- just.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.03814060240983963,0.03691057488322258
+The unexamined life is not worth living.,someone who does not understand existence philosophically could never do anything right.,not only is virtue knowledge but also the unexamined life is not worth living.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: "" For Socrates, the belief that ""virtue is knowledge"" is related to his claim that ""the unexamined life is not worth living,"" because he believes that:""
+Options: ""- the unexamined life is one in which we live day to day without asking questions about who we are and why we are here in the first place.
+- the Delphic oracle identified Socrates as the wisest person on earth because he claimed to know nothing.
+- by questioning traditional beliefs, we learn to recognize how some answers seem to be more satisfactory than others.
+- the only way to be a good or worthwhile person is to know how human beings should behave based on universal norms or values.""
+Response: ""the only way to be a good or worthwhile person is to know how human beings should behave based on universal norms or values.""
+
+Example 2:
+Question: ""Socrates' claim that ""the unexamined life is not worth living"" is often cited as a central theme in the activities of people.  By it, Socrates is typically understood to mean that:""
+Options: ""- it is sometimes simply not worth all the effort of examining life and its problems in great detail; sometimes it is better simply to ""go with the flow.""
+- while taking a reflective attitude toward life is interesting and even sometimes important, most of what makes life worth living is not worth examining.
+- simply doing whatever everyone else does without thinking about why we should do what we do can hardly be thought of as worthwhile, noble, or admirable.
+- it is a waste of time to sit around thinking about whether life is worth living; we should leave such reflection to talk-show hosts, political figures, and religious leaders.""
+Response: ""simply doing whatever everyone else does without thinking about why we should do what we do can hardly be thought of as worthwhile, noble, or admirable.""
+
+Example 3:
+Question: ""According to Socrates, it is important that we discover what makes a particular action (e.g., a merciful or just act) the kind of action that it is, because without such knowledge:""
+Options: ""- no one in society will ever do any action that really is merciful or just, only those actions that they think are merciful or just.
+- the primary purpose of human existence--which is to think and to know--is replaced by a focus on morality (acting and doing).
+- we can refer only to how people characterize actions without knowing why such actions should be characterized that way.
+- there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).""
+Response: ""there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).""
+
+Example 4:
+Question: ""In spite of the fact that Socrates claims to be ignorant of the essence or nature of certain things like justice, he is wise insofar as he recognizes that without such knowledge actions are rationally unjustified.  That is, his wisdom consists in his recognition not only that he is ignorant of such essences but also that:""
+Options: ""- justice, like knowledge, requires that we admit that we know nothing and never will.
+- he knows what he is supposed to be looking for--knowledge of the essences of things.
+- knowledge of the essences of things is impossible, because that would require that we know what we are looking for before we know what it is we are looking for.
+- his method of asking questions about essences is itself unjustified because he does not know why he engages in such a practice.""
+Response: ""he knows what he is supposed to be looking for--knowledge of the essences of things.""
+
+Example 5:
+Question: "" According to Socrates, the task of the wise and virtuous person is not simply to learn various examples of just or virtuous actions but to learn the essence of justice or virtue, because:""
+Options: ""- by knowing enough examples of justice or virtue, we will live a worthwhile life even if we do not know what makes them examples of justice or virtue.
+- knowledge of individual examples alone would not prepare someone for situations of justice or virtue to which the examples do not immediately apply.
+- what makes an action just or virtuous can be known only by asking people for their opinions and respecting each answer as equally valuable.
+- justice and virtue are universal goals of all human beings, even if people do not always agree on how to achieve those ends.""
+Response: ""knowledge of individual examples alone would not prepare someone for situations of justice or virtue to which the examples do not immediately apply.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Socrates, the value or quality of one's life depends on understanding the principles of, or basic rationale for human existence.  Without such knowledge (he suggests) life lacks virtue, because:
+Options: - acting virtuously means acting in way that is informed about what one is doing and why.
+- someone who does not understand existence philosophically could never do anything right.
+- to have the power or ability to do anything at all requires that we know what we are doing.
+- not only is virtue knowledge but also the unexamined life is not worth living.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,0.17668280005455017,0.1883641928434372
+"Rawls claims that students with fewer native assets, such as intelligence, should be given more attention and resources than those with more native assets.",the same level of attention and resources as those with more native assets.,more attention and resources than those with more native assets.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Rawls claims that a conception of justice should be justified by:""
+Options: ""- deducing it from self-evident premises.
+- direct acquaintance via moral intuition.
+- the mutual support of many considerations, which it fits into one coherent view.
+- none of the above.""
+Response: ""the mutual support of many considerations, which it fits into one coherent view.""
+
+Example 2:
+Question: ""According to Rawls, behind the veil of ignorance, the principles of justice are _____.""
+Options: ""- the result of coercion
+- impractical
+- chosen arbitrarily
+- the result of a fair agreement or bargain""
+Response: ""the result of a fair agreement or bargain.""
+
+Example 3:
+Question: ""According to Rawls, the two parts of his theory:""
+Options: ""- are interdependent: You cannot accept one part without accepting the other.
+- are independent: You can accept either part without accepting the other.
+- are provable from self-evident premises.
+- cannot be justified via rational means.""
+Response: ""are interdependent: You cannot accept one part without accepting the other.""
+
+Example 4:
+Question: ""Rawls argues that parties in the original position would not accept utilitarianism because:""
+Options: ""- it is too difficult to determine which policies would maximize happiness.
+- doing so would be too risky.
+- it requires us to do unjust things, such as executing innocent people.
+- they would be behind the veil of ignorance and thus would never have heard of utilitarianism.""
+Response: ""it requires us to do unjust things, such as executing innocent people.""
+
+Example 5:
+Question: ""Rawls conceives of the original contract as one to:""
+Options: ""- enter a particular society.
+- set up a particular form of government.
+- establish the principles of justice for the basic structure of society.
+- establish the content of morality.""
+Response: ""establish the principles of justice for the basic structure of society.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Rawls claims that students with fewer native assets (such as intelligence) should be given:
+Options: - more attention and resources than those with more native assets.
+- the same level of attention and resources as those with more native assets.
+- less attention and fewer resources than those with more native assets.
+- virtually no educational resources.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,-0.0357058160007,-0.0018045967444777489
+secular,nonreligious,secular,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""If the world that we individually perceive is limited to an internal perspective, then there is no way that we could determine whether our own perspective is useful, true, or valuable because:""
+Options: ""- we know whether our internal perspective is correct only by comparing it with an objective, external perspective (the ""real"" world).
+- whatever we appeal to in order to prove that our perspective is right itself would be part of the standard we use in evaluating that perspective.
+- scientific research that reveals facts about the world would cause us to challenge our perceptions in a dreamworld of our own making.
+- without limiting our perspective to an internal dreamworld, we cannot achieve any objective, external knowledge of the real world.""
+Response: ""whatever we appeal to in order to prove that our perspective is right itself would be part of the standard we use in evaluating that perspective.""
+
+Example 2:
+Question: ""The view that we consist of two distinct substances (body and mind) and that these two interact is known as _____.""
+Options: ""- functionalism
+- identity theory
+- substance dualism
+- materialism""
+Response: ""substance dualism""
+
+Example 3:
+Question: ""A prominent view is that an object has aesthetic value if it _____.""
+Options: ""- cannot be defined
+- has no utility
+- serves some important function
+- has no meaning""
+Response: ""has no utility""
+
+Example 4:
+Question: ""The view that art is defined by its form is known as _____.""
+Options: ""- informalism
+- expressionism
+- formalism
+- structuralism""
+Response: ""formalism""
+
+Example 5:
+Question: ""Nussbaum claims that in cross-cultural communication, inhabitants of different conceptual schemes tend to view their interaction:""
+Options: ""- in a relativist way.
+- in an absolutist way.
+- in a Kantian way.
+- in an Aristotelian way.""
+Response: ""in a relativist way.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Most of those who take the externalist approach to meaning view the matter from a _____ standpoint.
+Options: - secular
+- nonreligious
+- religious
+- pragmatic
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.04171467572450638,0.030344825237989426
+Reason should serve our passions.,"Based on the given examples, I predict the black-box model's response to the new question will be:
+
+""should be used to direct our passions.""",should serve our passions.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Hume describes reason as:""
+Options: ""- cool and disengaged.
+- the source of all moral actions.
+- the first spring or impulse to desire.
+- all of the above.""
+Response: ""all of the above""
+
+Example 2:
+Question: ""According to Hume, justice:""
+Options: ""- has no value.
+- has value in part because it is useful to society.
+- has value solely because it is useful to society.
+- has value solely because it is useful to the agent.""
+Response: ""has value in part because it is useful to society.""
+
+Example 3:
+Question: ""According to Hume, morality is ultimately based on:""
+Options: ""- reason.
+- God’s commands.
+- social agreements.
+- sympathy.""
+Response: ""sympathy.""
+
+Example 4:
+Question: ""In the Inquiry, Hume claims that our final verdicts on moral matters are derived from:""
+Options: ""- reason.
+- a moral sense that is unique to each person.
+- a moral sense that is universal in our species.
+- emotion.""
+Response: ""a moral sense that is universal in our species.""
+
+Example 5:
+Question: ""Hume thinks that each mind perceives _____.""
+Options: ""- the same beauty
+- a different beauty
+- a warped sense of beauty
+- objective beauty""
+Response: ""a different beauty""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Hume, reason:
+Options: - should serve our passions.
+- should operate completely independently of our passions.
+- should be used to direct our passions.
+- should be used to extinguish our passions.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.050369903445243835,0.03856977820396423
+The aim of human life.,what our fundamental duties are.,the aim of human life.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Aristotle ends the Ethics with a segue to a discussion of:""
+Options: ""- aesthetics.
+- theology.
+- politics.
+- natural science.""
+Response: ""politics.""
+
+Example 2:
+Question: ""Aristotle states that if we ask what the highest good of human action is:""
+Options: ""- there is no agreement about the answer.
+- most people agree that it is pleasure.
+- nearly everyone agrees that it is happiness.
+- there is no objective answer to this question.""
+Response: ""nearly everyone agrees that it is happiness.""
+
+Example 3:
+Question: ""According to Socrates, it is important that we discover what makes a particular action (e.g., a merciful or just act) the kind of action that it is, because without such knowledge:""
+Options: ""- no one in society will ever do any action that really is merciful or just, only those actions that they think are merciful or just.
+- the primary purpose of human existence--which is to think and to know--is replaced by a focus on morality (acting and doing).
+- we can refer only to how people characterize actions without knowing why such actions should be characterized that way.
+- there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).""
+Response: ""there would be no way to distinguish one kind of action (e.g., a merciful action) from another kind of action (e.g., a just action).""
+
+Example 4:
+Question: ""Aristotle saw his theory of the virtues as:""
+Options: ""- final and complete.
+- open-ended and revisable.
+- relative to his culture.
+- applicable only to himself.""
+Response: ""open-ended and revisable.""
+
+Example 5:
+Question: ""Nussbaum claims that at the first stage of ethical inquiry, terms for the virtues should be:""
+Options: ""- as descriptive as possible.
+- those that are conventionally used.
+- neutral between competing specifications of the virtue.
+- none of the above.""
+Response: ""neutral between competing specifications of the virtue.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Aristotle, we should begin ethical inquiry by specifying:
+Options: - which things are intrinsically valuable.
+- the aim of human life.
+- what our fundamental duties are.
+- what constraints on behavior it would be reasonable to agree to.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,2,0.18423086404800415,0.09031746536493301
+The story about Abraham Lincoln provides some evidence against psychological egoism.,"""provides no evidence for or against psychological egoism.""",provides some evidence against psychological egoism.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Feinberg takes his remarks about the two different senses of pleasure to refute:""
+Options: ""- psychological egoism.
+- psychological egoistic hedonism.
+- ethical egoism.
+- all of the above.""
+Response: ""all of the above""
+
+Example 2:
+Question: ""Feinberg claims that most arguments for psychological egoism:""
+Options: ""- make reference to neuroscience.
+- are based on controlled studies.
+- are based on interviews and surveys.
+- are nonempirical in character.""
+Response: ""are nonempirical in character.""
+
+Example 3:
+Question: ""Feinberg claims that the best way to pursue happiness is to:""
+Options: ""- pursue pleasure.
+- pursue happiness.
+- forget about happiness.
+- none of the above.""
+Response: ""pursue pleasure.""
+
+Example 4:
+Question: ""Feinberg claims that when people are hungry, they typically desire:""
+Options: ""- to eat food.
+- pleasant gustatory sensations.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+Example 5:
+Question: ""According to Feinberg, a good moral education:""
+Options: ""- will make no use of pleasure or pain as sanctions.
+- will be based entirely on the use of pleasure and pain as sanctions.
+- will produce someone who does the right thing out of deference to authority.
+- will produce someone who does the right thing simply because it is right.""
+Response: ""will produce someone who does the right thing simply because it is right.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Feinberg claims that the story about Abraham Lincoln:
+Options: - provides some evidence for psychological egoism.
+- provides some evidence against psychological egoism.
+- provides no evidence for or against psychological egoism.
+- actually involves a confusion between ethical egoism and psychological egoism.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,2,0.08845215290784836,0.06444714218378067
+could possibly be deceiving him.,"Based on the given examples, the black-box model tends to provide the answer that aligns with Descartes' philosophical ideas. 
+
+In the examples, the model correctly identifies Descartes' thoughts on dreaming, the nature of his existence, and Augustine's views on evil. 
+
+Given the new question, the most likely response from the black-box model would be the option that aligns with Descartes' philosophical skepticism and the idea of the evil demon, which is a concept he discusses in his work ""Meditations on First Philosophy."" 
+
+The evil demon hypothesis is a thought experiment where Descartes considers the possibility that an evil demon is deceiving him into thinking he has a true understanding of the world. 
+
+Therefore, the most likely response from the black-box model would be:
+
+""could possibly be deceiving him""",could possibly be deceiving him,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Descartes declares that he is _____.""
+Options: ""- a body
+- a dream
+- a thing that thinks
+- a thing that cannot exist""
+Response: ""a thing that thinks""
+
+Example 2:
+Question: ""Descartes says that, for all he knows, he may be _____.""
+Options: ""- dreaming
+- a god
+- infallible
+- perfect""
+Response: ""dreaming""
+
+Example 3:
+Question: ""At first Descartes supposes that everything he sees is _____.""
+Options: ""- TRUE
+- FALSE
+- part of him
+- undeniable""
+Response: ""FALSE""
+
+Example 4:
+Question: ""Augustine identifies evil with:""
+Options: ""- the influence of the devil.
+- the absence of good.
+- a unique force, opposed to goodness.
+- pain.""
+Response: ""the absence of good.""
+
+Example 5:
+Question: ""Augustine claims that there can be no evil where there is no:""
+Options: ""- hatred.
+- greed.
+- love.
+- good.""
+Response: ""good""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Descartes declares that an evil demon _____.
+Options: - undoubtedly exists
+- could not possibly exist
+- could possibly be deceiving him
+- must exist if God exists
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.05119972676038742,0.11213420331478119
+None of the above.,neither a nor b,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Wolf argues that the unattractiveness of the moral saint:""
+Options: ""- gives us reason to abandon utilitarianism.
+- gives us reason to abandon Kantianism.
+- both a and b.
+- neither a nor b.""
+Response: ""neither a nor b""
+
+Example 2:
+Question: ""Wolf claims that morality:""
+Options: ""- is merely a cultural artifact.
+- is not really relevant to our lives.
+- provides a comprehensive guide to conduct.
+- none of the above.""
+Response: ""is merely a cultural artifact.""
+
+Example 3:
+Question: ""Brandt claims that whether a moral code is ideal depends in part on:""
+Options: ""- the complexity of the rules.
+- how many people would likely violate it.
+- the costs of its restrictions, in terms of the guilt it induces.
+- all of the above.""
+Response: ""all of the above""
+
+Example 4:
+Question: ""A Loving Saint is someone:""
+Options: ""- whose happiness lies in the happiness of others.
+- who pays little or no attention to his own happiness, in light of the overriding importance of morality.
+- loves all human beings equally.
+- is morally perfect only in relation to those he loves.""
+Response: ""whose happiness lies in the happiness of others.""
+
+Example 5:
+Question: ""In Brandt’s terminology, a moral code has currency in a society only if:""
+Options: ""- a high proportion of the adults in the society subscribe to its principles.
+- it is recognized as the moral code of the society.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Wolf, a moral saint:
+Options: - cannot read Victorian novels.
+- cannot have a sarcastic wit.
+- cannot have an interest in gourmet cooking.
+- all of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,0.06879955530166626,0.1526193618774414
+is merely a cultural artifact.,none of the above,is merely a cultural artifact.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Wolf, a moral saint:""
+Options: ""- cannot read Victorian novels.
+- cannot have a sarcastic wit.
+- cannot have an interest in gourmet cooking.
+- all of the above.""
+Response: ""all of the above""
+
+Example 2:
+Question: ""Wolf argues that the unattractiveness of the moral saint:""
+Options: ""- gives us reason to abandon utilitarianism.
+- gives us reason to abandon Kantianism.
+- both a and b.
+- neither a nor b.""
+Response: ""neither a nor b""
+
+Example 3:
+Question: ""Wolf claims that ultimately, normative questions must be assessed from:""
+Options: ""- the moral point of view.
+- the point of view of virtue.
+- the point of view of individual perfection.
+- a perspective that is unattached to a commitment to any well-ordered system of values.""
+Response: ""the moral point of view.""
+
+Example 4:
+Question: ""Hare claims that all moral arguments are:""
+Options: ""- useless.
+- valid.
+- ad hominem.
+- sound.""
+Response: ""invalid.""
+
+Example 5:
+Question: ""Baier argues that moral rules:""
+Options: ""- always must be applied to everyone alike.
+- must applied to everyone alike in the absence of morally relevant differences.
+- only apply to some members of a group.
+- are the same in every society.""
+Response: ""must applied to everyone alike in the absence of morally relevant differences.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Wolf claims that morality:
+Options: - is merely a cultural artifact.
+- is not really relevant to our lives.
+- provides a comprehensive guide to conduct.
+- none of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,-0.058072201907634735,0.08183000981807709
+He became religious.,"Based on the examples provided, it appears that the black-box model tends to choose the answer that reflects a negative or pessimistic view of life, as seen in the responses to questions about Schopenhauer and Clarence Darrow. 
+
+Given this pattern, the most likely response from the black-box model to the new question would be:
+
+""He became an agnostic.""",He became religious.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Before his conversion, what was Tolstoy surrounded by?""
+Options: ""- what is considered complete happiness
+- things that no one would want
+- what is considered heavenly bliss
+- what is considered deep insight""
+Response: ""things that no one would want""
+
+Example 2:
+Question: ""Leo Tolstoy says that art is _____.""
+Options: ""- expression
+- form
+- representation
+- abstract""
+Response: ""expression""
+
+Example 3:
+Question: ""What was Schopenhauer's attitude toward life?""
+Options: ""- He thought life was uncertain but worthwhile.
+- He thought life was hard but ultimately hopeful.
+- He thought life was bereft of meaning.
+- He believed in an afterlife in which all misery vanishes.""
+Response: ""He thought life was bereft of meaning.""
+
+Example 4:
+Question: ""What was Clarence Darrow's belief about life's meaning?""
+Options: ""- Life was not worthwhile.
+- Life was hard but worthwhile.
+- Life was uncertain but ultimately rewarding.
+- Life was meaningful for most people.""
+Response: ""Life was hard but worthwhile.""
+
+Example 5:
+Question: ""Descartes had been disillusioned by his discovery that many of the alleged truths learned in his youth were _____.""
+Options: ""- contrary to his religion
+- TRUE
+- FALSE
+- beyond question""
+Response: ""contrary to his religion""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: How did Tolstoy's life change after his crisis of meaning?
+Options: - His income increased dramatically.
+- He distrusted everyone.
+- He became religious.
+- He became an agnostic.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,3,0.010488884523510933,0.013703320175409317
+All of the above.,It is not practicable to present every participant with all the information about the study.,All of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which method is most commonly associated with a lack of informed consent?""
+Options: ""- Qualitative content analysis
+- In-depth interviewing
+- Covert observation
+- Structured interviewing""
+Response: ""Covert observation""
+
+Example 2:
+Question: ""Why is it important that personal data about research participants are kept within secure, confidential records?""
+Options: ""- So that the participants cannot find out what has been written about them.
+- In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.
+- So that government officials, teachers, and other people in authority can have easy access to the data.
+- To enable the researcher to track down individuals and find out more about their lives.""
+Response: ""In case individuals, places, or organizations can be harmed through identification or disclosure of personal information.""
+
+Example 3:
+Question: ""What are some of the frequent frustrations in writing or reading about research ethics?""
+Options: ""- Writers differ over what is ethically acceptable.
+- The same debates are rehearsed over decades.
+- Cases of ethical violation tend to be linked with certain research methods.
+- All of the above.""
+Response: ""All of the above""
+
+Example 4:
+Question: ""Stevenson claims that the primary use of ethical judgments is to:""
+Options: ""- state facts.
+- influence the interests of others.
+- describe one’s own approval of things.
+- none of the above.""
+Response: ""describe one’s own approval of things.""
+
+Example 5:
+Question: ""Apart from the fact that it is ""not a nice thing to do"", what is an important ethical disadvantage of deceiving participants?""
+Options: ""- It can damage the professional reputation of the researcher and their discipline.
+- It makes it more difficult to gain access to deviant or hidden populations.
+- It means that records of personal data about the participants cannot be made anonymous.
+- None of the above.""
+Response: ""It can damage the professional reputation of the researcher and their discipline.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Why is it ""easier said than done"" to ensure that the principle of informed consent is adhered to?
+Options: - It is not practicable to present every participant with all the information about the study.
+- Sometimes it is desirable to withhold certain pieces of information, such as the length of time an interview will take.
+- If the participants knew exactly what the researcher was intending to study, they might change their behavior.
+- All of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.06438906490802765,0.2603433132171631
+whose happiness lies in the happiness of others.,"who pays little or no attention to his own happiness, in light of the overriding importance of morality.",whose happiness lies in the happiness of others.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Wolf, a moral saint:""
+Options: ""- cannot read Victorian novels.
+- cannot have a sarcastic wit.
+- cannot have an interest in gourmet cooking.
+- all of the above.""
+Response: ""all of the above""
+
+Example 2:
+Question: ""Wolf argues that the unattractiveness of the moral saint:""
+Options: ""- gives us reason to abandon utilitarianism.
+- gives us reason to abandon Kantianism.
+- both a and b.
+- neither a nor b.""
+Response: ""neither a nor b""
+
+Example 3:
+Question: ""Augustine claims that to be happy, one must know:""
+Options: ""- the causes of natural occurrences.
+- the causes of good and evil.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b""
+
+Example 4:
+Question: ""Descartes declares that he is _____.""
+Options: ""- a body
+- a dream
+- a thing that thinks
+- a thing that cannot exist""
+Response: ""a thing that thinks""
+
+Example 5:
+Question: ""In Aquinas’s view, man’s ultimate happiness consists in:""
+Options: ""- pleasure
+- acts of the moral virtues.
+- loving God.
+- contemplating God.""
+Response: ""contemplating God.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: A Loving Saint is someone:
+Options: - whose happiness lies in the happiness of others.
+- who pays little or no attention to his own happiness, in light of the overriding importance of morality.
+- loves all human beings equally.
+- is morally perfect only in relation to those he loves.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,-0.0012664813548326492,-0.009577439166605473
+that which we desire to desire.,none of the above,that which we desire to desire.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""When it comes to defining good, Moore claims that many past philosophers are guilty of:""
+Options: ""- begging the question.
+- circular reasoning.
+- the naturalistic fallacy.
+- the ad hominem fallacy.""
+Response: ""begging the question.""
+
+Example 2:
+Question: ""According to Moore, we are thinking about good whenever we think about:""
+Options: ""- pleasure.
+- things that we desire.
+- intrinsic value.
+- none of the above.""
+Response: ""intrinsic value""
+
+Example 3:
+Question: ""According to Moore, “pleasure is good” means the same thing as:""
+Options: ""- “pleasure is desired.”
+- “pleasure is pleasant.”
+- “we desire to desire pleasure.”
+- none of the above.""
+Response: """"pleasure is pleasant.""""
+
+Example 4:
+Question: ""Which of the following concepts can be defined, according to Moore?""
+Options: ""- good
+- yellow
+- horse
+- all of the above""
+Response: ""all of the above""
+
+Example 5:
+Question: ""According to Kant, nothing can be called “good” without qualification except _____.""
+Options: ""- right action
+- good consequences
+- happiness
+- a good will""
+Response: ""a good will.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Moore defines good as:
+Options: - pleasure.
+- that which we desire.
+- that which we desire to desire.
+- none of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,3,0.13661688566207886,0.07217586040496826
+pursue pleasure.,none of the above,pursue pleasure.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Feinberg, the claim that we always feel pleasure when we get what we want:""
+Options: ""- is true, and supports psychological egoism.
+- is true, but does not support psychological egoism.
+- is false, and would not support psychological egoism even if it were true.
+- is false, but would support psychological egoism if it were true.""
+Response: ""is false, and would not support psychological egoism even if it were true.""
+
+Example 2:
+Question: ""Feinberg takes his remarks about the two different senses of pleasure to refute:""
+Options: ""- psychological egoism.
+- psychological egoistic hedonism.
+- ethical egoism.
+- all of the above.""
+Response: ""all of the above""
+
+Example 3:
+Question: ""Feinberg claims that when people are hungry, they typically desire:""
+Options: ""- to eat food.
+- pleasant gustatory sensations.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+Example 4:
+Question: ""According to Feinberg, a good moral education:""
+Options: ""- will make no use of pleasure or pain as sanctions.
+- will be based entirely on the use of pleasure and pain as sanctions.
+- will produce someone who does the right thing out of deference to authority.
+- will produce someone who does the right thing simply because it is right.""
+Response: ""will produce someone who does the right thing simply because it is right.""
+
+Example 5:
+Question: ""Mill claims that a happy life is one of:""
+Options: ""- tranquility.
+- excitement.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Feinberg claims that the best way to pursue happiness is to:
+Options: - pursue pleasure.
+- pursue happiness.
+- forget about happiness.
+- none of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.023236023262143135,0.0788406953215599
+desires for external goods.,"Based on the given examples, it appears that the black-box model is providing answers based on the philosophical views of the mentioned philosophers. 
+
+In the case of Butler, the model provided answers related to his views on virtue, compassion, and the highest inward principle. 
+
+Given the new question, I predict that the black-box model will answer based on Butler's views on injustice. 
+
+From the examples, I notice that Butler's views on injustice are not explicitly mentioned. However, in the provided examples, the model answered questions about Butler's views on virtue and compassion. 
+
+Considering the options provided for the new question, I predict that the black-box model will choose the option that aligns with Butler's views on the nature of human beings and their actions. 
+
+Based on the provided examples, I notice that Butler's views on human nature and actions are related to the concept of ""ill-will toward others."" 
+
+Therefore, I predict that the black-box model will answer:
+
+ill-will toward others.",desires for external goods.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Butler claims that, strictly speaking, the only thing that anyone has a right to is:""
+Options: ""- life.
+- liberty.
+- property.
+- happiness.""
+Response: ""life.""
+
+Example 2:
+Question: ""According to Butler, the degree to which one acts compassionately depends on:""
+Options: ""- the strength of his affection of compassion.
+- the strength of his other affections besides compassion.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+Example 3:
+Question: ""In Butler’s view, acting virtuously consists of acting in accordance with:""
+Options: ""- our strongest inward principle.
+- our highest inward principle.
+- all of our inward principles.
+- the commands of God.""
+Response: ""our highest inward principle.""
+
+Example 4:
+Question: ""Hobbes defines injustice as:""
+Options: ""- taking more than one’s share of a good.
+- failure to perform one’s covenant.
+- treating another person as a mere means.
+- violating a law of nature.""
+Response: ""failure to perform one's covenant.""
+
+Example 5:
+Question: ""Rawls claims that a conception of justice should be justified by:""
+Options: ""- deducing it from self-evident premises.
+- direct acquaintance via moral intuition.
+- the mutual support of many considerations, which it fits into one coherent view.
+- none of the above.""
+Response: ""the mutual support of many considerations, which it fits into one coherent view.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In Butler’s view, injustice is caused by:
+Options: - desires for external goods.
+- love of injustice.
+- ill-will toward others.
+- self-hatred.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.02193182334303856,0.09185650944709778
+enlightened egoism.,justified constraint.,enlightened egoism.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Gauthier, the basis of morality is:""
+Options: ""- maximizing the utility of all sentient beings.
+- God’s commands.
+- the agreement of rational persons choosing the terms of their interaction.
+- the purposive order of nature.""
+Response: ""the agreement of rational persons choosing the terms of their interaction.""
+
+Example 2:
+Question: ""Gauthier claims that moral agreements that are equally favorable to all parties are desirable because they:""
+Options: ""- satisfy our desire for fairness.
+- satisfy the conceptual constraint against exploitation.
+- maximize the productivity of society.
+- invite the stable compliance of everyone.""
+Response: ""satisfy the conceptual constraint against exploitation.""
+
+Example 3:
+Question: ""In Brandt’s terminology, a moral code has currency in a society only if:""
+Options: ""- a high proportion of the adults in the society subscribe to its principles.
+- it is recognized as the moral code of the society.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+Example 4:
+Question: ""Brandt claims that whether a moral code is ideal depends in part on:""
+Options: ""- the complexity of the rules.
+- how many people would likely violate it.
+- the costs of its restrictions, in terms of the guilt it induces.
+- all of the above.""
+Response: ""all of the above""
+
+Example 5:
+Question: ""Gauthier claims that there is nothing for practical rationality to be besides:""
+Options: ""- moral justification.
+- deliberative justification.
+- epistemic justification.
+- an illusion.""
+Response: ""deliberative justification""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: The morality that Gauthier describes as facing a foundational crisis essentially involves:
+Options: - enlightened egoism.
+- pure altruism.
+- justified constraint.
+- prima facie duties.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.06900246441364288,0.17330700159072876
+the thing in itself.,legislating for oneself.,the thing in itself.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Anscombe claims that the notion of moral obligation is derived from the concept of:""
+Options: ""- preference.
+- maximizing utility.
+- positive law.
+- divine law.""
+Response: ""divine law""
+
+Example 2:
+Question: ""Anscombe claims that it is not profitable to do moral philosophy until we have an adequate philosophy of:""
+Options: ""- religion.
+- physics.
+- psychology.
+- art.""
+Response: ""psychology.""
+
+Example 3:
+Question: ""Anscombe claims that an adequate moral psychology would include:""
+Options: ""- an answer to the mind-body problem.
+- analyses of concepts such as “action” and “intention.”
+- an explanation of how free will is possible.
+- all of the above.""
+Response: ""all of the above""
+
+Example 4:
+Question: ""Kant says that when trying to decide whether an action is morally permissible, we must ask if we can consistently will that the maxim of our action should become _____.""
+Options: ""- a rule for maximizing happiness
+- a contingent law
+- a universal law
+- a rule of thumb""
+Response: ""a universal law""
+
+Example 5:
+Question: ""Anscombe criticizes Butler on the grounds that:""
+Options: ""- our consciences are fallible.
+- the notion of “legislating for oneself” is absurd.
+- we really can derive an “ought” from an “is.”
+- the concept of “pleasure” is unclear.""
+Response: ""the notion of “legislating for oneself” is absurd.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Anscombe criticizes as absurd Kant’s idea of:
+Options: - the thing in itself.
+- the categorical imperative.
+- the phenomenal self.
+- legislating for oneself.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.037922874093055725,0.07409515231847763
+essential and inevitable.,an unerring guide,essential and inevitable,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to d'Holbach, all the mental and moral attributes that people think are evidence for an immaterial soul are in fact _____.""
+Options: ""- purely intellectual
+- purely physical and natural
+- ethereal
+- undetermined""
+Response: ""purely physical and natural""
+
+Example 2:
+Question: ""According to Aristotle, happiness is:""
+Options: ""- a state of mind.
+- a feeling or sensation.
+- a craft.
+- activity of the soul in accordance with virtue.""
+Response: ""activity of the soul in accordance with virtue.""
+
+Example 3:
+Question: ""Brandt claims that whether a moral code is ideal depends in part on:""
+Options: ""- the complexity of the rules.
+- how many people would likely violate it.
+- the costs of its restrictions, in terms of the guilt it induces.
+- all of the above.""
+Response: ""all of the above""
+
+Example 4:
+Question: ""According to Kant, moral laws are:""
+Options: ""- necessary and apply to all rational beings.
+- contingent and apply only to human beings.
+- culturally relative.
+- grounded in God’s commands.""
+Response: ""necessary and apply to all rational beings.""
+
+Example 5:
+Question: ""Anscombe claims that an adequate moral psychology would include:""
+Options: ""- an answer to the mind-body problem.
+- analyses of concepts such as “action” and “intention.”
+- an explanation of how free will is possible.
+- all of the above.""
+Response: ""all of the above""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In the moral life, feelings are _____.
+Options: - essential and inevitable
+- essential to impartiality
+- an unerring guide
+- reason based
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.07272100448608398,0.19838416576385498
+all of the above.,in accord with Nature.,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Cicero claims that it is sometimes permissible to:""
+Options: ""- commit acts of injustice.
+- break one’s promises.
+- steal.
+- none of the above.""
+Response: ""commit acts of injustice.""
+
+Example 2:
+Question: ""Cicero argues that we will never go morally astray if we:""
+Options: ""- follow our conscience.
+- follow the laws.
+- follow religious edicts.
+- follow Nature as our guide.""
+Response: ""follow our conscience.""
+
+Example 3:
+Question: ""Cicero claims that there could be “no more pernicious doctrine” than the idea that:""
+Options: ""- the gods do not care what we do.
+- a thing may be expedient without being morally right.
+- moral rightness is relative to one’s culture.
+- it is sometimes permissible to lie.""
+Response: ""the gods do not care what we do.""
+
+Example 4:
+Question: ""According to Cicero, immorality is __________, and expediency is __________.""
+Options: ""- repugnant to Nature; repugnant to Nature.
+- repugnant to Nature; in accord with Nature.
+- in accord with Nature; repugnant to Nature.
+- in accord with Nature; in accord with Nature.""
+Response: ""repugnant to Nature; in accord with Nature.""
+
+Example 5:
+Question: ""In Cicero’s view, each person is invested by Nature with two characters:""
+Options: ""- universal and individual.
+- virtuous and vicious.
+- good and evil.
+- divine and beastly.""
+Response: ""good and evil.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Cicero, it is expedient to be:
+Options: - just.
+- generous.
+- kind.
+- all of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.061928339302539825,0.05368492007255554
+all of the above.,"the costs of its restrictions, in terms of the guilt it induces.",all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Brandt’s theory, an ideal moral rule is one that would:""
+Options: ""- maximize positive utility, ignoring negative utility.
+- minimize negative utility, ignoring positive utility.
+- maximize utility, with both positive and negative utilities being counted.
+- take no account of either positive or negative utility.""
+Response: ""maximize utility, with both positive and negative utilities being counted.""
+
+Example 2:
+Question: ""In Brandt’s terminology, a moral code has currency in a society only if:""
+Options: ""- a high proportion of the adults in the society subscribe to its principles.
+- it is recognized as the moral code of the society.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+Example 3:
+Question: ""According to the Ideal Moral Code theory, one is obligated to do what the ideal moral rules would require:""
+Options: ""- in one’s actual institutional setting.
+- in an ideal institutional setting.
+- in a setting devoid of institutions.
+- in a world in which everyone complied with those rules perfectly.""
+Response: ""in an ideal institutional setting.""
+
+Example 4:
+Question: ""The version of utilitarianism that Brandt defends makes rightness a function of:""
+Options: ""- the consequences of particular acts.
+- the actual and recognized rules of society.
+- ideal rules.
+- whether or not one’s maxim can be universalized.""
+Response: ""the consequences of particular acts.""
+
+Example 5:
+Question: ""A moral theory explains _____.""
+Options: ""- why an action is right or wrong
+- why one moral event caused another
+- where a moral agent got her values
+- why people do what they do""
+Response: ""why an action is right or wrong""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Brandt claims that whether a moral code is ideal depends in part on:
+Options: - the complexity of the rules.
+- how many people would likely violate it.
+- the costs of its restrictions, in terms of the guilt it induces.
+- all of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,2,0.05670739337801933,0.11166897416114807
+the consequences of particular acts.,ideal rules.,the consequences of particular acts.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Brandt’s theory, an ideal moral rule is one that would:""
+Options: ""- maximize positive utility, ignoring negative utility.
+- minimize negative utility, ignoring positive utility.
+- maximize utility, with both positive and negative utilities being counted.
+- take no account of either positive or negative utility.""
+Response: ""maximize utility, with both positive and negative utilities being counted.""
+
+Example 2:
+Question: ""Brandt claims that whether a moral code is ideal depends in part on:""
+Options: ""- the complexity of the rules.
+- how many people would likely violate it.
+- the costs of its restrictions, in terms of the guilt it induces.
+- all of the above.""
+Response: ""all of the above""
+
+Example 3:
+Question: ""In Brandt’s terminology, a moral code has currency in a society only if:""
+Options: ""- a high proportion of the adults in the society subscribe to its principles.
+- it is recognized as the moral code of the society.
+- both a and b.
+- neither a nor b.""
+Response: ""both a and b.""
+
+Example 4:
+Question: ""Mill claims that one of the strongest objections to utilitarianism is drawn from the idea of:""
+Options: ""- duty.
+- justice.
+- virtue.
+- supererogation.""
+Response: ""justice.""
+
+Example 5:
+Question: ""Rawls argues that parties in the original position would not accept utilitarianism because:""
+Options: ""- it is too difficult to determine which policies would maximize happiness.
+- doing so would be too risky.
+- it requires us to do unjust things, such as executing innocent people.
+- they would be behind the veil of ignorance and thus would never have heard of utilitarianism.""
+Response: ""it requires us to do unjust things, such as executing innocent people.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: The version of utilitarianism that Brandt defends makes rightness a function of:
+Options: - the consequences of particular acts.
+- the actual and recognized rules of society.
+- ideal rules.
+- whether or not one’s maxim can be universalized.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.1574244201183319,0.12175222486257553
+All of the above.,The same debates are rehearsed over decades.,All of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Baier claims that ethical skepticism is often due to:""
+Options: ""- confused metaphysical theories.
+- confused epistemological theories.
+- confused religious views.
+- confused scientific theories.""
+Response: ""confused epistemological theories.""
+
+Example 2:
+Question: ""Why is it ""easier said than done"" to ensure that the principle of informed consent is adhered to?""
+Options: ""- It is not practicable to present every participant with all the information about the study.
+- Sometimes it is desirable to withhold certain pieces of information, such as the length of time an interview will take.
+- If the participants knew exactly what the researcher was intending to study, they might change their behavior.
+- All of the above.""
+Response: ""All of the above""
+
+Example 3:
+Question: ""Stevenson claims that the primary use of ethical judgments is to:""
+Options: ""- state facts.
+- influence the interests of others.
+- describe one’s own approval of things.
+- none of the above.""
+Response: ""describe one’s own approval of things.""
+
+Example 4:
+Question: ""According to Aristotle, we should begin ethical inquiry by specifying:""
+Options: ""- which things are intrinsically valuable.
+- the aim of human life.
+- what our fundamental duties are.
+- what constraints on behavior it would be reasonable to agree to.""
+Response: ""the aim of human life.""
+
+Example 5:
+Question: ""How many categories of ethical principles do Diener and Crandell refer to?""
+Options: ""- Three: harm to students; lack of informed consent; invasion of privacy on social media.
+- Four: harm to participants; lack of informed consent; invasion of privacy; involvement of deception
+- Two: ethical and unethical
+- Two: right and wrong""
+Response: ""Four: harm to participants; lack of informed consent; invasion of privacy; involvement of deception""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: What are some of the frequent frustrations in writing or reading about research ethics?
+Options: - Writers differ over what is ethically acceptable.
+- The same debates are rehearsed over decades.
+- Cases of ethical violation tend to be linked with certain research methods.
+- All of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,0.06671589612960815,0.18660098314285278
+"cannot be proven, but this is common to all first principles.","cannot be proven, and this is a unique problem for the theory.","cannot be proven, but this is common to all first principles.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Mill defines “utility” as:""
+Options: ""- usefulness for some craft.
+- usefulness to society.
+- pleasure and the absence of pain.
+- it promotes the interests of all and does not harm anyone.""
+Response: ""pleasure and the absence of pain.""
+
+Example 2:
+Question: ""Mill claims that one of the strongest objections to utilitarianism is drawn from the idea of:""
+Options: ""- duty.
+- justice.
+- virtue.
+- supererogation.""
+Response: ""justice.""
+
+Example 3:
+Question: ""When faced with the complaint that utilitarianism is a doctrine worthy of swine, Mill responds that pleasures differ in:""
+Options: ""- purity.
+- quality.
+- species.
+- weight.""
+Response: ""quality""
+
+Example 4:
+Question: ""Mill claims that in deciding how to act:""
+Options: ""- we should always calculate the expected consequences of our action.
+- we should depend on rules of thumb derived from the principle of utility.
+- we should consult tradition.
+- we should consult scripture.""
+Response: ""we should depend on rules of thumb derived from the principle of utility.""
+
+Example 5:
+Question: ""According to Mill, to determine whether one pleasure is more valuable than another, we must _____.""
+Options: ""- determine which one is objectively most pleasurable
+- determine which pleasure most experienced people prefer
+- consult philosophers of the past
+- consult science""
+Response: ""determine which pleasure most experienced people prefer""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Mill claims that the principle of utility:
+Options: - can be proven from self-evident principles.
+- can be proven from principles that are known empirically.
+- cannot be proven, and this is a unique problem for the theory.
+- cannot be proven, but this is common to all first principles.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,2,0.006299186497926712,0.0012864712625741959
+Identity theory.,"Based on the given examples, I predict the black-box model's response to the new question will be:
+
+""epiphenomenalism""",identity theory,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""The idea that mental states are dispositions to behave in particular ways in certain circumstances is known as _____.""
+Options: ""- logical nominalism
+- logical behaviorism
+- methodological behaviorism
+- eliminative materialism""
+Response: ""logical behaviorism""
+
+Example 2:
+Question: ""The view that we consist of two distinct substances (body and mind) and that these two interact is known as _____.""
+Options: ""- functionalism
+- identity theory
+- substance dualism
+- materialism""
+Response: ""substance dualism""
+
+Example 3:
+Question: ""Logical behaviorism is at odds with our commonsense intuition that mental states _____.""
+Options: ""- cause behavior
+- never cause behavior
+- exist
+- do not exist""
+Response: ""cause behavior""
+
+Example 4:
+Question: ""Moral theories that say that the rightness of actions depends solely on their consequences are _____.""
+Options: ""- deontological
+- virtue oriented
+- consequentialist
+- egoistic""
+Response: ""consequentialist""
+
+Example 5:
+Question: ""Berkeley asserts that existing and perceiving are _____.""
+Options: ""- one and the same thing
+- both nonexistent
+- two distinct things
+- imaginary""
+Response: ""one and the same thing""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: The theory that says mental states are nothing but brain states is known as _____.
+Options: - brain theory
+- epiphenominalism
+- identity theory
+- logical behaviorism
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,3,0.07719559222459793,0.2776682376861572
+more effectively than we could get it to our close neighbors.,almost as effectively as we could get it to our close neighbors.,more effectively than we could get it to our close neighbors.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In response to the argument that famine relief is counterproductive because it leads to overpopulation, Singer claims that:""
+Options: ""- this has empirically been shown to be false.
+- this is true, but should not be of moral concern to us.
+- this is a reason to give money to population control efforts.
+- there is no such thing as “overpopulation.”""
+Response: ""this has empirically been shown to be false.""
+
+Example 2:
+Question: ""Singer claims that his conclusions are similar to those of:""
+Options: ""- Plato.
+- Aristotle.
+- Thomas Aquinas.
+- Immanuel Kant.""
+Response: ""Aristotle.""
+
+Example 3:
+Question: ""Singer claims that his argument upsets the traditional distinction between:""
+Options: ""- duty and charity.
+- egoism and altruism.
+- rights and privileges.
+- positive and negative rights.""
+Response: ""duty and charity.""
+
+Example 4:
+Question: ""One objection to Singer’s theory that he considers is that it:""
+Options: ""- does not do enough to address suffering in other countries besides our own.
+- inappropriately makes proximity morally important.
+- does not account for the fact that we have stricter obligations to our loved ones than to strangers.
+- requires too drastic a revision to our moral scheme.""
+Response: ""does not account for the fact that we have stricter obligations to our loved ones than to strangers.""
+
+Example 5:
+Question: ""According to Singer, compliance with his principle requires:""
+Options: ""- modest changes to our personal habits, but not to our society as a whole.
+- modest changes to our personal habits, as well as to society.
+- drastic changes to our personal habits, but not to our society.
+- drastic changes to both our personal habits and to our society.""
+Response: ""drastic changes to both our personal habits and to our society.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Singer claims that famine relief organizations direct our aid to distant refugees:
+Options: - more effectively than we could get it to our close neighbors.
+- almost as effectively as we could get it to our close neighbors.
+- quite inefficiently, but they are still worth donating to.
+- very inefficiently, and are therefore not worth donating to.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,-0.020537305623292923,-0.011201358400285244
+the moral value of works of art and other objects that could be judged beautiful,good and bad works of art and other objects that could be judged beautiful,the moral value of works of art and other objects that could be judged beautiful,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""A prominent view is that an object has aesthetic value if it _____.""
+Options: ""- cannot be defined
+- has no utility
+- serves some important function
+- has no meaning""
+Response: ""has no utility""
+
+Example 2:
+Question: ""Aesthetics deals with objects that are_____.""
+Options: ""- essential to our existence
+- unimportant to most people
+- not essential to our existence
+- rarely viewed""
+Response: ""not essential to our existence""
+
+Example 3:
+Question: ""Aesthetics addresses questions that interest _____.""
+Options: ""- only philosophers
+- only critics
+- no one
+- philosophers and nonphilosophers""
+Response: ""philosophers and nonphilosophers""
+
+Example 4:
+Question: ""Hume argues that the criteria for judging aesthetic value are _____.""
+Options: ""- entirely subjective
+- unchangeable
+- entirely objective
+- unknown""
+Response: ""entirely subjective""
+
+Example 5:
+Question: ""Disagreements about the aesthetic value or social relevance of a piece of art are _____.""
+Options: ""- uncommon
+- common
+- vacuous
+- never serious""
+Response: ""common""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Aesthetic values have to do with _______
+Options: - the moral value of works of art and other objects that could be judged beautiful
+- good and bad works of art and other objects that could be judged beautiful
+- the moral values of artists and critics
+- pragmatic decisions regarding the display of art
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.07753701508045197,0.10869227349758148
+will produce someone who does the right thing simply because it is right.,will make no use of pleasure or pain as sanctions.,will produce someone who does the right thing simply because it is right.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Feinberg claims that the best way to pursue happiness is to:""
+Options: ""- pursue pleasure.
+- pursue happiness.
+- forget about happiness.
+- none of the above.""
+Response: ""pursue pleasure.""
+
+Example 2:
+Question: ""According to Ross, we should construct a moral theory by:""
+Options: ""- constructing logical proofs for moral principles.
+- consulting social conventions.
+- reflecting on what we really think.
+- consulting scripture.""
+Response: ""reflecting on what we really think.""
+
+Example 3:
+Question: ""Brandt claims that whether a moral code is ideal depends in part on:""
+Options: ""- the complexity of the rules.
+- how many people would likely violate it.
+- the costs of its restrictions, in terms of the guilt it induces.
+- all of the above.""
+Response: ""all of the above""
+
+Example 4:
+Question: ""Anscombe claims that an adequate moral psychology would include:""
+Options: ""- an answer to the mind-body problem.
+- analyses of concepts such as “action” and “intention.”
+- an explanation of how free will is possible.
+- all of the above.""
+Response: ""all of the above""
+
+Example 5:
+Question: ""Anscombe claims that it is not profitable to do moral philosophy until we have an adequate philosophy of:""
+Options: ""- religion.
+- physics.
+- psychology.
+- art.""
+Response: ""psychology.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Feinberg, a good moral education:
+Options: - will make no use of pleasure or pain as sanctions.
+- will be based entirely on the use of pleasure and pain as sanctions.
+- will produce someone who does the right thing out of deference to authority.
+- will produce someone who does the right thing simply because it is right.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.2269432544708252,0.032468557357788086
+the pineal gland,"Based on the given examples, the black-box model tends to provide answers that are accurate and relevant to the context of the question. In the case of the new question, the correct answer is related to the interaction between body and mind, which is a central theme in Descartes' philosophy.
+
+Given the options provided, the most likely response from the black-box model would be:
+
+the pineal gland
+
+This is because the pineal gland is the specific location in the brain that Descartes believed was the site of interaction between the mind and body.",the pineal gland,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""At first Descartes supposes that everything he sees is _____.""
+Options: ""- TRUE
+- FALSE
+- part of him
+- undeniable""
+Response: ""FALSE""
+
+Example 2:
+Question: ""The view that we consist of two distinct substances (body and mind) and that these two interact is known as _____.""
+Options: ""- functionalism
+- identity theory
+- substance dualism
+- materialism""
+Response: ""substance dualism""
+
+Example 3:
+Question: ""Descartes says that the chief characteristic of physical things is that _____.""
+Options: ""- they cannot be measured
+- science can study them
+- they do not have extension
+- they have extension""
+Response: ""they have extension""
+
+Example 4:
+Question: ""Descartes declares that he is _____.""
+Options: ""- a body
+- a dream
+- a thing that thinks
+- a thing that cannot exist""
+Response: ""a thing that thinks""
+
+Example 5:
+Question: ""Descartes had been disillusioned by his discovery that many of the alleged truths learned in his youth were _____.""
+Options: ""- contrary to his religion
+- TRUE
+- FALSE
+- beyond question""
+Response: ""contrary to his religion""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Descartes believed that interaction between body and mind took place in _____.
+Options: - ectoplasm
+- the brain stem
+- the pineal gland
+- the nervous system
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,3,-0.0005774367600679398,0.13244560360908508
