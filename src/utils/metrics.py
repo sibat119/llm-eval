@@ -242,7 +242,7 @@ def compute_sbert_similarity(predictions, ground_truths):
         return 0.0
     
     
-def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=None, surrogate_output_wo_prior=None):
+def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=None, surrogate_output_wo_prior=None, prompts=None):
     """
     Compute all metrics at once and return as a dictionary
     """
@@ -266,7 +266,7 @@ def compute_all_metrics(predictions, ground_truths, options, blackbox_outputs=No
         # Add transition metrics if we have both with and without mind model outputs
         if surrogate_output_wo_prior is not None:
             transition_metrics = compute_agreement_transitions(
-                surrogate_output_wo_prior, predictions, blackbox_outputs, ground_truths, options
+                surrogate_output_wo_prior, predictions, blackbox_outputs, ground_truths, options, prompts
             )
             metrics['transition_metrics'] = transition_metrics
     
@@ -482,7 +482,8 @@ def compute_output_agreement(model_outputs, blackbox_outputs, ground_truths, opt
                 'model_output': model_outputs[idx],
                 'blackbox_output': blackbox_outputs[idx],
                 'ground_truth': ground_truths[idx],
-                'options': options[idx]
+                'options': options[idx],
+                
             }
             for idx in sampled_agreement_indices
         ]
@@ -509,7 +510,7 @@ def compute_output_agreement(model_outputs, blackbox_outputs, ground_truths, opt
         'disagreement_samples': disagreement_samples
     }
 
-def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_w_prior, blackbox_outputs, ground_truths, options):
+def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_w_prior, blackbox_outputs, ground_truths, options, prompts):
     """
     Compute agreement transitions between outputs without mind model (zero-shot) and with mind model (few-shot).
     
@@ -580,8 +581,12 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
     zero_disagree_few_agree_similarities = []
     zero_disagree_few_disagree_similarities = []
     
-    for zero_out, few_out, bb_out, truth, opts in zip(
-        surrogate_outputs_wo_prior, surrogate_outputs_w_prior, blackbox_outputs, ground_truths, options
+    zero_agree_few_disagree_samples = []
+    
+    
+    
+    for zero_out, few_out, bb_out, truth, opts, prompt in zip(
+        surrogate_outputs_wo_prior, surrogate_outputs_w_prior, blackbox_outputs, ground_truths, options, prompts
     ):
         if not zero_out or not few_out or not bb_out or not opts:
             continue
@@ -610,6 +615,14 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
         # Calculate cosine similarity between zero-shot and few-shot outputs
         # Convert NumPy float32 to native Python float to ensure JSON serialization
         cosine_sim = float(cosine_similarity(zero_embedding, few_embedding)[0][0])
+        prompt_embedding = model.encode([prompt], convert_to_numpy=True)
+        few_shot_option = opts[few_top_idx]
+        zero_shot_option = opts[zero_top_idx]
+        zero_shot_option_embb = model.encode([zero_shot_option], convert_to_numpy=True)
+        few_shot_option_embb = model.encode([few_shot_option], convert_to_numpy=True)
+        
+        prompt_pick_cosine_sim_zero = float(cosine_similarity(zero_shot_option_embb, prompt_embedding)[0][0])
+        prompt_pick_cosine_sim_few = float(cosine_similarity(few_shot_option_embb, prompt_embedding)[0][0])
         
         # Track token lengths (using simple splitting as approximation)
         zero_surrogate_length = len(zero_out.split())
@@ -645,6 +658,18 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
         elif zero_agreement and not few_agreement:
             zero_agree_few_disagree += 1
             zero_agree_few_disagree_similarities.append(cosine_sim)
+            zero_agree_few_disagree_samples.append(
+                {
+                    "zero_shot_response": zero_out,
+                    "few_shot_response": few_out,
+                    "black_box_response": bb_out,
+                    "prompt": prompt,
+                    "zero_shot_top_index": int(zero_top_idx),
+                    "few_shot_top_index": int(few_top_idx),
+                    "prompt_pick_cosine_sim_zero": prompt_pick_cosine_sim_zero,
+                    "prompt_pick_cosine_sim_few": prompt_pick_cosine_sim_few,
+                }
+            )
         elif not zero_agreement and few_agreement:
             zero_disagree_few_agree += 1
             zero_disagree_few_agree_similarities.append(cosine_sim)
@@ -692,6 +717,7 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
             "zero_agree_few_disagree": round(zero_agree_few_disagree / total_valid, 2),
             "zero_disagree_few_agree": round(zero_disagree_few_agree / total_valid, 2),
             "zero_disagree_few_disagree": round(zero_disagree_few_disagree / total_valid, 2),
+            "agree_to_disagree_samples": zero_agree_few_disagree_samples
         },
         "response_length_metrics": {
             "zero_shot": {

@@ -1,0 +1,820 @@
+zero_shot_response,few_shot_response,black_box_response,prompt,zero_shot_top_index,few_shot_top_index,prompt_pick_cosine_sim_zero,prompt_pick_cosine_sim_few
+"Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.,"Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Publishing and selling the creative work of others and protecting property rights of one's own creative work is regulated by""
+Options: ""- libel and publication regulations
+- access and deregulation
+- Securities and Exchange Commission
+- copyright and trademark law""
+Response: ""copyright and trademark law""
+
+Example 2:
+Question: ""In public relations, ________ deals with an organization's ability to satisfy and create a positive experience for its consumers.""
+Options: ""- community relations
+- consumer relations
+- employee relations
+- public issues""
+Response: ""consumer relations""
+
+Example 3:
+Question: ""According to Esman (1972), which publics help an organization to exist by lending authority or assistance?""
+Options: ""- Enabling
+- Functional
+- Normative
+- Diffused""
+Response: ""Enabling""
+
+Example 4:
+Question: ""Which of these should an objective NOT be?""
+Options: ""- Broad
+- Achievable
+- Measurable
+- Time-bound""
+Response: ""Broad""
+
+Example 5:
+Question: ""Which of these phrases refers specifically to a crisis, rather than an issue?""
+Options: ""- A gap between corporate and stakeholder expectations.
+- When an organization's trading is interrupted.
+- Can be avoided with constant monitoring and relationship building.
+- It happens suddenly.""
+Response: ""When an organization's trading is interrupted.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: You are the community relations director for a public water utility that has been targeted by a group of activists opposed to adding fluoride to drinking water. The activists are waging an intense internet campaign against the practice. Your utility has overwhelming evidence of the health benefits to fluoridated water. The manager of the utility asks you to initiate a blog to get the health message out. What is the most appropriate course of action?
+Options: - Use utility employees to write the blog, posing as dentists and physicians.
+- Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.
+- Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.
+- Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.1628044843673706,0.12340275943279266
+Staying abreast of changing technology.,"Based on the given examples, the black-box model tends to select the option that is most specific or unique among the choices. In the case of the new question, I would predict the response to be:
+
+""Representing clients using new social media environments.""",Staying abreast of changing technology.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In the public relations field, what is the most common threat to a client-firm relationship?""
+Options: ""- Clients' questions about costs
+- Resistance to outside advice
+- Superficial grasp of the client's unique problems
+- Personality conflicts""
+Response: ""Personality conflicts.""
+
+Example 2:
+Question: ""Which of the following is NOT one of the four categories of persuasive crisis communication strategies identified by W. Timothy Coombs?""
+Options: ""- ingratiation
+- downplaying
+- distancing
+- nonexistence""
+Response: ""nonexistence""
+
+Example 3:
+Question: ""There are three basic types of persuasive advertising campaigns. Which of the following is NOT one of them?""
+Options: ""- Product-oriented
+- Person-oriented
+- Idea-oriented
+- Result-oriented""
+Response: ""Result-oriented""
+
+Example 4:
+Question: ""The Web was effectively invented by Berners-Lee in which year?""
+Options: ""- 1980
+- 1989
+- 1991
+- 1993""
+Response: ""1989""
+
+Example 5:
+Question: ""When a campaign becomes noticed and unavoidable, it has achieved the ________ stage.""
+Options: ""- participation
+- penetration
+- distribution
+- identification""
+Response: ""penetration""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which of the following Internet-related challenges is most significant in the public relations field?
+Options: - Representing clients using new social media environments
+- Finding stable, cost-effective Internet providers
+- Training staff to use social media
+- Staying abreast of changing technology
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.0977480560541153,0.15532371401786804
+Video.,"Based on the given examples, it appears that the black-box model is selecting the option that is NOT true or the option that is NOT a characteristic of the subject being asked about. 
+
+In the case of the new question, the options are all potential drivers of internet traffic growth. However, the question asks for the ""main driver"" which implies a singular answer. Given the format of the previous questions, I would predict that the black-box model will select the option that is NOT the main driver of internet traffic growth, or the option that is less likely to be the main driver.
+
+However, since all options are plausible drivers of internet traffic growth, I will choose the option that is the least likely to be the main driver based on general trends. 
+
+Video is a significant driver of internet traffic, but it is not the only driver. Online consumer goods purchases, online auctions, and music are also significant drivers. However, online consumer goods purchases are a broad category that encompasses many other drivers, such as video and music. Therefore, I predict that the black-box model will select ""Video"" as the main driver of internet traffic growth.
+
+Predicted Response: ""Video""",Video,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which of the following information about publications does the Audit Bureau of Circulation NOT provide?""
+Options: ""- Circulation
+- Distribution
+- Traffic
+- Readership""
+Response: ""Traffic""
+
+Example 2:
+Question: ""Which of these should an objective NOT be?""
+Options: ""- Broad
+- Achievable
+- Measurable
+- Time-bound""
+Response: ""Broad""
+
+Example 3:
+Question: ""Which statement is NOT true of both issues management and crisis management?""
+Options: ""- They both require research monitoring.
+- They both deal with acute risks.
+- New organizational practices are developed as a result of each.
+- Both have the potential to damage an organisation's reputation.""
+Response: ""New organizational practices are developed as a result of each.""
+
+Example 4:
+Question: ""What is the major advantage of organizational publications?""
+Options: ""- Their ability to provide a revenue source for sponsoring organizations
+- Their ability to deliver specific, detailed information to narrowly defined target publics
+- Their ability to avoid the problems typically associated with two-way media
+- Their ability to give sponsoring organizations a means of uncontrolled communications""
+Response: ""Their ability to deliver specific, detailed information to narrowly defined target publics""
+
+Example 5:
+Question: ""The process of identifying publics who are involved and affected by a situation central to an organization is called a(n)""
+Options: ""- exploratory survey
+- situation interview
+- communication audit
+- stakeholder analysis""
+Response: ""stakeholder analysis""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Internet traffic is expected to grow by 400% in the next few years. What is predicted to be the main driver of this?
+Options: - Online consumer goods purchases
+- Video
+- Music
+- Online auctions
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,0,0.011143798939883709,0.031835686415433884
+The American flag is an example of a symbol.,"Based on the given examples, I predict the most likely response from the black-box model to the new question is:
+
+""symbol""",symbol,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Esman (1972), which publics are related to the organisation through shared industrial interests?""
+Options: ""- Enabling
+- Functional
+- Normative
+- Diffused""
+Response: ""Functional""
+
+Example 2:
+Question: ""Internet traffic is expected to grow by 400% in the next few years. What is predicted to be the main driver of this?""
+Options: ""- Online consumer goods purchases
+- Video
+- Music
+- Online auctions""
+Response: ""Video""
+
+Example 3:
+Question: ""How many regional newspapers are there in the UK?""
+Options: ""- 270
+- 600
+- 2,800
+- 5,200""
+Response: ""2,800""
+
+Example 4:
+Question: ""Which type of measurement is the most effective choice for evaluating a campaign's impact on audience attitudes?""
+Options: ""- preparing a content analysis of media coverage
+- studying the content of blog postings about your issue
+- analyzing pre and post sales reports for changes in sales
+- conducting a pre and post analysis of constituents' opinions""
+Response: ""conducting a pre and post analysis of constituents' opinions.""
+
+Example 5:
+Question: ""Which of the following Internet-related challenges is most significant in the public relations field?""
+Options: ""- Representing clients using new social media environments
+- Finding stable, cost-effective Internet providers
+- Training staff to use social media
+- Staying abreast of changing technology""
+Response: ""Staying abreast of changing technology.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: The American flag is an example of a
+Options: - stereotype
+- semantic device
+- symbol
+- message
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.05539657920598984,0.26870954036712646
+Information being delivered in different formats via various digital channels.,The conglomeration of media outlets into large corporations.,Information being delivered in different formats via various digital channels.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""You are director of communications for a local non-profit chapter organization that is an affiliate of a large national non-profit organization. You are frequently asked to secure media coverage using news releases provided by national headquarters located in another state. Which action would most improve your chances of success with these materials?""
+Options: ""- Use your relationships with local donors to gain coverage.
+- Localize the news releases for audiences in your geography.
+- Pitch the news releases as written, but include a quote from your chapter's executive director.
+- Remind editors that your organization is a national, prominent non-profit to which their publisher donates.""
+Response: ""Localize the news releases for audiences in your geography.""
+
+Example 2:
+Question: ""________ is most common to political campaigns because it focuses on raising the public's awareness about a particular person in hopes they will either support or not support the person.""
+Options: ""- Product-oriented advertising
+- Idea-oriented advertising
+- Person-oriented advertising
+- Platform-oriented advertising""
+Response: ""Person-oriented advertising""
+
+Example 3:
+Question: ""Which statement is true about an open systems model of public relations in an organization?""
+Options: ""- It adapts to changing organizational environments.
+- It adopts the policy of transparency to build public trust.
+- It focuses on removing communication barriers between its business divisions.
+- It communicates with its publics frequently to effect change outside the organization.""
+Response: ""It adapts to changing organizational environments.""
+
+Example 4:
+Question: ""Which law restricts corporate communications for publicly traded companies before and during the period that new securities are being registered?""
+Options: ""- Securities Act of 1933
+- Sarbanes-Oxley Act of 2002
+- Investment Advisers Act of 1940
+- Investment Company Act of 1934""
+Response: ""Securities Act of 1933""
+
+Example 5:
+Question: ""What are two examples of an evaluation of outcome? ""
+Options: ""- Change in attitude
+- Placement of message
+- Distribution of message
+- Size of attentive audience""
+Response: ""Change in attitude
+Size of attentive audience""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which definition best describes media convergence?
+Options: - The conglomeration of media outlets into large corporations.
+- The way in which all media outlets post similar content to their competitors.
+- The many differing views and cultures expressed in modern media.
+- Information being delivered in different formats via various digital channels.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.17989617586135864,0.1631704419851303
+"9,574.","Based on the given examples, I predict the black-box model will respond with the option that is the most specific and detailed number. In this case, the most specific and detailed number is 9,574. 
+
+Predicted Response: ""9,574""","9,574","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In public relations, ________ deals with an organization's ability to satisfy and create a positive experience for its consumers.""
+Options: ""- community relations
+- consumer relations
+- employee relations
+- public issues""
+Response: ""consumer relations""
+
+Example 2:
+Question: ""Which of these types of survey question seeks qualitative information?""
+Options: ""- Likert scale
+- Multiple choice
+- Open-ended
+- Yes/No""
+Response: ""Open-ended""
+
+Example 3:
+Question: ""In what year did the BBC start broadcasting radio?""
+Options: ""- 1917
+- 1922
+- 1925
+- 1927""
+Response: ""1922""
+
+Example 4:
+Question: ""Who argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications?""
+Options: ""- Cutlip (2006)
+- Leitch and Neilson (2001)
+- Amaral and Phillips (2010)
+- Grunig and Hunt (1984)""
+Response: ""Grunig and Hunt (1984)""
+
+Example 5:
+Question: ""Early email was developed in which decade?""
+Options: ""- 1960s
+- 1970s
+- 1980s
+- 1990s""
+Response: ""1960s""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In recent research, the 14,000 stories that could be accessed on Google News' front page in a day pertained to how many actual news events?
+Options: - 18
+- 24
+- 326
+- 9,574
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,2,0.013806403614580631,0.09503671526908875
+Step 1.,"Based on the given examples, it appears that the black-box model is selecting the answer that is most directly related to the question. In this case, the question is asking about a specific step in a model, and the options are numbered steps.
+
+Given this pattern, I would predict that the black-box model will select the option that is most directly related to the question, which is the step number that corresponds to the action described in the question.
+
+Therefore, I predict that the black-box model will respond with: ""1""",2,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which common public relations tactic involves sending journalists on visits to appropriate locations?""
+Options: ""- Media release
+- Media tour
+- Press room
+- Promotional days/weeks""
+Response: ""Media tour""
+
+Example 2:
+Question: ""Which guerrilla marketing technique involves the spreading of a message about a product issue or service through online peer-to peer communication?""
+Options: ""- Fan pages
+- Street activities
+- Grassroots marketing
+- Viral campaigns""
+Response: ""Viral campaigns""
+
+Example 3:
+Question: ""Which type of writing employs the pyramid structure?""
+Options: ""- Media writing
+- Personal writing
+- Business writing
+- Promotional writing""
+Response: ""Media writing""
+
+Example 4:
+Question: ""Segmentation of the population into psychographics, demographics and geodemographics is especially important in which public relations specialisation?""
+Options: ""- Issues management
+- Investor relations
+- Public affairs
+- Marketing communications""
+Response: ""Marketing communications""
+
+Example 5:
+Question: ""Which area of public relations deals with emerging issues and their potential impact on an organization?""
+Options: ""- Public opinion
+- Issues management
+- Public affairs
+- Lobbying""
+Response: ""Issues management""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Watson and Noble (2005) lay out a five-step model for circular evaluation. At which step should pre-testing of strategy and tactics be carried out?
+Options: - 1
+- 2
+- 3
+- 4
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,0,0.08606104552745819,0.1198335587978363
+A communication audit.,"Based on the given examples, I predict the most likely response from the black-box model to be:
+
+""a listing of media contacts""",a communication audit,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which guerrilla marketing technique involves the spreading of a message about a product issue or service through online peer-to peer communication?""
+Options: ""- Fan pages
+- Street activities
+- Grassroots marketing
+- Viral campaigns""
+Response: ""Viral campaigns""
+
+Example 2:
+Question: ""Psychographics refers to""
+Options: ""- individual values, lifestyles and characteristics
+- individual sex, age, race and income statistics
+- potential influence
+- all of the above""
+Response: ""individual values, lifestyles and characteristics""
+
+Example 3:
+Question: ""Approximately half of all public relations practitioners work in""
+Options: ""- government
+- business and commercial areas
+- health care and hospitals
+- public relations firms""
+Response: ""business and commercial areas""
+
+Example 4:
+Question: ""Which of these sites offers 'microblogging?""
+Options: ""- YouTube
+- Facebook
+- Wikipedia
+- Twitter""
+Response: ""Twitter""
+
+Example 5:
+Question: ""Internet traffic is expected to grow by 400% in the next few years. What is predicted to be the main driver of this?""
+Options: ""- Online consumer goods purchases
+- Video
+- Music
+- Online auctions""
+Response: ""Video""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: The 'internal factors' portion of a firm's public relations situation analysis often includes
+Options: - a communication audit
+- strategy suggestions
+- community focus groups
+- a listing of media contacts
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.13287453353405,0.036288123577833176
+"Starbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.","Based on the given examples, it appears that the black-box model is selecting the answer that is most directly related to the question. In most cases, the correct answer is a single word or a short phrase that is a key concept or fact related to the question.
+
+For the new question, ""Which of these organizations is most effective in engaging with customers online?"", the most likely response from the black-box model would be the name of an organization that is well-known for its strong online engagement with customers.
+
+Given the options, I predict the black-box model's response to be: ""Starbucks""",Starbucks,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Early email was developed in which decade?""
+Options: ""- 1960s
+- 1970s
+- 1980s
+- 1990s""
+Response: ""1960s""
+
+Example 2:
+Question: ""In what year did the BBC start broadcasting radio?""
+Options: ""- 1917
+- 1922
+- 1925
+- 1927""
+Response: ""1922""
+
+Example 3:
+Question: ""Which of the following entities cannot sue for libel?""
+Options: ""- A politician
+- A house of worship
+- A government institution
+- A publicly-traded company""
+Response: ""A house of worship""
+
+Example 4:
+Question: ""The ________ part of a PR campaign includes proactively planning a response strategy, implementing that strategy in the event of a crisis, evaluating the crisis response, and revising the initial response strategy in an effort to improve for future crises.""
+Options: ""- public issues
+- crisis management
+- consumer relations
+- community relations""
+Response: ""crisis management""
+
+Example 5:
+Question: ""Which statement describes an idea from utilitarianism?""
+Options: ""- What is right and what is wrong are predetermined.
+- People should be treated as an end, not a means to an end.
+- The greatest good for the greatest number.
+- Those better off should give to people who are not as well off.""
+Response: ""The greatest good for the greatest number.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which of these organizations is most effective in engaging with customers online?
+Options: - Starbucks
+- Coca-Cola
+- Wholefoods
+- Redbull
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.021017735823988914,0.11709542572498322
+"They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.",They bring greater credibility to the work.,They offer flexibility of talents and skills. They bring greater credibility to the work. They can provide more attention and detail to a project that in-house staff.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In the public relations field, what is the most common threat to a client-firm relationship?""
+Options: ""- Clients' questions about costs
+- Resistance to outside advice
+- Superficial grasp of the client's unique problems
+- Personality conflicts""
+Response: ""Personality conflicts.""
+
+Example 2:
+Question: ""Tyler and his wife have been won over by the advertising campaign supporting Stan Johnson, who is running for mayor, so they put a 'Vote for Stan Johnson in November' sign in their front yard. Tyler and his wife are engaging in ________, the third step of the advertising campaign.""
+Options: ""- identification
+- legitimacy
+- penetration
+- participation""
+Response: ""participation""
+
+Example 3:
+Question: ""Approximately what proportion of nonprofit sector practitioners conduct audience research?""
+Options: ""- One-quarter
+- One-half
+- Two thirds
+- Almost all""
+Response: ""Almost all.""
+
+Example 4:
+Question: ""________ is most common to political campaigns because it focuses on raising the public's awareness about a particular person in hopes they will either support or not support the person.""
+Options: ""- Product-oriented advertising
+- Idea-oriented advertising
+- Person-oriented advertising
+- Platform-oriented advertising""
+Response: ""Person-oriented advertising""
+
+Example 5:
+Question: ""No-Wait Weight Loss, a diet pill brand, promises its potential consumers that if they take one pill once a day they will lose weight without having to change their diet or start exercising. However, many people who have used the product have complained that they haven't lost weight, and some have even gained weight. No-Wait Weight Loss has been unsuccessful in the ________ stage of the advertising campaign.""
+Options: ""- distribution
+- penetration
+- participation
+- identification""
+Response: ""penetration""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: What are major reasons why organizations retain outside public relations counsel? 
+Options: - They offer flexibility of talents and skills.
+- They bring greater credibility to the work. 
+- They will provide sound ROI on the project or program.
+- They can provide more attention and detail to a project that in-house staff.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,-0.010758889839053154,0.06550802290439606
+The 1960s.,"Based on the given examples, I predict the black-box model's response to the new question will be:
+
+""1970s""",1960s,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which guerrilla marketing technique involves the spreading of a message about a product issue or service through online peer-to peer communication?""
+Options: ""- Fan pages
+- Street activities
+- Grassroots marketing
+- Viral campaigns""
+Response: ""Viral campaigns""
+
+Example 2:
+Question: ""Newsletters generally fall in to which writing category?""
+Options: ""- Media writing
+- Personal writing
+- Business writing
+- Promotional writing""
+Response: ""Business writing""
+
+Example 3:
+Question: ""The goal of ________ advertising is to promote a specific product and service to a target audience.""
+Options: ""- person-oriented
+- product-oriented
+- profit-oriented
+- idea-oriented""
+Response: ""product-oriented""
+
+Example 4:
+Question: ""Which type of measurement is the most effective choice for evaluating a campaign's impact on audience attitudes?""
+Options: ""- preparing a content analysis of media coverage
+- studying the content of blog postings about your issue
+- analyzing pre and post sales reports for changes in sales
+- conducting a pre and post analysis of constituents' opinions""
+Response: ""conducting a pre and post analysis of constituents' opinions.""
+
+Example 5:
+Question: ""Leslie is a disgruntled employee who walks into her place of employment and shoots three people, killing two and critically injuring the other. What is Leslie's behavior an example of?""
+Options: ""- workplace violence
+- organizational misdeeds
+- megadamage
+- crisis management""
+Response: ""workplace violence""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Early email was developed in which decade?
+Options: - 1960s
+- 1970s
+- 1980s
+- 1990s
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,-0.022394709289073944,-0.012715348973870277
+Sponsorship.,Third parties.,Sponsorship,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which statement describes an idea from utilitarianism?""
+Options: ""- What is right and what is wrong are predetermined.
+- People should be treated as an end, not a means to an end.
+- The greatest good for the greatest number.
+- Those better off should give to people who are not as well off.""
+Response: ""The greatest good for the greatest number.""
+
+Example 2:
+Question: ""Which of these types of survey question seeks qualitative information?""
+Options: ""- Likert scale
+- Multiple choice
+- Open-ended
+- Yes/No""
+Response: ""Open-ended""
+
+Example 3:
+Question: ""You are the community relations director for a public water utility that has been targeted by a group of activists opposed to adding fluoride to drinking water. The activists are waging an intense internet campaign against the practice. Your utility has overwhelming evidence of the health benefits to fluoridated water. The manager of the utility asks you to initiate a blog to get the health message out. What is the most appropriate course of action?""
+Options: ""- Use utility employees to write the blog, posing as dentists and physicians.
+- Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.
+- Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.
+- Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.""
+Response: ""Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.""
+
+Example 4:
+Question: ""Which of the following Internet-related challenges is most significant in the public relations field?""
+Options: ""- Representing clients using new social media environments
+- Finding stable, cost-effective Internet providers
+- Training staff to use social media
+- Staying abreast of changing technology""
+Response: ""Staying abreast of changing technology.""
+
+Example 5:
+Question: ""Which definition best describes media convergence?""
+Options: ""- The conglomeration of media outlets into large corporations.
+- The way in which all media outlets post similar content to their competitors.
+- The many differing views and cultures expressed in modern media.
+- Information being delivered in different formats via various digital channels.""
+Response: ""Information being delivered in different formats via various digital channels.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which common public relations tactic can provide a 'halo effect'?
+Options: - Placement on TV or radio
+- Stunts
+- Third parties
+- Sponsorship
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,2,0.07206490635871887,0.024200858548283577

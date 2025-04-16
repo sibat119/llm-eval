@@ -16,8 +16,10 @@
 
 # Define arrays for variables
 sub_fields=("high_school_computer_science" "philosophy" "public_relations")
-prompt_strategies=("black_box" "persona" "pattern_recognition")
-selection_strategies=("similarity" "random")
+# prompt_strategies=("black_box" "persona" "pattern_recognition")
+prompt_strategies=("black_box")
+selection_strategies=("random")
+# selection_strategies=("similarity" "random")
 
 # Base models
 llama="meta-llama/Llama-3.1-8B-Instruct"
@@ -49,7 +51,8 @@ for sub_field in "${sub_fields[@]}"; do
                 --surrogate "$llama" \
                 --candidate "$qwen" \
                 --selection_strategy "$selection_strategy" \
-                --prompt_variation "$prompt_strategy"
+                --prompt_variation "$prompt_strategy" \
+                # --eval
 
             # Second configuration: Qwen as surrogate, Llama as candidate
             python -m src.surrogates.few_shot.few_shot \
@@ -69,7 +72,8 @@ for sub_field in "${sub_fields[@]}"; do
                 --surrogate "$qwen" \
                 --candidate "$llama" \
                 --selection_strategy "$selection_strategy" \
-                --prompt_variation "$prompt_strategy"
+                --prompt_variation "$prompt_strategy" \
+                # --eval
         done
     done
 done

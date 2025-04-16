@@ -1,0 +1,439 @@
+zero_shot_response,few_shot_response,black_box_response,prompt,zero_shot_top_index,few_shot_top_index,prompt_pick_cosine_sim_zero,prompt_pick_cosine_sim_few
+"Content, quality of source, relevance","Timing, content, quality of source, relevance, media liaison, human interest angle, political slant","Content, quality of source, relevance.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which statement describes an idea from Kantian ethics?""
+Options: ""- What is right and what is wrong are predetermined.
+- People should be treated as an end, not a means to an end.
+- The greatest good for the greatest number.
+- Those better off should give to people who are not as well off.""
+Response: ""<|start_header_id|>assistant
+
+People should be treated as an end, not a means to an end.""
+
+Example 2:
+Question: ""________ is most common to political campaigns because it focuses on raising the public's awareness about a particular person in hopes they will either support or not support the person.""
+Options: ""- Product-oriented advertising
+- Idea-oriented advertising
+- Person-oriented advertising
+- Platform-oriented advertising""
+Response: ""<|start_header_id|>assistant
+
+Person-oriented advertising.""
+
+Example 3:
+Question: ""Tyler and his wife have been won over by the advertising campaign supporting Stan Johnson, who is running for mayor, so they put a 'Vote for Stan Johnson in November' sign in their front yard. Tyler and his wife are engaging in ________, the third step of the advertising campaign.""
+Options: ""- identification
+- legitimacy
+- penetration
+- participation""
+Response: ""<|start_header_id|>assistant
+
+participation.""
+
+Example 4:
+Question: ""Why should a successful public relations counselor continually review present and future realities for an organization?""
+Options: ""- to develop a vision statement
+- to interpret trends for management
+- to interpret the organization's business plan
+- to consider the role public relations might play""
+Response: ""<|start_header_id|>assistant
+
+to interpret trends for management""
+
+Example 5:
+Question: ""Which guerrilla marketing technique involves the spreading of a message about a product issue or service through online peer-to peer communication?""
+Options: ""- Fan pages
+- Street activities
+- Grassroots marketing
+- Viral campaigns""
+Response: ""<|start_header_id|>assistant
+
+Viral campaigns.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which factors are mentioned that influence media coverage of a story?
+Options: - Content, quality of source, relevance
+- Timing, content, media liaison
+- Content, quality of source, human interest angle
+- Timing, relevance, political slant
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.1668449342250824,0.13865569233894348
+Interpersonal,Media,"Interpersonal communication is most effective in forming or changing predispositions toward an issue. This is because interpersonal communication involves direct, personal interaction between individuals, allowing for a deeper level of understanding, empathy, and emotional connection. It enables individuals to share personal experiences, values, and perspectives, which can lead to more meaningful and lasting changes in attitudes and predispositions.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which author emphasised strategy as achieving competitive advantage for an organization?""
+Options: ""- Steyn (2003)
+- Gregory (2006)
+- Cutlip et al (2006)
+- Henry (2006)""
+Response: ""Steyn (2003)""
+
+Example 2:
+Question: ""________ is most common to political campaigns because it focuses on raising the public's awareness about a particular person in hopes they will either support or not support the person.""
+Options: ""- Product-oriented advertising
+- Idea-oriented advertising
+- Person-oriented advertising
+- Platform-oriented advertising""
+Response: ""<|start_header_id|>assistant
+
+Person-oriented advertising.""
+
+Example 3:
+Question: ""Which of these ways a business impacts on the world do stakeholders NOT normally look at?""
+Options: ""- Workforce development
+- Impact on local communities
+- Impact on the environment
+- Financial performance""
+Response: ""Financial performance.""
+
+Example 4:
+Question: ""Which of the following entities cannot sue for libel?""
+Options: ""- A politician
+- A house of worship
+- A government institution
+- A publicly-traded company""
+Response: ""<|start_header_id|>assistant
+
+A publicly-traded company.""
+
+Example 5:
+Question: ""Early theories of mass communication suggested that audiences were passive recipients of media messages and thus vulnerable to manipulation. Which of the following best describes current thinking?""
+Options: ""- Audiences are more vulnerable and passive than ever before.
+- Television viewing, in particular, creates increased activity in the right hemisphere of the brain.
+- Active receivers are not uniformly affected by mass communication messages.
+- Technology has led to increasingly passive recipients at the ends of message transmission systems.""
+Response: ""Active receivers are not uniformly affected by mass communication messages.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which form of communication is most effective in forming or changing predispositions toward an issue?
+Options: - Interpersonal
+- Media
+- Group
+- Public
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.08572658151388168,0.13167765736579895
+2,3,Step 1.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""There are three basic types of persuasive advertising campaigns. Which of the following is NOT one of them?""
+Options: ""- Product-oriented
+- Person-oriented
+- Idea-oriented
+- Result-oriented""
+Response: ""<|start_header_id|>assistant
+
+Product-oriented.""
+
+Example 2:
+Question: ""Within which area of public relations is likely to involve lobbying?""
+Options: ""- Corporate
+- Financial relations
+- Public affairs
+- Business to business""
+Response: ""<|start_header_id|>assistant
+
+Public affairs.""
+
+Example 3:
+Question: ""When an attitude is communicated, what does it become?""
+Options: ""- An opinion
+- A belief
+- A behaviour
+- A point of view""
+Response: ""<|start_header_id|>assistant
+
+A point of view.""
+
+Example 4:
+Question: ""Which communication model describes the encoding and decoding of messages?""
+Options: ""- Shannon and Weaver model
+- Osgood and Schramm model
+- Westley and MacLean model
+- Maletzke model""
+Response: ""The Shannon and Weaver model.""
+
+Example 5:
+Question: ""Early email was developed in which decade?""
+Options: ""- 1960s
+- 1970s
+- 1980s
+- 1990s""
+Response: ""The 1960s.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Watson and Noble (2005) lay out a five-step model for circular evaluation. At which step should pre-testing of strategy and tactics be carried out?
+Options: - 1
+- 2
+- 3
+- 4
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,2,0.0805799663066864,0.10272692143917084
+They offer flexibility of talents and skills. They bring greater credibility to the work. They can provide more attention and detail to a project that in-house staff.,They offer flexibility of talents and skills.,"They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In which era did muckraking journalism led to the widespread introduction of public relations in business?""
+Options: ""- Postwar Era, 1945 - 1965
+- Roosevelt Era, 1930 - 1945
+- Booming Twenties Era, 1919 - 1929
+- Seedbed Era, 1900 ' 1917""
+Response: ""<|start_header_id|>assistant
+
+The Booming Twenties Era, 1919 - 1929.""
+
+Example 2:
+Question: ""Which of these publics does NOT feature in Grunig and Hunt's (1984) situational theory of publics?""
+Options: ""- Latent
+- Dormant
+- Aware
+- Active""
+Response: ""Latent.""
+
+Example 3:
+Question: ""Which of these organizations is most effective in engaging with customers online?""
+Options: ""- Starbucks
+- Coca-Cola
+- Wholefoods
+- Redbull""
+Response: ""<|start_header_id|>assistant
+
+Starbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.""
+
+Example 4:
+Question: ""Which of these phrases refers specifically to a crisis, rather than an issue?""
+Options: ""- A gap between corporate and stakeholder expectations.
+- When an organization's trading is interrupted.
+- Can be avoided with constant monitoring and relationship building.
+- It happens suddenly.""
+Response: ""When an organization's trading is interrupted.""
+
+Example 5:
+Question: ""In recent years social media has had a major impact on the practice of public relations. In which of the following areas has the impact been greatest and experienced most immediately?""
+Options: ""- Politics
+- Retail business
+- Automotive sales
+- Nonprofits""
+Response: ""<|start_header_id|>assistant
+
+Politics.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: What are major reasons why organizations retain outside public relations counsel? 
+Options: - They offer flexibility of talents and skills.
+- They bring greater credibility to the work. 
+- They will provide sound ROI on the project or program.
+- They can provide more attention and detail to a project that in-house staff.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,-0.027829404920339584,0.02896706946194172
+Examining public records.,Conducting a content analysis,Examining public records.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In recent years social media has had a major impact on the practice of public relations. In which of the following areas has the impact been greatest and experienced most immediately?""
+Options: ""- Politics
+- Retail business
+- Automotive sales
+- Nonprofits""
+Response: ""<|start_header_id|>assistant
+
+Politics.""
+
+Example 2:
+Question: ""How much has the number of practitioners working in consultancies in the UK grown since 25 years ago?""
+Options: ""- It hasn't
+- Doubled
+- Tripled
+- Quadrupled""
+Response: ""<|start_header_id|>assistant
+
+I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.""
+
+Example 3:
+Question: ""A book launch would be what kind of common tactic?""
+Options: ""- Competition
+- Event
+- Award
+- Sponsorship""
+Response: ""<|start_header_id|>assistant
+
+Event.""
+
+Example 4:
+Question: ""Approximately half of all public relations practitioners work in""
+Options: ""- government
+- business and commercial areas
+- health care and hospitals
+- public relations firms""
+Response: ""<|start_header_id|>assistant
+
+Business and commercial areas.""
+
+Example 5:
+Question: ""In recent research, the 14,000 stories that could be accessed on Google News' front page in a day pertained to how many actual news events?""
+Options: ""- 18
+- 24
+- 326
+- 9,574""
+Response: ""9,574.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which of these activities might secondary research involve?
+Options: - Conducting a content analysis
+- Conducting a survey
+- Observing people
+- Examining public records
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.12788033485412598,0.16305647790431976
+1960s,1970s,The 1960s.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""The process of identifying publics who are involved and affected by a situation central to an organization is called a(n)""
+Options: ""- exploratory survey
+- situation interview
+- communication audit
+- stakeholder analysis""
+Response: ""<|start_header_id|>assistant
+
+Stakeholder analysis.""
+
+Example 2:
+Question: ""During which step of the Chase Jones model of issues management should the strengths and weaknesses of the organisation be reviewed?""
+Options: ""- Identification
+- Analysis
+- Strategy
+- Evaluation""
+Response: ""<|start_header_id|>assistant
+
+Analysis.""
+
+Example 3:
+Question: ""Which of the following Internet-related challenges is most significant in the public relations field?""
+Options: ""- Representing clients using new social media environments
+- Finding stable, cost-effective Internet providers
+- Training staff to use social media
+- Staying abreast of changing technology""
+Response: ""<|start_header_id|>assistant
+
+Staying abreast of changing technology.""
+
+Example 4:
+Question: ""Which author emphasised strategy as achieving competitive advantage for an organization?""
+Options: ""- Steyn (2003)
+- Gregory (2006)
+- Cutlip et al (2006)
+- Henry (2006)""
+Response: ""Steyn (2003)""
+
+Example 5:
+Question: ""In the public relations field, what is the most common threat to a client-firm relationship?""
+Options: ""- Clients' questions about costs
+- Resistance to outside advice
+- Superficial grasp of the client's unique problems
+- Personality conflicts""
+Response: ""<|start_header_id|>assistant
+
+Resistance to outside advice.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Early email was developed in which decade?
+Options: - 1960s
+- 1970s
+- 1980s
+- 1990s
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,-0.01989596337080002,-0.01328946091234684

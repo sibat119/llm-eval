@@ -158,7 +158,7 @@ def get_few_shot_prompt(shot, ds, question, options, selection_strategy="random"
         example_str += f"Example {i+1}:\n"
         example_str += f"Question: \"{example['question']}\"\n" 
         example_str += f"Options: \"{option_text}\"\n" 
-        example_str += f"Response: \"{example['model_output']}\"\n\n"
+        example_str += f"Response: \"{example['model_output'].replace('<|start_header_id|>assistant\n\n', '')}\"\n\n"
     
     option_text = "\n".join([f"- {opt}" for opt in eval(options)])
     prompt = prompt.format(examples=example_str, question=question, options=option_text)
@@ -260,14 +260,17 @@ def compute_dual_metrics_from_csv(csv_filename, surrogate_wo_prior_ds_path):
         df['ground_truth'] = df['ground_truth'].fillna('')
         df['surrogate_output'] = df['surrogate_output'].fillna('')
         df['surrogate_output_wo_prior'] = surrogate_df_wo_prior['model_output'].fillna('').apply(lambda x: x.replace('<|start_header_id|>assistant\n\n', ''))
+        df['prompt'] = df['prompt'].fillna('')
+        
         
         predictions = df['surrogate_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
         options = df['options'].tolist()
         blackbox_output = df['blackbox_output'].tolist()
         surrogate_output_wo_prior = df['surrogate_output_wo_prior'].tolist()
+        prompts = df['prompt'].tolist()
         
-        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options, blackbox_output, surrogate_output_wo_prior)
+        results['wrt_gt'] = metrics.compute_all_metrics(predictions, ground_truths, options, blackbox_output, surrogate_output_wo_prior, prompts)
         
         results['wrt_blackbox'] = metrics.compute_all_metrics_wo_rank(predictions, blackbox_output)
         
@@ -349,5 +352,9 @@ if __name__ == "__main__":
                 cfg=config
                 )
     results = compute_dual_metrics_from_csv(ds_file_name, surrogate_wo_prior_ds_path)
+    
+    agree_to_disagree_cases = results["wrt_gt"]['transition_metrics']['agreement_transitions']['agree_to_disagree_samples']
+    agree_to_disagree_cases_ds = Dataset.from_list(agree_to_disagree_cases)
+    agree_to_disagree_cases_ds.to_csv(f"{surrogate_dir}/agreement-to-disagreement-candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.csv")
     with open(f"{surrogate_dir}/candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
         json.dump(results, f, indent=4)
