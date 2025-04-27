@@ -64,7 +64,7 @@ Options: - Defining the program
 - Taking action and implementing ideas
 - Evaluation of the program
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.2526291608810425,0.2782790958881378
+",0,1,0.2526291608810425,0.27827906608581543
 "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.",Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.,"Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -130,7 +130,7 @@ Options: - Use utility employees to write the blog, posing as dentists and physi
 - Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.
 - Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.20507851243019104,0.18583470582962036
+",2,1,0.20507845282554626,0.18583476543426514
 "9,574",326,"9,574.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -196,7 +196,7 @@ Options: - 18
 - 326
 - 9,574
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.023125218227505684,0.0835765078663826
+",3,2,0.02312524989247322,0.08357647061347961
 They offer flexibility of talents and skills. They bring greater credibility to the work. They can provide more attention and detail to a project that in-house staff.,They offer flexibility of talents and skills.,"They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -262,7 +262,7 @@ Options: - They offer flexibility of talents and skills.
 - They will provide sound ROI on the project or program.
 - They can provide more attention and detail to a project that in-house staff.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.05070570483803749,0.08415593206882477
+",3,0,0.0507056824862957,0.08415593206882477
 Examining public records.,Conducting a content analysis and Examining public records.,Examining public records.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -328,7 +328,7 @@ Options: - Conducting a content analysis
 - Observing people
 - Examining public records
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.16405457258224487,0.24030092358589172
+",3,0,0.16405458748340607,0.2403009980916977
 1960s,1970s.,The 1960s.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -394,7 +394,7 @@ Options: - 1960s
 - 1980s
 - 1990s
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.01248189341276884,0.018948160111904144
+",0,1,0.012481876648962498,0.018948163837194443
 Sponsorship,Placement on TV or radio.,Sponsorship.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -460,4 +460,4 @@ Options: - Placement on TV or radio
 - Third parties
 - Sponsorship
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.14489278197288513,0.11457550525665283
+",3,0,0.14489281177520752,0.11457547545433044

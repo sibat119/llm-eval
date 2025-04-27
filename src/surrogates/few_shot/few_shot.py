@@ -355,7 +355,10 @@ if __name__ == "__main__":
     results = compute_dual_metrics_from_csv(ds_file_name, surrogate_wo_prior_ds_path)
     
     agree_to_disagree_cases = results["wrt_gt"]['transition_metrics']['agreement_transitions']['agree_to_disagree_samples']
+    disagree_to_agree_cases = results["wrt_gt"]['transition_metrics']['agreement_transitions']['disagree_to_agree_samples']
     agree_to_disagree_cases_ds = Dataset.from_list(agree_to_disagree_cases)
+    disagree_to_agree_cases_ds = Dataset.from_list(disagree_to_agree_cases)
     agree_to_disagree_cases_ds.to_csv(f"{surrogate_dir}/agreement-to-disagreement-candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.csv")
+    disagree_to_agree_cases_ds.to_csv(f"{surrogate_dir}/disagreement-to-agreement-candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.csv")
     with open(f"{surrogate_dir}/candidate-{candidate_llm.replace('/', '-')}-surrogate-{surrogate_llm.replace('/', '-')}.json", "w") as f:
         json.dump(results, f, indent=4)

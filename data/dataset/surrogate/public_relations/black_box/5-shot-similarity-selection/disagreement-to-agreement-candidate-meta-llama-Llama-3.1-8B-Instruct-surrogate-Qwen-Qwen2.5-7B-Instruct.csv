@@ -1,0 +1,793 @@
+zero_shot_response,few_shot_response,black_box_response,prompt,zero_shot_top_index,few_shot_top_index,prompt_pick_cosine_sim_zero,prompt_pick_cosine_sim_few
+Strategy and implementation,Strategy and evaluation,Strategy and evaluation.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""At which stage in the planning process are the objectives decided on?""
+Options: ""- Defining the program
+- Planning the program
+- Taking action and implementing ideas
+- Evaluation of the program""
+Response: ""Defining the program.""
+
+Example 2:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage is the situation analysis done and used to form objectives and implementation plans?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 3:
+Question: ""According to Cutlip (2006), which stage of the communications plan should involve planning of what should be said and why?""
+Options: ""- Situation analysis
+- Strategy
+- Implementation
+- Evaluation involves assessing all aspects of the programme.""
+Response: ""Strategy.""
+
+Example 4:
+Question: ""Watson and Noble (2005) lay out a five-step model for circular evaluation. At which step should pre-testing of strategy and tactics be carried out?""
+Options: ""- 1
+- 2
+- 3
+- 4""
+Response: ""Step 1.""
+
+Example 5:
+Question: ""The ________ phase of the PR process consists of making decisions about which strategies and tactics will be used to respond to the goals of the organization and executing those strategies and tactics.""
+Options: ""- planning
+- implementation
+- evaluation
+- tactical""
+Response: ""Implementation""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: What two elements do the planning models of Hendrix (2002), Kendall (1999), Merston (1963) and Parkinson and Ekachai (2006) have in common?
+Options: - Research and evaluation
+- Strategy and evaluation
+- Strategy and implementation
+- Objectives and implementation
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.2094847857952118,0.2830238342285156
+Quadrupled,It hasn't.,I'm not aware of the specific data regarding the growth of practitioners working in consultancies in the UK over the past 25 years.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Approximately half of all public relations practitioners work in""
+Options: ""- government
+- business and commercial areas
+- health care and hospitals
+- public relations firms""
+Response: ""Business and commercial areas.""
+
+Example 2:
+Question: ""Approximately what proportion of nonprofit sector practitioners conduct audience research?""
+Options: ""- One-quarter
+- One-half
+- Two thirds
+- Almost all""
+Response: ""One-quarter.""
+
+Example 3:
+Question: ""What is the main purpose of licensing public relations practitioners?""
+Options: ""- To regulate access to posts in the field
+- To create an elite of public relations practitioners
+- To preserve the well-being of society
+- To achieve better wages for licensed practitioners""
+Response: ""To regulate access to posts in the field.""
+
+Example 4:
+Question: ""What are major reasons why organizations retain outside public relations counsel? ""
+Options: ""- They offer flexibility of talents and skills.
+- They bring greater credibility to the work. 
+- They will provide sound ROI on the project or program.
+- They can provide more attention and detail to a project that in-house staff.""
+Response: ""They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.""
+
+Example 5:
+Question: ""How many regional newspapers are there in the UK?""
+Options: ""- 270
+- 600
+- 2,800
+- 5,200""
+Response: ""There are approximately 600 regional newspapers in the UK.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: How much has the number of practitioners working in consultancies in the UK grown since 25 years ago?
+Options: - It hasn't
+- Doubled
+- Tripled
+- Quadrupled
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.005056094378232956,0.05375377833843231
+Henry (2006),Steyn (2003).,Steyn (2003),"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Within which area of public relations do tactics relate to promotion of the overall organisation?""
+Options: ""- Corporate
+- Internal communications
+- Financial relations
+- Business to business""
+Response: ""Corporate.""
+
+Example 2:
+Question: ""What public relations pioneer is credited with being the first practitioner to insist on ""a place at the management table""?""
+Options: ""- Carl Byoir
+- Edward Bernays
+- Doris Fleischman
+- Arthur Page""
+Response: ""Doris Fleischman.""
+
+Example 3:
+Question: ""What is the major advantage of organizational publications?""
+Options: ""- Their ability to provide a revenue source for sponsoring organizations
+- Their ability to deliver specific, detailed information to narrowly defined target publics
+- Their ability to avoid the problems typically associated with two-way media
+- Their ability to give sponsoring organizations a means of uncontrolled communications""
+Response: ""Their ability to deliver specific, detailed information to narrowly defined target publics.""
+
+Example 4:
+Question: ""Who argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications?""
+Options: ""- Cutlip (2006)
+- Leitch and Neilson (2001)
+- Amaral and Phillips (2010)
+- Grunig and Hunt (1984)""
+Response: ""Grunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.""
+
+Example 5:
+Question: ""Which of the following is NOT one of the four categories of persuasive crisis communication strategies identified by W. Timothy Coombs?""
+Options: ""- ingratiation
+- downplaying
+- distancing
+- nonexistence""
+Response: ""Downplaying.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which author emphasised strategy as achieving competitive advantage for an organization?
+Options: - Steyn (2003)
+- Gregory (2006)
+- Cutlip et al (2006)
+- Henry (2006)
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,0,0.06926839053630829,0.05157935619354248
+The findings generate qualitative data that can be used to develop surveys.,It is an example of a formal research tool for practitioners.,It is an example of a formal research tool for practitioners.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which of these types of survey question seeks qualitative information?""
+Options: ""- Likert scale
+- Multiple choice
+- Open-ended
+- Yes/No""
+Response: ""Open-ended.""
+
+Example 2:
+Question: ""Approximately what proportion of nonprofit sector practitioners conduct audience research?""
+Options: ""- One-quarter
+- One-half
+- Two thirds
+- Almost all""
+Response: ""One-quarter.""
+
+Example 3:
+Question: ""Segmentation of the population into psychographics, demographics and geodemographics is especially important in which public relations specialisation?""
+Options: ""- Issues management
+- Investor relations
+- Public affairs
+- Marketing communications""
+Response: ""Marketing communications.""
+
+Example 4:
+Question: ""Which statement is NOT true of both issues management and crisis management?""
+Options: ""- They both require research monitoring.
+- They both deal with acute risks.
+- New organizational practices are developed as a result of each.
+- Both have the potential to damage an organisation's reputation.""
+Response: ""They both deal with acute risks.""
+
+Example 5:
+Question: ""Who argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications?""
+Options: ""- Cutlip (2006)
+- Leitch and Neilson (2001)
+- Amaral and Phillips (2010)
+- Grunig and Hunt (1984)""
+Response: ""Grunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which statement is true about focus group research?
+Options: - The participants should be selected at random.
+- It is an example of a formal research tool for practitioners.
+- The information can be generalized to describe a larger population.
+- The findings generate qualitative data that can be used to develop surveys.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,0.24834012985229492,0.24128113687038422
+Workforce development,Financial performance.,Financial performance.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which area of public relations deals with emerging issues and their potential impact on an organization?""
+Options: ""- Public opinion
+- Issues management
+- Public affairs
+- Lobbying""
+Response: ""Issues management.""
+
+Example 2:
+Question: ""Which outcome, from the evaluation phase of public relations planning, documents the impact a program had on its stakeholders?""
+Options: ""- the quality of the messages and activities
+- the number who change attitudes and opinions
+- the number who responded to communications
+- the number of messages and activities implemented""
+Response: ""the number who change attitudes and opinions""
+
+Example 3:
+Question: ""Which of the following Internet-related challenges is most significant in the public relations field?""
+Options: ""- Representing clients using new social media environments
+- Finding stable, cost-effective Internet providers
+- Training staff to use social media
+- Staying abreast of changing technology""
+Response: ""Staying abreast of changing technology.""
+
+Example 4:
+Question: ""The 'internal factors' portion of a firm's public relations situation analysis often includes""
+Options: ""- a communication audit
+- strategy suggestions
+- community focus groups
+- a listing of media contacts""
+Response: ""A communication audit.""
+
+Example 5:
+Question: ""What is the major advantage of organizational publications?""
+Options: ""- Their ability to provide a revenue source for sponsoring organizations
+- Their ability to deliver specific, detailed information to narrowly defined target publics
+- Their ability to avoid the problems typically associated with two-way media
+- Their ability to give sponsoring organizations a means of uncontrolled communications""
+Response: ""Their ability to deliver specific, detailed information to narrowly defined target publics.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which of these ways a business impacts on the world do stakeholders NOT normally look at?
+Options: - Workforce development
+- Impact on local communities
+- Impact on the environment
+- Financial performance
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.15321698784828186,0.13231302797794342
+Reputation,Ability to reach people,Ability to reach people.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which traditional news criterion would you expect to be most important in public relations messages distributed through the mass media?""
+Options: ""- Proximity
+- Timeliness
+- Prominence
+- Impact""
+Response: ""Timeliness.""
+
+Example 2:
+Question: ""What public relations pioneer is credited with being the first practitioner to insist on ""a place at the management table""?""
+Options: ""- Carl Byoir
+- Edward Bernays
+- Doris Fleischman
+- Arthur Page""
+Response: ""Doris Fleischman.""
+
+Example 3:
+Question: ""Within which area of public relations is likely to involve lobbying?""
+Options: ""- Corporate
+- Financial relations
+- Public affairs
+- Business to business""
+Response: ""Public affairs.""
+
+Example 4:
+Question: ""Within which area of public relations do tactics relate to promotion of the overall organisation?""
+Options: ""- Corporate
+- Internal communications
+- Financial relations
+- Business to business""
+Response: ""Corporate.""
+
+Example 5:
+Question: ""What is the primary reason that you, as a public relations manager, should insist on prioritizing and scheduling activities?""
+Options: ""- to help the department stay focused on its strategic plan
+- to ensure that projects that are important to the CEO always have first priority
+- to ensure that the department's events and public relations activities are not neglected
+- to make it easier for other departments to understand the responsibilities of the public relations department""
+Response: ""to help the department stay focused on its strategic plan.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which of these qualities is NOT listed as something to consider when choosing an opinion leader for a public relations campaigns?
+Options: - Reputation
+- Impact
+- Familiarity with subject or issue
+- Ability to reach people
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.1292629837989807,0.1362348198890686
+Inputs,Analysis.,Outcomes.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""At which stage in the planning process are the objectives decided on?""
+Options: ""- Defining the program
+- Planning the program
+- Taking action and implementing ideas
+- Evaluation of the program""
+Response: ""Defining the program.""
+
+Example 2:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage is media coverage most likely to be measured?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 3:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage are opinion polls most useful?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 4:
+Question: ""During which step of the Chase Jones model of issues management should the organization's ability to lead the issue be assessed?""
+Options: ""- Identification
+- Analysis
+- Strategy
+- Evaluation""
+Response: ""Analysis.""
+
+Example 5:
+Question: ""During which step of the Chase Jones model of issues management should the strengths and weaknesses of the organisation be reviewed?""
+Options: ""- Identification
+- Analysis
+- Strategy
+- Evaluation""
+Response: ""Analysis.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Macnamara's (2005) pyramid of evaluation, at which stage is the situation analysis done and used to form objectives and implementation plans?
+Options: - Inputs
+- Outputs
+- Outtakes
+- Outcomes
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,3,0.19196592271327972,0.18038783967494965
+Outtakes,Outcomes.,Outcomes.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage is media coverage most likely to be measured?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 2:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage is the situation analysis done and used to form objectives and implementation plans?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 3:
+Question: ""Which phase of public relations audience research is associated with summative evaluation?""
+Options: ""- Implementation
+- Impact
+- Attitude change
+- Preparation""
+Response: ""Impact.""
+
+Example 4:
+Question: ""Which type of measurement is the most effective choice for evaluating a campaign's impact on audience attitudes?""
+Options: ""- preparing a content analysis of media coverage
+- studying the content of blog postings about your issue
+- analyzing pre and post sales reports for changes in sales
+- conducting a pre and post analysis of constituents' opinions""
+Response: ""Conducting a pre and post analysis of constituents' opinions.""
+
+Example 5:
+Question: ""Which outcome, from the evaluation phase of public relations planning, documents the impact a program had on its stakeholders?""
+Options: ""- the quality of the messages and activities
+- the number who change attitudes and opinions
+- the number who responded to communications
+- the number of messages and activities implemented""
+Response: ""the number who change attitudes and opinions""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Macnamara's (2005) pyramid of evaluation, at which stage are opinion polls most useful?
+Options: - Inputs
+- Outputs
+- Outtakes
+- Outcomes
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,3,0.048750992864370346,0.1952366828918457
+Outputs,Outcomes.,Outcomes.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage are opinion polls most useful?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 2:
+Question: ""Which traditional news criterion would you expect to be most important in public relations messages distributed through the mass media?""
+Options: ""- Proximity
+- Timeliness
+- Prominence
+- Impact""
+Response: ""Timeliness.""
+
+Example 3:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage is the situation analysis done and used to form objectives and implementation plans?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 4:
+Question: ""Which factors are mentioned that influence media coverage of a story?""
+Options: ""- Content, quality of source, relevance
+- Timing, content, media liaison
+- Content, quality of source, human interest angle
+- Timing, relevance, political slant""
+Response: ""Content, quality of source, relevance.""
+
+Example 5:
+Question: ""Which phase of public relations audience research is associated with summative evaluation?""
+Options: ""- Implementation
+- Impact
+- Attitude change
+- Preparation""
+Response: ""Impact.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: According to Macnamara's (2005) pyramid of evaluation, at which stage is media coverage most likely to be measured?
+Options: - Inputs
+- Outputs
+- Outtakes
+- Outcomes
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,3,0.1873544156551361,0.18207457661628723
+Personality conflicts.,Resistance to outside advice,Resistance to outside advice.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""What are major reasons why organizations retain outside public relations counsel? ""
+Options: ""- They offer flexibility of talents and skills.
+- They bring greater credibility to the work. 
+- They will provide sound ROI on the project or program.
+- They can provide more attention and detail to a project that in-house staff.""
+Response: ""They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.""
+
+Example 2:
+Question: ""Which area of public relations deals with emerging issues and their potential impact on an organization?""
+Options: ""- Public opinion
+- Issues management
+- Public affairs
+- Lobbying""
+Response: ""Issues management.""
+
+Example 3:
+Question: ""Which of the following Internet-related challenges is most significant in the public relations field?""
+Options: ""- Representing clients using new social media environments
+- Finding stable, cost-effective Internet providers
+- Training staff to use social media
+- Staying abreast of changing technology""
+Response: ""Staying abreast of changing technology.""
+
+Example 4:
+Question: ""The 'internal factors' portion of a firm's public relations situation analysis often includes""
+Options: ""- a communication audit
+- strategy suggestions
+- community focus groups
+- a listing of media contacts""
+Response: ""A communication audit.""
+
+Example 5:
+Question: ""Within which area of public relations is likely to involve lobbying?""
+Options: ""- Corporate
+- Financial relations
+- Public affairs
+- Business to business""
+Response: ""Public affairs.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In the public relations field, what is the most common threat to a client-firm relationship?
+Options: - Clients' questions about costs
+- Resistance to outside advice
+- Superficial grasp of the client's unique problems
+- Personality conflicts
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,1,0.07097350060939789,0.26695433259010315
+Media writing,Business writing.,Business writing.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which of these adjectives does NOT describe business writing?""
+Options: ""- Formal
+- Abstract
+- Personal
+- Objective""
+Response: ""Abstract.""
+
+Example 2:
+Question: ""Newsletters generally fall in to which writing category?""
+Options: ""- Media writing
+- Personal writing
+- Business writing
+- Promotional writing""
+Response: ""Media writing.""
+
+Example 3:
+Question: ""Which communication model describes the encoding and decoding of messages?""
+Options: ""- Shannon and Weaver model
+- Osgood and Schramm model
+- Westley and MacLean model
+- Maletzke model""
+Response: ""The Shannon and Weaver model.""
+
+Example 4:
+Question: ""The American flag is an example of a""
+Options: ""- stereotype
+- semantic device
+- symbol
+- message""
+Response: ""The American flag is an example of a symbol.""
+
+Example 5:
+Question: ""What is the major advantage of organizational publications?""
+Options: ""- Their ability to provide a revenue source for sponsoring organizations
+- Their ability to deliver specific, detailed information to narrowly defined target publics
+- Their ability to avoid the problems typically associated with two-way media
+- Their ability to give sponsoring organizations a means of uncontrolled communications""
+Response: ""Their ability to deliver specific, detailed information to narrowly defined target publics.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Which type of writing employs the pyramid structure?
+Options: - Media writing
+- Personal writing
+- Business writing
+- Promotional writing
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,2,0.13730597496032715,0.22749021649360657
+Strategy,Analysis.,Analysis.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""During which step of the Chase Jones model of issues management should the strengths and weaknesses of the organisation be reviewed?""
+Options: ""- Identification
+- Analysis
+- Strategy
+- Evaluation""
+Response: ""Analysis.""
+
+Example 2:
+Question: ""According to Macnamara's (2005) pyramid of evaluation, at which stage is the situation analysis done and used to form objectives and implementation plans?""
+Options: ""- Inputs
+- Outputs
+- Outtakes
+- Outcomes""
+Response: ""Outcomes.""
+
+Example 3:
+Question: ""Which area of public relations deals with emerging issues and their potential impact on an organization?""
+Options: ""- Public opinion
+- Issues management
+- Public affairs
+- Lobbying""
+Response: ""Issues management.""
+
+Example 4:
+Question: ""Which statement is NOT true of both issues management and crisis management?""
+Options: ""- They both require research monitoring.
+- They both deal with acute risks.
+- New organizational practices are developed as a result of each.
+- Both have the potential to damage an organisation's reputation.""
+Response: ""They both deal with acute risks.""
+
+Example 5:
+Question: ""At which stage in the planning process are the objectives decided on?""
+Options: ""- Defining the program
+- Planning the program
+- Taking action and implementing ideas
+- Evaluation of the program""
+Response: ""Defining the program.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: During which step of the Chase Jones model of issues management should the organization's ability to lead the issue be assessed?
+Options: - Identification
+- Analysis
+- Strategy
+- Evaluation
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.1676478385925293,0.24469661712646484

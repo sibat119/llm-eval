@@ -582,6 +582,7 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
     zero_disagree_few_disagree_similarities = []
     
     zero_agree_few_disagree_samples = []
+    zero_disagree_few_agree_samples = []
     
     
     
@@ -673,6 +674,18 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
         elif not zero_agreement and few_agreement:
             zero_disagree_few_agree += 1
             zero_disagree_few_agree_similarities.append(cosine_sim)
+            zero_disagree_few_agree_samples.append(
+                {
+                    "zero_shot_response": zero_out,
+                    "few_shot_response": few_out,
+                    "black_box_response": bb_out,
+                    "prompt": prompt,
+                    "zero_shot_top_index": int(zero_top_idx),
+                    "few_shot_top_index": int(few_top_idx),
+                    "prompt_pick_cosine_sim_zero": prompt_pick_cosine_sim_zero,
+                    "prompt_pick_cosine_sim_few": prompt_pick_cosine_sim_few,
+                }
+            )
         else:  # not zero_agreement and not few_agreement
             zero_disagree_few_disagree += 1
             zero_disagree_few_disagree_similarities.append(cosine_sim)
@@ -717,7 +730,8 @@ def compute_agreement_transitions(surrogate_outputs_wo_prior, surrogate_outputs_
             "zero_agree_few_disagree": round(zero_agree_few_disagree / total_valid, 2),
             "zero_disagree_few_agree": round(zero_disagree_few_agree / total_valid, 2),
             "zero_disagree_few_disagree": round(zero_disagree_few_disagree / total_valid, 2),
-            "agree_to_disagree_samples": zero_agree_few_disagree_samples
+            "agree_to_disagree_samples": zero_agree_few_disagree_samples,
+            "disagree_to_agree_samples": zero_disagree_few_agree_samples,
         },
         "response_length_metrics": {
             "zero_shot": {

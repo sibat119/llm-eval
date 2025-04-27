@@ -492,7 +492,7 @@ def main():
     # Define base path
     base_path = 'data/dataset'
     selection_strategies = ["random", "similarity"]
-    prompt_variations = ["black_box", "persona", "pattern_recognition"]
+    prompt_variations = ["black_box"]
     
     for prompt_variation in prompt_variations:
         for selection_strategy in selection_strategies:

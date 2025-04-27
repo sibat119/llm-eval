@@ -42,6 +42,19 @@
             }
         },
         {
+            "name": "bbq response",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.surrogates.few_shot.bbq",
+            "args": [
+                "--model_name", "meta-llama/Llama-3.1-8B-Instruct",
+                "--batch_size", "1",
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "3"
+            }
+        },
+        {
             "name": "surrogate finder",
             "type": "debugpy",
             "request": "launch",
@@ -49,6 +62,10 @@
             "args": [
                 "--sub_field", "high_school_computer_science",
                 "--shot", "5",
+                "--selection_strategy", "similarity",
+                "--prompt_variation", "persona",
+                "--batch_size", "8",
+                // "--create_prompt",
                 "--eval"
             ],
             "env": {

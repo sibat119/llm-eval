@@ -64,7 +64,7 @@ Options: - Use utility employees to write the blog, posing as dentists and physi
 - Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.
 - Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.17182132601737976,0.13404570519924164
+",2,1,0.1718212515115738,0.13404572010040283
 "9,574",24,"9,574.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -130,7 +130,7 @@ Options: - 18
 - 326
 - 9,574
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,1,0.016384905204176903,0.08224758505821228
+",3,1,0.016384830698370934,0.08224755525588989
 2,3.,Step 1.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -198,7 +198,7 @@ Options: - 1
 - 3
 - 4
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,2,0.10145600885152817,0.12817665934562683
+",1,2,0.10145607590675354,0.12817668914794922
 They offer flexibility of talents and skills. They bring greater credibility to the work. They can provide more attention and detail to a project that in-house staff.,They offer flexibility of talents and skills.,"They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -264,7 +264,7 @@ Options: - They offer flexibility of talents and skills.
 - They will provide sound ROI on the project or program.
 - They can provide more attention and detail to a project that in-house staff.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.004108550027012825,0.02635621652007103
+",3,0,0.004108588211238384,0.026356209069490433
 Examining public records.,Conducting a content analysis,Examining public records.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -330,7 +330,7 @@ Options: - Conducting a content analysis
 - Observing people
 - Examining public records
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.12669171392917633,0.2055107206106186
+",3,0,0.12669169902801514,0.2055106908082962
 Sponsorship,Placement on TV or radio,Sponsorship.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -396,4 +396,4 @@ Options: - Placement on TV or radio
 - Third parties
 - Sponsorship
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.09560003131628036,0.0808301717042923
+",3,0,0.09560008347034454,0.08083020895719528

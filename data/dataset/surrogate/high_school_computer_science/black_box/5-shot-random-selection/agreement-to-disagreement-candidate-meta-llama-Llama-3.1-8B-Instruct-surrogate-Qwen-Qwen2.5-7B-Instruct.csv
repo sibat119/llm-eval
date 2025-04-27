@@ -67,7 +67,7 @@ Options: - /
 - %
 - |
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,-0.005182872526347637,0.04451613873243332
+",1,0,-0.005182900000363588,0.04451610893011093
 "listl ← Sort (listl)
  list2 ← Sort (list2)
  newList ← Combine (listl, list2)
@@ -173,7 +173,7 @@ Options: - newList ← Combine (listl, list2)
  1ist2 ← Sort (list2)
  newList ← Combine (listl, list2)
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.00556454062461853,0.037900619208812714
+",1,0,0.005564559251070023,0.03790067881345749
 Terabyte,Gigabyte (2^30 or approximately 10^9 bytes),Terabyte ( 2^30 or approximately 10^9 bytes).,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -256,4 +256,4 @@ Options: - Megabyte ( 2^20 or approximately 10^6 bytes)
 - Terabyte ( 2^40 or approximately 10^12 bytes)
 - Petabyte ( 2^50 or approximately 10^15 bytes)
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.1288985311985016,0.13631385564804077
+",2,1,0.12889856100082397,0.13631388545036316

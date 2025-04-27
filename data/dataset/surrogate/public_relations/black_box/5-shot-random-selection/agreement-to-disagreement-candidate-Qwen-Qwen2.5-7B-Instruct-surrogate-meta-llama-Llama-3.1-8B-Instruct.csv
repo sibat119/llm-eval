@@ -70,7 +70,7 @@ Options: - to develop a vision statement
 - to interpret the organization's business plan
 - to consider the role public relations might play
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,3,0.24337522685527802,0.2504497170448303
+",1,3,0.2433752417564392,0.2504497468471527
 "Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources. This approach maintains transparency and honesty, as you are clearly representing the utility and disclosing your affiliation. It also allows you to provide a personal perspective while still conveying the utility's message.",Recruit a group of volunteer dentists and physicians to write the blog under their own identities with no reference to the utility.,"Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -136,7 +136,7 @@ Options: - Use utility employees to write the blog, posing as dentists and physi
 - Write the blog yourself, identifying yourself as an employee of the utility, and quote the scientific opinions of a variety of sources.
 - Compensate a group of dentists and physicians to write the blog, identifying the utility as the sponsor of the blog but without disclosing the compensation.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.17216667532920837,0.1348772794008255
+",2,1,0.17216670513153076,0.13487738370895386
 The American flag is an example of a symbol.,"Based on the given examples, the black-box model tends to choose the most specific and technical term related to the subject matter of the question. 
 
 In Example 1, the correct answer is ""participation,"" which is a specific term related to the context of advertising campaigns.
@@ -220,7 +220,7 @@ Options: - stereotype
 - symbol
 - message
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.06564582884311676,0.2627183496952057
+",2,1,0.06564582884311676,0.2627183794975281
 "Content, quality of source, relevance.","Content, quality of source, human interest angle","Content, quality of source, relevance","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -286,7 +286,7 @@ Options: - Content, quality of source, relevance
 - Content, quality of source, human interest angle
 - Timing, relevance, political slant
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,2,0.20670469105243683,0.17948785424232483
+",0,2,0.2067047357559204,0.17948785424232483
 Information being delivered in different formats via various digital channels.,The conglomeration of media outlets into large corporations.,Information being delivered in different formats via various digital channels.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -352,7 +352,7 @@ Options: - The conglomeration of media outlets into large corporations.
 - The many differing views and cultures expressed in modern media.
 - Information being delivered in different formats via various digital channels.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.13334611058235168,0.12481848895549774
+",3,0,0.13334617018699646,0.12481851130723953
 Impact.,"Based on the given examples, I predict the black-box model's response to be:
 
 ""Implementation""",Impact,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
@@ -421,7 +421,7 @@ Options: - Implementation
 - Attitude change
 - Preparation
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.062169693410396576,0.18149049580097198
+",1,0,0.062169644981622696,0.1814904808998108
 "9,574.","Based on the given examples, it appears that the black-box model is focused on selecting the most accurate or relevant answer from a set of options, often related to academic or professional topics, particularly in the field of public relations and communications. 
 
 Given the new question, I would predict that the black-box model will select the answer that is most closely related to the topic of news and media, and is likely to be a specific number that is relevant to the context of Google News.
@@ -495,7 +495,7 @@ Options: - 18
 - 326
 - 9,574
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.03399457409977913,0.09788279235363007
+",3,2,0.03399457782506943,0.09788282215595245
 Grunig and Hunt (1984) argued that if an organization did not affect a public then there was no need for a practitioner to consider that public in its communications.,"Based on the given examples, I predict the most likely response from the black-box model to be:
 
 Grunig and Hunt (1984)",Grunig and Hunt (1984),"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
@@ -563,7 +563,7 @@ Options: - Cutlip (2006)
 - Amaral and Phillips (2010)
 - Grunig and Hunt (1984)
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.088994100689888,0.08887512236833572
+",3,2,0.088994100689888,0.08887515962123871
 penetration,"Based on the given examples, I predict the black-box model's response to be:
 
 identification",penetration,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
@@ -631,7 +631,7 @@ Options: - participation
 - distribution
 - identification
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,3,0.0435299314558506,0.04359091818332672
+",1,3,0.04352996498346329,0.04359089583158493
 "Starbucks is most effective in engaging with customers online. They have a strong presence on social media platforms such as Instagram, Twitter, and Facebook, where they share behind-the-scenes content, interact with customers, and offer exclusive promotions. They also use social listening to respond to customer complaints and feedback, which helps to build trust and loyalty. Additionally, Starbucks has a robust loyalty program that rewards customers for their online engagement, further encouraging them to interact with the brand online.","Based on the given examples, it appears that the black-box model is likely to choose the most well-known or widely recognized brand in the context of online engagement. 
 
 In Example 3, the correct answer is ""Viral campaigns"" which is a well-known marketing technique. In Example 5, the correct answer is ""Result-oriented"" which is a type of advertising campaign. 
@@ -701,7 +701,7 @@ Options: - Starbucks
 - Wholefoods
 - Redbull
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.01022595725953579,0.10607564449310303
+",0,1,0.010225953534245491,0.10607564449310303
 "They offer flexibility of talents and skills, they bring greater credibility to the work, and they can provide more attention and detail to a project that in-house staff may not have the bandwidth for.",They bring greater credibility to the work.,They offer flexibility of talents and skills. They bring greater credibility to the work. They can provide more attention and detail to a project that in-house staff.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -767,7 +767,7 @@ Options: - They offer flexibility of talents and skills.
 - They will provide sound ROI on the project or program.
 - They can provide more attention and detail to a project that in-house staff.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,1,0.0062241340056061745,0.07920867949724197
+",3,1,0.006224016658961773,0.07920856773853302
 Sponsorship.,Third parties,Sponsorship,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -833,4 +833,4 @@ Options: - Placement on TV or radio
 - Third parties
 - Sponsorship
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.10326653718948364,0.025540299713611603
+",3,2,0.10326655209064484,0.025540318340063095

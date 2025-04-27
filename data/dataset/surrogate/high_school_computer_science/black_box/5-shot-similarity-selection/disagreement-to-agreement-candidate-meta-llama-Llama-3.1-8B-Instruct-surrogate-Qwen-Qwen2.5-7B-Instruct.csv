@@ -1,0 +1,417 @@
+zero_shot_response,few_shot_response,black_box_response,prompt,zero_shot_top_index,few_shot_top_index,prompt_pick_cosine_sim_zero,prompt_pick_cosine_sim_few
+Error,'abcd',abcd,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In Python 3, what is the output of print list[1:3] if list = [ 'abcd', 786 , 2.23, 'john', 70.2 ]?""
+Options: ""- [ 'abcd', 786 , 2.23, 'john', 70.2 ]
+- abcd
+- [786, 2.23]
+- None of the above.""
+Response: ""[786, 2.23]""
+
+Example 2:
+Question: ""What is the output of ""abc""[-1] in Python 3?""
+Options: ""- Error
+- a
+- b
+- c""
+Response: ""c""
+
+Example 3:
+Question: ""In Python 3, what is ['a', 'Chemistry', 0, 1][1]?""
+Options: ""- a
+- Chemistry
+- 0
+- 1""
+Response: ""Chemistry""
+
+Example 4:
+Question: ""What is the output of the statement ""a"" + ""ab"" in Python 3?""
+Options: ""- Error
+- aab
+- ab
+- a ab""
+Response: ""aab""
+
+Example 5:
+Question: ""In Python 3, b = [11,13,15,17,19,21]; print(b[::2]) outputs what?""
+Options: ""- [19,21]
+- [11,15]
+- [11,15,19]
+- [13,17,21]""
+Response: ""[11, 13, 15, 17, 19, 21]""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: In Python 3, what is the output of print tuple[0] if tuple = ( 'abcd', 786 , 2.23, 'john', 70.2 )?
+Options: - ( 'abcd', 786 , 2.23, 'john', 70.2 )
+- abcd
+- Error
+- None of the above.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.10053230822086334,0.15578614175319672
+10 times as many items can be uniquely identified.,- 2 times as many items can be uniquely identified.,2 times as many items can be uniquely identified.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""A sorted list of numbers contains 500 elements. Which of the following is closest to the maximum number of list elements that will be examined when performing a binary search for a value in the list?""
+Options: ""- 10
+- 50
+- 250
+- 500""
+Response: ""250. 
+
+In a binary search, the list is divided in half at each step, so the maximum number of elements examined is the height of a binary tree with 500 elements. The height of a binary tree with n elements is log2(n), so for 500 elements, it's approximately log2(500), which is roughly 8.965. Since we can't examine a fraction of an element, we round up to the nearest whole number, but in this case, we're looking for the closest answer, and 250 is the closest integer to 8.965 * 50 (since each level of the tree is roughly twice the previous one).""
+
+Example 2:
+Question: ""A retailer that sells footwear maintains a single database containing records with the following information about each item for sale in the retailer's store.
+
+   ° Item identification number
+   ° Footwear type (sneakers, boots, sandals, etc.)
+   ° Selling price (in dollars)
+   ° Size
+   ° Color
+   ° Quantity available
+
+ Using only the database, which of the following can be determined?""
+Options: ""- Which items listed in the database are not currently in the store
+- Which colors are more popular among men than women
+- Which type of footwear is most popular among adults
+- The total number of shoes sold in a particular month""
+Response: ""The total number of shoes sold in a particular month cannot be determined from the database, as it does not contain any sales data.""
+
+Example 3:
+Question: ""Each student that enrolls at a school is assigned a unique ID number, which is stored as a binary number. The ID numbers increase sequentially by 1 with each newly enrolled student. If the ID number assigned to the last student who enrolled was the binary number 1001 0011, what binary number will be assigned to the next student who enrolls?""
+Options: ""- 1001 0100
+- 1001 0111
+- 1101 0100
+- 1101 0111""
+Response: ""1001 0100.""
+
+Example 4:
+Question: ""A programmer is deciding between using a linear or binary search to find a target value in a sorted list. Which of the following is true?""
+Options: ""- In all cases, a binary search of a sorted list requires fewer comparisons than a linear search.
+- Generally, the advantage of using a binary search over a linear search increases as the size of the list increases.
+- A linear search will generally run faster than a binary search because a linear search requires fewer lines of code to implement.
+- Using a linear search is preferable to using a binary search if there is a chance that the target may not be found in the list.""
+Response: ""Generally, the advantage of using a binary search over a linear search increases as the size of the list increases.""
+
+Example 5:
+Question: ""An algorithm will be used to identify the maximum value in a list of one or more integers. Consider the two versions of the algorithm below.
+
+ Algorithm I :  Set the value of a variable max to -1. Iterate through the list of integer
+   values. If a data value is greater than the value of the variable max, set
+  max to the data value.
+ Algorithm II : Set the value of a variable max to the first data value. Iterate through the
+   remaining values in the list of integers. If a data value is greater than the
+   value of the variable max, set max to the data value.
+
+ Which of the following statements best describes the behavior of the two algorithms?""
+Options: ""- Both algorithms work correctly on all input values.
+- Algorithm I always works correctly, but Algorithm II only works correctly when the maximum value is not the first value in the list.
+- Algorithm II always works correctly, but Algorithm I only works correctly when the maximum value is greater than or equal to -l.
+- Neither algorithm will correctly identify the maximum value when the input contains both positive and negative input values.""
+Response: ""Both algorithms work correctly on all input values.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: An online store uses 6-bit binary sequences to identify each unique item for sale. The store plans to increase the number of items it sells and is considering using 7-bit binary sequences. Which of the following best describes the result of using 7-bit sequences instead of 6- bit sequences?
+Options: - 2 more items can be uniquely identified.
+- 10 more items can be uniquely identified.
+- 2 times as many items can be uniquely identified.
+- 10 times as many items can be uniquely identified.
+Your Predicted Black-box LLM Response: (Exact response text only)
+",3,2,0.11851413547992706,0.10608738660812378
+"Binary 1100, Decimal 11, Hexadecimal D","Binary 1100, Decimal 11, Hexadecimal D.","Decimal 11, Hexadecimal D, Binary 1100.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Which of the following is the hexadecimal representation of the decimal number 231_{10} ?""
+Options: ""- 17_{16}
+- E4_{16}
+- E7_{16}
+- F4_{16}""
+Response: ""E7_{16}.""
+
+Example 2:
+Question: ""A sorted list of numbers contains 500 elements. Which of the following is closest to the maximum number of list elements that will be examined when performing a binary search for a value in the list?""
+Options: ""- 10
+- 50
+- 250
+- 500""
+Response: ""250. 
+
+In a binary search, the list is divided in half at each step, so the maximum number of elements examined is the height of a binary tree with 500 elements. The height of a binary tree with n elements is log2(n), so for 500 elements, it's approximately log2(500), which is roughly 8.965. Since we can't examine a fraction of an element, we round up to the nearest whole number, but in this case, we're looking for the closest answer, and 250 is the closest integer to 8.965 * 50 (since each level of the tree is roughly twice the previous one).""
+
+Example 3:
+Question: ""Suppose the characters 0,1, . . . ,8,9,A,B,C,D, E,F are used to represent a hexadecimal (base-16) number. Here A = 10, B = 11, . . . ,F = 15. What is the largest base-10 integer that can be represented with a two-digit hexadecimal number, such as 14 or 3A?""
+Options: ""- 32
+- 225
+- 255
+- 256""
+Response: ""255.""
+
+Example 4:
+Question: ""A large list of numbers is to be sorted into ascending order. Assuming that a “data movement” is a swap or reassignment of an element, which of the following is a true statement?""
+Options: ""- If the array is initially sorted in descending order, then insertion sort will be more efficient than selection sort.
+- The number of comparisons for selection sort is independent of the initial arrangement of elements.
+- The number of comparisons for insertion sort is independent of the initial arrangement of elements.
+- The number of data movements in selection sort depends on the initial arrangement of elements.""
+Response: ""The number of comparisons for insertion sort is independent of the initial arrangement of elements.""
+
+Example 5:
+Question: ""A computer program uses 3 bits to represent integers. When the program adds the decimal (base 10) numbers 5 and 3, the result is 0. Which of the following is the best explanation for the result?""
+Options: ""- An overflow error occurred.
+- A round-off error occurred.
+- The result was affected by lossy data compression.
+- The result was approximated by a floating-point representation.""
+Response: ""An overflow error occurred.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Consider the following numbers.
+   ° Binary 1100
+   ° Decimal 11
+   ° Hexadecimal D
+ Which of the following lists the numbers in order from least to greatest?
+Options: - Binary 1100, Decimal 11, Hexadecimal D
+- Decimal 11, Binary 1100, Hexadecimal D
+- Decimal 11, Hexadecimal D, Binary 1100
+- Hexadecimal D, Decimal 11, Binary 1100
+Your Predicted Black-box LLM Response: (Exact response text only)
+",0,1,0.19000989198684692,0.18073797225952148
+strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0,strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0,"strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0. 
+
+Explanation: In alphabetical order, ""car"" comes before ""carrot"" and ""carrot"" comes before ""CARROT"". The compareTo() method in Java returns a negative integer if the string is lexicographically less than the other string, zero if they are equal, and a positive integer if the string is lexicographically greater. Therefore, strB.compareTo(strC) < 0 is true because ""car"" comes before ""carrot"", and strB.compareTo(strA) > 0 is true because ""carrot"" comes before ""CARROT"".","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""In Python 3, which of the following function checks in a string that all characters are in uppercase?""
+Options: ""- isupper()
+- join(seq)
+- len(string)
+- ljust(width[, fillchar])""
+Response: ""isupper()""
+
+Example 2:
+Question: ""A programmer is designing a program to catalog all books in a library. He plans to have a Book class that stores features of each book: author, title, isOnShelf, and so on, with operations like getAuthor, getTitle, getShelfInfo, and setShelfInfo. Another class, LibraryList, will store an array of Book objects. The LibraryList class will include operations such as listAllBooks, addBook, removeBook, and searchForBook. The programmer plans to implement and test the Book class first, before implementing the LibraryList class. The programmer’s plan to write the Book class first is an example of""
+Options: ""- top-down development
+- bottom-up development
+- procedural abstraction
+- information hiding""
+Response: ""bottom-up development. 
+
+This is because the programmer is starting with the smaller, more detailed component (the Book class) before moving on to the larger, more complex component (the LibraryList class), which is a characteristic of bottom-up development.""
+
+Example 3:
+Question: ""A large list of numbers is to be sorted into ascending order. Assuming that a “data movement” is a swap or reassignment of an element, which of the following is a true statement?""
+Options: ""- If the array is initially sorted in descending order, then insertion sort will be more efficient than selection sort.
+- The number of comparisons for selection sort is independent of the initial arrangement of elements.
+- The number of comparisons for insertion sort is independent of the initial arrangement of elements.
+- The number of data movements in selection sort depends on the initial arrangement of elements.""
+Response: ""The number of comparisons for insertion sort is independent of the initial arrangement of elements.""
+
+Example 4:
+Question: ""A program is expressed in a programming language. Which of the following is true of the program?""
+Options: ""- The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.
+- The program can also be expressed as binary code, which will reduce the likelihood of errors.
+- The program cannot be expressed as binary code, because binary code can only be used to represent data.
+- Some parts of the program can be expressed as binary code, but operations must be expressed using a higher-level programming language.""
+Response: ""The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.""
+
+Example 5:
+Question: ""Consider the following numbers.
+   ° Binary 1100
+   ° Decimal 11
+   ° Hexadecimal D
+ Which of the following lists the numbers in order from least to greatest?""
+Options: ""- Binary 1100, Decimal 11, Hexadecimal D
+- Decimal 11, Binary 1100, Hexadecimal D
+- Decimal 11, Hexadecimal D, Binary 1100
+- Hexadecimal D, Decimal 11, Binary 1100""
+Response: ""Decimal 11, Hexadecimal D, Binary 1100.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: This question is based on the following declarations: String strA = ""CARROT"", strB = ""Carrot"", strC = ""car""; Given that all uppercase letters precede all lowercase letters when considering alphabetical order, which is true?
+Options: - strA.compareTo(strB) < 0 && strB.compareTo(strC) > 0
+- strC.compareTo(strB) < 0 && strB.compareTo(strA) < 0
+- strB.compareTo(strC) < 0 && strB.compareTo(strA) > 0
+- !(strA.compareTo(strB) == 0) && strB.compareTo(strA) < 0
+Your Predicted Black-box LLM Response: (Exact response text only)
+",1,2,0.11235231161117554,0.12944525480270386
+1 3,"""1 2""","1 2. 
+
+The code starts with r = 1, s = 2, and t = 3. The line r ← s assigns the value of s (which is 2) to r, changing r to 2. The line s ← t assigns the value of t (which is 3) to s, changing s to 3. Finally, the DISPLAY statements print the values of r and s, which are 2 and 3 respectively.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
+
+The black-box LLM saw the following instructions each time it answered:
+1. System instruction: ""You are a helpful AI assistant answering questions. Provide only accurate answers in natural language.""
+2. Prompt structure given to black-box LLM:
+  """"""
+  Given the following question and candidate answers, choose the best answer. 
+  Do not include option labels (A, B, C, D); respond only with natural answer text. 
+  Provide only the answer text in your response.
+
+  Question: <question_text>
+  Options: <option_texts>
+  """"""
+
+Examples of the Black-Box LLM in Action:
+Example 1:
+Question: ""Consider the code segment below.
+ Line 1: IF (a = 0)
+ Line 2: {
+ Line 3: b ← a + 10
+ Line 4: }
+ Line 5: ELSE
+ Line 6: {
+ Line 7: b ← a + 2O
+ Line 8: }
+ Which of the following changes will NOT affect the results when the code segment is executed?""
+Options: ""- Changing line 3 to b ← 10
+- Changing line 3 to a ← b + 10
+- Changing line 7 to b ← 20
+- Changing line 7 to a ← b + 10""
+Response: ""Changing line 7 to a ← b + 10. 
+
+This is because the condition in the IF statement is a = 0, and changing line 7 to a ← b + 10 does not affect the value of 'a' when the condition is true or false, it only changes the value of 'a' inside the ELSE block, but the ELSE block is not executed when the condition is true.""
+
+Example 2:
+Question: ""A programmer wrote the program below. The program uses a list of numbers called numList. The program is intended to display the sum of the numbers in the list.
+ sum ← numList [1]
+ FOR EACH value IN numList
+ sum ← sum + value
+ DISPLAY sum
+ In order to test the program, the programmer initializes numList to [0 , 1 , 4 , 5]. The program displays 10, and the programmer concludes that the program works as intended. Which of the following is true?""
+Options: ""- The conclusion is correct; the program works as intended.
+- The conclusion is incorrect; the program does not display the correct value for the test case [0, 1, 4, 5].
+- The conclusion is incorrect; using the test case [0, 1, 4, 5] is not sufficient to conclude the program is correct.
+- The conclusion is incorrect; using the test case [0, 1, 4, 5] only confirms that the program works for lists in increasing order.""
+Response: ""The conclusion is incorrect; the program does not display the correct value for the test case [0, 1, 4, 5]. 
+
+The program starts by setting sum to the first element of numList, which is 0. Then it adds each subsequent element to sum, but it does not reset sum to 0 at the beginning. So, the correct sum for the test case [0, 1, 4, 5] should be 0 + 1 + 4 + 5 = 10, but the program will display 1 + 1 + 4 + 5 = 11.""
+
+Example 3:
+Question: ""In the procedure Mystery below, the parameter number is a positive integer.
+
+ PROCEDURE Mystery (number)
+ {
+  REPEAT UNTIL (number <= 0)
+  {
+   number ← number - 2
+  }
+  IF (number = 0)
+  {
+   RETURN (true)
+  }
+  ELSE
+  {
+   RETURN (false)
+  }
+ }
+
+ Which of the following best describes the result of running the procedure Mystery?""
+Options: ""- The procedure returns true when the initial value of number is 2, and it otherwise returns false.
+- The procedure returns true when the initial value of number is greater than 2, and it otherwise returns false.
+- The procedure returns true when the initial value of number is even, and it otherwise returns false.
+- The procedure returns true when the initial value of number is odd, and it otherwise returns false.""
+Response: ""The procedure returns true when the initial value of number is even, and it otherwise returns false.""
+
+Example 4:
+Question: ""The code segment below uses the procedure IsFound (list, item), which returns true if item appears in list and returns false otherwise. The list resultList is initially empty.
+  FOR EACH item IN inputList1{
+ IF (isFound (inputList2, item) )
+ APPEND (resultList, item)
+ }
+ Which of the following best describes the contents of resultList after the code segment is executed?""
+Options: ""- All elements in inputListl followed by all elements in inputList2
+- Only elements that appear in both inputListl and inputList2
+- Only elements that appear in either inputListl or inputList2 but not in both lists
+- Only elements that appear in inputListl but not in inputList2""
+Response: ""Only elements that appear in both inputList1 and inputList2.""
+
+Example 5:
+Question: ""A program is expressed in a programming language. Which of the following is true of the program?""
+Options: ""- The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.
+- The program can also be expressed as binary code, which will reduce the likelihood of errors.
+- The program cannot be expressed as binary code, because binary code can only be used to represent data.
+- Some parts of the program can be expressed as binary code, but operations must be expressed using a higher-level programming language.""
+Response: ""The program can also be expressed as binary code, but will be more easily understood by humans when expressed in a higher-level programming language.""
+
+
+
+
+Based solely on these examples, predict the most likely response from the black-box model to this new question. 
+New Question: Consider the following code segment, which uses the variables r, s, and t.
+  r ← 1
+   s ← 2
+   t ← 3
+   r ← s
+   s ← t
+   DISPLAY (r)
+   DISPLAY (s)
+
+ What is displayed as a result of running the code segment?
+Options: - 1 1
+- 1 2
+- 2 3
+- 3 2
+Your Predicted Black-box LLM Response: (Exact response text only)
+",2,1,0.10649840533733368,0.10953313112258911

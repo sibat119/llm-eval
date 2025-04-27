@@ -64,7 +64,7 @@ Options: - must be for the good of human beings.
 - must take into account the interests of all living beings.
 - are primarily directed toward promoting self-interest.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,2,0.05007593706250191,0.15202084183692932
+",0,2,0.05007585138082504,0.15202084183692932
 "Things within our power are free and unhindered, and things not in our power are servile and subject to hindrance.",servile and subject to hindrance; free and unhindered,free and unhindered; servile and subject to hindrance,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -130,7 +130,7 @@ Options: - free and unhindered; free and unhindered
 - servile and subject to hindrance; free and unhindered
 - servile and subject to hindrance; servile and subject to hindrance
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,2,0.0802067443728447,0.05794399231672287
+",1,2,0.08020669966936111,0.05794399604201317
 implausibly places an “upper bound” on moral worthiness.,yields an unattractive picture of moral sainthood.,"implausibly places an ""upper bound"" on moral worthiness.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -196,7 +196,7 @@ Options: - yields an unattractive picture of moral sainthood.
 - yields a theory that is too demanding.
 - transforms the theory into a form of contractarianism.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.11873672157526016,0.09275613725185394
+",1,0,0.11873667687177658,0.09275615215301514
 We must first know whether something conforms to God’s will before we can know that it is right.,we must first know whether something is right before we can know whether it conforms to God’s will.,we must first know whether something conforms to God’s will before we can know that it is right.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -262,7 +262,7 @@ Options: - we must first know whether something is right before we can know whet
 - God exists, but does not concern himself with matters of morality.
 - God does not exist.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.13504141569137573,0.12277837097644806
+",1,0,0.13504137098789215,0.12277842313051224
 Contemplating God.,acts of the moral virtues.,contemplating God.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -328,7 +328,7 @@ Options: - pleasure
 - loving God.
 - contemplating God.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,1,0.10157699882984161,0.04598289728164673
+",3,1,0.1015770435333252,0.04598289355635643
 all of the above.,good,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -394,7 +394,7 @@ Options: - good
 - horse
 - all of the above
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.052876293659210205,0.04052230715751648
+",3,0,0.05287632346153259,0.040522340685129166
 Disagreement in belief.,disagreement in interest.,disagreement in belief.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -460,7 +460,7 @@ Options: - disagreement in interest.
 - disagreement in theory.
 - disagreement in practice.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.11103057861328125,0.10712508112192154
+",1,0,0.11103060841560364,0.10712503641843796
 describe one’s own approval of things.,influence the interests of others.,describe one’s own approval of things.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -526,7 +526,7 @@ Options: - state facts.
 - describe one’s own approval of things.
 - none of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.09122604131698608,0.09296023845672607
+",2,1,0.09122604131698608,0.0929601788520813
 Gauthier expands the definition of deliberative justification.,Gauthier argues that deliberative justification by definition takes account of all relevant considerations.,Gauthier expands the definition of deliberative justification.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -592,7 +592,7 @@ Options: - Gauthier expands the definition of deliberative justification.
 - Gauthier claims that deliberative justification works.
 - Gauthier argues that all theories of justification are equally incomplete.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.08501574397087097,0.10437719523906708
+",0,1,0.08501575887203217,0.10437719523906708
 God,"Based on the given examples, I predict the black-box model's response to be:
 
 ""God""",God,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
@@ -660,7 +660,7 @@ Options: - the universe
 - nature
 - an infinite series
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.06967368721961975,0.1429804116487503
+",1,0,0.06967365741729736,0.1429803967475891
 All of the above.,Protecting individuals from potential harm.,All of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -726,7 +726,7 @@ Options: - What constitutes a public space
 - Any risk of invasion of privacy
 - All of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,1,0.06154230237007141,0.16127151250839233
+",3,1,0.06154235452413559,0.16127154231071472
 "can be compared, but only roughly.","can be compared within individuals, but not between individuals.","can be compared, but only roughly.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -792,7 +792,7 @@ Options: - can be precisely compared.
 - can be compared within individuals, but not between individuals.
 - cannot compared either within individuals or between individuals.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,2,0.006659509614109993,-0.015693556517362595
+",1,2,0.006659524515271187,-0.015693558380007744
 actions that affect only themselves.,what is due to factors beyond their control.,actions that affect only themselves.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -858,7 +858,7 @@ Options: - actions that affect only themselves.
 - what is due to factors beyond their control.
 - actions that do not violate anyone’s rights.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,2,0.03639596328139305,0.10581564903259277
+",0,2,0.03639593720436096,0.10581566393375397
 just.,to his advantage.,just..,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -924,7 +924,7 @@ Options: - to his advantage.
 - pleasing to the gods.
 - just.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.05289427936077118,0.01078745350241661
+",3,0,0.052894286811351776,0.01078745722770691
 "Rawls claims that students with fewer native assets, such as intelligence, should be given more attention and resources than those with more native assets.",less attention and fewer resources than those with more native assets.,more attention and resources than those with more native assets.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -990,7 +990,7 @@ Options: - more attention and resources than those with more native assets.
 - less attention and fewer resources than those with more native assets.
 - virtually no educational resources.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,2,-0.052564918994903564,-0.05587533116340637
+",0,2,-0.052564941346645355,-0.05587529391050339
 is desirable as part of one’s happiness.,is desirable only as a means to one’s own happiness.,is desirable as part of one’s happiness.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1122,7 +1122,7 @@ Options: - should be performed prior to each action.
 - are merely a formal device, and do not have practical application.
 - are fundamentally flawed.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,0,0.01046544499695301,0.06167671084403992
+",1,0,0.010465553030371666,0.061676736921072006
 secular,nonreligious,secular,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1188,7 +1188,7 @@ Options: - secular
 - religious
 - pragmatic
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.04380284249782562,0.0396919883787632
+",0,1,0.04380278289318085,0.03969196975231171
 The story about Abraham Lincoln provides some evidence against psychological egoism.,"""provides no evidence for or against psychological egoism.""",provides some evidence against psychological egoism.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1254,7 +1254,7 @@ Options: - provides some evidence for psychological egoism.
 - provides no evidence for or against psychological egoism.
 - actually involves a confusion between ethical egoism and psychological egoism.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,2,0.05829918012022972,0.023405935615301132
+",1,2,0.058299172669649124,0.0234058927744627
 None of the above.,cannot have an interest in gourmet cooking.,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1320,7 +1320,7 @@ Options: - cannot read Victorian novels.
 - cannot have an interest in gourmet cooking.
 - all of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.061607394367456436,-0.022977294400334358
+",3,2,0.06160743162035942,-0.022977251559495926
 agent-relative.,agent-neutral.,agent-relative.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1386,7 +1386,7 @@ Options: - agent-relative.
 - absolute.
 - none of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.11857587099075317,0.17369982600212097
+",0,1,0.11857596039772034,0.17369982600212097
 He became religious.,He became an agnostic.,He became religious.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1452,7 +1452,7 @@ Options: - His income increased dramatically.
 - He became religious.
 - He became an agnostic.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,3,-0.020213022828102112,-0.012040388770401478
+",2,3,-0.020213056355714798,-0.012040412984788418
 All of the above.,It is not practicable to present every participant with all the information about the study.,All of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1518,7 +1518,7 @@ Options: - It is not practicable to present every participant with all the infor
 - If the participants knew exactly what the researcher was intending to study, they might change their behavior.
 - All of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.0792086273431778,0.15399153530597687
+",3,0,0.07920864224433899,0.15399155020713806
 that which we desire to desire.,that which we desire.,that which we desire to desire.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1584,7 +1584,7 @@ Options: - pleasure.
 - that which we desire to desire.
 - none of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",2,1,0.1188456118106842,0.12248098850250244
+",2,1,0.11884555220603943,0.12248090654611588
 pursue pleasure.,"Based on the given examples, it appears that the black-box model is providing answers that are directly related to the subject matter of the question and are often referencing specific philosophers or their ideas. 
 
 In the case of the new question, Feinberg's views on happiness are being asked. Given the format and style of the previous questions and answers, I would predict that the black-box model will provide an answer that directly references Feinberg's idea on the best way to pursue happiness.
@@ -1654,7 +1654,7 @@ Options: - pursue pleasure.
 - forget about happiness.
 - none of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,3,0.02158859372138977,0.059659443795681
+",0,3,0.021588556468486786,0.05965939536690712
 Pleasure exists for the sake of operation.,operation exists for the sake of pleasure.,pleasure exists for the sake of operation.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1720,7 +1720,7 @@ Options: - pleasure exists for its own sake.
 - operation exists for the sake of pleasure.
 - both b and c.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",1,2,0.05496126413345337,0.08036978542804718
+",1,2,0.0549611896276474,0.08036975562572479
 "by seeing the prima facie rightness of particular acts, and then apprehending general principles.","by apprehending general principles, and then inferring the prima facie rightness of particular acts.","by seeing the prima facie rightness of particular acts, and then apprehending general principles.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1786,7 +1786,7 @@ Options: - by seeing the prima facie rightness of particular acts, and then appr
 - by proving them philosophically.
 - from the explicit moral instruction we receive as children.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,1,0.22427929937839508,0.2555141746997833
+",0,1,0.2242792546749115,0.2555142343044281
 the thing in itself.,legislating for oneself.,the thing in itself.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1852,7 +1852,7 @@ Options: - the thing in itself.
 - the phenomenal self.
 - legislating for oneself.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",0,3,0.0430111289024353,0.07030272483825684
+",0,3,0.04301116243004799,0.0703027993440628
 all of the above.,just,all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1918,7 +1918,7 @@ Options: - just.
 - kind.
 - all of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.08996431529521942,0.039566367864608765
+",3,0,0.0899643748998642,0.039566367864608765
 all of the above.,"the costs of its restrictions, in terms of the guilt it induces.",all of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -1984,7 +1984,7 @@ Options: - the complexity of the rules.
 - the costs of its restrictions, in terms of the guilt it induces.
 - all of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.057524167001247406,0.0747646763920784
+",3,2,0.057524219155311584,0.07476469874382019
 All of the above.,The same debates are rehearsed over decades.,All of the above,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -2050,7 +2050,7 @@ Options: - Writers differ over what is ethically acceptable.
 - Cases of ethical violation tend to be linked with certain research methods.
 - All of the above.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,1,0.059389758855104446,0.16458363831043243
+",3,1,0.05938981473445892,0.16458359360694885
 "cannot be proven, but this is common to all first principles.","cannot be proven, and this is a unique problem for the theory.","cannot be proven, but this is common to all first principles.","Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
 
 The black-box LLM saw the following instructions each time it answered:
@@ -2116,7 +2116,7 @@ Options: - can be proven from self-evident principles.
 - cannot be proven, and this is a unique problem for the theory.
 - cannot be proven, but this is common to all first principles.
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,2,0.020594801753759384,0.016638122498989105
+",3,2,0.02059480920433998,0.016638167202472687
 All of the above.,"Based on the given examples, the black-box model tends to provide a concise and direct answer that corresponds to one of the options. In this case, all options seem plausible, but considering the model's tendency to choose a single option, I would predict:
 
 Physical injury.",All of the above.,"Your goal is to predict what the black-box model will answer to a given question. Below are examples of inputs (questions) and the black-box model's actual responses.
@@ -2184,4 +2184,4 @@ Options: - Physical injury
 - Impaired development
 - All of the above
 Your Predicted Black-box LLM Response: (Exact response text only)
-",3,0,0.06055961549282074,0.008625428192317486
+",3,0,0.060559630393981934,0.008625486865639687
