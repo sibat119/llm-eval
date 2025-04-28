@@ -48,7 +48,8 @@
             "module": "src.surrogates.few_shot.bbq",
             "args": [
                 "--model_name", "meta-llama/Llama-3.1-8B-Instruct",
-                "--batch_size", "1",
+                "--batch_size", "2",
+                "--dataset_name", "hbb"
             ],
             "env": {
                 "CUDA_VISIBLE_DEVICES": "3"
