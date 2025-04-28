@@ -300,7 +300,9 @@ def compute_metrics_from_csv(csv_filename):
         predictions = df['model_output'].tolist()
         ground_truths = df['ground_truth'].tolist()
         options = df['options'].tolist()
-        blackbox_output = df['blackbox_output'].tolist()
+        blackbox_output = None
+        if 'blackbox_output' in df.columns:
+            blackbox_output = df['blackbox_output'].tolist()
         
         return compute_all_metrics(predictions, ground_truths, options, blackbox_output)
     except Exception as e:

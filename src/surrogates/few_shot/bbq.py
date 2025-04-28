@@ -82,7 +82,7 @@ def get_custom_bbq_response(
     dataset = load_dataset(dataset_name, data_sub_field, split="test")   
     # Select a reasonable number of examples for testing
     # Using slice notation to get first few examples instead of just one index
-    # dataset = dataset.select(range(min(4, len(dataset))))
+    dataset = dataset.select(range(min(4, len(dataset))))
     session = selector.select_chat_model(cfg=cfg, model_name=model_name)
     # session = None
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
@@ -144,10 +144,10 @@ if __name__ == "__main__":
         cfg=config,
         batch_size=args.batch_size
     )
-    metrics = metrics.compute_metrics_from_csv(csv_file_name)
-    print(f"Result: {metrics}")
+    results = metrics.compute_metrics_from_csv(csv_file_name)
+    print(f"Result: {results}")
     # Write metrics to results file
     results_file = os.path.join(csv_dir, "results.txt")
     with open(results_file, "a") as f:
-        f.write(f"{model_name}: {metrics}\n")
+        f.write(f"{model_name}: {results}\n")
     print(f"Saved metrics to {results_file}")
