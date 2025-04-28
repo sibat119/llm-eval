@@ -83,8 +83,8 @@ def get_custom_bbq_response(
     # Select a reasonable number of examples for testing
     # Using slice notation to get first few examples instead of just one index
     # dataset = dataset.select(range(min(4, len(dataset))))
-    # session = selector.select_chat_model(cfg=cfg, model_name=model_name)
-    session = None
+    session = selector.select_chat_model(cfg=cfg, model_name=model_name)
+    # session = None
     with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         # CSV header
