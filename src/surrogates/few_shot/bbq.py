@@ -70,7 +70,7 @@ def get_bbq_example(examples):
         for i in range(3):
             opt_list.append(examples[f"ans{i}"][j])
         options_list.append(opt_list)
-    ground_truths.extend([choices[label] for choices, label in zip(options_list, examples["label"])])
+    ground_truths = [choices[label] for choices, label in zip(options_list, examples["label"])]
             
     return contexts, questions, options_list, ground_truths
 
@@ -95,7 +95,7 @@ def get_custom_bbq_response(
             batch = dataset[i:i + batch_size]
             system_messages = None
             # Process batch of examples
-            contexts, questions, options_list, ground_truths = zip(*[get_bbq_example(batch)])
+            contexts, questions, options_list, ground_truths = get_bbq_example(batch)
                 
             prompts, system_messages = format_prompt(dataset_name, batch)
             
