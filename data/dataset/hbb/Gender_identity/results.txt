@@ -1,0 +1,4 @@
+meta-llama/Llama-3.1-8B-Instruct: {'exact_match': 0.0, 'f1_score_token_agreement': 0.0, 'f1_score_ranking': 0.0, 'accuracy_ranking': 0.0, 'rouge_scores': {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0}, 'bleu_score': 0.0, 'sbert_similarity': 0.0}
+meta-llama/Llama-3.1-8B-Instruct: {'exact_match': 0.0, 'f1_score_token_agreement': 0.0, 'f1_score_ranking': 0.0, 'accuracy_ranking': 0.0, 'rouge_scores': {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0}, 'bleu_score': 0.0, 'sbert_similarity': 0.0}
+meta-llama/Llama-3.1-8B-Instruct: {'exact_match': 0.0, 'f1_score_token_agreement': 0.0, 'f1_score_ranking': 0.0, 'accuracy_ranking': 0.0, 'rouge_scores': {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0}, 'bleu_score': 0.0, 'sbert_similarity': 0.0}
+Qwen/Qwen2.5-7B-Instruct: {'exact_match': 0.0, 'f1_score_token_agreement': 0.0, 'f1_score_ranking': 0.0, 'accuracy_ranking': 0.0, 'rouge_scores': {'rouge1': 0.0, 'rouge2': 0.0, 'rougeL': 0.0}, 'bleu_score': 0.0, 'sbert_similarity': 0.0}
