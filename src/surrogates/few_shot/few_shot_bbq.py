@@ -369,7 +369,7 @@ def create_few_shot_prompt(llm_response_path_pairs: List[Tuple[str, str]],
                          selection_strategy: str = "random", 
                          prompt_variation: str = "black_box",
                          prompt_datapaths: List[Tuple[str, str]] = None,
-                         shared_examples: bool = True):
+                         llms: List[str] = None):
     """
     Create prompts for few-shot learning and save them to files.
     
@@ -392,7 +392,7 @@ def create_few_shot_prompt(llm_response_path_pairs: List[Tuple[str, str]],
     
     # Get all questions from the first dataset
     base_ds = all_ds[0][1]
-    # base_ds = base_ds.select(range(min(12, len(base_ds))))
+    base_ds = base_ds.select(range(min(512, len(base_ds))))
     
     all_questions = [item['question'] for item in base_ds]
     all_contexts = [item.get('context', '') for item in base_ds]
@@ -423,29 +423,18 @@ def create_few_shot_prompt(llm_response_path_pairs: List[Tuple[str, str]],
         )
         
         # Store in lookup dictionary using both ID and question as composite key
-        similar_questions_lookup[(question_id, question)] = similar_q
+        similar_questions_lookup[(question_id, question, context)] = similar_q
     
     # Process each model's dataset
     for llm_name, ds in all_ds:
         print(f"Creating prompts for {llm_name}...")
-        # ds = ds.select(range(min(12, len(ds))))
+        ds = ds.select(range(min(512, len(ds))))
         for idx, item in enumerate(tqdm(ds, desc=f"Processing {llm_name}")):
             question = item['question']
-            
-            # Find the corresponding key in the lookup
-            lookup_key = None
-            for key in similar_questions_lookup.keys():
-                _, q = key
-                if q == question:
-                    lookup_key = key
-                    break
-            
-            if lookup_key is None:
-                print(f"Warning: Question not found in lookup: {question}")
-                continue
+            context = item['context']
                 
             # Get precomputed similar questions
-            similar_questions = similar_questions_lookup[lookup_key]
+            similar_questions = similar_questions_lookup[(idx, question, context)]
             
             # Collect responses for these questions from all models
             example_responses = collect_responses_for_questions(similar_questions, all_ds)
@@ -647,7 +636,7 @@ if __name__ == "__main__":
                     selection_strategy=args.selection_strategy,
                     prompt_variation=args.prompt_variation,
                     prompt_datapaths=prompt_ds_file_names,
-                    shared_examples=True  # Ensure all models use the same example set
+                    llms=llms  # Ensure all models use the same example set
                 )
             else:
                 print("Error: Some model data paths are missing. Please run the response generation for all models first.")

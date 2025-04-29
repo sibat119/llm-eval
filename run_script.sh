@@ -35,13 +35,13 @@ for sub_field in "${sub_fields[@]}"; do
     for prompt_strategy in "${prompt_strategies[@]}"; do
         for selection_strategy in "${selection_strategies[@]}"; do
             
-            python -m src.surrogates.few_shot.few_shot_bbq \
-                --dataset_name "heegyu/bbq" \
-                --sub_field "$sub_field" \
-                --shot $shot \
-                --selection_strategy "$selection_strategy" \
-                --prompt_variation "$prompt_strategy" \
-                --create_prompt
+            # python -m src.surrogates.few_shot.few_shot_bbq \
+            #     --dataset_name "heegyu/bbq" \
+            #     --sub_field "$sub_field" \
+            #     --shot $shot \
+            #     --selection_strategy "$selection_strategy" \
+            #     --prompt_variation "$prompt_strategy" \
+            #     --create_prompt
         
             
             python -m src.surrogates.few_shot.few_shot \
