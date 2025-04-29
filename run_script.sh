@@ -44,7 +44,7 @@ for sub_field in "${sub_fields[@]}"; do
             #     --create_prompt
         
             
-            python -m src.surrogates.few_shot.few_shot \
+            python -m src.surrogates.few_shot.few_shot_bbq \
                 --sub_field "$sub_field" \
                 --batch_size $batch_size \
                 --shot $shot \
@@ -53,7 +53,7 @@ for sub_field in "${sub_fields[@]}"; do
                 --selection_strategy "$selection_strategy" \
                 --prompt_variation "$prompt_strategy" \
             
-            python -m src.surrogates.few_shot.few_shot \
+            python -m src.surrogates.few_shot.few_shot_bbq \
                 --sub_field "$sub_field" \
                 --batch_size $batch_size \
                 --shot $shot \
