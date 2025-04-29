@@ -142,6 +142,7 @@ def surrogate_generation_and_template_save(surrogate_model,
     # Load candidate model responses for all models
     
     # Get all questions from the first dataset
+    base_ds = Dataset.from_csv(base_ds)
     base_ds = base_ds.select(range(min(128, len(base_ds))))
     
     all_questions = [item['question'] for item in base_ds]
@@ -290,9 +291,10 @@ if __name__ == "__main__":
     surrogate_dir = os.path.join(config['data_path'], dataset_name.replace('/', '_'), 'surrogate', args.sub_field, args.prompt_variation, f"{args.shot}-shot-{args.selection_strategy}-selection")
     os.makedirs(surrogate_dir, exist_ok=True)
     print(surrogate_dir)
-    ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
     # f"{data_folder}/custom_{llm.replace('/', '_')}_{dataset_name.replace('/', '_')}_results.csv"
     data_folder = f"{config['data_path']}/{dataset_name.replace('/', '_')}/{args.sub_field}"
+    
+    base_ds_path = f"{data_folder}/custom_{surrogate_llm.replace('/', '_')}_{dataset_name.replace('/', '_')}_results.csv"
     prompt_ds_file_name = f"{data_folder}/candidate-{candidate_llm.replace('/', '_')}-shot-{args.shot}-selection-strategy-{args.selection_strategy}-prompt-variation-{args.prompt_variation}-prompt.csv"
     intermediate_prompt_path = f"{data_folder}/surrogate-{surrogate_llm.replace('/', '_')}-prompt-examples.json"
     
@@ -301,7 +303,7 @@ if __name__ == "__main__":
             surrogate_model=surrogate_llm,
             shot=args.shot,
             prompt_datapath=intermediate_prompt_path,
-            base_ds=ds_file_name,
+            base_ds=base_ds_path,
             cfg=config,
         )
     elif args.candidate_gen:
