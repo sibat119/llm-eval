@@ -15,10 +15,10 @@
 #!/bin/bash
 
 # Define arrays for variables
-sub_fields=("high_school_computer_science" "philosophy" "public_relations")
+sub_fields=("Gender_identity")
 # prompt_strategies=("black_box" "persona" "pattern_recognition")
 prompt_strategies=("black_box")
-selection_strategies=("random")
+selection_strategies=("select_by_context" "select_by_question" "select_by_both")
 # selection_strategies=("similarity" "random")
 
 # Base models
@@ -26,44 +26,23 @@ llama="meta-llama/Llama-3.1-8B-Instruct"
 qwen="Qwen/Qwen2.5-7B-Instruct"
 
 # Common parameters
-batch_size=16
+# Try batch of 1 and see if the previous question influence the responses.
+batch_size=1 
 shot=5
 
 # Loop through all combinations
 for sub_field in "${sub_fields[@]}"; do
     for prompt_strategy in "${prompt_strategies[@]}"; do
         for selection_strategy in "${selection_strategies[@]}"; do
-            # First configuration: Llama as surrogate, Qwen as candidate
-            python -m src.surrogates.few_shot.few_shot \
-                --sub_field "$sub_field" \
-                --batch_size $batch_size \
-                --shot $shot \
-                --surrogate "$llama" \
-                --candidate "$qwen" \
-                --selection_strategy "$selection_strategy" \
-                --prompt_variation "$prompt_strategy" \
-                --create_prompt
             
-            python -m src.surrogates.few_shot.few_shot \
+            python -m src.surrogates.few_shot.few_shot_bbq \
+                --dataset_name "heegyu/bbq" \
                 --sub_field "$sub_field" \
-                --batch_size $batch_size \
                 --shot $shot \
-                --surrogate "$llama" \
-                --candidate "$qwen" \
-                --selection_strategy "$selection_strategy" \
-                --prompt_variation "$prompt_strategy" \
-                # --eval
-
-            # Second configuration: Qwen as surrogate, Llama as candidate
-            python -m src.surrogates.few_shot.few_shot \
-                --sub_field "$sub_field" \
-                --batch_size $batch_size \
-                --shot $shot \
-                --surrogate "$qwen" \
-                --candidate "$llama" \
                 --selection_strategy "$selection_strategy" \
                 --prompt_variation "$prompt_strategy" \
                 --create_prompt
+        
             
             python -m src.surrogates.few_shot.few_shot \
                 --sub_field "$sub_field" \
@@ -73,7 +52,16 @@ for sub_field in "${sub_fields[@]}"; do
                 --candidate "$llama" \
                 --selection_strategy "$selection_strategy" \
                 --prompt_variation "$prompt_strategy" \
-                # --eval
+            
+            python -m src.surrogates.few_shot.few_shot \
+                --sub_field "$sub_field" \
+                --batch_size $batch_size \
+                --shot $shot \
+                --surrogate "$llama" \
+                --candidate "$qwen" \
+                --selection_strategy "$selection_strategy" \
+                --prompt_variation "$prompt_strategy" \
+            
         done
     done
 done
