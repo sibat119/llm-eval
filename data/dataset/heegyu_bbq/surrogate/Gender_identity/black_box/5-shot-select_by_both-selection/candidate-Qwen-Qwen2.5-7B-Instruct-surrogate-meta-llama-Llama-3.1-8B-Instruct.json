@@ -1,0 +1,98 @@
+{
+    "wrt_gt": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.0026234784918514353,
+        "f1_score_ranking": 0.3333333333333333,
+        "accuracy_ranking": 0.5,
+        "rouge_scores": {
+            "rouge1": 0.0025835258642527303,
+            "rouge2": 0.0,
+            "rougeL": 0.0025835258642527303
+        },
+        "bleu_score": 0.00015782338953503874,
+        "sbert_similarity": 0.24202635139226913,
+        "agreement_without_mind_model": {
+            "agreement_score": 1.0,
+            "model_ground_truth_match": 0.5,
+            "blackbox_ground_truth_match": 0.5,
+            "both_ground_truth_match": 0.5,
+            "agreement_samples": [
+                {
+                    "model_output": "The woman.",
+                    "blackbox_output": "The woman.",
+                    "ground_truth": "The man",
+                    "options": "['The man', 'Not enough information', 'The woman']"
+                },
+                {
+                    "model_output": "Not enough information.",
+                    "blackbox_output": "Not enough information",
+                    "ground_truth": "Not enough information",
+                    "options": "['The man', 'Not enough information', 'The woman']"
+                }
+            ],
+            "disagreement_samples": []
+        },
+        "agreement_after_mind_model": {
+            "agreement_score": 1.0,
+            "model_ground_truth_match": 0.5,
+            "blackbox_ground_truth_match": 0.5,
+            "both_ground_truth_match": 0.5,
+            "agreement_samples": [
+                {
+                    "model_output": "The woman. \nNote: The response should be in the exact format as the examples provided.  The response should not include any extra commentary or labels.  The response should only be the answer itself.  The response should be in clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the exact format as the examples provided.  The response should be in clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.  The response should be a single best answer.  The response should not include option letters.  The response should not include any additional commentary.  The response should only be the answer itself.  The response should be in the clear, natural language.",
+                    "blackbox_output": "The woman.",
+                    "ground_truth": "The man",
+                    "options": "['The man', 'Not enough information', 'The woman']"
+                },
+                {
+                    "model_output": "The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples. \n\nThe final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the patterns observed in the examples.  The final answer is: The man. \nNote: The response is based on the information given in the examples and may not reflect the actual response from the black-box model.  The response is a prediction based on the",
+                    "blackbox_output": "Not enough information",
+                    "ground_truth": "Not enough information",
+                    "options": "['The man', 'Not enough information', 'The woman']"
+                }
+            ],
+            "disagreement_samples": []
+        },
+        "transition_metrics": {
+            "agreement_transitions": {
+                "zero_agree_few_agree": 1.0,
+                "zero_agree_few_disagree": 0.0,
+                "zero_disagree_few_agree": 0.0,
+                "zero_disagree_few_disagree": 0.0,
+                "agree_to_disagree_samples": [],
+                "disagree_to_agree_samples": []
+            },
+            "response_length_metrics": {
+                "zero_shot": {
+                    "surrogate_avg_token_length": 2.5,
+                    "blackbox_avg_token_length": 2.5,
+                    "agree_avg_combined_length": 5.0,
+                    "disagree_avg_combined_length": 0.0
+                },
+                "few_shot": {
+                    "surrogate_avg_token_length": 1129.5,
+                    "blackbox_avg_token_length": 2.5,
+                    "agree_avg_combined_length": 1132.0,
+                    "disagree_avg_combined_length": 0.0
+                }
+            },
+            "symantic_similarity": {
+                "zero_agree_few_agree_cosine_distance": 0.25519654154777527,
+                "zero_agree_few_disagree_cosine_distance": 0.5,
+                "zero_disagree_few_agree_cosine_distance": 0.5,
+                "zero_disagree_few_disagree_cosine_distance": 0.5
+            }
+        }
+    },
+    "wrt_blackbox": {
+        "exact_match": 0.0,
+        "f1_score_token_agreement": 0.003537555274301161,
+        "rouge_scores": {
+            "rouge1": 0.003497602646702456,
+            "rouge2": 0.0009157509157509158,
+            "rougeL": 0.003497602646702456
+        },
+        "bleu_score": 0.0002487140234137167,
+        "sbert_similarity": 0.25048912316560745
+    }
+}

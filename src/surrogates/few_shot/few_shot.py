@@ -290,7 +290,9 @@ if __name__ == "__main__":
     
     def parse_args():
         parser = argparse.ArgumentParser(description="Run LLM benchmark evaluation")
-        parser.add_argument("--sub_field",type=str, default="high_school_computer_science",
+        parser.add_argument("--dataset_name",type=str, default="heegyu/bbq",
+                            help="provide field name")
+        parser.add_argument("--sub_field",type=str, default="Gender_identity",
                             help="provide field name")
         parser.add_argument("--candidate",type=str, default="Qwen/Qwen2.5-7B-Instruct",
                             help="Candidate model name")
@@ -319,11 +321,13 @@ if __name__ == "__main__":
 
     surrogate_llm = args.surrogate
     candidate_llm  = args.candidate
-    surrogate_dir = os.path.join(config['data_path'], 'surrogate', args.sub_field, args.prompt_variation, f"{args.shot}-shot-{args.selection_strategy}-selection")
+    dataset_name = args.dataset_name
+    surrogate_dir = os.path.join(config['data_path'], dataset_name.replace('/', '_'), 'surrogate', args.sub_field, args.prompt_variation, f"{args.shot}-shot-{args.selection_strategy}-selection")
     os.makedirs(surrogate_dir, exist_ok=True)
     print(surrogate_dir)
     ds_file_name = f"{surrogate_dir}/candidate_{candidate_llm.replace('/', '_')}_surrogate_{surrogate_llm.replace('/', '_')}_responses.csv"
-    data_folder = f"{config['data_path']}/{args.sub_field}/0"
+    # data_folder = f"{config['data_path']}/{args.sub_field}/0"
+    data_folder = f"{config['data_path']}/{dataset_name.replace('/', '_')}/{args.sub_field}"
     prompt_ds_file_name = f"{data_folder}/candidate-{candidate_llm.replace('/', '_')}-shot-{args.shot}-selection-strategy-{args.selection_strategy}-prompt-variation-{args.prompt_variation}-prompt.csv"
     candidate_model_data_path = f"{data_folder}/custom_{candidate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
     surrogate_wo_prior_ds_path = f"{data_folder}/custom_{surrogate_llm.replace('/', '_')}_{config['dataset_name'].replace('/', '_')}_results.csv"
