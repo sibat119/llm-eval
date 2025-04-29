@@ -392,7 +392,7 @@ def create_few_shot_prompt(llm_response_path_pairs: List[Tuple[str, str]],
     
     # Get all questions from the first dataset
     base_ds = all_ds[0][1]
-    base_ds = base_ds.select(range(min(12, len(base_ds))))
+    # base_ds = base_ds.select(range(min(12, len(base_ds))))
     
     all_questions = [item['question'] for item in base_ds]
     all_contexts = [item.get('context', '') for item in base_ds]
@@ -428,7 +428,7 @@ def create_few_shot_prompt(llm_response_path_pairs: List[Tuple[str, str]],
     # Process each model's dataset
     for llm_name, ds in all_ds:
         print(f"Creating prompts for {llm_name}...")
-        ds = ds.select(range(min(12, len(ds))))
+        # ds = ds.select(range(min(12, len(ds))))
         for idx, item in enumerate(tqdm(ds, desc=f"Processing {llm_name}")):
             question = item['question']
             
