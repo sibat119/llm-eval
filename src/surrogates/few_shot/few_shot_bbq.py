@@ -491,6 +491,7 @@ def create_few_shot_prompt(llm_response_path_pairs: List[Tuple[str, str]],
 def get_few_shot_surrogate(model_name, dataset_path, surrogate_datapath="", batch_size=4, cfg=None):
     # model_name = "Qwen/Qwen2.5-7B-Instruct"
     # batch_size = 2  # Adjust batch size as needed
+    breakpoint()
     ds = Dataset.from_csv(dataset_path)
     ds = ds.select(range(batch_size))
     session = selector.select_chat_model(model_name=model_name, cfg=cfg)
