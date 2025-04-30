@@ -274,6 +274,7 @@ def generate_candidate_response(
                 option_text = str(opts)
             response_text = example['black_box_response'].replace('<|start_header_id|>assistant\n\n', '')
             example_str += f"Example {i+1}:\n"
+            example_str += f"Context: \"{example['context']}\"\n" 
             example_str += f"Question: \"{example['question']}\"\n" 
             example_str += f"Options: \"{option_text}\"\n" 
             example_str += f"Response: \"{response_text}\"\n\n"

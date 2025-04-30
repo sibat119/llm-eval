@@ -20,9 +20,8 @@ def load_zero_shot_results(base_path, domains):
     
     return results
 
-def load_surrogate_results(base_path, shot=5, selection_strategy="random", prompt_variation="black_box"):
+def load_surrogate_results(base_path, shot=5, selection_strategy="random", prompt_variation="black_box", domains=[]):
     """Load surrogate results for all domains."""
-    domains = ['high_school_computer_science', 'philosophy', 'public_relations']
     results = {}
     
     for domain in domains:
@@ -490,8 +489,9 @@ def create_confidence_correlation_plot(domain_results):
 
 def main():
     # Define base path
-    base_path = 'data/dataset/heegyu_bbq'
-    selection_strategies = ["select_by_context", "select_by_question", "select_by_both"]
+    data_base_path = 'data/dataset/heegyu_bbq'
+    result_base_path = 'data/results/heegyu_bbq'
+    selection_strategies = ["surrogate_q_gen_bounded", "surrogate_q_gen_unbounded"]
     prompt_variations = ["black_box"]
     # domains = ['high_school_computer_science', 'philosophy', 'public_relations']
     domains = ['Gender_identity']
@@ -500,14 +500,14 @@ def main():
         for selection_strategy in selection_strategies:
             # Load results
             print(f"{prompt_variation}: {selection_strategy}")
-            zero_shot_results = load_zero_shot_results(base_path, domains)
-            surrogate_results = load_surrogate_results(base_path, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
+            zero_shot_results = load_zero_shot_results(data_base_path, domains)
+            surrogate_results = load_surrogate_results(data_base_path, selection_strategy=selection_strategy, prompt_variation=prompt_variation, domains=domains)
             
             # Create visualizations
-            create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation, base_path=base_path)
+            create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation, base_path=result_base_path)
             
             # Create agreement analysis plots
-            create_agreement_analysis_plots(surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation, base_path=base_path)
+            create_agreement_analysis_plots(surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation, base_path=result_base_path)
     
     print("Visualizations generated successfully!")
 
