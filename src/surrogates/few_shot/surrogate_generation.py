@@ -362,7 +362,7 @@ if __name__ == "__main__":
             prompt_datapath=intermediate_prompt_path,
             base_ds=base_ds_path,
             cfg=config,
-            selection_stragegy=args.selection_strategy
+            selection_strategy=args.selection_strategy
         )
     elif args.candidate_gen:
         generate_candidate_response(
