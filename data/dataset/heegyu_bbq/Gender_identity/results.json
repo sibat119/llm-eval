@@ -1,0 +1,4 @@
+{
+    "Qwen/Qwen2.5-7B-Instruct": {"exact_match": 0.6544428772919605, "f1_score_token_agreement": 0.7384520451339915, "f1_score_ranking": 0.9134559855201511, "accuracy_ranking": 0.9134344146685472, "rouge_scores": {"rouge1": 0.9160202162670429, "rouge2": 0.429654442877292, "rougeL": 0.9160202162670429}, "bleu_score": 0.22094672498218088, "sbert_similarity": 0.9130110060835549},
+    "meta-llama/Llama-3.1-8B-Instruct": {"exact_match": 0.2655148095909732, "f1_score_token_agreement": 0.36289614990006497, "f1_score_ranking": 0.6837283030122663, "accuracy_ranking": 0.6826516220028209, "rouge_scores": {"rouge1": 0.68464515368398, "rouge2": 0.24465862195058247, "rougeL": 0.68464515368398}, "bleu_score": 0.10542906956732331, "sbert_similarity": 0.7168902410808373}
+}

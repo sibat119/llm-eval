@@ -643,7 +643,7 @@ if __name__ == "__main__":
                 print("Error: Some model data paths are missing. Please run the response generation for all models first.")
         else:
             if not os.path.exists(prompt_ds_file_name):
-                raise ValueError("Path not found for the dataset.")
+                raise ValueError(f"Path not found for the dataset. {prompt_ds_file_name=}")
             get_few_shot_surrogate(
                 model_name=surrogate_llm, 
                 dataset_path=prompt_ds_file_name, 

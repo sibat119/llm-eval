@@ -8,13 +8,13 @@ from matplotlib.colors import LinearSegmentedColormap
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-def load_zero_shot_results(base_path):
+def load_zero_shot_results(base_path, domains):
     """Load zero-shot results for all domains."""
-    domains = ['high_school_computer_science', 'philosophy', 'public_relations']
+    
     results = {}
     
     for domain in domains:
-        file_path = os.path.join(base_path, domain, '0', 'results.json')
+        file_path = os.path.join(base_path, domain, 'results.json')
         with open(file_path, 'r') as f:
             results[domain] = json.load(f)
     
@@ -67,7 +67,7 @@ def load_surrogate_results(base_path, shot=5, selection_strategy="random", promp
     
     return results
 
-def create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="random", prompt_variation="black_box"):
+def create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy="random", prompt_variation="black_box", base_path="data/dataset"):
     """Create standardized metric dashboard for each domain."""
     domains = list(zero_shot_results.keys())
     metrics = ['accuracy_ranking', 'f1_score_token_agreement', 'f1_score_ranking', 'sbert_similarity', 'agreement_score', 'both_ground_truth_match']
@@ -158,13 +158,13 @@ def create_metric_dashboard(zero_shot_results, surrogate_results, selection_stra
         
         plt.suptitle(f"{domain.replace('_', ' ').title()} - Metric Dashboard", fontsize=16)
         plt.tight_layout(rect=[0, 0, 1, 0.95])
-        directory = f"data/results/{domain}/{prompt_variation}"
+        directory = f"{base_path}/{domain}/{prompt_variation}"
         os.makedirs(directory, exist_ok=True)
         plt.savefig(f'{directory}/{selection_strategy}_metric_dashboard.png', dpi=300)
         plt.close()
         
 
-def create_agreement_analysis_plots(surrogate_results, selection_strategy="random", prompt_variation="black_box"):
+def create_agreement_analysis_plots(surrogate_results, selection_strategy="random", prompt_variation="black_box", base_path="data/dataset"):
     """
     Create a figure with four subplots for agreement analysis based on our metrics.py implementation
     
@@ -211,7 +211,7 @@ def create_agreement_analysis_plots(surrogate_results, selection_strategy="rando
         
         plt.tight_layout()
         plt.subplots_adjust(top=0.92)
-        directory = f"data/results/{domain}/{prompt_variation}"
+        directory = f"{base_path}/{domain}/{prompt_variation}"
         os.makedirs(directory, exist_ok=True)
         plt.savefig(f'{directory}/{selection_strategy}_agreement_analysis.png', dpi=300)
         plt.close()
@@ -490,22 +490,24 @@ def create_confidence_correlation_plot(domain_results):
 
 def main():
     # Define base path
-    base_path = 'data/dataset'
-    selection_strategies = ["random", "similarity"]
+    base_path = 'data/dataset/heegyu_bbq'
+    selection_strategies = ["select_by_context", "select_by_question", "select_by_both"]
     prompt_variations = ["black_box"]
+    # domains = ['high_school_computer_science', 'philosophy', 'public_relations']
+    domains = ['Gender_identity']
     
     for prompt_variation in prompt_variations:
         for selection_strategy in selection_strategies:
             # Load results
             print(f"{prompt_variation}: {selection_strategy}")
-            zero_shot_results = load_zero_shot_results(base_path)
+            zero_shot_results = load_zero_shot_results(base_path, domains)
             surrogate_results = load_surrogate_results(base_path, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
             
             # Create visualizations
-            create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
+            create_metric_dashboard(zero_shot_results, surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation, base_path=base_path)
             
             # Create agreement analysis plots
-            create_agreement_analysis_plots(surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation)
+            create_agreement_analysis_plots(surrogate_results, selection_strategy=selection_strategy, prompt_variation=prompt_variation, base_path=base_path)
     
     print("Visualizations generated successfully!")
 
