@@ -177,7 +177,7 @@ def surrogate_generation_and_template_save(surrogate_model,
     
     # Get all questions from the first dataset
     base_ds = Dataset.from_csv(base_ds)
-    base_ds = base_ds.select(range(min(512, len(base_ds))))
+    base_ds = base_ds.select(range(min(128, len(base_ds))))
     
     similar_questions_lookup = {}
     surrogate_session = selector.select_chat_model(model_name=surrogate_model, cfg=cfg)
