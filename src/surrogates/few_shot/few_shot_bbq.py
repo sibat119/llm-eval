@@ -506,6 +506,7 @@ def get_few_shot_surrogate(model_name, dataset_path, surrogate_datapath="", batc
         # batch_questions = batch['question']
         batch_prompts = batch['prompt']
         
+        breakpoint()
         batch_answers = session.get_response(user_message=batch_prompts) 
         
         # Create response dictionaries for all examples in the batch
