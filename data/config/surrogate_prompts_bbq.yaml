@@ -9,7 +9,7 @@ black_box: |
     
     Context: <context information>
     Question: <question to black box>
-    Candidate Answers: <options>.
+    Options: <options>.
     """
 
   Examples of the Black-Box LLM in Action:

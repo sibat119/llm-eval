@@ -93,15 +93,18 @@ def generate_disguised_pairs(item, surrogate_session, K=5, selection_strategy="s
         # Step 1: Obfuscate context
         context_prompt = get_surrogate_context_prompt(original_context=item['context'])
         disg_context = surrogate_session.get_response(user_message=context_prompt)
+        disg_context = disg_context.replace('<|start_header_id|>assistant\n\n', '').replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
         
         # Step 2: Disguise question
         question_prompt = get_surrogate_question_prompt(original_question=item['question'], surrogate_context=disg_context)
         disg_question = surrogate_session.get_response(user_message=question_prompt)
+        disg_question = disg_question.replace('<|start_header_id|>assistant\n\n', '').replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
         
         if selection_strategy == "surrogate_q_gen_bounded":
         # Step 3: Mask options
             option_prompt = get_surrogate_options_prompt(original_options=item['options'], surrogate_context=disg_context, surrogate_question=disg_question)
             disg_options = surrogate_session.get_response(user_message=option_prompt)
+            disg_options = disg_options.replace('<|start_header_id|>assistant\n\n', '').replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
         
             disguised.append({
                 "question": disg_question, 
@@ -272,7 +275,7 @@ def generate_candidate_response(
             else:
                 # Fallback for any other type
                 option_text = str(opts)
-            response_text = example['black_box_response'].replace('<|start_header_id|>assistant\n\n', '')
+            response_text = example['black_box_response'].replace('<|start_header_id|>assistant\n\n', '').replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
             example_str += f"Example {i+1}:\n"
             example_str += f"Context: \"{example['context']}\"\n" 
             example_str += f"Question: \"{example['question']}\"\n" 
