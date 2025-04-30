@@ -19,7 +19,7 @@ sub_fields=("Gender_identity")
 # prompt_strategies=("black_box" "persona" "pattern_recognition")
 prompt_strategies=("black_box")
 # selection_strategies=("select_by_context" "select_by_question" "select_by_both")
-selection_strategies=("surrogate_q_gen_bounded")
+selection_strategies=("surrogate_q_gen_bounded" "surrogate_q_gen_unbounded")
 
 # Base models
 llama="meta-llama/Llama-3.1-8B-Instruct"
