@@ -43,51 +43,51 @@ for sub_field in "${sub_fields[@]}"; do
             #     --prompt_variation "$prompt_strategy" \
             #     --create_prompt
 
-            # python -m src.surrogates.few_shot.surrogate_generation \
-            #     --dataset_name heegyu/bbq \
-            #     --sub_field Gender_identity \
-            #     --shot 5 \
-            #     --selection_strategy "$selection_strategy" \
-            #     --surrogate "$qwen" \
-            #     --candidate "$llama" \
-            #     --surrogate_gen \
-
-            # python -m src.surrogates.few_shot.surrogate_generation \
-            #     --dataset_name heegyu/bbq \
-            #     --sub_field Gender_identity \
-            #     --shot 5 \
-            #     --selection_strategy "$selection_strategy" \
-            #     --surrogate "$qwen" \
-            #     --candidate "$llama" \
-            #     --candidate_gen \
-
-            # python -m src.surrogates.few_shot.surrogate_generation \
-            #     --dataset_name heegyu/bbq \
-            #     --sub_field Gender_identity \
-            #     --shot 5 \
-            #     --selection_strategy "$selection_strategy" \
-            #     --candidate "$qwen" \
-            #     --surrogate "$llama" \
-            #     --surrogate_gen \
-
-            # python -m src.surrogates.few_shot.surrogate_generation \
-            #     --dataset_name heegyu/bbq \
-            #     --sub_field Gender_identity \
-            #     --shot 5 \
-            #     --selection_strategy "$selection_strategy" \
-            #     --candidate "$qwen" \
-            #     --surrogate "$llama" \
-            #     --candidate_gen \
-            
-            
-            python -m src.surrogates.few_shot.few_shot_bbq \
-                --sub_field "$sub_field" \
-                --batch_size $batch_size \
-                --shot $shot \
+            python -m src.surrogates.few_shot.surrogate_generation \
+                --dataset_name heegyu/bbq \
+                --sub_field Gender_identity \
+                --shot 5 \
+                --selection_strategy "$selection_strategy" \
                 --surrogate "$qwen" \
                 --candidate "$llama" \
-                --selection_strategy "$selection_strategy" \
-                --prompt_variation "$prompt_strategy" \
+                --surrogate_gen \
+
+            # python -m src.surrogates.few_shot.surrogate_generation \
+            #     --dataset_name heegyu/bbq \
+            #     --sub_field Gender_identity \
+            #     --shot 5 \
+            #     --selection_strategy "$selection_strategy" \
+            #     --surrogate "$qwen" \
+            #     --candidate "$llama" \
+            #     --candidate_gen \
+
+            # python -m src.surrogates.few_shot.surrogate_generation \
+            #     --dataset_name heegyu/bbq \
+            #     --sub_field Gender_identity \
+            #     --shot 5 \
+            #     --selection_strategy "$selection_strategy" \
+            #     --candidate "$qwen" \
+            #     --surrogate "$llama" \
+            #     --surrogate_gen \
+
+            # python -m src.surrogates.few_shot.surrogate_generation \
+            #     --dataset_name heegyu/bbq \
+            #     --sub_field Gender_identity \
+            #     --shot 5 \
+            #     --selection_strategy "$selection_strategy" \
+            #     --candidate "$qwen" \
+            #     --surrogate "$llama" \
+            #     --candidate_gen \
+            
+            
+            # python -m src.surrogates.few_shot.few_shot_bbq \
+            #     --sub_field "$sub_field" \
+            #     --batch_size $batch_size \
+            #     --shot $shot \
+            #     --surrogate "$qwen" \
+            #     --candidate "$llama" \
+            #     --selection_strategy "$selection_strategy" \
+            #     --prompt_variation "$prompt_strategy" \
             
             # python -m src.surrogates.few_shot.few_shot_bbq \
             #     --sub_field "$sub_field" \
