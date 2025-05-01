@@ -91,6 +91,7 @@ def generate_disguised_pairs(item, surrogate_session, K=5, selection_strategy="s
     disguised = []
     for _ in range(K):
         # Step 1: Obfuscate context
+        breakpoint()
         context_prompt = get_surrogate_context_prompt(original_context=item['context'])
         disg_context = surrogate_session.get_response(user_message=context_prompt)
         disg_context = disg_context.replace('<|start_header_id|>assistant\n\n', '').replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
