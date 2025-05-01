@@ -14,6 +14,10 @@ import numpy as np
 from typing import List, Dict, Optional, Tuple
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import torch
+import gc
+import contextlib
+import ray
+from vllm.distributed.parallel_state import destroy_model_parallel, destroy_distributed_environment
 
 
 
@@ -33,7 +37,18 @@ def self_consistency_loop(model_name, cfg, prompts, system_roles=None, temperatu
             prompt_resp_dict[idx] = responses
             
         temp_prompt_dict[temp] = prompt_resp_dict
-            
+        if session.get_session_type == 'vllm':
+            destroy_model_parallel()
+            destroy_distributed_environment()
+            # del llm.llm_engine.model_executor
+            del session
+            with contextlib.suppress(AssertionError):
+                torch.distributed.destroy_process_group()
+            gc.collect()
+            torch.cuda.empty_cache()
+            ray.shutdown()
+            print("Successfully deleted the llm pipeline and freed the GPU memory.")
+        
     return temp_prompt_dict
                 
         
