@@ -39,6 +39,17 @@ def self_consistency_loop(model_name, cfg, prompts, system_roles=None, temperatu
         
         
 if __name__ == "__main__":
+    
+    def parse_args():
+        parser = argparse.ArgumentParser(description="Run LLM self-consistency loop")
+        parser.add_argument("--model_name",type=str, default="Qwen/Qwen2.5-7B-Instruct",
+                            help="provide model name")
+        
+        
+        return parser.parse_args()
+    
+    args = parse_args()
+    
     prompts = [
         """Analyze the following scenario and choose the most appropriate answer from the candidates provided. Respond only with the answer text in clear, natural language—no labels or extra commentary
   
@@ -64,9 +75,9 @@ if __name__ == "__main__":
     with open("data/config/conf.yml", "r") as file:
         config = yaml.safe_load(file)
         
-    
+    model_name=args.model_name
     responses = self_consistency_loop(
-        model_name="",
+        model_name=model_name,
         cfg=config,
         prompts=prompts,
         system_roles=system_roles
@@ -82,7 +93,7 @@ if __name__ == "__main__":
     os.makedirs("results/self_consistency_results", exist_ok=True)
     
     # Save the responses dictionary to a JSON file
-    output_path = f"results/self_consistency_results/responses_{timestamp}.json"
+    output_path = f"results/self_consistency_results/responses_{model_name}_{timestamp}.json"
     
     # Convert the dictionary to a serializable format
     # (Temperature keys need to be converted from float to string)
