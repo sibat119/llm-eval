@@ -93,7 +93,7 @@ if __name__ == "__main__":
     os.makedirs("results/self_consistency_results", exist_ok=True)
     
     # Save the responses dictionary to a JSON file
-    output_path = f"results/self_consistency_results/responses_{model_name}_{timestamp}.json"
+    output_path = f"results/self_consistency_results/responses_{model_name.replace('/', '_')}_{timestamp}.json"
     
     # Convert the dictionary to a serializable format
     # (Temperature keys need to be converted from float to string)
