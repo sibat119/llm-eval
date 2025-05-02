@@ -97,7 +97,13 @@ def generate_disguised_pairs(item, surrogate_session, K=5, selection_strategy="s
         
         if selection_strategy == "surrogate_q_gen_bounded":
         # Step 3: Mask options
-            option_prompt = get_surrogate_options_prompt(original_options=item['options'], surrogate_context=disg_context, surrogate_question=disg_question)
+            option_prompt = get_surrogate_options_prompt(
+                original_context=item['context'],
+                original_question=item['question'],
+                original_options=item['options'], 
+                surrogate_context=disg_context, 
+                surrogate_question=disg_question
+                )
             disg_options = surrogate_session.get_response(user_message=option_prompt)
             disg_options = disg_options.replace('<|start_header_id|>assistant\n\n', '').replace('<|start_header_id|>assistant<|end_header_id|>\n\n', '')
         
