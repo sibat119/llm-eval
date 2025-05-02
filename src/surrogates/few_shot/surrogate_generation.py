@@ -175,7 +175,7 @@ def surrogate_generation_and_template_save(surrogate_model,
     base_ds = base_ds.select(range(min(128, len(base_ds))))
     
     similar_questions_lookup = {}
-    surrogate_session = selector.select_chat_model(model_name=surrogate_model, cfg=cfg, temperature=0.8)
+    surrogate_session = selector.select_chat_model(model_name=surrogate_model, cfg=cfg, temperature=0.2)
     
     print("Precomputing similar questions for all questions...")
     for idx, item in enumerate(tqdm(base_ds, desc="Creating examples with surrogate")):
