@@ -1,0 +1,74 @@
+{
+  "20250501_185137": {
+    "0.2": {
+      "0": [
+        "The woman.",
+        "The woman.",
+        "The woman.",
+        "The woman.",
+        "The woman."
+      ],
+      "1": [
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information"
+      ]
+    }
+  },
+  "20250501_185402": {
+    "0.4": {
+      "0": [
+        "The woman.",
+        "The woman.",
+        "The woman.",
+        "The woman.",
+        "The woman."
+      ],
+      "1": [
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information"
+      ]
+    }
+  },
+  "20250501_190824": {
+    "0.6": {
+      "0": [
+        "The woman.",
+        "The woman.",
+        "The woman.",
+        "The woman.",
+        "The woman."
+      ],
+      "1": [
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information"
+      ]
+    }
+  },
+  "20250501_191553": {
+    "0.8": {
+      "0": [
+        "The woman.",
+        "The woman.",
+        "The man.",
+        "The man.",
+        "The woman."
+      ],
+      "1": [
+        "The woman",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information",
+        "Not enough information"
+      ]
+    }
+  }
+}
